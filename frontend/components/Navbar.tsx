@@ -1,11 +1,10 @@
 "use client";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Menu, X, ArrowRight } from "lucide-react";
+import { Menu, X, ArrowRight, Phone } from "lucide-react";
 const navigation = [
-  ["Explore Kashi", "/"],
+  ["Home", "/"],
   ["Experiences", "/experiences"],
   ["Journeys", "/journeys"],
   ["About", "/about"],
@@ -31,11 +30,9 @@ export default function Navbar() {
     return () => document.removeEventListener("keydown", close);
   }, [open]);
   return (
-    <header
-      className={`sn-nav ${scrolled || pathname !== "/" || open ? "sn-nav-solid" : ""}`}
-    >
+    <header className={`sn-nav ${scrolled || pathname !== "/" || open ? "sn-nav-solid" : ""}`}>
       <Link href="/" className="sn-brand" aria-label="Soil n Soul Travels home" style={{ display: 'flex', alignItems: 'center' }}>
-        <img 
+        <img
           src="/soil-n-soul-logo.svg" 
           alt="Soil n Soul Travels" 
           className="sn-logo-img"
@@ -52,9 +49,8 @@ export default function Navbar() {
           </Link>
         ))}
       </nav>
-      <Link className="sn-button sn-nav-cta" href="/#contact">
-        Design My Journey
-      </Link>
+      <a className="nav-phone" href="tel:+919580417547" aria-label="Call our travel concierge"><Phone size={14}/><span>+91 95804 17547</span></a>
+      <Link className="sn-button sn-nav-cta" href="/contact">Plan your journey <ArrowRight size={14}/></Link>
       <button
         className="sn-menu-toggle"
         aria-expanded={open}
@@ -91,7 +87,7 @@ export default function Navbar() {
             className="sn-button"
             onClick={() => setOpen(false)}
           >
-            Design My Journey →
+            Plan Your Journey →
           </Link>
         </nav>
       )}

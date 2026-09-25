@@ -1,393 +1,624 @@
 "use client";
-import { useState, useEffect, useRef } from "react";
-import { Sailboat, DoorOpen, Flame, Landmark, Sparkles, HeartHandshake } from "lucide-react";
-import type { BlogPost } from "@/lib/api";
-import LeadCaptureModal from "@/components/LeadCaptureModal";
+
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
-  JourneyGrid,
-  Founder,
-  Values,
-  SectionHeading,
-} from "@/components/Editorial";
-import CinematicCarousel from "@/components/CinematicCarousel";
+  ArrowDown,
+  ArrowLeft,
+  ArrowRight,
+  BedDouble,
+  Compass,
+  HeartHandshake,
+  Menu,
+  Phone,
+  Play,
+  ShieldCheck,
+  Sparkles,
+  Users,
+  X,
+} from "lucide-react";
 import JourneyEnquiry from "@/components/JourneyEnquiry";
-import SoulJournal from "@/components/SoulJournal";
-import GoogleReviews from "@/components/GoogleReviews";
-import ExperienceSelector from "@/components/ExperienceSelector";
-import HeroVideo from "@/components/HeroVideo";
+import LuxuryNavbar from "@/components/LuxuryNavbar";
 
-const rare = [
+const experiences = [
   {
-    number: "01",
-    title: "Private Cultural Performances",
-    desc: "Thumri, Dhrupad & classical arts in intimate settings",
-    image: "/SnS/private-cultural-performance.webp",
-    alt: "Intimate classical music performance in a heritage home in Kashi",
+    title: "Private Sunrise Boat Experience",
+    copy: "A serene start to your day on the sacred Ganges.",
+    image: "/SnS/the-sacred-morning.png",
+    alt: "Sunrise over Varanasi from a private boat on the Ganges",
   },
   {
-    number: "02",
-    title: "Local Storytellers",
-    desc: "Living historians who carry Kashi’s oral tradition",
-    image: "/SnS/local-storyteller.webp",
-    alt: "Local Banarasi storyteller sharing stories in an old Kashi setting",
+    title: "Ganga Aarti (Private Access)",
+    copy: "Witness the divine ritual from exclusive vantage points.",
+    image: "/SnS/sacred-kashi.png",
+    alt: "The evening Ganga Aarti ceremony at Dashashwamedh Ghat",
   },
   {
-    number: "03",
-    title: "Heritage Homes",
-    desc: "Private havelis rarely opened to visitors",
-    image: "/SnS/rare-access-heritage-home.webp",
-    alt: "Historic Banarasi heritage haveli courtyard",
+    title: "Heritage Walks Through Old Varanasi",
+    copy: "Explore hidden lanes, ancient temples and living traditions.",
+    image: "/SnS/varanasi-heritage.png",
+    alt: "Historic architecture and lanes in old Varanasi",
   },
   {
-    number: "04",
-    title: "Traditional Craftsmen",
-    desc: "Brasswork, zardozi and Banarasi brocade",
-    image: "/SnS/brass-craftsman.webp",
-    alt: "Banarasi craftsman working with traditional brassware",
-  },
-  {
-    number: "05",
-    title: "Private Artisan Visits",
-    desc: "Master weavers & craftsmen, by appointment only",
-    image: "/SnS/private-artisan-visit.webp",
-    alt: "Master Banarasi weaver demonstrating traditional handloom craft",
-  },
-  {
-    number: "06",
-    title: "Family-run Kitchens",
-    desc: "Recipes unchanged across five generations",
-    image: "/SnS/family-run-kitchen.webp",
-    alt: "Traditional family kitchen preparing food in Kashi",
-  },
-  {
-    number: "07",
-    title: "Hidden Temples",
-    desc: "Unmarked shrines beyond every guidebook",
-    image: "/SnS/rare-access-hidden-temple.webp",
-    alt: "Small hidden shrine tucked inside an old Kashi lane",
-  },
-  {
-    number: "08",
-    title: "Private Ganga Experiences",
-    desc: "Exclusive dawn boat, solo ghat rituals, private aarti",
-    image: "/SnS/private-ganga-experience.webp",
-    alt: "Traditional wooden boat experience on the Ganges in Kashi",
+    title: "Local Food Trails",
+    copy: "Taste authentic Varanasi through curated culinary journeys.",
+    image: "/SnS/the-banarasi-table.png",
+    alt: "Traditional Banarasi food served for a shared meal",
   },
 ];
 
-const components = [
-  {
-    title: "Travel",
-    desc: "Car · Bike · Traditional Boat",
-    icon: Sailboat,
-    image: "/SnS/private-journey-travel.webp",
-    alt: "Traditional boat and travel in Varanasi",
-  },
-  {
-    title: "Stays",
-    desc: "Budget Homestays · Heritage Havelis · Comfort Hotels",
-    icon: DoorOpen,
-    image: "/SnS/private-journey-stays.webp",
-    alt: "Heritage haveli stay in Varanasi",
-  },
-  {
-    title: "Rituals",
-    desc: "Ganga Aarti Arrangements · Pind Daan · Kashi Vishwanath Puja",
-    icon: Flame,
-    image: "/SnS/private-journey-rituals.webp",
-    alt: "Sacred rituals and Ganga Aarti in Kashi",
-  },
-  {
-    title: "Cultural Experiences",
-    desc: "Sunrise Ghat Walk · Old City Heritage Walk · Temple Circuit Tour · Cultural Evenings",
-    icon: Landmark,
-    image: "/SnS/private-journey-cultural-experiences.webp",
-    alt: "Cultural experiences and heritage walks in Kashi",
-  },
-  {
-    title: "Celebrations",
-    desc: "Pre-Wedding Photography · Private Spiritual Ceremonies · Special Occasions",
-    icon: Sparkles,
-    image: "/SnS/private-journey-celebrations.webp",
-    alt: "Spiritual celebrations and photography in Varanasi",
-  },
-  {
-    title: "Other Support",
-    desc: "Airport Pickup · Silk Shopping · Verified Stays · Local Mobility",
-    icon: HeartHandshake,
-    image: "/SnS/private-journey-other-support.webp",
-    alt: "Local support and hospitality in Varanasi",
-  }
+const philosophyFeatures = [
+  { icon: Sparkles, title: "Authentic Experiences" },
+  { icon: BedDouble, title: "Handpicked Stays" },
+  { icon: HeartHandshake, title: "Local Connections" },
+  { icon: Compass, title: "Personalized Itineraries" },
 ];
 
-const faqs = [
-  [
-    "Is Kashi suitable for solo travellers?",
-    "We help solo travellers plan with local guidance, verified stays, and support throughout the journey. Tell us what would make you feel comfortable so we can shape the right experience.",
-  ],
-  [
-    "How far in advance should I plan?",
-    "We recommend 2–4 weeks for most journeys and 4–8 weeks for larger groups or festivals such as Dev Deepawali. Contact us to discuss availability for your dates.",
-  ],
-  [
-    "Can you design a journey around my interests?",
-    "Yes. Share your interests, dates, and group size. We will craft a journey around the experiences that matter to you.",
-  ],
-  [
-    "Can you arrange arrival and local mobility?",
-    "Yes. We coordinate airport and railway station pickups, local cars, bikes, and traditional boat experiences.",
-  ],
-  [
-    "How do you select stays and local partners?",
-    "Our team personally checks recommended properties and works with local partners with attention to safety, cleanliness, and hospitality.",
-  ],
-  [
-    "How does the journey-design process work?",
-    "Share your preferences through the enquiry form or WhatsApp. We discuss your interests, suggest a journey, and refine the details together before confirming arrangements.",
-  ],
+const navItems = [
+  ["Home", "/"],
+  ["Experiences", "/experiences"],
+  ["Stays", "/#stays"],
+  ["Our Story", "/about"],
+  ["Gallery", "/#gallery"],
+  ["Contact", "/#contact"],
 ];
 
-export default function HomeClient({ blogs }: { blogs: BlogPost[] }) {
-  const [showPopup, setShowPopup] = useState(false);
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
-
-  useEffect(() => {
-    // Only run on the client
-    if (typeof window === 'undefined') return;
-
-    const hasShown = sessionStorage.getItem("soilnsoul_contact_popup_shown");
-    if (!hasShown) {
-      timerRef.current = setTimeout(() => {
-        setShowPopup(true);
-        sessionStorage.setItem("soilnsoul_contact_popup_shown", "true");
-      }, 5000);
-    }
-
-    return () => {
-      if (timerRef.current) clearTimeout(timerRef.current);
-    };
-  }, []);
-
-  const handleManualTrigger = () => {
-    if (timerRef.current) clearTimeout(timerRef.current);
-    sessionStorage.setItem("soilnsoul_contact_popup_shown", "true");
-    setShowPopup(true);
-  };
+export default function HomeClient() {
+  const [filmOpen, setFilmOpen] = useState(false);
 
   return (
-    <div className="sn-site">
-      <section className="sn-hero">
-        <HeroVideo />
-        <div className="sn-hero-shade" />
-        <div className="sn-wrap sn-hero-content">
-          <p className="sn-eyebrow">THE SOUL OF KASHI</p>
-          <h1>
-            Experience Varanasi
-            <br />
-            <em>beyond the ordinary.</em>
-          </h1>
-          <p>
-            Discover the stories, rituals, people and traditions that make Kashi
-            unlike anywhere else.
-          </p>
-          <div className="sn-hero-actions">
-            <Link href="#contact" className="sn-button">
-              Design My Journey →
-            </Link>
-            <Link href="#experiences" className="sn-hero-link">
-              Explore Experiences <span>→</span>
-            </Link>
-          </div>
-        </div>
-        <div className="sn-hero-bottom sn-wrap">
-          <span>FROM THE SOIL OF KASHI TO THE SOUL OF EVERY TRAVELER.</span>
-          <span>A slower way to discover. A deeper way to connect.</span>
-          <a href="#experiences" aria-label="Scroll to Signature Experiences">
-            Scroll to discover ↓
-          </a>
-        </div>
-      </section>
+    <div className="reference-homepage">
+      {/* ========================================================
+          HEADER / NAVIGATION (MATCHES EXPERIENCES NAVBAR EXACTLY)
+      ======================================================== */}
+      <LuxuryNavbar />
 
-
-
-      <section id="experiences" className="sn-section sn-wrap">
-        <SectionHeading
-          label="Signature Experiences"
-          title="Six verticals. One city’s infinite depth."
-          text="Follow what moves you. The sacred, the everyday, the unexpected — each opens a different door to Kashi."
+      {/* ========================================================
+          SECTION 01: FULL-SCREEN HERO
+      ======================================================== */}
+      <section className="hero-reference-section" id="home" aria-label="Varanasi, A Feeling Beyond Time">
+        {/* Cinematic Sunset/Twilight Ganges Background Image */}
+        <Image
+          src="/SnS/the-sacred-morning.png"
+          alt="Sunset over the Ganges and ancient riverfront ghats of Varanasi"
+          fill
+          priority
+          sizes="100vw"
+          quality={90}
+          className="hero-cinematic-bg"
         />
-        <ExperienceSelector />
-      </section>
-      <CinematicCarousel />
-      <section className="sn-section sn-wrap sn-rare">
-        <div className="sn-rare-intro">
-          <p className="sn-eyebrow">Rare Access</p>
-          <h2>
-            Some doors open
-            <br />
-            only through
-            <br />
-            <em>connection.</em>
-          </h2>
-          <p>
-            Go beyond the familiar. Meet the people, enter the spaces, and hear
-            the stories that bring the real Banaras closer.
+
+        {/* Cinematic Dark Gradient Overlay */}
+        <div className="hero-cinematic-overlay" />
+
+        {/* Hero Left Content */}
+        <div className="hero-content-block">
+          <p className="hero-eyebrow-text">
+            <span>SPIRITUAL</span>
+            <span className="eyebrow-dot">•</span>
+            <span>CULTURAL</span>
+            <span className="eyebrow-dot">•</span>
+            <span>TIMELESS</span>
           </p>
-        </div>
-        <div className="sn-rare-grid">
-          {rare.map((item) => (
-            <article key={item.title}>
-              <div className="sn-rare-item-image">
-                <Image
-                  src={item.image}
-                  alt={item.alt}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover"
-                />
-              </div>
-              <span className="sn-eyebrow">{item.number}</span>
-              <h3>{item.title}</h3>
-              <p>{item.desc}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-      <section id="journeys" className="sn-section sn-journey-section">
-        <div className="sn-wrap">
-          <SectionHeading
-            label="Premium Personalised Journeys"
-            title="A deeper connection, at your pace."
-            text="Thoughtfully designed experiences for discovering the many sides of Kashi."
-          />
-          <JourneyGrid />
-          <div style={{ textAlign: "center", marginTop: "80px" }}>
-             <p style={{ marginBottom: "20px", color: "#6a665c", fontSize: "14px" }}>Can't find exactly what you're looking for?</p>
-             <a href="https://wa.me/919580417547?text=Hello%20Soil%20N%20Soul,%20I%20would%20like%20a%20custom%20quote." target="_blank" rel="noreferrer" className="sn-button" style={{ display: "inline-flex" }}>
-               Get a Custom Quote
-             </a>
+
+          <h1 className="hero-main-heading">
+            <span className="hero-city-title">VARANASI</span>
+            <em className="hero-feeling-title">A Feeling</em>
+            <span className="hero-time-title">Beyond Time</span>
+          </h1>
+
+          <p className="hero-support-description">
+            Curated experiences, soulful stays and deeply personal journeys in
+            the world&apos;s oldest living city.
+          </p>
+
+          <div className="hero-cta-group">
+            <a href="#contact" className="hero-primary-btn">
+              <span>PLAN YOUR VARANASI JOURNEY</span>
+              <ArrowRight size={14} />
+            </a>
+
+            <button
+              className="hero-watch-btn"
+              onClick={() => setFilmOpen(true)}
+              aria-label="Watch Film"
+            >
+              <span className="watch-film-circle">
+                <Play size={11} fill="currentColor" />
+              </span>
+              <span>Watch Film</span>
+            </button>
           </div>
         </div>
-      </section>
-      <section id="services" className="sn-section sn-wrap">
-        <div className="sn-components-header-split">
-          <SectionHeading
-            label="Private Journey Components"
-            title="The details make it yours."
-            text="Thoughtful ingredients, brought together into one seamless journey. Choose what you need; we’ll connect the rest."
-          />
-          <div className="sn-components-intro-image">
-            <Image
-              src="/SnS/journey-components-kashi.webp"
-              alt="Curated details of personalized Kashi journeys"
-              width={320}
-              height={210}
-              className="object-cover"
-            />
-          </div>
-        </div>
-        <div className="sn-components-list">
-          {components.map((c, i) => {
-            const Icon = c.icon;
-            return (
-              <div 
-                key={c.title}
-                className="sn-component-row group"
-              >
-                <div className="sn-component-meta">
-                  <span className="sn-component-number">0{i + 1}</span>
-                  <Icon className="sn-component-icon" strokeWidth={1.5} />
-                </div>
-                <div className="sn-component-body">
-                  <h3 className="sn-component-title">{c.title}</h3>
-                  <p className="sn-component-desc">{c.desc}</p>
-                </div>
-                <div className="sn-component-thumb-wrap">
-                  <Image
-                    src={c.image}
-                    alt={c.alt}
-                    width={170}
-                    height={110}
-                    className="object-cover"
-                  />
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </section>
-      <Values />
-      <section className="sn-stats sn-wrap" aria-label="Soil n Soul in numbers">
-        {[
-          ["500+", "Journeys Curated"],
-          ["38", "Countries"],
-          ["97%", "Satisfaction"],
-          ["4.9", "Rating"],
-        ].map(([n, l]) => (
-          <div key={l}>
-            <strong>{n}</strong>
-            <span>{l}</span>
-          </div>
-        ))}
-      </section>
-      <GoogleReviews />
-      <Founder />
-      <section id="faq" className="sn-section sn-faq">
-        <div className="sn-wrap sn-faq-grid">
-          <div>
-            <p className="sn-eyebrow">Before Your Journey</p>
-            <h2>
-              A few things
-              <br />
-              <em>you may wonder.</em>
-            </h2>
-            <p>Something else on your mind?</p>
-            <Link className="sn-text-link" href="#contact">
-              Design My Journey →
-            </Link>
-            <div className="sn-faq-image">
-              <Image
-                src="/SnS/before-your-journey.webp"
-                alt="Quiet morning overlooking the sacred riverfront of Kashi"
-                width={290}
-                height={195}
-                className="object-cover"
-              />
+
+        {/* Bottom Feature Strip & Scroll Indicator */}
+        <div className="hero-bottom-strip">
+          <div className="hero-strip-items">
+            <div className="hero-strip-item">
+              <Sparkles size={17} className="hero-strip-icon" />
+              <span>PRIVATE EXPERIENCES</span>
+            </div>
+            <div className="hero-strip-item">
+              <BedDouble size={17} className="hero-strip-icon" />
+              <span>HANDPICKED STAYS</span>
+            </div>
+            <div className="hero-strip-item">
+              <HeartHandshake size={17} className="hero-strip-icon" />
+              <span>LOCAL CONNECTIONS</span>
+            </div>
+            <div className="hero-strip-item">
+              <Users size={17} className="hero-strip-icon" />
+              <span>PERSONAL CONCIERGE</span>
             </div>
           </div>
-          <div>
-            {faqs.map(([q, a]) => (
-              <details key={q} name="journey-faq">
-                <summary>
-                  {q}
-                  <span aria-hidden="true">+</span>
-                </summary>
-                <p>{a}</p>
-              </details>
+
+          <div className="hero-scroll-wrapper">
+            <a href="#philosophy" className="hero-scroll-btn" aria-label="Scroll to explore">
+              <span className="scroll-text">SCROLL</span>
+              <ArrowDown size={14} />
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================
+          SECTION 02: SOIL N SOUL PHILOSOPHY
+      ======================================================== */}
+      <section className="philosophy-reference-section" id="philosophy">
+        <div className="philosophy-container">
+          <div className="philosophy-three-zones">
+            {/* Zone 1: Left Copy & Badges */}
+            <div className="philosophy-zone-left">
+              <p className="reference-gold-eyebrow">THE SOIL N SOUL PHILOSOPHY</p>
+              <h2 className="philosophy-heading">
+                More than a destination,<br />
+                <em>a deeper connection.</em>
+              </h2>
+              <p className="philosophy-paragraph">
+                We create immersive Varanasi experiences that go beyond
+                sightseeing — connecting you with the city, its people, its
+                traditions and its timeless spirit.
+              </p>
+              <Link href="/about" className="philosophy-story-btn">
+                <span>Our Story</span>
+                <ArrowRight size={13} />
+              </Link>
+
+              {/* 4 Feature Items directly under Left Copy */}
+              <div className="philosophy-bottom-badges">
+                {philosophyFeatures.map(({ icon: Icon, title }) => (
+                  <div className="philosophy-badge-item" key={title}>
+                    <div className="badge-icon-circle">
+                      <Icon size={16} strokeWidth={1.4} />
+                    </div>
+                    <span className="badge-title">{title}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Zone 2: Center Carved Stone Arch Photo */}
+            <div className="philosophy-zone-center">
+              <div className="philosophy-photo-card">
+                <Image
+                  src="/SnS/private-ganga-experience.webp"
+                  alt="A private boat gliding across the Ganges at sunset, with Varanasi's ghats beyond"
+                  fill
+                  sizes="(max-width: 900px) 90vw, 36vw"
+                  className="philosophy-photo-img"
+                  quality={90}
+                  priority
+                />
+              </div>
+            </div>
+
+            {/* Zone 3: Right Quote with Architectural Sketch */}
+            <div className="philosophy-zone-right">
+              <div className="philosophy-quote-box">
+                <span className="quote-mark-large" aria-hidden="true">“</span>
+                <blockquote className="philosophy-quote-text">
+                  Varanasi is not just<br />
+                  a place you visit,<br />
+                  it is a feeling you<br />
+                  carry with you.
+                </blockquote>
+                <div className="quote-gold-divider" />
+              </div>
+              <div className="temple-drawing-bg" aria-hidden="true">
+                <img
+                  src="/images/temple-illustration.png"
+                  alt=""
+                  className="temple-sketch-img"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================
+          SECTION 03: SIGNATURE EXPERIENCES
+      ======================================================== */}
+      <section className="experiences-reference-section" id="experiences">
+        <div className="experiences-container">
+          {/* Header Row */}
+          <div className="experiences-header-row">
+            <div className="experiences-header-left">
+              <p className="reference-gold-eyebrow">SIGNATURE EXPERIENCES</p>
+              <h2 className="experiences-heading">
+                Curated Experiences<br />
+                That Stay With You Forever.
+              </h2>
+            </div>
+
+            <div className="experiences-header-center">
+              <p className="experiences-intro-copy">
+                From serene boat rides to private temple rituals, from local
+                cuisine to artisan walks — each experience is thoughtfully
+                designed to reveal the real Varanasi.
+              </p>
+            </div>
+
+            <div className="experiences-header-right">
+              <Link href="/experiences" className="explore-all-link">
+                <span>Explore All Experiences</span>
+                <ArrowRight size={13} />
+              </Link>
+              <div className="carousel-nav-arrows">
+                <button
+                  type="button"
+                  className="arrow-circle-btn"
+                  aria-label="Previous experiences"
+                  onClick={() => {
+                    const el = document.getElementById("exp-cards-row");
+                    if (el) el.scrollBy({ left: -320, behavior: "smooth" });
+                  }}
+                >
+                  <ArrowLeft size={14} />
+                </button>
+                <button
+                  type="button"
+                  className="arrow-circle-btn"
+                  aria-label="Next experiences"
+                  onClick={() => {
+                    const el = document.getElementById("exp-cards-row");
+                    if (el) el.scrollBy({ left: 320, behavior: "smooth" });
+                  }}
+                >
+                  <ArrowRight size={14} />
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* 4 Large Tall Cinematic Cards */}
+          <div className="experience-cards-grid" id="exp-cards-row">
+            {experiences.map((exp) => (
+              <Link
+                href="/experiences"
+                className="experience-cinematic-card"
+                key={exp.title}
+              >
+                <div className="card-image-wrap">
+                  <Image
+                    src={exp.image}
+                    alt={exp.alt}
+                    fill
+                    sizes="(max-width: 640px) 85vw, (max-width: 1024px) 45vw, 24vw"
+                    className="card-photo"
+                    quality={90}
+                  />
+                  <div className="card-gradient-shade" />
+
+                  <div className="card-content-overlay">
+                    <h3 className="card-title">{exp.title}</h3>
+                    <p className="card-description">{exp.copy}</p>
+                  </div>
+
+                  <div className="card-arrow-circle" aria-hidden="true">
+                    <ArrowRight size={14} />
+                  </div>
+                </div>
+              </Link>
             ))}
           </div>
         </div>
       </section>
-      <SoulJournal blogs={blogs} />
+
+      {/* ========================================================
+          SECTION 04: HANDPICKED STAYS
+      ======================================================== */}
+      <section className="stays-reference-section" id="stays">
+        <div className="stays-container">
+          <div className="stays-editorial-grid">
+            {/* Left: Large Luxury Heritage Stay Photo */}
+            <div className="stay-left-feature">
+              <div className="stay-large-image-frame">
+                <Image
+                  src="/SnS/private-journey-stays.webp"
+                  alt="Luxury heritage stay in Varanasi overlooking the Ganges"
+                  fill
+                  sizes="(max-width: 900px) 100vw, 42vw"
+                  className="stay-large-photo"
+                  quality={90}
+                />
+              </div>
+            </div>
+
+            {/* Center: Cream Editorial Content Panel */}
+            <div className="stay-center-panel">
+              <p className="reference-gold-eyebrow">STAY IN TIMELESS LUXURY</p>
+              <h2 className="stay-panel-heading">
+                Handpicked stays<br />
+                with soulful views.
+              </h2>
+              <p className="stay-panel-description">
+                From heritage properties on the ghats to boutique stays in the
+                old city, we curate accommodations that add meaning to your
+                Varanasi experience.
+              </p>
+              <Link href="/services/stay" className="stay-explore-btn">
+                <span>Explore Stays</span>
+                <ArrowRight size={13} />
+              </Link>
+            </div>
+
+            {/* Right: Three Visual Tiles */}
+            <div className="stay-right-tiles">
+              {/* Tile 1 (Top, wider): Heritage Havelis */}
+              <Link href="/services/stay" className="stay-tile stay-tile-top">
+                <Image
+                  src="/SnS/rare-access-heritage-home.webp"
+                  alt="Heritage Havelis in Varanasi"
+                  fill
+                  sizes="(max-width: 900px) 100vw, 28vw"
+                  className="tile-photo"
+                  quality={90}
+                />
+                <div className="tile-overlay-shade" />
+                <span className="tile-label">Heritage Havelis</span>
+              </Link>
+
+              {/* Bottom Row: 2 tiles side by side */}
+              <div className="stay-tile-bottom-row">
+                {/* Tile 2: Boutique Stays */}
+                <Link href="/services/stay" className="stay-tile stay-tile-bottom">
+                  <Image
+                    src="/SnS/private-journey-stays.webp"
+                    alt="Boutique Stays in Varanasi"
+                    fill
+                    sizes="(max-width: 900px) 50vw, 14vw"
+                    className="tile-photo"
+                    quality={90}
+                  />
+                  <div className="tile-overlay-shade" />
+                  <span className="tile-label">Boutique Stays</span>
+                </Link>
+
+                {/* Tile 3: Riverside Villas */}
+                <Link href="/services/stay" className="stay-tile stay-tile-bottom">
+                  <Image
+                    src="/SnS/kashi-after-dark.png"
+                    alt="Riverside Villas in Varanasi"
+                    fill
+                    sizes="(max-width: 900px) 50vw, 14vw"
+                    className="tile-photo"
+                    quality={90}
+                  />
+                  <div className="tile-overlay-shade" />
+                  <span className="tile-label">Riverside Villas</span>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================
+          SECTION 05: PREMIUM SERVICE / TRUST STRIP
+      ======================================================== */}
+      <section className="trust-strip-reference" aria-label="Premium Services">
+        <div className="trust-strip-container">
+          <div className="trust-item">
+            <span className="trust-num">01</span>
+            <div className="trust-text">
+              <strong className="trust-title">Private experiences</strong>
+              <small className="trust-copy">
+                Thoughtfully designed, one-of-a-kind journeys
+              </small>
+            </div>
+          </div>
+
+          <div className="trust-item">
+            <span className="trust-num">02</span>
+            <div className="trust-text">
+              <strong className="trust-title">Local knowledge</strong>
+              <small className="trust-copy">Meet the real Varanasi</small>
+            </div>
+          </div>
+
+          <div className="trust-item">
+            <span className="trust-num">03</span>
+            <div className="trust-text">
+              <strong className="trust-title">Personal concierge</strong>
+              <small className="trust-copy">Care at every step</small>
+            </div>
+          </div>
+
+          <div className="trust-item">
+            <span className="trust-num">04</span>
+            <div className="trust-text">
+              <strong className="trust-title">Seamless planning</strong>
+              <small className="trust-copy">For a truly effortless experience</small>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================
+          SECTION 06: FINAL CINEMATIC CTA
+      ======================================================== */}
+      <section className="cta-cinematic-reference" id="cta">
+        {/* High-resolution sunset over the Ganges and Varanasi ghats */}
+        <Image
+          src="/images/about-hero-sunset.jpg"
+          alt="Sunset over the Ganges and illuminated Varanasi ghats"
+          fill
+          sizes="100vw"
+          quality={90}
+          className="cta-cinematic-bg"
+        />
+        <div className="cta-cinematic-overlay" aria-hidden="true" />
+
+        <div className="cta-container">
+          {/* Left: Heading and Actions */}
+          <div className="cta-left-col">
+            <p className="cta-gold-eyebrow">READY TO EXPERIENCE</p>
+            <h2 className="cta-large-heading">
+              YOUR VARANASI<br />
+              STORY?
+            </h2>
+            <p className="cta-subtitle">
+              Let our travel experts design a personalized journey for you.
+            </p>
+
+            <div className="cta-buttons-row">
+              <a href="#contact" className="cta-primary-btn">
+                <span>Plan Your Journey</span>
+                <ArrowRight size={13} />
+              </a>
+
+              <a
+                href="https://wa.me/919580417547?text=Hello%20Soil%20n%20Soul%2C%20I%20would%20love%20to%20speak%20with%20your%20team."
+                target="_blank"
+                rel="noreferrer"
+                className="cta-speak-btn"
+              >
+                <WhatsAppNavIcon />
+                <span>Speak to Our Team</span>
+              </a>
+            </div>
+          </div>
+
+          {/* Right: 4 Feature Points with Gold Round Icons */}
+          <div className="cta-right-col">
+            <div className="cta-feature-item">
+              <div className="cta-feature-icon-circle">
+                <Compass size={14} strokeWidth={1.5} />
+              </div>
+              <span className="cta-feature-label">Custom Itineraries</span>
+            </div>
+
+            <div className="cta-feature-item">
+              <div className="cta-feature-icon-circle">
+                <Users size={14} strokeWidth={1.5} />
+              </div>
+              <span className="cta-feature-label">Dedicated Travel Experts</span>
+            </div>
+
+            <div className="cta-feature-item">
+              <div className="cta-feature-icon-circle">
+                <ShieldCheck size={14} strokeWidth={1.5} />
+              </div>
+              <span className="cta-feature-label">Seamless Planning</span>
+            </div>
+
+            <div className="cta-feature-item">
+              <div className="cta-feature-icon-circle">
+                <HeartHandshake size={14} strokeWidth={1.5} />
+              </div>
+              <span className="cta-feature-label">
+                Thoughtful &amp; Responsible Travel
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================
+          SECTION 07: JOURNEY ENQUIRY FORM
+      ======================================================== */}
       <JourneyEnquiry />
-      <button
-        type="button"
-        onClick={handleManualTrigger}
-        className="sn-concierge"
-        aria-label="Let's Talk"
-      >
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#e65000" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-        </svg>
-        <span>LET'S TALK</span>
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" style={{ opacity: 0.5 }}>
-          <path d="M5 12h14"></path>
-          <path d="M12 5l7 7-7 7"></path>
-        </svg>
-      </button>
-      {showPopup && <LeadCaptureModal onClose={() => setShowPopup(false)} />}
+
+      {/* ========================================================
+          CINEMATIC FILM MODAL
+      ======================================================== */}
+      {filmOpen && (
+        <div
+          className="film-modal-overlay"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Varanasi Film"
+          onMouseDown={(e) => {
+            if (e.target === e.currentTarget) setFilmOpen(false);
+          }}
+        >
+          <div className="film-modal-dialog">
+            <button
+              className="film-modal-close-btn"
+              onClick={() => setFilmOpen(false)}
+              aria-label="Close Film"
+            >
+              <X size={20} />
+            </button>
+            <video
+              controls
+              autoPlay
+              playsInline
+              preload="metadata"
+              poster="/SnS/when-the-city-glows.webp"
+              className="film-video-player"
+            >
+              <source src="/kashi-hero.mp4" type="video/mp4" />
+              Your browser does not support embedded video.
+            </video>
+          </div>
+        </div>
+      )}
     </div>
+  );
+}
+
+function WhatsAppNavIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      width="16"
+      height="16"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.6"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M20.2 11.7a8.2 8.2 0 0 1-12.1 7.2L3 20l1.2-4.8a8.2 8.2 0 1 1 16-3.5Z" />
+      <path d="M8.5 8.4c.3 2.2 2.4 4.4 4.8 5.2l1.3-1.1 2 .9c.2.1.3.3.2.5-.3 1.1-1.2 1.6-2.3 1.6-3.7-.2-7.7-4-7.8-7.6 0-1.1.6-1.9 1.6-2.2.2-.1.4 0 .5.2l.8 2-1.1.5Z" />
+    </svg>
+  );
+}
+
+function TempleArchitecturalArt() {
+  return (
+    <svg
+      viewBox="0 0 320 320"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className="architectural-svg"
+    >
+      <g stroke="#b89358" strokeWidth="0.85" strokeOpacity="0.45">
+        <path d="M40 310V220h15v-25h12v-20h18v-32h18V95h11V78h8V56h8V35h7V18h6V8h3v10h7v17h8v21h8v22h8v28h15v35h14v25h17v20h16v115" />
+        <path d="M120 310v-70h42v70M126 240v-32h30v32m-27-32 12-16 14 16m-33 80h42M30 310h260M60 258h34m120 0h40m-87 52v-45m-14 0v45m28-45v45" />
+        <path d="m35 192 28-22 15 7 22-30 16 7 15-21 22 8 21-23 18 9 22-19 22 14 24-6" />
+        <path d="M55 200h210M42 220h240M62 170h54m-36-30h45m12-25h75m-60-26h37m-22-30h20" />
+      </g>
+      <path
+        d="M142 8h6v22h-6zM139 20h12"
+        stroke="#b89358"
+        strokeWidth="0.85"
+        strokeOpacity="0.5"
+      />
+    </svg>
   );
 }

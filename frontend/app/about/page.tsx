@@ -1,16 +1,18 @@
-﻿import type { Metadata } from "next";
-import { Founder, Values } from "@/components/Editorial";
-import JourneyEnquiry from "@/components/JourneyEnquiry";
+import type { Metadata } from "next";
+import AboutClient from "./AboutClient";
+
 export const revalidate = 3600;
+
 export const metadata: Metadata = {
-  title: "About Soil n Soul Travels",
+  title: "About Soil n Soul Travels | Our Story",
   description:
     "Meet Anchal Pandey, founder and native of Banaras, and discover the values behind our private journeys in Kashi.",
   alternates: { canonical: "/about" },
 };
+
 export default function AboutPage() {
   return (
-    <div className="sn-site">
+    <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -32,21 +34,7 @@ export default function AboutPage() {
           }),
         }}
       />
-      <header className="sn-wrap sn-page-intro">
-        <p className="sn-eyebrow">Our Story</p>
-        <h1>
-          Kashi is our home.
-          <br />
-          <em>Sharing it is our calling.</em>
-        </h1>
-        <p>
-          Authenticity, transparency, and heartfelt hospitality. A local
-          connection that makes every journey more meaningful.
-        </p>
-      </header>
-      <Founder full />
-      <Values />
-      <JourneyEnquiry />
-    </div>
+      <AboutClient />
+    </>
   );
 }

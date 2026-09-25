@@ -365,7 +365,7 @@ export const journeys = [
       "4 Days / 3 Nights",
     ],
     groupSizeOptions,
-    image: "/images/NEEDS-NEW-IMAGE-PASS2.jpg",
+    image: "/SnS/kashi-temple-circuit.webp",
     mood: "A Twin Spiritual Journey",
     description:
       "Combine the ancient energy of Kashi with the profound heritage of Ayodhya.",

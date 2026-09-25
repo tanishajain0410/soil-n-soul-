@@ -10,6 +10,7 @@ export default function SiteChrome({
 }) {
   const pathname = usePathname();
   const hidden = ["/admin", "/hakunamata"].some((p) => pathname.startsWith(p));
+  const isHome = pathname === "/";
   return (
     <>
       {!hidden && (
@@ -17,7 +18,7 @@ export default function SiteChrome({
           <a className="sn-skip" href="#main-content">
             Skip to content
           </a>
-          <Navbar />
+          {!isHome && pathname !== "/experiences" && pathname !== "/journeys" && pathname !== "/about" && pathname !== "/blog" && pathname !== "/contact" && <Navbar />}
         </>
       )}
       <main id="main-content">{children}</main>

@@ -1,5 +1,6 @@
 ﻿"use client";
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
+import { CalendarDays, RotateCcw, Tag, Users } from "lucide-react";
 import { journeys } from "@/data/journeys";
 import JourneyCard from "./JourneyCard";
 const durations = ["All durations", "1 Day", "2–3 Days", "4–5 Days", "6+ Days"];
@@ -23,7 +24,7 @@ const interestWords: Record<string, RegExp> = {
   Family: /family/i,
   "Beyond Kashi": /Beyond Kashi/,
 };
-export default function JourneyFilterGrid() {
+export default function JourneyFilterGrid({ children }: { children?: ReactNode }) {
   const [duration, setDuration] = useState(durations[0]);
   const [group, setGroup] = useState(groups[0]);
   const [interest, setInterest] = useState(interests[0]);
@@ -42,7 +43,7 @@ export default function JourneyFilterGrid() {
       );
     const groupMatch =
       group === groups[0] ||
-      j.groupSizeOptions.some((g) => g.replace(" Guests", "") === group);
+      j.groupSizeOptions.some((g) => g.replace(" Guests", "").replace(/–/g, "-") === group.replace(/–/g, "-"));
     const interestMatch =
       interest === interests[0] ||
       interestWords[interest].test(
@@ -56,25 +57,27 @@ export default function JourneyFilterGrid() {
     setInterest(interests[0]);
   };
   return (
-    <div className="sn-journey-explorer">
+    <div className="sn-journey-explorer" id="journey-filters">
       <div className="sn-refined-filters">
         {[
           {
             label: "Duration",
+            icon: CalendarDays,
             value: duration,
             set: setDuration,
             options: durations,
           },
-          { label: "Group Size", value: group, set: setGroup, options: groups },
+          { label: "Group Size", icon: Users, value: group, set: setGroup, options: groups },
           {
-            label: "Interest",
+            label: "Interests",
+            icon: Tag,
             value: interest,
             set: setInterest,
             options: interests,
           },
         ].map((f) => (
-          <label key={f.label}>
-            {f.label}
+          <label key={f.label} className="journey-filter-field">
+            <span className="journey-filter-label"><f.icon size={17} strokeWidth={1.4}/>{f.label}</span>
             <select value={f.value} onChange={(e) => f.set(e.target.value)}>
               {f.options.map((o) => (
                 <option key={o}>{o}</option>
@@ -83,9 +86,10 @@ export default function JourneyFilterGrid() {
           </label>
         ))}
         <button className="sn-filter-reset" onClick={reset}>
-          Reset filters
+          <><RotateCcw size={15} strokeWidth={1.5}/> Reset Filters</>
         </button>
       </div>
+      {children}
       <p className="sn-results-count" role="status">
         {filtered.length} {filtered.length === 1 ? "journey" : "journeys"} to
         explore · Dates and details shaped around you

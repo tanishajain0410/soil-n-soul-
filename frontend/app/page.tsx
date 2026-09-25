@@ -1,23 +1,15 @@
 ﻿import type { Metadata } from "next";
-import { fetchBlogs } from "@/lib/api";
 import HomeClient from "./HomeClient";
 
 export const revalidate = 3600;
 export const metadata: Metadata = {
-  title: { absolute: "Discover Kashi, Beyond Tourism | Soil n Soul Travels" },
+  title: { absolute: "Varanasi Experiences | Soil n Soul" },
   description:
-    "Signature Experiences and Premium Personalised Journeys in Kashi. Discover the culture, people and soul of Banaras with local hosts.",
+    "Curated Varanasi experiences, soulful stays and deeply personal journeys in the world's oldest living city.",
   alternates: { canonical: "/" },
 };
 
 export default async function HomePage() {
-  const blogs = await fetchBlogs();
-  const latestBlogs = [...blogs].sort(
-    (a, b) =>
-      Number(/price|package|booking|best travel agency/i.test(a.title)) -
-      Number(/price|package|booking|best travel agency/i.test(b.title)),
-  );
-
   const travelAgencySchema = {
     "@context": "https://schema.org",
     "@graph": [
@@ -26,12 +18,12 @@ export default async function HomePage() {
         "@id": "https://www.soilnsoultravels.com/#agency",
         name: "Soil n Soul Travels",
         url: "https://www.soilnsoultravels.com",
-        logo: "https://www.soilnsoultravels.com/images/hero/hero-1.jpg",
-        image: "https://www.soilnsoultravels.com/images/hero/hero-1.jpg",
+        logo: "https://www.soilnsoultravels.com/soil-n-soul-logo.svg",
+        image: "https://www.soilnsoultravels.com/images/hero/hero-3.jpg",
         description:
-          "Trusted, locally-owned Varanasi travel agency. We provide verified heritage stays, airport pickups, guided Ganga Aarti boat tours, and Kashi Vishwanath Pooja arrangements.",
+          "Thoughtfully curated Varanasi experiences, soulful stays and personal journeys with a local concierge.",
         telephone: "+919580417547",
-        priceRange: "$$",
+        priceRange: "Premium curated experiences",
         address: {
           "@type": "PostalAddress",
           streetAddress: "Assi Ghat Road",
@@ -83,7 +75,7 @@ export default async function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(travelAgencySchema) }}
       />
-      <HomeClient blogs={latestBlogs} />
+      <HomeClient />
     </>
   );
 }
