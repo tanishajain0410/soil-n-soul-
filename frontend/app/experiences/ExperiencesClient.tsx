@@ -101,7 +101,7 @@ export default function ExperiencesClient() {
 
         {/* Subtle temple background line art */}
         <img
-          src="/images/temple-illustration.png"
+          src="/images/temple-sketch-right.png"
           alt=""
           aria-hidden="true"
           className="exp-intro-temple-bg"
@@ -644,6 +644,7 @@ export default function ExperiencesClient() {
           quality={90}
           className="cta-cinematic-bg"
         />
+        <div className="cta-cinematic-overlay" aria-hidden="true" />
 
         <div className="cta-container">
           {/* Left Column */}
