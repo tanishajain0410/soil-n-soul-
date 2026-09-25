@@ -78,15 +78,24 @@ export default function HomeClient() {
           SECTION 01: FULL-SCREEN HERO
       ======================================================== */}
       <section className="hero-reference-section" id="home" aria-label="Varanasi, A Feeling Beyond Time">
-        {/* Cinematic Sunset/Twilight Ganges Background Image */}
+        {/* Cinematic Sunset/Twilight Ganges Background Image - Desktop (3:2) & Mobile (9:16) */}
         <Image
           src="/SnS/the-sacred-morning.png"
           alt="Sunset over the Ganges and ancient riverfront ghats of Varanasi"
           fill
           priority
-          sizes="100vw"
+          sizes="(max-width: 768px) 1px, 100vw"
           quality={90}
-          className="hero-cinematic-bg"
+          className="hero-cinematic-bg hero-cinematic-desktop"
+        />
+        <Image
+          src="/SnS/the-sacred-morning-mobile.jpg"
+          alt="Sacred morning over the Ganges and ancient riverfront ghats of Varanasi"
+          fill
+          priority
+          sizes="(max-width: 768px) 100vw, 1px"
+          quality={90}
+          className="hero-cinematic-bg hero-cinematic-mobile"
         />
 
         {/* Cinematic Dark Gradient Overlay */}

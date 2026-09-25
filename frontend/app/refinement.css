@@ -5,7 +5,7 @@
   background: #fff;
 }
 .sn-wrap {
-  width: min(1280px, calc(100% - 112px));
+  width: min(1280px, calc(100% - clamp(24px, 5.5vw, 112px)));
 }
 .sn-section {
   padding-block: 80px;
@@ -52,6 +52,29 @@
 .sn-nav {
   padding: 17px 4%;
   gap: 20px;
+}
+.nav-phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: inherit;
+  text-decoration: none;
+  font-size: 12px;
+  white-space: nowrap;
+}
+@media (max-width: 640px) {
+  .nav-phone span {
+    display: none;
+  }
+  .nav-phone {
+    padding: 6px;
+    border-radius: 50%;
+  }
+}
+@media (max-width: 380px) {
+  .nav-phone {
+    display: none;
+  }
 }
 .sn-nav-solid {
   padding-block: 13px;

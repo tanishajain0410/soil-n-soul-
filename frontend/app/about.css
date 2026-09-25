@@ -1321,12 +1321,48 @@
 
 @media (max-width: 480px) {
   .about-founder-collage {
-    transform: scale(0.8);
-    margin-left: -20px;
+    transform: none;
+    margin: 0 auto;
+    max-width: 100%;
+    min-height: auto;
+  }
+
+  .about-main-portrait-wrap {
+    width: min(290px, 86vw);
+    margin: 0 auto;
+    transform: none;
+  }
+
+  .about-main-portrait {
+    height: 320px;
+  }
+
+  .about-founder-badge {
+    position: relative;
+    left: auto;
+    bottom: auto;
+    max-width: 100%;
+    margin-top: 14px;
+    padding: 12px 16px;
+  }
+
+  .about-founder-filigree,
+  .about-founder-filigree-right,
+  .about-inset-temple,
+  .about-inset-boat {
+    display: none;
   }
 
   .about-values-grid {
     grid-template-columns: 1fr;
     gap: 28px;
+  }
+
+  .about-hero-heading {
+    font-size: clamp(32px, 9.5vw, 44px);
+  }
+
+  .about-hero {
+    padding-inline: 18px;
   }
 }

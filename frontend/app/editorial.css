@@ -6,7 +6,7 @@
   color: var(--sn-ink);
 }
 .sn-wrap {
-  width: min(1280px, calc(100% - 112px));
+  width: min(1280px, calc(100% - clamp(24px, 5.5vw, 112px)));
   margin-inline: auto;
 }
 .sn-section {

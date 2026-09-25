@@ -1094,3 +1094,16 @@
     gap: 12px;
   }
 }
+
+@media (max-width: 480px) {
+  .journal-hero-title {
+    font-size: clamp(30px, 9vw, 42px);
+  }
+  .journal-container {
+    padding: 0 16px;
+  }
+  .journal-hero {
+    min-height: auto;
+  }
+}
+
