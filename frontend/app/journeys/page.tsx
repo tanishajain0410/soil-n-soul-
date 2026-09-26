@@ -45,7 +45,34 @@ export default function JourneysPage() {
             <div className="journey-editorial-note"><span>“</span><em>Not just places to see,<br/>but moments to feel.</em></div>
           </div>
           <div className="journey-editorial-image"><Image src="/SnS/a-deeper-connection.webp" alt="A quiet moment by the Ganges in Varanasi" fill sizes="(max-width: 760px) 100vw, 32vw"/><span>THE MANY MOODS OF KASHI</span></div>
-          <div className="journey-editorial-quote"><span className="journey-quote-rule"/><blockquote>Every journey<br/>in Varanasi<br/>is a doorway<br/>to something<br/><em>deeper.</em></blockquote><div className="journey-aarti-image"><Image src="/SnS/sacred-kashi.webp" alt="Aarti flame offered in the evening in Varanasi" fill sizes="(max-width:760px) 80vw, 20vw"/></div><Image src="/images/temple-sketch-right.png" alt="" aria-hidden="true" width={310} height={360} className="journey-temple-sketch"/></div>
+          <div className="journey-editorial-quote">
+            <div className="journey-quote-wrap">
+              <span className="journey-quote-rule" />
+              <blockquote>
+                Every journey<br />
+                in Varanasi<br />
+                is a doorway<br />
+                to something<br />
+                <em>deeper.</em>
+              </blockquote>
+            </div>
+            <div className="journey-aarti-image">
+              <Image
+                src="/SnS/sacred-kashi.webp"
+                alt="Aarti flame offered in the evening in Varanasi"
+                fill
+                sizes="(max-width: 760px) 80vw, 20vw"
+              />
+            </div>
+            <Image
+              src="/images/temple-sketch-right.png"
+              alt=""
+              aria-hidden="true"
+              width={310}
+              height={360}
+              className="journey-temple-sketch"
+            />
+          </div>
         </section>
       </JourneyFilterGrid>
 

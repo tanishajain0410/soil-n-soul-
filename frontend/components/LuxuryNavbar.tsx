@@ -43,7 +43,7 @@ export default function LuxuryNavbar() {
     ["Journeys", "/journeys"],
     ["About", "/about"],
     ["Journal", "/blog"],
-    ["Contact", isAboutPage || isBlogPage || isJourneyPage ? "#contact" : "/contact"],
+    ["Contact", "/contact"],
   ];
 
   useEffect(() => {

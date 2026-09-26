@@ -1,4 +1,5 @@
 import express from 'express';
+import mongoose from 'mongoose';
 import Blog from '../models/Blog.js';
 import jwt from 'jsonwebtoken';
 import { cacheGet, cacheSet, cacheClear } from '../cache.js';
@@ -27,11 +28,17 @@ router.get('/', async (req, res) => {
             return res.setHeader('X-Cache', 'HIT').json({ success: true, blogs: cached });
         }
 
+        if (mongoose.connection.readyState !== 1) {
+            // DB is not connected; return empty array instantly without waiting
+            return res.setHeader('X-Cache', 'MISS').json({ success: true, blogs: [] });
+        }
+
         const blogs = await Blog.find().sort({ createdAt: -1 });
         cacheSet(CACHE_KEY_ALL, blogs);
         res.setHeader('X-Cache', 'MISS').json({ success: true, blogs });
     } catch (err) {
-        res.status(500).json({ success: false, message: err.message });
+        // Fallback to empty array instead of 500 so frontend never hangs or breaks
+        res.json({ success: true, blogs: [] });
     }
 });
 
@@ -44,13 +51,17 @@ router.get('/:slug', async (req, res) => {
             return res.setHeader('X-Cache', 'HIT').json({ success: true, blog: cached });
         }
 
+        if (mongoose.connection.readyState !== 1) {
+            return res.status(404).json({ success: false, message: 'Blog not found' });
+        }
+
         const blog = await Blog.findOne({ slug: req.params.slug });
         if (!blog) return res.status(404).json({ success: false, message: 'Blog not found' });
 
         cacheSet(key, blog);
         res.setHeader('X-Cache', 'MISS').json({ success: true, blog });
     } catch (err) {
-        res.status(500).json({ success: false, message: err.message });
+        res.status(404).json({ success: false, message: err.message });
     }
 });
 

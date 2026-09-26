@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -12,11 +12,11 @@ import {
   HeartHandshake,
   Menu,
   Phone,
-  Play,
   ShieldCheck,
   Sparkles,
   Users,
-  X,
+  Volume2,
+  VolumeX,
 } from "lucide-react";
 import JourneyEnquiry from "@/components/JourneyEnquiry";
 import LuxuryNavbar from "@/components/LuxuryNavbar";
@@ -25,25 +25,25 @@ const experiences = [
   {
     title: "Private Sunrise Boat Experience",
     copy: "A serene start to your day on the sacred Ganges.",
-    image: "/SnS/the-sacred-morning.png",
+    image: "/SnS/the-sacred-morning.webp",
     alt: "Sunrise over Varanasi from a private boat on the Ganges",
   },
   {
     title: "Ganga Aarti (Private Access)",
     copy: "Witness the divine ritual from exclusive vantage points.",
-    image: "/SnS/sacred-kashi.png",
+    image: "/SnS/sacred-kashi.webp",
     alt: "The evening Ganga Aarti ceremony at Dashashwamedh Ghat",
   },
   {
     title: "Heritage Walks Through Old Varanasi",
     copy: "Explore hidden lanes, ancient temples and living traditions.",
-    image: "/SnS/varanasi-heritage.png",
+    image: "/SnS/varanasi-heritage.webp",
     alt: "Historic architecture and lanes in old Varanasi",
   },
   {
     title: "Local Food Trails",
     copy: "Taste authentic Varanasi through curated culinary journeys.",
-    image: "/SnS/the-banarasi-table.png",
+    image: "/SnS/the-banarasi-table.webp",
     alt: "Traditional Banarasi food served for a shared meal",
   },
 ];
@@ -53,6 +53,107 @@ const philosophyFeatures = [
   { icon: BedDouble, title: "Handpicked Stays" },
   { icon: HeartHandshake, title: "Local Connections" },
   { icon: Compass, title: "Personalized Itineraries" },
+];
+
+function DiyaIcon() {
+  return (
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M12 2.5c-.8 2-2.5 3.8-2.5 5.5a2.5 2.5 0 0 0 5 0c0-1.7-1.7-3.5-2.5-5.5z" fill="currentColor" fillOpacity="0.25"/>
+      <path d="M4 14.5c0 3.2 3.6 5.5 8 5.5s8-2.3 8-5.5H4z" />
+      <path d="M9.5 20v1.5h5V20" />
+    </svg>
+  );
+}
+
+function CoinsIcon() {
+  return (
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <circle cx="8.5" cy="8.5" r="5" />
+      <path d="M15.5 10a5 5 0 1 1-5 8" />
+      <path d="M8.5 6.5v4m-2-2h4" />
+    </svg>
+  );
+}
+
+function HeartIcon() {
+  return (
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" fill="currentColor" fillOpacity="0.2"/>
+    </svg>
+  );
+}
+
+function InfinityIcon() {
+  return (
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M18.178 8c5.096 0 5.096 8 0 8-5.095 0-7.267-8-12.356-8-5.096 0-5.096 8 0 8 5.095 0 7.267-8 12.356-8z" />
+    </svg>
+  );
+}
+
+function MandalaCornerSvg() {
+  return (
+    <svg viewBox="0 0 180 180" width="180" height="180" fill="none" stroke="#dfbf80" strokeWidth="0.8" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="0" cy="0" r="160" strokeDasharray="3 3"/>
+      <circle cx="0" cy="0" r="130"/>
+      <circle cx="0" cy="0" r="100" strokeDasharray="2 2"/>
+      <circle cx="0" cy="0" r="70"/>
+      <circle cx="0" cy="0" r="40"/>
+      <path d="M0 0 L150 150 M0 0 L160 80 M0 0 L80 160 M0 0 L160 40 M0 0 L40 160"/>
+      <path d="M70 0 A70 70 0 0 1 0 70 M100 0 A100 100 0 0 1 0 100 M130 0 A130 130 0 0 1 0 130 M160 0 A160 160 0 0 1 0 160"/>
+    </svg>
+  );
+}
+
+const purusharthas = [
+  {
+    id: "dharm",
+    title: "Dharm",
+    subtitle: "FAITH & RIGHTEOUSNESS",
+    description:
+      "Experience spiritual bliss through temple visits, Ganga Aarti, sacred rituals and the timeless traditions of Varanasi.",
+    cta: "Explore Spiritual Journeys",
+    href: "/journeys/dharm",
+    image: "/SnS/sacred-kashi.webp",
+    alt: "Spiritual Ganga Aarti ceremony and sacred temple rituals in Varanasi",
+    icon: DiyaIcon,
+  },
+  {
+    id: "arth",
+    title: "Arth",
+    subtitle: "PROSPERITY & SUCCESS",
+    description:
+      "Discover the city's rich heritage, local crafts, handlooms and timeless culture that have thrived for centuries.",
+    cta: "Explore Heritage & Markets",
+    href: "/journeys/arth",
+    image: "/images/journeys/arth-hero.jpg",
+    alt: "Varanasi ancient market streets and rich artisanal heritage",
+    icon: CoinsIcon,
+  },
+  {
+    id: "kaam",
+    title: "Kaam",
+    subtitle: "LOVE & FULFILMENT",
+    description:
+      "Find joy in beautiful ghats, serene boat rides, food, art, music and the vibrant culture of the city.",
+    cta: "Explore Couple & Leisure Tours",
+    href: "/journeys/kaam",
+    image: "/images/purushartha-kaam.jpg",
+    alt: "Couple enjoying a serene sunset by the Ganges in Varanasi",
+    icon: HeartIcon,
+  },
+  {
+    id: "moksh",
+    title: "Moksh",
+    subtitle: "LIBERATION & INNER PEACE",
+    description:
+      "Seek higher meaning through meditation, yoga, spiritual discoveries and the eternal vibes of the Ganga.",
+    cta: "Explore Wellness & Retreats",
+    href: "/journeys/moksh",
+    image: "/images/journeys/moksh-hero.jpg",
+    alt: "Meditation, yoga and sunrise serenity along the sacred Ganges",
+    icon: InfinityIcon,
+  },
 ];
 
 const navItems = [
@@ -65,7 +166,91 @@ const navItems = [
 ];
 
 export default function HomeClient() {
-  const [filmOpen, setFilmOpen] = useState(false);
+  const heroVideoRef = useRef<HTMLVideoElement>(null);
+  const audioRef = useRef<HTMLAudioElement>(null);
+  const [isPlayingSound, setIsPlayingSound] = useState(false);
+
+  const toggleSound = () => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    if (isPlayingSound) {
+      audio.pause();
+      setIsPlayingSound(false);
+    } else {
+      audio.currentTime = audio.currentTime || 0;
+      const playPromise = audio.play();
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            setIsPlayingSound(true);
+          })
+          .catch((err) => {
+            console.warn("Audio playback deferred or blocked by browser policy:", err);
+            setIsPlayingSound(false);
+          });
+      }
+    }
+  };
+
+  useEffect(() => {
+    const video = heroVideoRef.current;
+    if (!video) return;
+
+    // Force muted DOM properties for cross-browser autoplay compliance
+    video.defaultMuted = true;
+    video.muted = true;
+
+    // Try playing video immediately
+    const startPlayback = () => {
+      video.muted = true;
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise.catch((err) => {
+          console.warn("Hero video autoplay deferred until user interaction:", err);
+        });
+      }
+    };
+
+    startPlayback();
+
+    // Fallback listeners for strict browser autoplay policies
+    const unlockPlayback = () => {
+      if (video.paused) {
+        video.muted = true;
+        video.play().catch(() => {});
+      }
+    };
+
+    const interactionEvents = ["click", "touchstart", "scroll", "mousemove", "keydown"];
+    interactionEvents.forEach((evt) =>
+      window.addEventListener(evt, unlockPlayback, { passive: true, once: true })
+    );
+
+    // Pause video and audio when user scrolls deeply past the hero to save CPU/battery
+    const handleScroll = () => {
+      if (window.scrollY > window.innerHeight * 1.3) {
+        if (!video.paused) video.pause();
+        if (audioRef.current && !audioRef.current.paused) {
+          audioRef.current.pause();
+          setIsPlayingSound(false);
+        }
+      } else {
+        if (video.paused) video.play().catch(() => {});
+      }
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      interactionEvents.forEach((evt) =>
+        window.removeEventListener(evt, unlockPlayback)
+      );
+      window.removeEventListener("scroll", handleScroll);
+      if (audioRef.current) {
+        audioRef.current.pause();
+      }
+    };
+  }, []);
 
   return (
     <div className="reference-homepage">
@@ -78,24 +263,40 @@ export default function HomeClient() {
           SECTION 01: FULL-SCREEN HERO
       ======================================================== */}
       <section className="hero-reference-section" id="home" aria-label="Varanasi, A Feeling Beyond Time">
-        {/* Cinematic Sunset/Twilight Ganges Background Image - Desktop (3:2) & Mobile (9:16) */}
-        <Image
-          src="/SnS/the-sacred-morning.png"
-          alt="Sunset over the Ganges and ancient riverfront ghats of Varanasi"
-          fill
-          priority
-          sizes="(max-width: 768px) 1px, 100vw"
-          quality={90}
-          className="hero-cinematic-bg hero-cinematic-desktop"
-        />
-        <Image
-          src="/SnS/the-sacred-morning-mobile.jpg"
-          alt="Sacred morning over the Ganges and ancient riverfront ghats of Varanasi"
-          fill
-          priority
-          sizes="(max-width: 768px) 100vw, 1px"
-          quality={90}
-          className="hero-cinematic-bg hero-cinematic-mobile"
+        {/* Cinematic Short Varanasi Video Background */}
+        <video
+          ref={heroVideoRef}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          poster="/images/varanasi-hero-poster.jpg"
+          className="hero-cinematic-video"
+          aria-hidden="true"
+        >
+          <source
+            src="/varanasi-hero-mobile.mp4"
+            type="video/mp4"
+            media="(max-width: 768px)"
+          />
+          <source
+            src="/varanasi-hero-mobile.webm"
+            type="video/webm"
+            media="(max-width: 768px)"
+          />
+          <source src="/varanasi-hero.mp4" type="video/mp4" />
+          <source src="/varanasi-hero.webm" type="video/webm" />
+        </video>
+
+        {/* Ambient Kashi Hero Audio Source */}
+        <audio
+          ref={audioRef}
+          src="/audio/kashi-hero-audio.m4a.mp4"
+          preload="none"
+          loop
+          playsInline
+          onEnded={() => setIsPlayingSound(false)}
         />
 
         {/* Cinematic Dark Gradient Overlay */}
@@ -129,14 +330,22 @@ export default function HomeClient() {
             </a>
 
             <button
-              className="hero-watch-btn"
-              onClick={() => setFilmOpen(true)}
-              aria-label="Watch Film"
+              type="button"
+              onClick={toggleSound}
+              className={`hero-sound-toggle-btn ${isPlayingSound ? "is-active" : ""}`}
+              aria-label={isPlayingSound ? "Mute ambient sound" : "Play ambient sound"}
+              title={isPlayingSound ? "Mute sound" : "Experience with sound"}
             >
-              <span className="watch-film-circle">
-                <Play size={11} fill="currentColor" />
+              <span className="sound-toggle-circle">
+                {isPlayingSound ? (
+                  <Volume2 size={13} strokeWidth={2} />
+                ) : (
+                  <VolumeX size={13} strokeWidth={2} />
+                )}
               </span>
-              <span>Watch Film</span>
+              <span className="sound-toggle-label">
+                {isPlayingSound ? "MUTE SOUND" : "EXPERIENCE SOUND"}
+              </span>
             </button>
           </div>
         </div>
@@ -217,7 +426,6 @@ export default function HomeClient() {
                   sizes="(max-width: 900px) 90vw, 36vw"
                   className="philosophy-photo-img"
                   quality={90}
-                  priority
                 />
               </div>
             </div>
@@ -242,6 +450,76 @@ export default function HomeClient() {
                 />
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================
+          SECTION 02B: THE PURPOSE OF LIFE (PURUSHARTHAS)
+      ======================================================== */}
+      <section className="purushartha-reference-section" id="purusharthas" aria-label="The Purpose of Life: Dharm, Arth, Kaam, Moksh">
+        {/* Subtle Ornamental Corner Details */}
+        <div className="purushartha-corner-ornament purushartha-corner-left" aria-hidden="true">
+          <MandalaCornerSvg />
+        </div>
+        <div className="purushartha-corner-ornament purushartha-corner-right" aria-hidden="true">
+          <MandalaCornerSvg />
+        </div>
+
+        <div className="purushartha-container">
+          {/* Header Row */}
+          <div className="purushartha-header-row">
+            <div className="purushartha-header-left">
+              <p className="reference-gold-eyebrow">THE PURPOSE OF LIFE</p>
+              <h2 className="purushartha-heading">
+                Dharm • Arth • Kaam • Moksh
+              </h2>
+              <p className="purushartha-subheading">A Complete Journey in Varanasi</p>
+            </div>
+
+            <div className="purushartha-header-right">
+              <p className="purushartha-intro-copy">
+                Varanasi is a rare place where the four purusharthas of life come together — guiding you towards a meaningful and balanced life.
+              </p>
+            </div>
+          </div>
+
+          {/* 4 Editorial Experience Cards */}
+          <div className="purushartha-cards-grid">
+            {purusharthas.map((item) => {
+              const Icon = item.icon;
+              return (
+                <article className="purushartha-card" key={item.id}>
+                  <div className="purushartha-card-image-wrap">
+                    <Image
+                      src={item.image}
+                      alt={item.alt}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                      className="purushartha-card-img"
+                      quality={90}
+                    />
+                    <div className="purushartha-card-image-gradient" />
+                  </div>
+
+                  {/* Circular Gold Icon overlapping boundary */}
+                  <div className="purushartha-icon-badge" aria-hidden="true">
+                    <Icon />
+                  </div>
+
+                  {/* Card Content Area */}
+                  <div className="purushartha-card-body">
+                    <h3 className="purushartha-card-title">{item.title}</h3>
+                    <p className="purushartha-card-subtitle">{item.subtitle}</p>
+                    <p className="purushartha-card-desc">{item.description}</p>
+                    <Link href={item.href} className="purushartha-card-cta">
+                      <span>{item.cta}</span>
+                      <span className="purushartha-cta-arrow">→</span>
+                    </Link>
+                  </div>
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -408,7 +686,7 @@ export default function HomeClient() {
                 {/* Tile 3: Riverside Villas */}
                 <Link href="/services/stay" className="stay-tile stay-tile-bottom">
                   <Image
-                    src="/SnS/kashi-after-dark.png"
+                    src="/SnS/kashi-after-dark.webp"
                     alt="Riverside Villas in Varanasi"
                     fill
                     sizes="(max-width: 900px) 50vw, 14vw"
@@ -549,42 +827,6 @@ export default function HomeClient() {
           SECTION 07: JOURNEY ENQUIRY FORM
       ======================================================== */}
       <JourneyEnquiry />
-
-      {/* ========================================================
-          CINEMATIC FILM MODAL
-      ======================================================== */}
-      {filmOpen && (
-        <div
-          className="film-modal-overlay"
-          role="dialog"
-          aria-modal="true"
-          aria-label="Varanasi Film"
-          onMouseDown={(e) => {
-            if (e.target === e.currentTarget) setFilmOpen(false);
-          }}
-        >
-          <div className="film-modal-dialog">
-            <button
-              className="film-modal-close-btn"
-              onClick={() => setFilmOpen(false)}
-              aria-label="Close Film"
-            >
-              <X size={20} />
-            </button>
-            <video
-              controls
-              autoPlay
-              playsInline
-              preload="metadata"
-              poster="/SnS/when-the-city-glows.webp"
-              className="film-video-player"
-            >
-              <source src="/kashi-hero.mp4" type="video/mp4" />
-              Your browser does not support embedded video.
-            </video>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

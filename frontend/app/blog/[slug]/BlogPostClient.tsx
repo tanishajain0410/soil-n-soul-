@@ -9,9 +9,11 @@ import { API_URL } from '@/lib/constants';
 export default function BlogPostClient({ post, recentBlogs }: { post: any, recentBlogs: any[] }) {
   const [progress, setProgress] = useState(0);
   const [copied, setCopied] = useState(false);
-  const API_BASE = API_URL.replace('/api', '');
+  const [shareUrl, setShareUrl] = useState('');
+  const API_BASE = API_URL ? API_URL.replace('/api', '') : '';
 
   useEffect(() => {
+    setShareUrl(window.location.href);
     // Reading progress
     const onScroll = () => {
       const doc = document.documentElement;
@@ -25,13 +27,16 @@ export default function BlogPostClient({ post, recentBlogs }: { post: any, recen
 
   const bannerSrc = post.bannerImage?.startsWith('http')
     ? post.bannerImage
-    : post.bannerImage ? `${API_BASE}${post.bannerImage}` : '';
+    : post.bannerImage?.startsWith('/')
+    ? post.bannerImage
+    : post.bannerImage && API_BASE
+    ? `${API_BASE}${post.bannerImage.startsWith('/') ? '' : '/'}${post.bannerImage}`
+    : post.bannerImage || '';
 
   // Fix any relative /uploads image paths in content
-  const fixedContent = (post.content || '').replace(
-    /src="\/uploads\//g,
-    `src="${API_BASE}/uploads/`
-  );
+  const fixedContent = API_BASE
+    ? (post.content || '').replace(/src="\/uploads\//g, `src="${API_BASE}/uploads/`)
+    : post.content || '';
 
   const wordCount = post.content?.replace(/<[^>]+>/g, '').split(/\s+/).filter(Boolean).length || 0;
   const readTime = Math.max(1, Math.round(wordCount / 200));
@@ -147,7 +152,7 @@ export default function BlogPostClient({ post, recentBlogs }: { post: any, recen
         <div className="flex flex-wrap items-center gap-3 mt-8 pt-6 border-t border-white/10">
           <span className="text-slate-500 text-xs uppercase tracking-widest font-semibold">Share</span>
           <a
-            href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(typeof window !== 'undefined' ? window.location.href : '')}&text=${encodeURIComponent(post.title)}`}
+            href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(post.title)}`}
             target="_blank"
             rel="noopener noreferrer"
             title="Share on Twitter"
@@ -156,7 +161,7 @@ export default function BlogPostClient({ post, recentBlogs }: { post: any, recen
             <span className="material-symbols-outlined text-base text-slate-400">public</span>
           </a>
           <a
-            href={`mailto:?subject=${encodeURIComponent(post.title)}&body=${encodeURIComponent(typeof window !== 'undefined' ? window.location.href : '')}`}
+            href={`mailto:?subject=${encodeURIComponent(post.title)}&body=${encodeURIComponent(shareUrl)}`}
             title="Share via Email"
             className="w-9 h-9 flex items-center justify-center bg-white/5 hover:bg-primary/20 border border-white/10 hover:border-primary/30 rounded-lg transition-all"
           >

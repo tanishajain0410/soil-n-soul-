@@ -43,7 +43,7 @@ export default function ServiceInquiryModal({ isOpen, onClose, serviceName, subS
 
       {/* Modal */}
       <div
-        className="relative bg-[#1A120B] border border-white/15 rounded-2xl w-full max-w-md p-6 sm:p-7 animate-in shadow-2xl"
+        className="relative bg-[#1A120B] border border-white/15 rounded-2xl w-full max-w-md max-h-[90dvh] overflow-y-auto p-5 sm:p-7 animate-in shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close button */}

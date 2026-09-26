@@ -14,9 +14,9 @@
   --journal-orange: #c95a16;
   --journal-charcoal: #2a2c28;
   --journal-muted: #6b6860;
-  --journal-font-serif: "Cormorant Garamond", Georgia, serif;
-  --journal-font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --journal-font-script: "Alex Brush", cursive;
+  --journal-font-serif: var(--font-cormorant, "Cormorant Garamond"), Georgia, serif;
+  --journal-font-sans: var(--font-plus-jakarta, "Plus Jakarta Sans"), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --journal-font-script: var(--font-alex-brush, "Alex Brush"), cursive;
 }
 
 .journal-page-root {
@@ -71,12 +71,12 @@
   z-index: 2;
   background: linear-gradient(
     to bottom,
-    rgba(12, 13, 15, 0.55) 0%,
+    rgba(12, 13, 15, 0.6) 0%,
     rgba(12, 13, 15, 0.25) 45%,
-    rgba(12, 13, 15, 0.75) 85%,
-    #f7f4ed 100%
+    rgba(12, 13, 15, 0.5) 100%
   );
   pointer-events: none;
+  overflow: hidden;
 }
 
 .journal-hero-content {

@@ -1,0 +1,247 @@
+/* ========================================================
+   GLOBAL FLOATING CONTACT BUTTONS (WHATSAPP ON LEFT, CALL ON RIGHT)
+   Soil & Soul Luxury Visual Identity
+======================================================== */
+
+.floating-contact-container {
+  position: fixed;
+  bottom: clamp(20px, 3vh, 32px);
+  z-index: 9990;
+  display: flex;
+  pointer-events: none;
+  isolation: isolate;
+}
+
+/* WhatsApp on Left Side */
+.floating-contact-left {
+  left: clamp(16px, 2.5vw, 28px);
+  right: auto;
+  align-items: flex-start;
+}
+
+/* Call on Right Side */
+.floating-contact-right {
+  right: clamp(16px, 2.5vw, 28px);
+  left: auto;
+  align-items: flex-end;
+}
+
+/* Base button styling */
+.floating-contact-btn {
+  pointer-events: auto;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  text-decoration: none;
+  cursor: pointer;
+  outline: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.28s ease;
+}
+
+/* Call Button (Soil & Soul Warm Luxury Gold - Right Side) */
+.floating-call-btn {
+  background: linear-gradient(135deg, #c8a45c 0%, #a8843c 100%);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 6px 20px rgba(184, 147, 88, 0.42), 
+              0 2px 6px rgba(0, 0, 0, 0.18);
+  animation: floatingSubtleBob 4.2s ease-in-out infinite 0.6s;
+}
+
+.floating-call-btn:hover {
+  transform: translateY(-3px) scale(1.06);
+  box-shadow: 0 10px 28px rgba(184, 147, 88, 0.55), 
+              0 3px 8px rgba(0, 0, 0, 0.22);
+}
+
+.floating-call-btn:active {
+  transform: translateY(-1px) scale(0.98);
+}
+
+/* WhatsApp Button (Vibrant Emerald / WhatsApp Green - Left Side) */
+.floating-wa-btn {
+  background: linear-gradient(135deg, #25D366 0%, #1ea952 100%);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.42), 
+              0 2px 6px rgba(0, 0, 0, 0.18);
+  animation: floatingSubtleBob 4.2s ease-in-out infinite;
+}
+
+.floating-wa-btn:hover {
+  transform: translateY(-3px) scale(1.06);
+  box-shadow: 0 10px 28px rgba(37, 211, 102, 0.58), 
+              0 3px 8px rgba(0, 0, 0, 0.22);
+}
+
+.floating-wa-btn:active {
+  transform: translateY(-1px) scale(0.98);
+}
+
+/* Pause floating motion during hover */
+.floating-contact-btn:hover {
+  animation-play-state: paused;
+}
+
+/* Gentle, smooth pulse ring radiating outward */
+.floating-contact-pulse {
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: -1;
+  animation: floatingPulseRing 3.6s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+}
+
+.floating-call-btn .floating-contact-pulse {
+  border: 2px solid rgba(200, 164, 92, 0.55);
+  animation-delay: 1.8s;
+}
+
+.floating-wa-btn .floating-contact-pulse {
+  border: 2px solid rgba(37, 211, 102, 0.55);
+  animation-delay: 0s;
+}
+
+/* Tooltip Base */
+.floating-contact-tooltip {
+  position: absolute;
+  top: 50%;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  white-space: nowrap;
+  padding: 6px 14px;
+  background: #111412;
+  color: #f7f5ee;
+  border: 1px solid rgba(200, 164, 92, 0.35);
+  border-radius: 999px;
+  font-family: var(--sns-font-sans, "Plus Jakarta Sans", system-ui, sans-serif);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+  transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s ease;
+}
+
+/* Right-side button tooltip: slides to the left of the button */
+.floating-tooltip-left {
+  right: calc(100% + 12px);
+  left: auto;
+  transform: translateY(-50%) translateX(8px);
+}
+
+.floating-tooltip-left::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translateY(-50%);
+  border-width: 4px;
+  border-style: solid;
+  border-color: transparent transparent transparent #111412;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .floating-contact-btn:hover .floating-tooltip-left {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(-50%) translateX(0);
+  }
+}
+
+/* Left-side button tooltip (WhatsApp): slides to the right of the button */
+.floating-tooltip-right {
+  left: calc(100% + 12px);
+  right: auto;
+  transform: translateY(-50%) translateX(-8px);
+}
+
+.floating-tooltip-right::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  transform: translateY(-50%);
+  border-width: 4px;
+  border-style: solid;
+  border-color: transparent #111412 transparent transparent;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .floating-contact-btn:hover .floating-tooltip-right {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(-50%) translateX(0);
+  }
+}
+
+/* Keyframe Animations */
+@keyframes floatingSubtleBob {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3.5px);
+  }
+}
+
+@keyframes floatingPulseRing {
+  0% {
+    transform: scale(0.94);
+    opacity: 0.65;
+  }
+  50% {
+    transform: scale(1.22);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(0.94);
+    opacity: 0;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .floating-contact-left {
+    left: 16px;
+    bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .floating-contact-right {
+    right: 16px;
+    bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .floating-contact-btn {
+    width: 47px;
+    height: 47px;
+  }
+
+  .floating-contact-btn svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  /* Don't show desktop tooltips on mobile touch screens */
+  .floating-contact-tooltip {
+    display: none !important;
+  }
+}
+
+/* Reduced Motion Mode */
+@media (prefers-reduced-motion: reduce) {
+  .floating-contact-btn,
+  .floating-contact-pulse {
+    animation: none !important;
+  }
+}

@@ -1,6 +1,7 @@
-﻿import { journeys } from "@/data/journeys";
+import { journeys } from "@/data/journeys";
 import type { MetadataRoute } from "next";
 import { API_URL, SITE_URL } from "@/lib/constants";
+import { fetchAllBlogSlugs } from "@/lib/api";
 import { SERVICES } from "@/lib/services";
 import { SEO_PAGES } from "@/lib/seo-pages";
 
@@ -27,6 +28,30 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: now,
       changeFrequency: "monthly",
       priority: 0.8,
+    },
+    {
+      url: SITE_URL + "/journeys/dharm",
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
+    {
+      url: SITE_URL + "/journeys/arth",
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
+    {
+      url: SITE_URL + "/journeys/kaam",
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
+    {
+      url: SITE_URL + "/journeys/moksh",
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.85,
     },
     ...journeys.map((j) => ({
       url: SITE_URL + "/journeys/" + j.slug,
@@ -65,6 +90,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "monthly",
       priority: 0.7,
     },
+    {
+      url: `${SITE_URL}/privacy-policy`,
+      lastModified: now,
+      changeFrequency: "yearly",
+      priority: 0.4,
+    },
+    {
+      url: `${SITE_URL}/terms-and-conditions`,
+      lastModified: now,
+      changeFrequency: "yearly",
+      priority: 0.4,
+    },
   ];
 
   const serviceRoutes: MetadataRoute.Sitemap = SERVICES.map((service) => ({
@@ -85,24 +122,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   let blogRoutes: MetadataRoute.Sitemap = [];
   try {
-    const res = await fetch(`${API_URL}/blogs`, {
-      next: { revalidate: 3600, tags: ["blogs"] },
-    });
-    if (res.ok) {
-      const data = await res.json();
-      const blogs = (data?.blogs as BlogPost[] | undefined) || [];
-      blogRoutes = blogs
-        .filter((blog) => blog.slug && blog.status !== "draft")
-        .map((blog) => {
-          const lastModified = blog.updatedAt || blog.createdAt;
-          return {
-            url: `${SITE_URL}/blog/${blog.slug}`,
-            lastModified: lastModified ? new Date(lastModified) : now,
-            changeFrequency: "weekly",
-            priority: 0.6,
-          };
-        });
-    }
+    const slugs = await fetchAllBlogSlugs();
+    blogRoutes = slugs.map((slug) => ({
+      url: `${SITE_URL}/blog/${slug}`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.6,
+    }));
   } catch {
     // Ignore API errors to keep sitemap resilient.
   }

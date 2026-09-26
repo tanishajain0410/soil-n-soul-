@@ -28,7 +28,7 @@ export default function HeroVideo() {
         className="sn-hero-video"
         style={{ width: '100%', height: '100%', objectFit: 'cover' }}
       >
-        <source src="/kashi-hero.mp4" type="video/mp4" />
+        <source src="/varanasi-hero.mp4" type="video/mp4" />
       </video>
       <button 
         onClick={togglePlay}

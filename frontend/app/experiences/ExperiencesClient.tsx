@@ -45,7 +45,7 @@ export default function ExperiencesClient() {
       ======================================================== */}
       <section className="exp-hero-section">
         <Image
-          src="/SnS/the-sacred-morning.png"
+          src="/SnS/the-sacred-morning.webp"
           alt="Golden sunset over Varanasi Ganges river with illuminated temple skyline"
           fill
           priority
@@ -117,7 +117,7 @@ export default function ExperiencesClient() {
           <div className="exp-image-col">
             <div className="exp-main-image-wrap">
               <Image
-                src="/SnS/sacred-kashi.png"
+                src="/SnS/sacred-kashi.webp"
                 alt="Priest performing the sacred evening Ganga Aarti with tiered fire lamp in Varanasi"
                 fill
                 sizes="(max-width: 980px) 100vw, 55vw"
@@ -128,7 +128,7 @@ export default function ExperiencesClient() {
             {/* Inset Secondary Photo */}
             <div className="exp-inset-card exp-inset-right">
               <Image
-                src="/SnS/the-sacred-morning.png"
+                src="/SnS/the-sacred-morning.webp"
                 alt="Woman in red sari overlooking the sacred river through a carved stone temple arch"
                 fill
                 sizes="(max-width: 640px) 90px, (max-width: 980px) 120px, 190px"
@@ -235,7 +235,7 @@ export default function ExperiencesClient() {
           <div className="exp-image-col">
             <div className="exp-main-image-wrap">
               <Image
-                src="/SnS/the-hands-of-banaras.png"
+                src="/SnS/the-hands-of-banaras.webp"
                 alt="A Banarasi artisan shaping a traditional craft beside the Ganges"
                 fill
                 sizes="(max-width: 980px) 100vw, 55vw"
@@ -260,7 +260,7 @@ export default function ExperiencesClient() {
           <div className="exp-image-col">
             <div className="exp-main-image-wrap">
               <Image
-                src="/SnS/the-banarasi-table.png"
+                src="/SnS/the-banarasi-table.webp"
                 alt="Traditional Banarasi street food and flavorful chaat prepared in polished brass vessels"
                 fill
                 sizes="(max-width: 980px) 100vw, 55vw"
@@ -389,7 +389,7 @@ export default function ExperiencesClient() {
             {/* Inset Secondary Photo: Historic Lane */}
             <div className="exp-inset-card exp-inset-top-right">
               <Image
-                src="/SnS/varanasi-heritage.png"
+                src="/SnS/varanasi-heritage.webp"
                 alt="Atmospheric narrow alleyway of Old Varanasi with golden sunlight streaming down onto a resting bicycle"
                 fill
                 sizes="(max-width: 640px) 90px, (max-width: 980px) 120px, 180px"
@@ -637,7 +637,7 @@ export default function ExperiencesClient() {
       ======================================================== */}
       <section className="cta-cinematic-reference" id="cta">
         <Image
-          src="/SnS/kashi-after-dark.png"
+          src="/SnS/kashi-after-dark.webp"
           alt="Panoramic sunset over Varanasi Ganges river with lit candle in foreground"
           fill
           sizes="100vw"

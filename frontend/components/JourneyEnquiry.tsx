@@ -225,7 +225,7 @@ export default function JourneyEnquiry({
           </form>
         </div>
         {(variant === "journeys" || variant === "contact") && <aside className={`journey-map-panel${variant === "contact" ? " contact-map-panel" : ""}`} aria-label="Our home in Varanasi">
-          {variant === "contact" && <img className="contact-map-photo" src="/images/about-ref/enquiry_card_top.png" alt="Sunset over the Ganges and Varanasi ghats" />}
+          {variant === "contact" && <img className="contact-map-photo" src="/images/enquiry_card_top_hd.jpg" alt="Sunset over the Ganges and Varanasi ghats" />}
           <div className="journey-map-frame">
             <iframe title="Map of Varanasi, Uttar Pradesh, India" src="https://maps.google.com/maps?q=Varanasi%2C%20Uttar%20Pradesh%2C%20India&t=&z=13&ie=UTF8&iwloc=&output=embed" loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
           </div>

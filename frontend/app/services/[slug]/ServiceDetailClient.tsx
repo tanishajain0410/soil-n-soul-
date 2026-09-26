@@ -31,13 +31,15 @@ export default function ServiceDetailClient({ service }: { service: Service }) {
   };
 
   useEffect(() => {
-    if (service.slug === 'stay') {
+    if (service.slug === 'stay' && API_URL && API_URL.trim() !== '') {
       fetch(`${API_URL}/hotels`)
         .then((res) => res.json())
         .then((data) => {
-          if (data.success) setHotels(data.hotels);
+          if (data?.success && Array.isArray(data.hotels)) setHotels(data.hotels);
         })
-        .catch((err) => console.error(err));
+        .catch(() => {
+          // Gracefully ignore network errors if backend is unavailable
+        });
     }
   }, [service.slug]);
 

@@ -10,6 +10,13 @@ const exploreLinks = [
   ["Contact", "/contact"],
 ];
 
+const journeyLinks = [
+  ["Dharm — Spiritual", "/journeys/dharm"],
+  ["Arth — Heritage", "/journeys/arth"],
+  ["Kaam — Love & Leisure", "/journeys/kaam"],
+  ["Moksh — Wellness", "/journeys/moksh"],
+];
+
 const experienceLinks = [
   ["Sacred Kashi", "/experiences#sacred-kashi"],
   ["Living Banaras", "/experiences#living-banaras"],
@@ -83,7 +90,19 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* Column 3: Experiences */}
+        {/* Column 3: Journeys */}
+        <div className="footer-col">
+          <h4 className="footer-heading">JOURNEYS</h4>
+          <ul className="footer-links">
+            {journeyLinks.map(([label, href]) => (
+              <li key={label}>
+                <Link href={href}>{label}</Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Column 4: Experiences */}
         <div className="footer-col">
           <h4 className="footer-heading">EXPERIENCES</h4>
           <ul className="footer-links">

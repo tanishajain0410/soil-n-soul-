@@ -111,14 +111,14 @@ export default function AdminHotels() {
     if (!token) return null;
 
     return (
-        <div className="min-h-screen bg-[#1A120B] text-slate-100 p-8 pt-16">
+        <div className="min-h-screen bg-[#1A120B] text-slate-100 p-4 sm:p-8 pt-12 sm:pt-16">
             <div className="max-w-6xl mx-auto">
-                <div className="flex justify-between items-center mb-10 pb-6 border-b border-white/10 relative">
+                <div className="flex justify-between items-center mb-8 pb-6 border-b border-white/10 relative">
                     <div>
                         <Link href="/admin" className="text-primary text-xs font-bold tracking-[0.2em] uppercase mb-2 flex items-center gap-1 hover:text-white transition-colors">
                             <span className="material-symbols-outlined text-[14px]">arrow_back</span> Back to Dashboard
                         </Link>
-                        <h1 className="text-4xl font-bold text-white">Manage Hotels</h1>
+                        <h1 className="text-2xl sm:text-4xl font-bold text-white">Manage Hotels</h1>
                     </div>
                 </div>
 
@@ -239,7 +239,7 @@ export default function AdminHotels() {
                                                 {hotel.description}
                                             </td>
                                             <td className="py-4 px-4 text-right">
-                                                <div className="flex items-center justify-end gap-3 opacity-0 group-hover:opacity-100 transition-opacity">
+                                                <div className="flex items-center justify-end gap-2 sm:gap-3 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
                                                     <button
                                                         onClick={() => {
                                                             setCurrentHotel(hotel);

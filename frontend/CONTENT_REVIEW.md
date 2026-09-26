@@ -1,4 +1,4 @@
-﻿# Soil n Soul refinement — content review
+# Soil n Soul refinement — content review
 
 ## Preserved
 
@@ -6,7 +6,7 @@ Existing journey names, all 16 journey routes and their data, founder story, ser
 
 ## Media
 
-- Hero uses the existing `public/kashi-hero.mp4` (10 seconds, 1280 × 720) with the existing riverfront poster, autoplay/muted/loop/playsInline, and a pause option. Reduced-motion visitors see the poster. No media was downloaded or generated.
+- Hero uses `public/varanasi-hero.mp4` with responsive mobile variants, autoplay/muted/loop/playsInline. Reduced-motion visitors see the poster.
 - Cinematic Storytelling preserves the four existing photo stories, with a five-second looping carousel. There were no separate story-video sources in the current carousel.
 - Missing `about-1.png` and `about-2.png` journey references now use the existing riverfront image. Dedicated BHU, Ramnagar Fort, food, and weaving photography would make these presentations more specific.
 - Journal upload paths resolve against the existing API host. Failed images use an intentional existing Kashi fallback.

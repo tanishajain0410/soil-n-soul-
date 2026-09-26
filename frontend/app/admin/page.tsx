@@ -83,12 +83,12 @@ export default function AdminDashboard() {
     if (!token) return null;
 
     return (
-        <div className="min-h-screen bg-[#1A120B] text-slate-100 p-8 pt-16">
+        <div className="min-h-screen bg-[#1A120B] text-slate-100 p-4 sm:p-8 pt-12 sm:pt-16">
             <div className="max-w-6xl mx-auto">
-                <div className="flex justify-between items-center mb-10 pb-6 border-b border-white/10 relative">
+                <div className="flex flex-wrap justify-between items-center mb-8 pb-6 border-b border-white/10 relative gap-4">
                     <div>
                         <span className="text-primary text-xs font-bold tracking-[0.2em] uppercase mb-2 block">CMS Dashboard</span>
-                        <h1 className="text-4xl font-bold text-white">Manage Content</h1>
+                        <h1 className="text-2xl sm:text-4xl font-bold text-white">Manage Content</h1>
                     </div>
                     <button
                         onClick={handleLogout}
@@ -130,16 +130,16 @@ export default function AdminDashboard() {
                 <div className="bg-white/5 border border-white/10 p-6 rounded-2xl">
                     <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
                         <h2 className="text-2xl font-bold text-white">All Blogs</h2>
-                        <div className="flex items-center gap-3">
+                        <div className="flex flex-wrap items-center gap-3">
                             <Link
                                 href="/admin/hotels"
-                                className="bg-white/10 hover:bg-white/20 text-white px-5 py-2.5 rounded-lg text-sm font-bold tracking-widest uppercase transition-all shadow-xl active:scale-95 flex items-center gap-2"
+                                className="bg-white/10 hover:bg-white/20 text-white px-4 sm:px-5 py-2.5 rounded-lg text-xs sm:text-sm font-bold tracking-widest uppercase transition-all shadow-xl active:scale-95 flex items-center gap-2"
                             >
                                 Manage Hotels
                             </Link>
                             <Link
                                 href="/admin/blog/new"
-                                className="bg-primary hover:bg-primary/90 text-white px-5 py-2.5 rounded-lg text-sm font-bold tracking-widest uppercase transition-all shadow-xl active:scale-95 flex items-center gap-2"
+                                className="bg-primary hover:bg-primary/90 text-white px-4 sm:px-5 py-2.5 rounded-lg text-xs sm:text-sm font-bold tracking-widest uppercase transition-all shadow-xl active:scale-95 flex items-center gap-2"
                             >
                                 <span className="material-symbols-outlined text-[18px]">add_circle</span> New Blog
                             </Link>
@@ -161,8 +161,8 @@ export default function AdminDashboard() {
                                 {blogs.map(blog => (
                                     <tr key={blog._id} className="border-b border-white/5 hover:bg-white/5 transition-colors group">
                                         <td className="py-4 px-4">
-                                            <p className="font-semibold text-white">{blog.title}</p>
-                                            <p className="text-xs text-slate-400 mt-1">/blog/{blog.slug}</p>
+                                             <p className="font-semibold text-white">{blog.title}</p>
+                                             <p className="text-xs text-slate-400 mt-1">/blog/{blog.slug}</p>
                                         </td>
                                         <td className="py-4 px-4 text-sm text-slate-300">{blog.category}</td>
                                         <td className="py-4 px-4">
@@ -174,7 +174,7 @@ export default function AdminDashboard() {
                                             {new Date(blog.createdAt).toLocaleDateString()}
                                         </td>
                                         <td className="py-4 px-4 text-right">
-                                            <div className="flex items-center justify-end gap-3 opacity-0 group-hover:opacity-100 transition-opacity">
+                                            <div className="flex items-center justify-end gap-2 sm:gap-3 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
                                                 <Link
                                                     href={`/admin/blog/edit/${blog.slug}`}
                                                     className="bg-white/10 hover:bg-white/20 text-white p-2 rounded-lg transition-colors"

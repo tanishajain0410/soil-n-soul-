@@ -60,7 +60,7 @@ export default function ServicesPage() {
       {/* Hero */}
       <section className="relative min-h-[40vh] sm:min-h-[50vh] flex items-end overflow-hidden">
         <Image
-          src="https://images.unsplash.com/photo-1561095531-7e41797d6712?auto=format&fit=crop&w=1920&q=85"
+          src="/images/varanasi-hero-main.jpg"
           alt="Varanasi Riverfront"
           fill
           priority

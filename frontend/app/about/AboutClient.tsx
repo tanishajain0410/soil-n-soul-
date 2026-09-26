@@ -67,7 +67,7 @@ export default function AboutClient() {
             fill
             priority
             sizes="100vw"
-            quality={75}
+            quality={95}
           />
         </div>
 
@@ -144,18 +144,30 @@ export default function AboutClient() {
 
             {/* Inset Photo 1: Upper-left Temple with evening lights */}
             <div className="about-inset-temple">
-              <img
-                src="/images/about-ref/founder_inset_temple.png"
-                alt="Ancient temple in Varanasi illuminated at dusk"
-              />
+              <div style={{ position: "relative", width: "100%", height: "100%", overflow: "hidden" }}>
+                <Image
+                  src="/images/founder_inset_temple_hd.jpg"
+                  alt="Ancient temple in Varanasi illuminated at dusk"
+                  fill
+                  sizes="160px"
+                  quality={95}
+                  style={{ objectFit: "cover" }}
+                />
+              </div>
             </div>
 
             {/* Inset Photo 2: Lower-left Boat with sunrise flame */}
             <div className="about-inset-boat">
-              <img
-                src="/images/about-ref/founder_inset_boat.png"
-                alt="Wooden boat on the Ganges at sunrise with diya flame"
-              />
+              <div style={{ position: "relative", width: "100%", height: "100%", overflow: "hidden" }}>
+                <Image
+                  src="/images/founder_inset_boat_hd.jpg"
+                  alt="Wooden boat on the Ganges at sunrise with diya flame"
+                  fill
+                  sizes="160px"
+                  quality={95}
+                  style={{ objectFit: "cover" }}
+                />
+              </div>
             </div>
 
             {/* Main Center Portrait Card */}
@@ -165,8 +177,8 @@ export default function AboutClient() {
                   src="/images/founder.jpg"
                   alt="Anchal Pandey, Founder of Soil N Soul Travels"
                   fill
-                  sizes="(max-width: 768px) 80vw, 320px"
-                  quality={75}
+                  sizes="(max-width: 768px) 90vw, (max-width: 1200px) 450px, 400px"
+                  quality={95}
                 />
               </div>
 
@@ -252,8 +264,8 @@ export default function AboutClient() {
             src="/images/about-way-diya.jpg"
             alt="Terracotta diya burning on stone ghat overlooking evening Varanasi"
             fill
-            sizes="60vw"
-            quality={75}
+            sizes="(max-width: 768px) 100vw, 65vw"
+            quality={95}
           />
         </div>
 
@@ -365,10 +377,11 @@ export default function AboutClient() {
             <div className="about-philosophy-card">
               <div className="about-phil-img-wrap">
                 <Image
-                  src="/images/philosophy-center-arch.jpg"
+                  src="/images/philosophy-center-arch-hd.jpg"
                   alt="People experiencing sunrise on the Ganges from an arched balcony"
                   fill
-                  sizes="(max-width: 768px) 100vw, 240px"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 420px"
+                  quality={95}
                 />
               </div>
               <h3 className="about-phil-card-title">People</h3>
@@ -382,7 +395,8 @@ export default function AboutClient() {
                   src="/SnS/banarasi-silk-detail.webp"
                   alt="Artisan hands weaving traditional Banarasi silk on a handloom"
                   fill
-                  sizes="(max-width: 768px) 100vw, 240px"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 420px"
+                  quality={95}
                 />
               </div>
               <h3 className="about-phil-card-title">Stories</h3>
@@ -396,7 +410,8 @@ export default function AboutClient() {
                   src="/images/about-temple-dawn.jpg"
                   alt="Ancient stone temple spires at dawn along the sacred river ghats"
                   fill
-                  sizes="(max-width: 768px) 100vw, 240px"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 420px"
+                  quality={95}
                 />
               </div>
               <h3 className="about-phil-card-title">Experiences</h3>
@@ -579,10 +594,11 @@ export default function AboutClient() {
               {/* Top Photograph */}
               <div className="about-map-top-img">
                 <Image
-                  src="/images/about-ref/enquiry_card_top.png"
+                  src="/images/enquiry_card_top_hd.jpg"
                   alt="Sunset over the Ganges and ancient riverfront of Varanasi"
                   fill
-                  sizes="(max-width: 768px) 100vw, 420px"
+                  sizes="(max-width: 768px) 100vw, 450px"
+                  quality={95}
                 />
               </div>
 

@@ -297,16 +297,16 @@ export default function AdminBlogEditor() {
       `}</style>
 
             {/* ── Top Bar ───────────────────────────────────────────────────────── */}
-            <div className="sticky top-0 z-30 bg-[#0f0f13]/95 backdrop-blur border-b border-white/8 px-4 sm:px-8 py-3 flex items-center justify-between gap-4">
-                <div className="flex items-center gap-3 min-w-0">
+            <div className="sticky top-0 z-30 bg-[#0f0f13]/95 backdrop-blur border-b border-white/8 px-3 sm:px-8 py-2.5 sm:py-3 flex flex-wrap items-center justify-between gap-3">
+                <div className="flex items-center gap-2.5 min-w-0">
                     <Link href="/admin" className="text-slate-400 hover:text-white transition-colors shrink-0">
                         <span className="material-symbols-outlined text-[18px]">arrow_back</span>
                     </Link>
-                    <span className="text-indigo-400 text-xs font-bold tracking-[0.2em] uppercase truncate">
+                    <span className="text-indigo-400 text-xs font-bold tracking-[0.2em] uppercase truncate max-w-[150px] sm:max-w-xs">
                         {isEditing ? `Edit: ${form.title || slug}` : 'New Post'}
                     </span>
                 </div>
-                <div className="flex items-center gap-2 shrink-0">
+                <div className="flex flex-wrap items-center gap-2">
                     <button onClick={() => setPreview(p => !p)}
                         className="flex items-center gap-1.5 text-slate-400 hover:text-white border border-white/10 px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors">
                         <span className="material-symbols-outlined text-[13px]">{preview ? 'edit' : 'visibility'}</span>

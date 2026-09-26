@@ -24,23 +24,44 @@ export default function ContactClient() {
       <section className="contact-reference-hero" aria-label="Design your journey">
         <div className="contact-hero-shade" />
         <div className="contact-hero-inner">
-          <p className="contact-ref-eyebrow">KASHI, AT YOUR PACE</p>
+          <p className="contact-ref-eyebrow">CONTACT &amp; BESPOKE PLANNING • KASHI, AT YOUR PACE</p>
           <h1>Design <em>My Journey</em></h1>
           <p className="contact-hero-copy">Share what you love. We’ll help you find it in Banaras.</p>
           <div className="contact-hero-promises">
-            {promises.map(([Icon, title, copy]) => <div className="contact-hero-promise" key={title}><span><Icon size={18}/></span><div><strong>{title}</strong><small>{copy}</small></div></div>)}
+            {promises.map(([Icon, title, copy]) => (
+              <div className="contact-hero-promise" key={title}>
+                <span><Icon size={18}/></span>
+                <div><strong>{title}</strong><small>{copy}</small></div>
+              </div>
+            ))}
           </div>
         </div>
-        <div className="contact-handwritten" aria-hidden="true">Your<br/>Kashi<br/>Story</div>
-        <img className="contact-hero-temple" src="/images/temple-sketch-right.png" alt="" aria-hidden="true" />
+
+        {/* Constrained decorative wrapper for Your Kashi Story */}
+        <div className="contact-hero-decoration-wrap" aria-hidden="true">
+          <img
+            className="contact-hero-temple"
+            src="/images/temple-hero-watermark.png"
+            alt=""
+            aria-hidden="true"
+          />
+          <div className="contact-handwritten">
+            Your<br />Kashi<br />Story
+          </div>
+        </div>
       </section>
 
       <JourneyEnquiry variant="contact" />
 
       <section className="contact-reference-values" aria-label="The Soil N Soul difference">
-        <img src="/images/temple-illustration.png" alt="" aria-hidden="true" />
         <div className="contact-values-inner">
-          {values.map(([Icon, title, copy]) => <div className="contact-value" key={title}><Icon size={29} strokeWidth={1.2}/><h2>{title}</h2><p>{copy}</p></div>)}
+          {values.map(([Icon, title, copy]) => (
+            <div className="contact-value" key={title}>
+              <Icon size={28} strokeWidth={1.2}/>
+              <h2>{title}</h2>
+              <p>{copy}</p>
+            </div>
+          ))}
         </div>
       </section>
 
