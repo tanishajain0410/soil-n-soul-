@@ -19,7 +19,6 @@ import {
   VolumeX,
 } from "lucide-react";
 import JourneyEnquiry from "@/components/JourneyEnquiry";
-import LuxuryNavbar from "@/components/LuxuryNavbar";
 
 const experiences = [
   {
@@ -254,10 +253,6 @@ export default function HomeClient() {
 
   return (
     <div className="reference-homepage">
-      {/* ========================================================
-          HEADER / NAVIGATION (MATCHES EXPERIENCES NAVBAR EXACTLY)
-      ======================================================== */}
-      <LuxuryNavbar />
 
       {/* ========================================================
           SECTION 01: FULL-SCREEN HERO

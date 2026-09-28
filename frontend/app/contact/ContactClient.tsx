@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { Compass, Headset, Landmark, UserRound, BedDouble } from "lucide-react";
 import JourneyEnquiry from "@/components/JourneyEnquiry";
-import LuxuryNavbar from "@/components/LuxuryNavbar";
 
 const promises = [
   [UserRound, "Personalised", "Trips crafted around you"],
@@ -20,7 +19,6 @@ const values = [
 export default function ContactClient() {
   return (
     <div className="contact-reference-page">
-      <LuxuryNavbar />
       <section className="contact-reference-hero" aria-label="Design your journey">
         <div className="contact-hero-shade" />
         <div className="contact-hero-inner">

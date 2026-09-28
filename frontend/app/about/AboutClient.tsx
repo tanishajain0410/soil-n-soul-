@@ -11,7 +11,6 @@ import {
   Calendar,
   Users,
 } from "lucide-react";
-import LuxuryNavbar from "@/components/LuxuryNavbar";
 import { whatsapp } from "@/data/journeys";
 
 const interestOptions = [
@@ -50,10 +49,6 @@ export default function AboutClient() {
 
   return (
     <div className="about-page-root">
-      {/* ========================================================
-          1. NAVIGATION (MATCHES REFERENCE EXACTLY)
-      ======================================================== */}
-      <LuxuryNavbar />
 
       {/* ========================================================
           2. HERO SECTION

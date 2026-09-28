@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import LuxuryNavbar from "@/components/LuxuryNavbar";
 import Link from "next/link";
 import { ShieldCheck, Mail, Phone, Lock, Eye, FileText, ArrowLeft } from "lucide-react";
 
@@ -19,8 +18,6 @@ export const metadata: Metadata = {
 export default function PrivacyPolicyPage() {
   return (
     <div className="min-h-screen bg-[#0c0d0f] text-[#dcd6c8] selection:bg-[#dfbf80]/30 selection:text-white">
-      {/* Luxury Navbar */}
-      <LuxuryNavbar />
 
       {/* Hero Header */}
       <header className="relative pt-36 pb-20 px-6 sm:px-12 border-b border-[#dfbf80]/15 overflow-hidden">

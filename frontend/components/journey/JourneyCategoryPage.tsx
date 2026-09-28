@@ -29,7 +29,6 @@ import {
   Home,
   Phone,
 } from "lucide-react";
-import LuxuryNavbar from "@/components/LuxuryNavbar";
 import type { JourneyCategoryData } from "@/data/journeyCategories";
 
 interface Props {
@@ -88,8 +87,6 @@ export default function JourneyCategoryPage({ data }: Props) {
 
   return (
     <div className="jcat-page">
-      {/* 1. LUXURY NAVBAR */}
-      <LuxuryNavbar />
 
       {/* 2. FULL-WIDTH HERO */}
       <section className="jcat-hero" aria-label={`${data.categoryName} Hero`}>

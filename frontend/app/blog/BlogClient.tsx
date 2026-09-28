@@ -4,7 +4,6 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import LuxuryNavbar from "@/components/LuxuryNavbar";
 import type { BlogPost } from "@/lib/api";
 import { journalImage } from "@/lib/media";
 
@@ -116,8 +115,6 @@ export default function BlogClient({ posts = [] }: { posts: Preview[] }) {
 
   return (
     <div className="journal-page-root">
-      {/* Luxury Navbar (Overlaying Hero) */}
-      <LuxuryNavbar />
 
       {/* ========================================================
           1. HERO SECTION (EXACT REFERENCE DESIGN)

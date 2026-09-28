@@ -32,10 +32,11 @@ export default function LuxuryNavbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
-  const isAboutPage = pathname === "/about";
-  const isJourneyPage = pathname === "/journeys";
-  const isContactPage = pathname === "/contact";
-  const isBlogPage = pathname === "/blog" || pathname === "/journal";
+  const currentPath = pathname || "";
+  const isAboutPage = currentPath === "/about";
+  const isJourneyPage = currentPath === "/journeys";
+  const isContactPage = currentPath === "/contact";
+  const isBlogPage = currentPath === "/blog" || currentPath === "/journal";
 
   const links = [
     ["Home", "/"],
@@ -85,8 +86,8 @@ export default function LuxuryNavbar() {
             {links.map(([label, href]) => {
               const isActive =
                 href === "/"
-                  ? pathname === "/"
-                  : pathname === href || pathname.startsWith(href);
+                  ? currentPath === "/"
+                  : currentPath === href || currentPath.startsWith(href);
               return (
                 <Link
                   key={label}
@@ -112,7 +113,7 @@ export default function LuxuryNavbar() {
             </a>
 
             <a
-              href={isAboutPage || isJourneyPage || isContactPage || isBlogPage || pathname === "/" ? "#contact" : "/#contact"}
+              href={isAboutPage || isJourneyPage || isContactPage || isBlogPage || currentPath === "/" ? "#contact" : "/#contact"}
               className="exp-nav-cta-btn"
             >
               <span>
@@ -150,8 +151,8 @@ export default function LuxuryNavbar() {
             {links.map(([label, href]) => {
               const isActive =
                 href === "/"
-                  ? pathname === "/"
-                  : pathname === href || pathname.startsWith(href);
+                  ? currentPath === "/"
+                  : currentPath === href || currentPath.startsWith(href);
               return (
                 <Link
                   key={label}
@@ -165,7 +166,7 @@ export default function LuxuryNavbar() {
             })}
           </div>
           <a
-              href={isJourneyPage || isAboutPage || isContactPage || isBlogPage || pathname === "/" ? "#contact" : "/#contact"}
+              href={isJourneyPage || isAboutPage || isContactPage || isBlogPage || currentPath === "/" ? "#contact" : "/#contact"}
             className="exp-hero-btn"
             style={{ marginTop: 20 }}
             onClick={() => setMobileMenuOpen(false)}

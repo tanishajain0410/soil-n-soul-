@@ -17,7 +17,6 @@ import {
   Flame,
 } from "lucide-react";
 import JourneyEnquiry from "@/components/JourneyEnquiry";
-import LuxuryNavbar from "@/components/LuxuryNavbar";
 function WhatsAppIcon() {
   return (
     <svg
@@ -35,10 +34,6 @@ function WhatsAppIcon() {
 export default function ExperiencesClient() {
   return (
     <div className="exp-page-root">
-      {/* ========================================================
-          1. NAVIGATION (UNIFIED PREMIUM LUXURY NAVBAR)
-      ======================================================== */}
-      <LuxuryNavbar />
 
       {/* ========================================================
           2. FULL-SCREEN EXPERIENCE HERO

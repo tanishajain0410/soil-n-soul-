@@ -4,7 +4,6 @@ import Link from "next/link";
 import { ArrowRight, Compass, HeartHandshake, Sparkles, Waves } from "lucide-react";
 import JourneyFilterGrid from "@/components/JourneyFilterGrid";
 import JourneyEnquiry from "@/components/JourneyEnquiry";
-import LuxuryNavbar from "@/components/LuxuryNavbar";
 
 export const metadata: Metadata = {
   title: "Premium Personalised Journeys",
@@ -23,7 +22,6 @@ const values = [
 export default function JourneysPage() {
   return (
     <div className="journey-page">
-      <LuxuryNavbar />
       <section className="journey-hero" aria-labelledby="journey-page-title">
         <Image src="/images/varanasi-hero-main.jpg" alt="Sunset over the Ganges and Varanasi ghats" fill priority sizes="100vw" quality={80} className="journey-hero-image" />
         <div className="journey-hero-shade" />
