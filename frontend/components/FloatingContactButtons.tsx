@@ -1,8 +1,5 @@
 "use client";
 
-import { Phone } from "lucide-react";
-
-const PHONE_NUMBER = "+919580417547";
 const WHATSAPP_URL =
   "https://wa.me/919580417547?text=Hello%20Soil%20n%20Soul%2C%20I%20would%20like%20to%20plan%20a%20journey%20to%20Varanasi.";
 
@@ -23,9 +20,9 @@ function WhatsAppSvgIcon() {
 export default function FloatingContactButtons() {
   return (
     <>
-      {/* WhatsApp Button (Floating on the Left Side) */}
+      {/* WhatsApp Button (Floating on the Right Side) */}
       <aside
-        className="floating-contact-container floating-contact-left"
+        className="floating-contact-container floating-contact-right"
         aria-label="WhatsApp quick chat"
       >
         <a
@@ -39,7 +36,7 @@ export default function FloatingContactButtons() {
           <span className="floating-contact-pulse" aria-hidden="true" />
           <WhatsAppSvgIcon />
           <span
-            className="floating-contact-tooltip floating-tooltip-right"
+            className="floating-contact-tooltip floating-tooltip-left"
             role="tooltip"
           >
             WhatsApp Us
@@ -47,27 +44,6 @@ export default function FloatingContactButtons() {
         </a>
       </aside>
 
-      {/* Call Button (Floating on the Right Side) */}
-      <aside
-        className="floating-contact-container floating-contact-right"
-        aria-label="Phone quick call"
-      >
-        <a
-          href={`tel:${PHONE_NUMBER}`}
-          className="floating-contact-btn floating-call-btn"
-          aria-label="Call Us (+91 95804 17547)"
-          title="Call Us: +91 95804 17547"
-        >
-          <span className="floating-contact-pulse" aria-hidden="true" />
-          <Phone size={21} strokeWidth={2.1} aria-hidden="true" />
-          <span
-            className="floating-contact-tooltip floating-tooltip-left"
-            role="tooltip"
-          >
-            Call Us
-          </span>
-        </a>
-      </aside>
     </>
   );
 }
