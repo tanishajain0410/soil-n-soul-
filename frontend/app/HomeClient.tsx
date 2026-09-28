@@ -10,7 +10,7 @@ import {
   BedDouble,
   Compass,
   HeartHandshake,
-  Menu,
+  MapPin,
   Phone,
   ShieldCheck,
   Sparkles,
@@ -19,6 +19,7 @@ import {
   VolumeX,
 } from "lucide-react";
 import JourneyEnquiry from "@/components/JourneyEnquiry";
+import { founderStory, journeys } from "@/data/journeys";
 
 const experiences = [
   {
@@ -53,6 +54,39 @@ const philosophyFeatures = [
   { icon: HeartHandshake, title: "Local Connections" },
   { icon: Compass, title: "Personalized Itineraries" },
 ];
+
+const riverMoments = [
+  { title: "Birds over the Ganga", detail: "A quiet beginning on the river", image: "/SnS/ganga-boat.webp", category: "THE RIVER" },
+  { title: "Golden Sunrise", detail: "The city waking along the ghats", image: "/SnS/the-sacred-morning.webp", category: "AT FIRST LIGHT" },
+  { title: "A Moment of Stillness", detail: "Room to pause and take it in", image: "/SnS/private-journey-rituals.webp", category: "INNER KASHI" },
+];
+
+const kashiVoices = [
+  { title: "The River at Dawn", detail: "A city finding its first light.", image: "/SnS/assi-ghat.webp" },
+  { title: "Hands of Banaras", detail: "Craft passed from one generation to the next.", image: "/SnS/the-hands-of-banaras.webp" },
+  { title: "Ritual and Reverence", detail: "Tradition woven into everyday life.", image: "/SnS/sacred-kashi.webp" },
+  { title: "The Living Lanes", detail: "Stories found around every turn.", image: "/SnS/varanasi-heritage.webp" },
+];
+
+const homeStories = [
+  { category: "SPIRITUALITY", title: "The Magic of Ganga Aarti", excerpt: "Faith, fire, and an experience that stays with you forever.", image: "/images/journal-ref/featured_ganga_aarti_clean.jpg", slug: "the-magic-of-ganga-aarti" },
+  { category: "TRAVEL GUIDE", title: "A Perfect Day in Varanasi", excerpt: "A soulful guide to experiencing Kashi beyond the usual.", image: "/images/journal-ref/card1_sunrise_hd.jpg", slug: "a-perfect-day-in-varanasi" },
+  { category: "CULTURE & HERITAGE", title: "The Artisans of Banaras", excerpt: "Stories of the weavers keeping centuries-old traditions alive.", image: "/SnS/banarasi-silk-detail.webp", slug: "the-artisans-of-banaras" },
+];
+
+const homeFaqs = [
+  ["Can you help me plan a custom itinerary?", "Yes. Share your interests, dates and pace, and our local team will help shape a personal Varanasi journey."],
+  ["Do you arrange accommodation and transport?", "We can help coordinate stays and transport as part of your journey planning."],
+  ["Is it suitable for solo travellers?", "Yes. We can tailor experiences and local support to solo travellers and their comfort level."],
+  ["Can you accommodate dietary preferences?", "Tell us about your dietary needs and we will discuss suitable local food experiences with you."],
+  ["What is the best time to visit Varanasi?", "Varanasi has different rhythms through the year. Let us know what you hope to experience and we can help you choose dates."],
+  ["Do you offer experiences beyond Varanasi?", "Yes. We can also help plan journeys to places such as Sarnath, Ayodhya and Prayagraj."],
+] as const;
+
+const featuredJourney = journeys.find((journey) => journey.slug === "the-soul-of-kashi")!;
+const smallerJourneys = ["kashi-temple-circuit", "varanasi-heritage", "the-banarasi-table"]
+  .map((slug) => journeys.find((journey) => journey.slug === slug)!)
+  .filter(Boolean);
 
 function DiyaIcon() {
   return (
@@ -155,15 +189,6 @@ const purusharthas = [
   },
 ];
 
-const navItems = [
-  ["Home", "/"],
-  ["Experiences", "/experiences"],
-  ["Stays", "/#stays"],
-  ["Our Story", "/about"],
-  ["Gallery", "/#gallery"],
-  ["Contact", "/#contact"],
-];
-
 export default function HomeClient() {
   const heroVideoRef = useRef<HTMLVideoElement>(null);
   const audioRef = useRef<HTMLAudioElement>(null);
@@ -171,12 +196,20 @@ export default function HomeClient() {
 
   const toggleSound = () => {
     const audio = audioRef.current;
+    const video = heroVideoRef.current;
     if (!audio) return;
 
     if (isPlayingSound) {
       audio.pause();
       setIsPlayingSound(false);
     } else {
+      if (video) {
+        video.classList.remove("hero-motion-poster");
+        video.muted = true;
+        video.play().catch((err) => {
+          console.warn("Hero video playback could not start:", err);
+        });
+      }
       audio.currentTime = audio.currentTime || 0;
       const playPromise = audio.play();
       if (playPromise !== undefined) {
@@ -196,19 +229,16 @@ export default function HomeClient() {
     const video = heroVideoRef.current;
     if (!video) return;
 
-    // Force muted DOM properties for cross-browser autoplay compliance
+    // The background clip is silent and muted so browsers can autoplay it.
     video.defaultMuted = true;
     video.muted = true;
+    video.classList.remove("hero-motion-poster");
 
-    // Try playing video immediately
     const startPlayback = () => {
       video.muted = true;
-      const playPromise = video.play();
-      if (playPromise !== undefined) {
-        playPromise.catch((err) => {
-          console.warn("Hero video autoplay deferred until user interaction:", err);
-        });
-      }
+      video.play().catch((err) => {
+        console.warn("Hero video autoplay deferred until user interaction:", err);
+      });
     };
 
     startPlayback();
@@ -241,9 +271,7 @@ export default function HomeClient() {
     window.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => {
-      interactionEvents.forEach((evt) =>
-        window.removeEventListener(evt, unlockPlayback)
-      );
+      interactionEvents.forEach((evt) => window.removeEventListener(evt, unlockPlayback));
       window.removeEventListener("scroll", handleScroll);
       if (audioRef.current) {
         audioRef.current.pause();
@@ -308,14 +336,13 @@ export default function HomeClient() {
           </p>
 
           <h1 className="hero-main-heading">
-            <span className="hero-city-title">VARANASI</span>
-            <em className="hero-feeling-title">A Feeling</em>
-            <span className="hero-time-title">Beyond Time</span>
+            <span className="hero-city-title">Kashi, the</span>
+            <em className="hero-feeling-title">way a Banarasi</em>
+            <span className="hero-time-title">would show<br/>it to family.</span>
           </h1>
 
           <p className="hero-support-description">
-            Curated experiences, soulful stays and deeply personal journeys in
-            the world&apos;s oldest living city.
+            Curated experiences and soulful stays, shared with the warmth of a local welcome.
           </p>
 
           <div className="hero-cta-group">
@@ -323,6 +350,8 @@ export default function HomeClient() {
               <span>PLAN YOUR VARANASI JOURNEY</span>
               <ArrowRight size={14} />
             </a>
+
+            <a href="#journey-map" className="hero-secondary-link">EXPLORE KASHI <ArrowDown size={12}/></a>
 
             <button
               type="button"
@@ -385,8 +414,9 @@ export default function HomeClient() {
             <div className="philosophy-zone-left">
               <p className="reference-gold-eyebrow">THE SOIL N SOUL PHILOSOPHY</p>
               <h2 className="philosophy-heading">
-                More than a destination,<br />
-                <em>a deeper connection.</em>
+                Soil is the Ganga<br />
+                and Soul is what<br />
+                <em>you carry home.</em>
               </h2>
               <p className="philosophy-paragraph">
                 We create immersive Varanasi experiences that go beyond
@@ -423,6 +453,9 @@ export default function HomeClient() {
                   quality={90}
                 />
               </div>
+              <div className="philosophy-supporting-image">
+                <Image src="/SnS/a-deeper-connection.webp" alt="A quiet view of the Varanasi ghats" fill sizes="(max-width: 760px) 36vw, 13vw" />
+              </div>
             </div>
 
             {/* Zone 3: Right Quote with Architectural Sketch */}
@@ -445,6 +478,25 @@ export default function HomeClient() {
                 />
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="home-journey-map-section" id="journey-map" aria-labelledby="home-journey-map-title">
+        <div className="home-journey-map-layout">
+          <div className="home-journey-map-copy">
+            <p className="reference-gold-eyebrow">A JOURNEY, DRAWN AROUND YOU</p>
+            <h2 id="home-journey-map-title">We draw your Kashi<br/><em>around your needs.</em></h2>
+            <p>Choose from our curated journeys or let us create a personalised itinerary based on your interests, time and travel style.</p>
+            <Link href="/journeys" className="home-map-cta">DESIGN YOUR JOURNEY <ArrowRight size={13}/></Link>
+          </div>
+          <HomeKashiMap />
+          <div className="home-map-interest-card">
+            <span className="home-map-interest-eyebrow">POPULAR EXPERIENCES</span>
+            <ul className="home-popular-experiences">
+              {["Ganga Aarti Experience", "Heritage Walks", "Temple Visits", "Local Food Trails", "Art & Crafts", "Spiritual Encounters"].map((experience) => <li key={experience}><span aria-hidden="true"><Sparkles size={13}/></span>{experience}</li>)}
+            </ul>
+            <Link href="/experiences">Explore experiences <ArrowRight size={13}/></Link>
           </div>
         </div>
       </section>
@@ -529,8 +581,8 @@ export default function HomeClient() {
             <div className="experiences-header-left">
               <p className="reference-gold-eyebrow">SIGNATURE EXPERIENCES</p>
               <h2 className="experiences-heading">
-                Curated Experiences<br />
-                That Stay With You Forever.
+                Everything Kashi visits,<br />
+                <em>on the ground.</em>
               </h2>
             </div>
 
@@ -575,7 +627,7 @@ export default function HomeClient() {
           </div>
 
           {/* 4 Large Tall Cinematic Cards */}
-          <div className="experience-cards-grid" id="exp-cards-row">
+          <div className="experience-cards-grid experience-editorial-masonry" id="exp-cards-row">
             {experiences.map((exp) => (
               <Link
                 href="/experiences"
@@ -738,92 +790,129 @@ export default function HomeClient() {
         </div>
       </section>
 
-      {/* ========================================================
-          SECTION 06: FINAL CINEMATIC CTA
-      ======================================================== */}
-      <section className="cta-cinematic-reference" id="cta">
-        {/* High-resolution sunset over the Ganges and Varanasi ghats */}
-        <Image
-          src="/images/about-hero-sunset.jpg"
-          alt="Sunset over the Ganges and illuminated Varanasi ghats"
-          fill
-          sizes="100vw"
-          quality={90}
-          className="cta-cinematic-bg"
-        />
-        <div className="cta-cinematic-overlay" aria-hidden="true" />
-
-        <div className="cta-container">
-          {/* Left: Heading and Actions */}
-          <div className="cta-left-col">
-            <p className="cta-gold-eyebrow">READY TO EXPERIENCE</p>
-            <h2 className="cta-large-heading">
-              YOUR VARANASI<br />
-              STORY?
-            </h2>
-            <p className="cta-subtitle">
-              Let our travel experts design a personalized journey for you.
-            </p>
-
-            <div className="cta-buttons-row">
-              <a href="#contact" className="cta-primary-btn">
-                <span>Plan Your Journey</span>
-                <ArrowRight size={13} />
-              </a>
-
-              <a
-                href="https://wa.me/919580417547?text=Hello%20Soil%20n%20Soul%2C%20I%20would%20love%20to%20speak%20with%20your%20team."
-                target="_blank"
-                rel="noreferrer"
-                className="cta-speak-btn"
-              >
-                <WhatsAppNavIcon />
-                <span>Speak to Our Team</span>
-              </a>
+      <section className="home-packages-section" id="packages" aria-labelledby="home-packages-title">
+        <div className="home-packages-intro">
+          <p className="reference-gold-eyebrow">PACKAGES, READY TO SHAPE</p>
+          <h2 id="home-packages-title">Design your<br/><em>Kashi journey</em><br/>your way.</h2>
+          <p>Choose from our curated journeys or let us create a personalised itinerary based on your interests, time and travel style.</p>
+          <Link href="/journeys" className="home-map-cta">VIEW ALL JOURNEYS <ArrowRight size={13}/></Link>
+        </div>
+        <div className="home-package-showcase">
+          <article className="home-package-featured">
+            <Link className="home-package-image" href={`/journeys/${featuredJourney.slug}`} aria-label={`View ${featuredJourney.name}`}>
+              <Image src={featuredJourney.image} alt="A signature journey through Kashi" fill sizes="(max-width: 760px) 100vw, 32vw" />
+              <span>MOST POPULAR</span>
+            </Link>
+            <div className="home-package-details">
+              <p className="reference-gold-eyebrow">A PRIVATE JOURNEY</p>
+              <h3>{featuredJourney.name}</h3>
+              <p>{featuredJourney.story}</p>
+              <div className="home-package-meta"><span><Compass size={14}/>{featuredJourney.duration}</span><span><MapPin size={14}/>Varanasi</span></div>
+              <ul>{featuredJourney.components.slice(0, 3).map((item) => <li key={item}>{item}</li>)}</ul>
+              <Link href={`/journeys/${featuredJourney.slug}`} className="home-package-link">VIEW DETAILS <ArrowRight size={13}/></Link>
             </div>
-          </div>
-
-          {/* Right: 4 Feature Points with Gold Round Icons */}
-          <div className="cta-right-col">
-            <div className="cta-feature-item">
-              <div className="cta-feature-icon-circle">
-                <Compass size={14} strokeWidth={1.5} />
-              </div>
-              <span className="cta-feature-label">Custom Itineraries</span>
-            </div>
-
-            <div className="cta-feature-item">
-              <div className="cta-feature-icon-circle">
-                <Users size={14} strokeWidth={1.5} />
-              </div>
-              <span className="cta-feature-label">Dedicated Travel Experts</span>
-            </div>
-
-            <div className="cta-feature-item">
-              <div className="cta-feature-icon-circle">
-                <ShieldCheck size={14} strokeWidth={1.5} />
-              </div>
-              <span className="cta-feature-label">Seamless Planning</span>
-            </div>
-
-            <div className="cta-feature-item">
-              <div className="cta-feature-icon-circle">
-                <HeartHandshake size={14} strokeWidth={1.5} />
-              </div>
-              <span className="cta-feature-label">
-                Thoughtful &amp; Responsible Travel
-              </span>
-            </div>
+          </article>
+          <div className="home-package-mini-grid">
+            {smallerJourneys.map((journey) => <Link className="home-package-mini" key={journey.slug} href={`/journeys/${journey.slug}`}>
+              <span className="home-package-mini-image"><Image src={journey.image} alt="" fill sizes="(max-width: 760px) 90vw, 25vw"/></span>
+              <span className="home-package-mini-copy"><small>{journey.duration}</small><strong>{journey.name}</strong><span>VIEW DETAILS <ArrowRight size={11}/></span></span>
+            </Link>)}
           </div>
         </div>
       </section>
 
-      {/* ========================================================
-          SECTION 07: JOURNEY ENQUIRY FORM
-      ======================================================== */}
+      <section className="home-river-section" id="ghats" aria-labelledby="home-river-title">
+        <div className="home-river-inner">
+          <div className="home-river-heading">
+            <div><p className="reference-gold-eyebrow">A RIVER, EIGHTY-FOUR GHATS</p><h2 id="home-river-title">One river, eighty-four ghats,<br/><em>four dawn to aarti.</em></h2></div>
+            <div className="home-river-tabs" aria-label="Explore themes"><span>Spiritual</span><span>Culture</span><span>Food</span><span>Heritage</span></div>
+          </div>
+          <div className="home-river-grid">
+            {riverMoments.map((moment) => <article className="home-river-card" key={moment.title}>
+              <Image src={moment.image} alt={moment.title} fill sizes="(max-width: 760px) 90vw, 31vw" />
+              <span className="home-river-shade"/><span className="home-river-label">{moment.category}</span>
+              <div><h3>{moment.title}</h3><p>{moment.detail}</p></div>
+              <span className="home-river-arrow"><ArrowRight size={14}/></span>
+            </article>)}
+          </div>
+        </div>
+      </section>
+
+      <section className="home-kashi-words" aria-labelledby="home-kashi-words-title">
+        <div className="home-kashi-words-heading">
+          <div><p className="reference-gold-eyebrow">A CITY, FELT THROUGH ITS PEOPLE</p><h2 id="home-kashi-words-title">Kashi, in our<br/><em>own words.</em></h2></div>
+          <p>Small moments, shared generously. This is the Varanasi that stays with you.</p>
+        </div>
+        <div className="home-voice-layout">
+          <div className="home-voice-grid">{kashiVoices.map((voice) => <article className="home-voice-card" key={voice.title}>
+            <Image src={voice.image} alt={voice.title} fill sizes="(max-width: 760px) 45vw, 19vw" />
+            <span className="home-voice-shade"/><div><h3>{voice.title}</h3><p>{voice.detail}</p></div>
+          </article>)}</div>
+          <div className="home-voice-stats"><div><strong>84</strong><span>GHATS ALONG THE GANGA</span></div><div><strong>3,000+</strong><span>YEARS OF LIVING HISTORY</span></div><div><strong>ONE</strong><span>RIVER THROUGH IT ALL</span></div></div>
+        </div>
+      </section>
+
+      <section className="home-founder-section" aria-labelledby="home-founder-title">
+        <div className="home-founder-layout">
+          <div className="home-founder-portrait">
+            <Image src="/images/founder.jpg" alt="Anchal Pandey, Founder of Soil & Soul" fill sizes="(max-width: 760px) 90vw, 37vw" />
+            <span className="home-founder-name">Anchal Pandey <small>Founder · Native of Banaras</small></span>
+          </div>
+          <div className="home-founder-copy">
+            <p className="reference-gold-eyebrow">A STORY, ROOTED IN KASHI</p>
+            <h2 id="home-founder-title">A story beginning<br/>with <em>the heart of Ganga.</em></h2>
+            <p>{founderStory[0]}</p><p>{founderStory[4]}</p>
+            <Link href="/about" className="home-map-cta">MEET ANCHAL <ArrowRight size={13}/></Link>
+            <span className="home-founder-signature">With love, from Kashi</span>
+          </div>
+          <span className="home-founder-art" aria-hidden="true"/>
+        </div>
+      </section>
+
+      <section className="home-stories-section" id="stories" aria-labelledby="home-stories-title">
+        <div className="home-stories-heading"><div><p className="reference-gold-eyebrow">THE SOUL BLOG</p><h2 id="home-stories-title">Stories from a<br/><em>sacred journey.</em></h2></div><Link href="/blog" className="explore-all-link">EXPLORE THE BLOG <ArrowRight size={13}/></Link></div>
+        <div className="home-stories-layout">
+          {homeStories.map((story,index) => <Link className={`home-story-card${index===0?" home-story-featured":""}`} key={story.slug} href={`/blog/${story.slug}`}>
+            <span className="home-story-image"><Image src={story.image} alt="" fill sizes="(max-width: 760px) 92vw, 40vw"/></span>
+            <span className="home-story-copy"><small>{story.category}</small><strong>{story.title}</strong><span>{story.excerpt}</span><i>READ STORY <ArrowRight size={12}/></i></span>
+          </Link>)}
+        </div>
+      </section>
+
+      <section className="home-faq-section" id="faq" aria-labelledby="home-faq-title">
+        <div className="home-faq-intro"><p className="reference-gold-eyebrow">A LITTLE CLARITY BEFORE YOU ARRIVE</p><h2 id="home-faq-title">Questions we<br/><em>hear every week.</em></h2><p>Every journey is personal. Here are a few helpful details to get you started.</p><Link href="/contact" className="home-map-cta">ASK US ANYTHING <ArrowRight size={13}/></Link></div>
+        <div className="home-faq-list">{homeFaqs.map(([question,answer])=><details className="home-faq-item" key={question}><summary>{question}<span aria-hidden="true">+</span></summary><p>{answer}</p></details>)}</div>
+      </section>
+
+      {/* The existing enquiry flow remains the page's primary conversion form. */}
       <JourneyEnquiry />
+
+      <section className="home-final-cta" id="cta">
+        <Image src="/images/about-hero-sunset.jpg" alt="Dusk over the Ganges in Varanasi" fill sizes="100vw" className="home-final-cta-image" />
+        <span className="home-final-cta-shade"/>
+        <div><p className="reference-gold-eyebrow">YOUR KASHI JOURNEY STARTS HERE</p><h2>Tell us your dates.<br/>We’ll take care of you<br/><em>in Kashi.</em></h2><a href="#contact" className="cta-primary-btn">PLAN YOUR JOURNEY <ArrowRight size={13}/></a></div>
+      </section>
     </div>
   );
+}
+
+function HomeKashiMap() {
+  const locations = [
+    { x: 12, y: 65, label: "Assi Ghat", anchor: "start" },
+    { x: 39, y: 48, label: "Dashashwamedh Ghat", anchor: "middle" },
+    { x: 51, y: 31, label: "Kashi Vishwanath", anchor: "middle" },
+    { x: 70, y: 17, label: "Sarnath", anchor: "middle" },
+    { x: 85, y: 63, label: "Ramnagar Fort", anchor: "end" },
+  ] as const;
+  return <div className="home-kashi-map" role="img" aria-label="Illustrated route between Assi Ghat, Dashashwamedh Ghat, Kashi Vishwanath, Sarnath and Ramnagar Fort">
+    <svg viewBox="0 0 100 82" aria-hidden="true">
+      <path className="home-map-river" d="M2 77C19 63 27 70 38 62S58 52 67 56s17 1 31 8"/>
+      <path className="home-map-route" d="M12 65c9-5 17-13 27-17s6-12 12-17 11-12 19-14m-31 31c15-2 31 2 46 15"/>
+      {locations.map((point)=><g key={point.label}><circle cx={point.x} cy={point.y} r="1.7"/><text x={point.x} y={point.y-4} textAnchor={point.anchor}>{point.label}</text></g>)}
+      <path className="home-map-temple" d="M77 78h17m-15 0V68h3v-5h4v5h4v10m-8-15 3-5 3 5m-4-8h2m-1-5v5"/>
+    </svg>
+    <span><MapPin size={12}/> KASHI · VARANASI</span>
+  </div>;
 }
 
 function WhatsAppNavIcon() {

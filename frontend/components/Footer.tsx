@@ -6,7 +6,7 @@ const exploreLinks = [
   ["Experiences", "/experiences"],
   ["Journeys", "/journeys"],
   ["About", "/about"],
-  ["Journal", "/blog"],
+  ["Blog", "/blog"],
   ["Contact", "/contact"],
 ];
 

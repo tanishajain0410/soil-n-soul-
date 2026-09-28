@@ -1,0 +1,365 @@
+/* About page finish aligned with the homepage's warm editorial palette. */
+.about-page-root {
+  --about-gold:#d5ae62;
+  --about-gold-hover:#e4c27d;
+  --about-gold-muted:#a77937;
+  --about-gold-dark:#a77937;
+  --about-cream-bg:#f7f1e6;
+  --about-cream-card:#efe2d0;
+  --about-dark-bg:#24100c;
+  --about-dark-surface:#2b1711;
+  --about-text-dark:#2a1712;
+  --about-text-muted-dark:#74675b;
+  --about-text-light:#f7f1e6;
+  --about-text-muted-light:#d9cbb8;
+  background:#f7f1e6;
+  color:#2a1712;
+  font-family:var(--sns-font-sans);
+}
+body:has(.about-page-root) .exp-nav-header { background:linear-gradient(180deg,rgba(28,13,9,.52),transparent); }
+body:has(.about-page-root) .exp-nav-header.scrolled { background:rgba(28,13,9,.96); border-bottom-color:rgba(213,174,98,.2); }
+body:has(.about-page-root) .exp-nav-cta-btn { background:#d5ae62; color:#24100c!important; border-radius:3px; }
+body:has(.about-page-root) .exp-nav-wa-btn { border-color:rgba(213,174,98,.6)!important; color:#d5ae62!important; }
+body:has(.about-page-root) .exp-mobile-drawer { background:rgba(28,13,9,.98); }
+body:has(.about-page-root) .footer-reference { background:#180a07; }
+.about-page-root .about-hero { min-height:clamp(560px,70vh,780px); min-height:clamp(560px,70svh,780px); background:#24100c; }
+.about-page-root .about-hero-bg img { filter:saturate(.83) sepia(.1); object-position:center 45%; }
+.about-page-root .about-hero-overlay { background:linear-gradient(90deg,rgba(24,10,7,.82),rgba(36,16,11,.43) 49%,rgba(36,16,11,.09)),linear-gradient(0deg,rgba(24,10,7,.68),transparent 38%,rgba(24,10,7,.2)); }
+.about-page-root .about-hero-heading,.about-page-root .about-story-heading,.about-page-root .about-way-title,.about-page-root .about-philosophy-heading,.about-page-root .about-kashi-gallery h2 { font-family:var(--sns-font-cormorant); font-weight:400; }
+.about-page-root .about-hero-heading { font-size:clamp(50px,6vw,82px); line-height:1.02; }
+.about-page-root .about-hero-heading em { color:#e3bd75; }
+.about-page-root .about-eyebrow { color:#d5ae62; }
+.about-page-root .about-eyebrow-dark { color:#a77937; }
+.about-page-root .about-hero-btn,.about-page-root .about-philosophy-cta-row .about-hero-btn { background:#d5ae62; color:#24100c; border:1px solid #d5ae62; border-radius:3px; }
+.about-page-root .about-story-section,.about-page-root .about-philosophy-section { background:#f7f1e6; }
+.about-page-root .about-story-section { padding-block:clamp(90px,10vw,140px); }
+.about-page-root .about-story-heading { font-size:clamp(44px,4.5vw,66px); line-height:1.02; }
+.about-page-root .about-story-heading em { color:#a77937; }
+.about-page-root .about-main-portrait { border:8px solid #fbf6ed; box-shadow:0 18px 42px rgba(36,16,11,.17); transform:rotate(-2deg); }
+.about-page-root .about-founder-badge { border:1px solid rgba(167,121,55,.26); background:#fbf6ed; box-shadow:0 8px 24px rgba(36,16,11,.12); }
+.about-page-root .about-founder-name { font-family:var(--sns-font-cormorant); font-weight:500; }
+.about-page-root .about-story-watermark { opacity:.2; }
+.about-page-root .about-way-section { background:#24100c; }
+.about-page-root .about-way-bg img { filter:saturate(.75) sepia(.12); }
+.about-page-root .about-way-gradient { background:linear-gradient(90deg,rgba(24,10,7,.94),rgba(24,10,7,.78) 46%,rgba(24,10,7,.5)),linear-gradient(0deg,rgba(24,10,7,.68),rgba(24,10,7,.1)); }
+.about-page-root .about-way-title { color:#f7f1e6; font-size:clamp(42px,4.6vw,64px); }
+.about-page-root .about-way-desc,.about-page-root .about-value-text { color:#d9cbb8; }
+.about-page-root .about-value-col:not(:last-child) { border-right-color:rgba(213,174,98,.24); }
+.about-page-root .about-value-icon,.about-page-root .about-value-num { color:#d5ae62; }
+.about-page-root .about-philosophy-section { padding-block:clamp(90px,10vw,138px); }
+.about-page-root .about-philosophy-heading { font-size:clamp(42px,4.4vw,62px); }
+.about-page-root .about-phil-img-wrap { border:1px solid rgba(167,121,55,.25); border-radius:4px; box-shadow:0 12px 28px rgba(36,16,11,.12); }
+.about-page-root .about-phil-card-title { color:#2a1712; font-family:var(--sns-font-cormorant); font-size:24px; font-weight:500; }
+.about-page-root .about-kashi-gallery { padding:clamp(70px,8vw,112px) clamp(24px,6vw,90px); background:#24100c; color:#f7f1e6; }
+.about-page-root .about-kashi-gallery-head { max-width:1280px; margin:0 auto 32px; display:flex; justify-content:space-between; align-items:end; gap:24px; }
+.about-page-root .about-kashi-gallery h2 { margin:0; color:#f7f1e6; font-size:clamp(40px,4.3vw,60px); line-height:1; }
+.about-page-root .about-kashi-gallery h2 em { color:#e1bc73; }
+.about-page-root .about-gallery-link { display:inline-flex; align-items:center; gap:12px; color:#e1bc73; font-size:10px; letter-spacing:1.2px; text-transform:uppercase; text-decoration:none; }
+.about-page-root .about-kashi-gallery-grid { max-width:1280px; margin:auto; display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:14px; }
+.about-page-root .about-kashi-gallery-image { position:relative; aspect-ratio:1.05; overflow:hidden; border:1px solid rgba(213,174,98,.26); border-radius:4px; }
+.about-page-root .about-kashi-gallery-image img { object-fit:cover; filter:saturate(.85) sepia(.08); transition:transform .75s cubic-bezier(.2,.7,.2,1); }
+.about-page-root .about-kashi-gallery-image:hover img { transform:scale(1.05); }
+.about-page-root .enquiry-section-reference { background:#f7f1e6; }
+.about-page-root .enquiry-info-col { background:#24100c; border:1px solid rgba(213,174,98,.3); border-radius:4px; padding:clamp(30px,4vw,56px); }
+.about-page-root .enquiry-info-col .enquiry-eyebrow { color:#d5ae62; }
+.about-page-root .enquiry-info-col .enquiry-title { color:#f7f1e6; font-family:var(--sns-font-cormorant); font-weight:400; }
+.about-page-root .enquiry-info-col .enquiry-title em { color:#e1bc73; }
+.about-page-root .enquiry-info-col .enquiry-description,.about-page-root .enquiry-info-col .enquiry-contact-link { color:#d9cbb8; }
+.about-page-root .enquiry-form-col input,.about-page-root .enquiry-form-col select,.about-page-root .enquiry-form-col textarea { background:#fbf6ed; border-color:#d7c7ad; color:#2a1712; }
+.about-page-root .enquiry-form-col input:focus,.about-page-root .enquiry-form-col select:focus,.about-page-root .enquiry-form-col textarea:focus { border-color:#aa7c3a; box-shadow:0 0 0 2px rgba(170,124,58,.12); }
+.about-page-root .enquiry-form-col button { background:#d5ae62; color:#24100c; border-radius:3px; }
+@media(max-width:900px) {
+ .about-page-root .about-story-section,.about-page-root .about-philosophy-section { padding-block:76px; }
+ .about-page-root .about-kashi-gallery-grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
+}
+@media(max-width:640px) {
+ .about-page-root .about-hero { min-height:690px; min-height:88svh; }
+ .about-page-root .about-hero-heading { font-size:clamp(44px,11vw,62px); }
+ .about-page-root .about-story-section,.about-page-root .about-philosophy-section { padding-block:64px; }
+ .about-page-root .about-founder-collage { transform:none; width:min(100%,390px); min-height:480px; margin-inline:auto; }
+ .about-page-root .about-main-portrait-wrap { width:min(290px,78vw); }
+ .about-page-root .about-main-portrait { height:380px; }
+ .about-page-root .about-founder-badge { position:absolute; left:-12px; bottom:18px; }
+ .about-page-root .about-inset-temple,.about-page-root .about-inset-boat { display:block; }
+ .about-page-root .about-founder-filigree-right { display:none; }
+ .about-page-root .about-kashi-gallery { padding:64px 20px; }
+ .about-page-root .about-kashi-gallery-head { align-items:flex-start; flex-direction:column; }
+ .about-page-root .about-kashi-gallery-grid { grid-template-columns:1fr 1fr; gap:10px; }
+ .about-page-root .about-kashi-gallery-image { aspect-ratio:1.05; }
+ .about-page-root .enquiry-info-col { padding:28px 24px; }
+}
+
+/* About page: approved mockup fidelity pass, presentation only. */
+.about-page-root {
+  --about-gold: #d4ae5d;
+  --about-gold-hover: #e1bf79;
+  --about-gold-muted: #a77937;
+  --about-gold-dark: #9a6c32;
+  --about-cream-bg: #f6eedf;
+  --about-cream-card: #efe2cf;
+  --about-dark-bg: #28110b;
+  --about-dark-surface: #34150e;
+  --about-text-dark: #2d1811;
+  --about-text-muted-dark: #715d4d;
+  --about-text-light: #f6eedf;
+  --about-text-muted-light: #ddcebb;
+  background: #f6eedf;
+  color: #2d1811;
+}
+
+/* The shared site header remains the only About navigation. */
+body:has(.about-page-root) .exp-nav-cta-btn {
+  border-radius: 999px;
+  min-height: 38px;
+  padding-inline: 19px;
+  background: #d4ae5d;
+  color: #28110b !important;
+}
+body:has(.about-page-root) .exp-nav-header.scrolled {
+  background: rgba(246, 238, 223, .95);
+  border-bottom-color: rgba(113, 82, 49, .16);
+  box-shadow: 0 5px 22px rgba(40, 17, 11, .08);
+  backdrop-filter: blur(12px);
+}
+body:has(.about-page-root) .exp-nav-header.scrolled .exp-nav-link,
+body:has(.about-page-root) .exp-nav-header.scrolled .exp-nav-menu-btn {
+  color: #2d1811 !important;
+}
+body:has(.about-page-root) .exp-nav-header.scrolled .exp-nav-link.active,
+body:has(.about-page-root) .exp-nav-header.scrolled .exp-nav-link:hover {
+  color: #9a6c32 !important;
+}
+body:has(.about-page-root) .exp-nav-header.scrolled .exp-nav-wa-btn {
+  background: rgba(40, 17, 11, .04);
+  border-color: rgba(113, 82, 49, .35) !important;
+  color: #79562e !important;
+}
+
+.about-page-root .about-hero {
+  min-height: clamp(650px, 76svh, 840px);
+  padding: 132px clamp(28px, 6.5vw, 96px) 68px;
+  background-color: #28110b;
+}
+.about-page-root .about-hero-bg img {
+  filter: saturate(.78) sepia(.1) brightness(.96);
+  object-position: center 45%;
+}
+.about-page-root .about-hero-overlay {
+  background: linear-gradient(90deg, rgba(35, 15, 10, .76), rgba(40, 17, 11, .36) 53%, rgba(40, 17, 11, .08)),
+    linear-gradient(180deg, rgba(35, 15, 10, .4), transparent 38%, rgba(29, 12, 8, .63));
+}
+.about-page-root .about-hero-inner { max-width: 1280px; align-items: center; }
+.about-page-root .about-hero-left { max-width: 800px; }
+.about-page-root .about-eyebrow { font-size: 9px; letter-spacing: 2px; }
+.about-page-root .about-hero-heading {
+  max-width: 800px;
+  margin-bottom: 16px;
+  font-size: clamp(52px, 5.25vw, 76px);
+  line-height: .98;
+  letter-spacing: -.025em;
+}
+.about-page-root .about-hero-heading em { color: #dfbb73; white-space: nowrap; }
+.about-page-root .about-hero-subtext { max-width: 520px; margin-bottom: 24px; font-size: 13px; }
+.about-page-root .about-hero-btn,
+.about-page-root .about-philosophy-cta-row .about-hero-btn {
+  min-height: 40px;
+  padding: 0 20px;
+  border-radius: 999px;
+  background: #d4ae5d;
+  color: #28110b;
+  border-color: #d4ae5d;
+}
+.about-page-root .about-hero-script { color: #dfbb73; font-size: clamp(26px, 2.7vw, 38px); }
+.about-page-root .about-hero-vertical-meta { border-color: rgba(223, 187, 115, .5); }
+
+/* Founder photo collage and unabridged story remain paired in the hero-to-story flow. */
+.about-page-root .about-story-section {
+  padding: clamp(72px, 7vw, 96px) clamp(28px, 6.5vw, 96px);
+  background: #f6eedf;
+}
+.about-page-root .about-story-inner {
+  max-width: 1280px;
+  grid-template-columns: minmax(0, 1.02fr) minmax(0, 1.12fr);
+  gap: clamp(42px, 6vw, 86px);
+}
+.about-page-root .about-founder-collage {
+  min-height: 450px;
+  max-width: 590px;
+  width: 100%;
+}
+.about-page-root .about-main-portrait-wrap { width: 330px; }
+.about-page-root .about-main-portrait { height: 385px; }
+.about-page-root .about-inset-temple,
+.about-page-root .about-inset-boat { background: #f9f3e9; }
+.about-page-root .about-founder-badge { background: #f9f3e9; }
+.about-page-root .about-story-heading {
+  margin-bottom: 16px;
+  font-size: clamp(44px, 4.1vw, 60px);
+  line-height: .98;
+}
+.about-page-root .about-story-heading em { color: #a2462d; }
+.about-page-root .about-story-quote {
+  max-width: 540px;
+  margin: 0 0 20px;
+  color: #8f5e35;
+  font: italic 18px/1.4 var(--sns-font-cormorant);
+}
+.about-page-root .about-story-paragraphs { gap: 12px; }
+.about-page-root .about-story-paragraphs p { color: #655347; font-size: 12px; line-height: 1.62; }
+.about-page-root .about-story-watermark { opacity: .14; }
+
+/* Dark photographic values section. */
+.about-page-root .about-way-section { background: #28110b; padding: 70px clamp(28px, 6.5vw, 96px) 62px; }
+.about-page-root .about-way-inner { max-width: 1280px; }
+.about-page-root .about-way-bg { width: 60%; }
+.about-page-root .about-way-bg img { filter: saturate(.72) sepia(.12) brightness(.77); }
+.about-page-root .about-way-gradient {
+  background: linear-gradient(90deg, rgba(31, 13, 9, .98), rgba(40, 17, 11, .88) 42%, rgba(40, 17, 11, .57)),
+    linear-gradient(0deg, rgba(29, 12, 8, .72), rgba(29, 12, 8, .08));
+}
+.about-page-root .about-way-header { margin-bottom: 36px; }
+.about-page-root .about-way-title { font-size: clamp(42px, 4.2vw, 58px); line-height: .98; }
+.about-page-root .about-way-desc { max-width: 370px; font-size: 12px; }
+.about-page-root .about-values-grid { padding-top: 28px; }
+.about-page-root .about-value-col { padding-right: 24px; }
+.about-page-root .about-value-col:not(:first-child) { padding-left: 24px; }
+.about-page-root .about-value-num { margin-bottom: 10px; }
+.about-page-root .about-value-icon { margin-bottom: 8px; }
+.about-page-root .about-value-icon svg { width: 29px; height: 29px; }
+.about-page-root .about-value-title { font-size: 20px; }
+.about-page-root .about-value-text { font-size: 11px; line-height: 1.55; }
+
+/* Local philosophy and photo-led editorial gallery. */
+.about-page-root .about-philosophy-section {
+  padding: clamp(72px, 7.2vw, 98px) clamp(28px, 6.5vw, 96px);
+  background: #f6eedf;
+}
+.about-page-root .about-philosophy-inner {
+  max-width: 1280px;
+  grid-template-columns: minmax(280px, .82fr) minmax(0, 1.65fr);
+  gap: clamp(32px, 4.6vw, 68px);
+}
+.about-page-root .about-philosophy-heading { font-size: clamp(42px, 4.2vw, 58px); line-height: .99; }
+.about-page-root .about-philosophy-desc { font-size: 12px; line-height: 1.65; margin-bottom: 22px; }
+.about-page-root .about-philosophy-cards { gap: 14px; }
+.about-page-root .about-phil-img-wrap {
+  aspect-ratio: 4 / 4.1;
+  margin-bottom: 9px;
+  border-radius: 4px;
+  box-shadow: 0 9px 22px rgba(40, 17, 11, .13);
+}
+.about-page-root .about-phil-card-title { margin: 0; font-size: 21px; }
+.about-page-root .about-phil-card-sub { font-size: 10px; }
+.about-page-root .about-philosophy-watermark { opacity: .14; }
+.about-page-root .about-kashi-gallery {
+  padding: 62px clamp(28px, 6.5vw, 96px) 66px;
+  background: #a2462d;
+  color: #f6eedf;
+}
+.about-page-root .about-kashi-gallery-head { max-width: 1280px; margin-bottom: 26px; }
+.about-page-root .about-kashi-gallery h2 { font-size: clamp(40px, 4.1vw, 56px); }
+.about-page-root .about-kashi-gallery h2 em { color: #e3c37f; }
+.about-page-root .about-gallery-link { color: #eed89e; }
+.about-page-root .about-kashi-gallery-grid { max-width: 1280px; gap: 10px; }
+.about-page-root .about-kashi-gallery-image {
+  aspect-ratio: .94;
+  border-color: rgba(246, 238, 223, .26);
+  border-radius: 3px;
+}
+.about-page-root .about-kashi-gallery-image img { filter: saturate(.78) sepia(.12) brightness(.94); }
+
+/* Use the shared enquiry form and retain its submission behavior. */
+.about-page-root > .enquiry-section-reference {
+  padding: 68px clamp(28px, 6.5vw, 96px);
+  background: #f6eedf;
+}
+.about-page-root > .enquiry-section-reference .enquiry-container {
+  max-width: 1280px;
+  grid-template-columns: minmax(0, .9fr) minmax(0, 1.45fr);
+  gap: clamp(34px, 5vw, 72px);
+}
+.about-page-root > .enquiry-section-reference .enquiry-info-col {
+  align-self: stretch;
+  justify-content: center;
+  min-width: 0;
+  padding: clamp(30px, 3.4vw, 46px);
+  border: 1px solid rgba(212, 174, 93, .28);
+  border-radius: 4px;
+  background: #28110b;
+}
+.about-page-root > .enquiry-section-reference .enquiry-title {
+  font-size: clamp(38px, 3.2vw, 46px);
+  line-height: 1.02;
+}
+.about-page-root > .enquiry-section-reference .enquiry-title br { display: none; }
+.about-page-root > .enquiry-section-reference .enquiry-description { font-size: 12px; line-height: 1.65; }
+.about-page-root > .enquiry-section-reference .enquiry-contact-items { gap: 10px; }
+.about-page-root > .enquiry-section-reference .enquiry-contact-icon { background: transparent; }
+.about-page-root > .enquiry-section-reference .enquiry-form-grid { gap: 12px 15px; }
+.about-page-root > .enquiry-section-reference .enquiry-form-col input:not([type=checkbox]),
+.about-page-root > .enquiry-section-reference .enquiry-form-col select,
+.about-page-root > .enquiry-section-reference .enquiry-form-col textarea {
+  background: #fbf6ed;
+  border-color: #d8c8b2;
+}
+.about-page-root > .enquiry-section-reference .enquiry-form-col button {
+  min-height: 40px;
+  border-radius: 5px;
+  background: #d4ae5d;
+  color: #28110b;
+}
+.about-page-root > .enquiry-section-reference .enquiry-whatsapp-btn {
+  background: transparent !important;
+  border: 1px solid rgba(52, 21, 14, .5);
+  color: #34150e !important;
+}
+
+@media (max-width: 1080px) {
+  .about-page-root .about-story-section { padding-block: 74px; }
+  .about-page-root .about-story-inner { grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr); gap: 35px; }
+  .about-page-root .about-founder-collage { min-height: 410px; }
+  .about-page-root .about-main-portrait-wrap { width: min(300px, 78%); }
+  .about-page-root .about-main-portrait { height: 350px; }
+  .about-page-root .about-philosophy-inner { grid-template-columns: 1fr; gap: 30px; }
+  .about-page-root .about-philosophy-left { max-width: 600px; }
+  .about-page-root > .enquiry-section-reference .enquiry-container { grid-template-columns: minmax(0, .9fr) minmax(0, 1.2fr); gap: 28px; }
+  .about-page-root > .enquiry-section-reference .enquiry-info-col { padding: 28px; }
+}
+@media (max-width: 760px) {
+  .about-page-root .about-hero { min-height: 82svh; padding: 124px 22px 54px; }
+  .about-page-root .about-hero-inner { gap: 24px; }
+  .about-page-root .about-hero-heading { font-size: clamp(46px, 9.8vw, 62px); }
+  .about-page-root .about-hero-heading em { white-space: normal; }
+  .about-page-root .about-story-inner { grid-template-columns: 1fr; gap: 32px; }
+  .about-page-root .about-founder-collage { min-height: 450px; }
+  .about-page-root .about-way-section { padding-block: 62px; }
+  .about-page-root .about-way-header { margin-bottom: 28px; }
+  .about-page-root .about-values-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 18px; }
+  .about-page-root .about-value-col,
+  .about-page-root .about-value-col:not(:first-child) { padding: 0; border: 0 !important; }
+  .about-page-root .about-philosophy-cards { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .about-page-root .about-kashi-gallery { padding-block: 54px; }
+  .about-page-root .about-kashi-gallery-head { align-items: flex-start; }
+  .about-page-root .about-kashi-gallery-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); overflow-x: auto; overscroll-behavior-inline: contain; scroll-snap-type: x mandatory; }
+  .about-page-root .about-kashi-gallery-image { min-width: 180px; scroll-snap-align: start; }
+  .about-page-root > .enquiry-section-reference { padding: 54px 20px; }
+  .about-page-root > .enquiry-section-reference .enquiry-container { grid-template-columns: 1fr; gap: 26px; }
+  .about-page-root > .enquiry-section-reference .enquiry-info-col { padding: 28px 24px; }
+  .about-page-root > .enquiry-section-reference .enquiry-title { font-size: clamp(38px, 8vw, 46px); }
+}
+@media (max-width: 520px) {
+  .about-page-root .about-hero-heading { font-size: clamp(42px, 10vw, 52px); }
+  .about-page-root .about-hero-script { font-size: 26px; }
+  .about-page-root .about-founder-collage { min-height: 430px; }
+  .about-page-root .about-main-portrait-wrap { width: min(290px, 76vw); }
+  .about-page-root .about-main-portrait { height: 350px; }
+  .about-page-root .about-inset-temple { display: block; top: 18px; left: 0; width: 78px; height: 116px; }
+  .about-page-root .about-inset-boat { display: block; bottom: 28px; left: 2px; width: 88px; height: 102px; }
+  .about-page-root .about-founder-filigree-right { display: block; }
+  .about-page-root .about-values-grid { grid-template-columns: 1fr; gap: 20px; }
+  .about-page-root .about-philosophy-cards { grid-template-columns: 1fr; gap: 20px; }
+  .about-page-root .about-phil-img-wrap { aspect-ratio: 1.2; }
+  .about-page-root .about-kashi-gallery-head { flex-direction: column; }
+  .about-page-root .about-kashi-gallery-grid { grid-template-columns: repeat(5, 78vw); }
+  .about-page-root .about-kashi-gallery-image { min-width: 0; aspect-ratio: 1.08; }
+}

@@ -10,7 +10,7 @@ const navItems = [
   ["Experiences", "/experiences"],
   ["Journeys", "/journeys"],
   ["About", "/about"],
-  ["Journal", "/blog"],
+  ["Blog", "/blog"],
   ["Contact", "/contact"],
 ];
 
@@ -43,7 +43,7 @@ export default function LuxuryNavbar() {
     ["Experiences", "/experiences"],
     ["Journeys", "/journeys"],
     ["About", "/about"],
-    ["Journal", "/blog"],
+    ["Blog", "/blog"],
     ["Contact", "/contact"],
   ];
 
@@ -75,7 +75,7 @@ export default function LuxuryNavbar() {
           {/* Logo */}
           <Link href="/" aria-label="Soil N Soul Travels home">
             <img
-              src="/soil-n-soul-logo.svg"
+              src={scrolled ? "/soil-n-soul-logo-dark.svg" : "/soil-n-soul-logo.svg"}
               alt="Soil N Soul Varanasi Experiences"
               className="exp-nav-logo"
             />
@@ -116,13 +116,7 @@ export default function LuxuryNavbar() {
               href={isAboutPage || isJourneyPage || isContactPage || isBlogPage || currentPath === "/" ? "#contact" : "/#contact"}
               className="exp-nav-cta-btn"
             >
-              <span>
-                {isAboutPage || isContactPage || isBlogPage
-                  ? "Design My Journey"
-                  : isJourneyPage
-                  ? "Design Your Journey"
-                  : "Plan Your Journey"}
-              </span>
+              <span>Plan Your Journey</span>
               <ArrowRight size={13} />
             </a>
 
@@ -171,7 +165,7 @@ export default function LuxuryNavbar() {
             style={{ marginTop: 20 }}
             onClick={() => setMobileMenuOpen(false)}
           >
-            <span>{isAboutPage || isContactPage || isBlogPage ? "Design My Journey" : isJourneyPage ? "Design Your Journey" : "Plan Your Journey"}</span>
+            <span>Plan Your Journey</span>
             <ArrowRight size={14} />
           </a>
         </div>

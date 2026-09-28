@@ -90,11 +90,16 @@ export default function JourneyFilterGrid({ children }: { children?: ReactNode }
         </button>
       </div>
       {children}
-      <p className="sn-results-count" role="status">
-        {filtered.length} {filtered.length === 1 ? "journey" : "journeys"} to
-        explore · Dates and details shaped around you
-      </p>
-      <div className="sn-journey-results">
+      <div className="journey-results-heading">
+        <div>
+          <p className="sn-results-count" role="status">
+            {filtered.length} {filtered.length === 1 ? "journey" : "journeys"} to explore
+          </p>
+          <p className="journey-results-subtitle">Dates and details shaped around you.</p>
+        </div>
+        <a href="#journey-results">Explore All Journeys <span aria-hidden="true">→</span></a>
+      </div>
+      <div className="sn-journey-results" id="journey-results">
         {filtered.map((j) => (
           <JourneyCard key={j.slug} journey={j} />
         ))}

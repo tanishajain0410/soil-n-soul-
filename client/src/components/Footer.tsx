@@ -96,9 +96,9 @@ const Footer = () => {
                                 </a>
                             </li>
                             <li>
-                                <a href="mailto:hello@soilnsoul.in" className="flex items-center gap-2.5 text-sm hover:text-primary transition-colors">
+                                <a href="mailto:info@soilnsoultravels.com" className="flex items-center gap-2.5 text-sm hover:text-primary transition-colors">
                                     <span className="material-symbols-outlined text-primary text-base shrink-0">mail</span>
-                                    hello@soilnsoul.in
+                                    info@soilnsoultravels.com
                                 </a>
                             </li>
                             <li className="pt-2">

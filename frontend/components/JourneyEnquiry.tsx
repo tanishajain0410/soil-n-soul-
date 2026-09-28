@@ -87,11 +87,11 @@ export default function JourneyEnquiry({
               </span>
               <span>+91 95804 17547</span>
             </a>
-            <a href={variant === "contact" ? "mailto:info@soilnsoultravels.com" : "mailto:hello@soilnsoul.in"} className="enquiry-contact-link">
+            <a href="mailto:info@soilnsoultravels.com" className="enquiry-contact-link">
               <span className="enquiry-contact-icon">
                 <Mail size={14} />
               </span>
-              <span>{variant === "contact" ? "info@soilnsoultravels.com" : "hello@soilnsoul.in"}</span>
+              <span>info@soilnsoultravels.com</span>
             </a>
             <div className="enquiry-contact-link">
               <span className="enquiry-contact-icon">

@@ -1,0 +1,230 @@
+/* Shared corner treatment for site-wide calls to action. */
+#main-content
+  :is(
+    .hero-primary-btn,
+    .philosophy-story-btn,
+    .home-map-cta,
+    .home-package-link,
+    .purushartha-card-cta,
+    .stay-explore-btn,
+    .cta-primary-btn,
+    .cta-speak-btn,
+    .exp-hero-btn,
+    .journey-primary-cta,
+    .jcat-btn-gold,
+    .jcat-btn-outline,
+    .about-hero-btn,
+    .contact-hero-cta,
+    .contact-editorial-link,
+    .journal-hero-explore-btn,
+    .journal-newsletter-btn,
+    .enquiry-submit-btn,
+    .enquiry-whatsapp-btn
+  ) {
+  border-radius: 999px;
+}
+
+/* The shared site footer sits beside main, so round its calls to action separately. */
+body :is(.footer-cta-btn,.journey-footer-cta) {
+  border-radius: 999px;
+}
+
+/* Keep the global navigation action pill-shaped as established in the design. */
+body :is(.reference-homepage,.about-page-root,.exp-page-root,.journey-page,.jcat-page,.journal-page-root,.contact-reference-page)
+  .exp-nav-cta-btn {
+  display: inline-flex;
+  min-height: 48px;
+  height: 48px;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding-inline: 30px;
+  border: 1px solid #24100c;
+  border-radius: 999px;
+  background: #f69a22;
+  color: #24100c !important;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+  box-shadow: 0 3px 10px rgba(36,16,12,.12);
+  transition: transform .28s ease,background .28s ease,box-shadow .28s ease;
+}
+
+body :is(.reference-homepage,.about-page-root,.exp-page-root,.journey-page,.jcat-page,.journal-page-root,.contact-reference-page)
+  .exp-nav-cta-btn:hover {
+  transform: translateY(-1px);
+  background: #f8aa38;
+  box-shadow: 0 5px 14px rgba(36,16,12,.18);
+}
+
+@media (max-width: 400px) {
+  body :is(.reference-homepage,.about-page-root,.exp-page-root,.journey-page,.jcat-page,.journal-page-root,.contact-reference-page)
+    .exp-nav-cta-btn {
+    width: 48px;
+    min-width: 48px;
+    min-height: 48px;
+    height: 48px;
+    padding: 0;
+  }
+}
+
+@media (max-width: 340px) {
+  body :is(.reference-homepage,.about-page-root,.exp-page-root,.journey-page,.jcat-page,.journal-page-root,.contact-reference-page)
+    .exp-nav-cta-btn {
+    display: none;
+  }
+}
+
+/* Small journey metadata tags read as chips rather than square labels. */
+.jcat-page .jcat-itin-pill {
+  border-radius: 999px;
+}
+
+/* Detail actions retain the same capsule shape; circular arrow controls are excluded. */
+.jcat-page .jcat-itin-cta {
+  border-radius: 999px;
+}
+
+/* Match every journey-planning action to the homepage navigation CTA. */
+body:has(.reference-homepage) .exp-nav-cta-btn,
+body:has(.about-page-root) .exp-nav-cta-btn,
+body:has(.exp-page-root) .exp-nav-cta-btn,
+body:has(.journey-page) .exp-nav-cta-btn,
+body:has(.jcat-page) .exp-nav-cta-btn,
+body:has(.journal-page-root) .exp-nav-cta-btn,
+body:has(.contact-reference-page) .exp-nav-cta-btn {
+  min-height: 48px;
+  height: 48px;
+  padding-inline: 30px;
+  border: 1px solid #24100c;
+  border-radius: 999px;
+  background: #f69a22;
+  color: #24100c !important;
+  box-shadow: 0 3px 10px rgba(36, 16, 12, 0.12);
+}
+
+body:has(.reference-homepage) .exp-nav-cta-btn:hover,
+body:has(.about-page-root) .exp-nav-cta-btn:hover,
+body:has(.exp-page-root) .exp-nav-cta-btn:hover,
+body:has(.journey-page) .exp-nav-cta-btn:hover,
+body:has(.jcat-page) .exp-nav-cta-btn:hover,
+body:has(.journal-page-root) .exp-nav-cta-btn:hover,
+body:has(.contact-reference-page) .exp-nav-cta-btn:hover {
+  background: #f8aa38;
+  box-shadow: 0 5px 14px rgba(36, 16, 12, 0.18);
+}
+
+body :is(.footer-cta-btn, .journey-footer-cta, .sn-nav-cta, .sn-mobile-nav .sn-button),
+body :is(.reference-homepage, .jcat-page) :is(.cta-primary-btn, .jcat-btn-gold),
+body :is(.about-page-root, .exp-page-root, .journey-page, .journal-page-root, .contact-reference-page) .exp-hero-btn {
+  border: 1px solid #24100c;
+  border-radius: 999px;
+  background: #f69a22;
+  color: #24100c !important;
+  box-shadow: 0 3px 10px rgba(36, 16, 12, 0.12);
+  transition: transform 0.28s ease, background 0.28s ease, box-shadow 0.28s ease;
+}
+
+body :is(.footer-cta-btn, .journey-footer-cta, .sn-nav-cta, .sn-mobile-nav .sn-button):hover,
+body :is(.reference-homepage, .jcat-page) :is(.cta-primary-btn, .jcat-btn-gold):hover,
+body :is(.about-page-root, .exp-page-root, .journey-page, .journal-page-root, .contact-reference-page) .exp-hero-btn:hover {
+  transform: translateY(-1px);
+  background: #f8aa38;
+  color: #24100c !important;
+  box-shadow: 0 5px 14px rgba(36, 16, 12, 0.18);
+}
+
+body :is(.footer-cta-btn, .journey-footer-cta, .sn-nav-cta, .sn-mobile-nav .sn-button):focus-visible,
+body :is(.reference-homepage, .jcat-page) :is(.cta-primary-btn, .jcat-btn-gold):focus-visible,
+body :is(.about-page-root, .exp-page-root, .journey-page, .journal-page-root, .contact-reference-page) .exp-hero-btn:focus-visible {
+  outline: 2px solid #f6c56b;
+  outline-offset: 3px;
+}
+
+/* Shared scrolled navigation palette across every page. */
+body:has(.reference-homepage) .exp-nav-header.scrolled,
+body:has(.about-page-root) .exp-nav-header.scrolled,
+body:has(.exp-page-root) .exp-nav-header.scrolled,
+body:has(.journey-page) .exp-nav-header.scrolled,
+body:has(.jcat-page) .exp-nav-header.scrolled,
+body:has(.journal-page-root) .exp-nav-header.scrolled,
+body:has(.contact-reference-page) .exp-nav-header.scrolled {
+  background: rgba(239, 230, 215, 0.98);
+  border-bottom: 1px solid rgba(72, 49, 31, 0.14);
+  box-shadow: 0 4px 20px rgba(48, 31, 18, 0.12);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+body:has(.reference-homepage) .exp-nav-header.scrolled .exp-nav-link,
+body:has(.about-page-root) .exp-nav-header.scrolled .exp-nav-link,
+body:has(.exp-page-root) .exp-nav-header.scrolled .exp-nav-link,
+body:has(.journey-page) .exp-nav-header.scrolled .exp-nav-link,
+body:has(.jcat-page) .exp-nav-header.scrolled .exp-nav-link,
+body:has(.journal-page-root) .exp-nav-header.scrolled .exp-nav-link,
+body:has(.contact-reference-page) .exp-nav-header.scrolled .exp-nav-link {
+  color: #20110b !important;
+}
+
+body:has(.reference-homepage) .exp-nav-header.scrolled .exp-nav-link.active,
+body:has(.reference-homepage) .exp-nav-header.scrolled .exp-nav-link:hover,
+body:has(.about-page-root) .exp-nav-header.scrolled .exp-nav-link.active,
+body:has(.about-page-root) .exp-nav-header.scrolled .exp-nav-link:hover,
+body:has(.exp-page-root) .exp-nav-header.scrolled .exp-nav-link.active,
+body:has(.exp-page-root) .exp-nav-header.scrolled .exp-nav-link:hover,
+body:has(.journey-page) .exp-nav-header.scrolled .exp-nav-link.active,
+body:has(.journey-page) .exp-nav-header.scrolled .exp-nav-link:hover,
+body:has(.jcat-page) .exp-nav-header.scrolled .exp-nav-link.active,
+body:has(.jcat-page) .exp-nav-header.scrolled .exp-nav-link:hover,
+body:has(.journal-page-root) .exp-nav-header.scrolled .exp-nav-link.active,
+body:has(.journal-page-root) .exp-nav-header.scrolled .exp-nav-link:hover,
+body:has(.contact-reference-page) .exp-nav-header.scrolled .exp-nav-link.active,
+body:has(.contact-reference-page) .exp-nav-header.scrolled .exp-nav-link:hover {
+  color: #9a5d12 !important;
+}
+
+body:has(.reference-homepage) .exp-nav-header.scrolled .exp-nav-link.active::after,
+body:has(.reference-homepage) .exp-nav-header.scrolled .exp-nav-link:hover::after,
+body:has(.about-page-root) .exp-nav-header.scrolled .exp-nav-link.active::after,
+body:has(.about-page-root) .exp-nav-header.scrolled .exp-nav-link:hover::after,
+body:has(.exp-page-root) .exp-nav-header.scrolled .exp-nav-link.active::after,
+body:has(.exp-page-root) .exp-nav-header.scrolled .exp-nav-link:hover::after,
+body:has(.journey-page) .exp-nav-header.scrolled .exp-nav-link.active::after,
+body:has(.journey-page) .exp-nav-header.scrolled .exp-nav-link:hover::after,
+body:has(.jcat-page) .exp-nav-header.scrolled .exp-nav-link.active::after,
+body:has(.jcat-page) .exp-nav-header.scrolled .exp-nav-link:hover::after,
+body:has(.journal-page-root) .exp-nav-header.scrolled .exp-nav-link.active::after,
+body:has(.journal-page-root) .exp-nav-header.scrolled .exp-nav-link:hover::after,
+body:has(.contact-reference-page) .exp-nav-header.scrolled .exp-nav-link.active::after,
+body:has(.contact-reference-page) .exp-nav-header.scrolled .exp-nav-link:hover::after {
+  background: #bd852c;
+}
+
+body:has(.reference-homepage) .exp-nav-header.scrolled .exp-nav-wa-btn,
+body:has(.about-page-root) .exp-nav-header.scrolled .exp-nav-wa-btn,
+body:has(.exp-page-root) .exp-nav-header.scrolled .exp-nav-wa-btn,
+body:has(.journey-page) .exp-nav-header.scrolled .exp-nav-wa-btn,
+body:has(.jcat-page) .exp-nav-header.scrolled .exp-nav-wa-btn,
+body:has(.journal-page-root) .exp-nav-header.scrolled .exp-nav-wa-btn,
+body:has(.contact-reference-page) .exp-nav-header.scrolled .exp-nav-wa-btn,
+body:has(.reference-homepage) .exp-nav-header.scrolled .exp-nav-menu-btn,
+body:has(.about-page-root) .exp-nav-header.scrolled .exp-nav-menu-btn,
+body:has(.exp-page-root) .exp-nav-header.scrolled .exp-nav-menu-btn,
+body:has(.journey-page) .exp-nav-header.scrolled .exp-nav-menu-btn,
+body:has(.jcat-page) .exp-nav-header.scrolled .exp-nav-menu-btn,
+body:has(.journal-page-root) .exp-nav-header.scrolled .exp-nav-menu-btn,
+body:has(.contact-reference-page) .exp-nav-header.scrolled .exp-nav-menu-btn {
+  border-color: rgba(80, 53, 31, 0.36) !important;
+  color: #20110b !important;
+}
+
+body:has(.reference-homepage) .exp-nav-header.scrolled .exp-nav-wa-btn,
+body:has(.about-page-root) .exp-nav-header.scrolled .exp-nav-wa-btn,
+body:has(.exp-page-root) .exp-nav-header.scrolled .exp-nav-wa-btn,
+body:has(.journey-page) .exp-nav-header.scrolled .exp-nav-wa-btn,
+body:has(.jcat-page) .exp-nav-header.scrolled .exp-nav-wa-btn,
+body:has(.journal-page-root) .exp-nav-header.scrolled .exp-nav-wa-btn,
+body:has(.contact-reference-page) .exp-nav-header.scrolled .exp-nav-wa-btn {
+  background: transparent !important;
+}

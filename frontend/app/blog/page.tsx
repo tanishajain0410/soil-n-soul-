@@ -5,7 +5,7 @@ import BlogClient from "./BlogClient";
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "The Soul Journal - Stories from Kashi",
+  title: "The Soul Blog - Stories from Kashi",
   alternates: { canonical: "/blog" },
   description:
     "Curated essays, cultural dispatches, and inner reflections from the ancient streets of Varanasi by Soil n Soul Travels.",
@@ -19,7 +19,7 @@ export default async function BlogPage() {
     "@type": "CollectionPage",
     "@id": "https://www.soilnsoultravels.com/blog#webpage",
     url: "https://www.soilnsoultravels.com/blog",
-    name: "Varanasi Travel Journal — Stories from Kashi",
+    name: "Varanasi Travel Blog — Stories from Kashi",
     description:
       "Curated essays, cultural dispatches, and spiritual reflections from the ancient streets of Varanasi by Soil n Soul Travels.",
     breadcrumb: {

@@ -168,7 +168,7 @@ const Contact = () => {
               {[
                 { icon: 'location_on', label: 'Our Base', value: '14, Ravindrapuri Colony,\nVaranasi, Uttar Pradesh 221005, India' },
                 { icon: 'call', label: 'Phone & WhatsApp', value: '+91 98765 43210' },
-                { icon: 'mail', label: 'Email Inquiries', value: 'journeys@soilnsoul.in' },
+                { icon: 'mail', label: 'Email Inquiries', value: 'info@soilnsoultravels.com' },
                 { icon: 'schedule', label: 'Office Hours', value: 'Mon – Saturday: 9 AM to 7 PM IST\nSunday: Closed (we pray too)' },
               ].map((item) => (
                 <div key={item.label} className="flex items-start gap-5">

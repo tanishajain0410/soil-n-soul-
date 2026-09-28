@@ -6,6 +6,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import type { BlogPost } from "@/lib/api";
 import { journalImage } from "@/lib/media";
+import JourneyEnquiry from "@/components/JourneyEnquiry";
 
 type Preview = Pick<
   BlogPost,
@@ -22,11 +23,29 @@ const CATEGORIES = [
   "All Stories",
   "Travel Guide",
   "Spirituality",
-  "Crafts & Culture",
-  "Wellness",
-  "Music",
-  "Solo Women Travel",
+  "Culture & Heritage",
+  "Food & Culinary",
+  "Local People",
+  "Festivals & Events",
+  "Tips & Insights",
 ];
+
+const INTEREST_CATEGORIES = [
+  { name: "Travel Guides", description: "Plan better, travel deeper.", image: "/images/journal-ref/card1_sunrise_hd.jpg" },
+  { name: "Spirituality", description: "Faith, rituals and inner journeys.", image: "/SnS/sacred-kashi.webp" },
+  { name: "Culture & Heritage", description: "People, craft and traditions.", image: "/SnS/the-hands-of-banaras.webp" },
+  { name: "Food & Culinary", description: "Flavours and local encounters.", image: "/SnS/the-banarasi-table.webp" },
+  { name: "Festivals & Events", description: "Celebrations that bring Kashi alive.", image: "/SnS/celebrations.webp" },
+];
+
+function displayCategory(category?: string) {
+  if (/craft|culture|heritage/i.test(category || "")) return "Culture & Heritage";
+  if (/food|culinary/i.test(category || "")) return "Food & Culinary";
+  if (/solo|travel tips|insights|wellness/i.test(category || "")) return "Tips & Insights";
+  if (/local|people/i.test(category || "")) return "Local People";
+  if (/festival|event/i.test(category || "")) return "Festivals & Events";
+  return category || "Travel Guide";
+}
 
 // Curated default editorial articles matching reference design when DB posts are empty or augmenting them
 const DEFAULT_EDITORIAL_ARTICLES = [
@@ -84,10 +103,7 @@ export default function BlogClient({ posts = [] }: { posts: Preview[] }) {
   // Filtered stories based on category
   const filteredArticles = allArticles.filter((article) => {
     if (selectedCategory === "All Stories") return true;
-    return (
-      article.category?.trim().toLowerCase() ===
-      selectedCategory.trim().toLowerCase()
-    );
+    return displayCategory(article.category) === selectedCategory;
   });
 
   // Featured article: find a spirituality/aarti article or fallback to default
@@ -102,9 +118,9 @@ export default function BlogClient({ posts = [] }: { posts: Preview[] }) {
     e.preventDefault();
     if (!newsletterEmail) return;
     setNewsletterStatus("Subscribing...");
-    const subject = encodeURIComponent("The Soul Journal — Newsletter Request");
+    const subject = encodeURIComponent("The Soul Blog — Newsletter Request");
     const body = encodeURIComponent(
-      `Please subscribe ${newsletterEmail} to The Soul Journal. I would like to receive cultural stories, travel tips, and updates from Varanasi.`
+      `Please subscribe ${newsletterEmail} to The Soul Blog. I would like to receive cultural stories, travel tips, and updates from Varanasi.`
     );
     window.location.href = `mailto:info@soilnsoultravels.com?subject=${subject}&body=${body}`;
     setTimeout(() => {
@@ -135,14 +151,14 @@ export default function BlogClient({ posts = [] }: { posts: Preview[] }) {
         <div className="journal-container journal-hero-content">
           {/* Left Content */}
           <div className="journal-hero-left">
-            <span className="journal-eyebrow">THE SOUL JOURNAL</span>
+            <span className="journal-eyebrow">THE SOUL BLOG</span>
             <h1 className="journal-hero-title">
-              There’s a story<br />
-              <em>around every corner.</em>
+              Stories from<br />
+              <em>Kashi and Beyond.</em>
             </h1>
             <p className="journal-hero-sub">
-              Cultural dispatches, local perspectives, and thoughtful guides
-              from the heart of Kashi.
+              Real stories, local perspectives, travel tips and soulful insights
+              from the heart of Varanasi.
             </p>
             <a href="#intro" className="journal-hero-explore-btn">
               <span className="journal-hero-explore-circle">
@@ -168,7 +184,7 @@ export default function BlogClient({ posts = [] }: { posts: Preview[] }) {
                   backgroundColor: "var(--journal-gold)",
                 }}
               />
-              <span className="journal-hero-explore-text">EXPLORE STORIES</span>
+              <span className="journal-hero-explore-text">EXPLORE BLOG</span>
             </a>
           </div>
 
@@ -191,7 +207,7 @@ export default function BlogClient({ posts = [] }: { posts: Preview[] }) {
       </header>
 
       {/* ========================================================
-          2. JOURNAL INTRO SECTION
+          2. BLOG INTRO SECTION
           ======================================================== */}
       <section id="intro" className="journal-intro">
         <div className="journal-container">
@@ -199,12 +215,12 @@ export default function BlogClient({ posts = [] }: { posts: Preview[] }) {
             {/* Left Column: Heading */}
             <div className="journal-intro-left">
               <span className="journal-eyebrow journal-intro-eyebrow">
-                THE SOUL JOURNAL
+                OUR BLOG
               </span>
               <h2 className="journal-intro-title">
-                Stories from the<br />
+                Stories that bring<br />
                 <span className="journal-intro-title-italic">
-                  Heart of India.
+                  you closer to Kashi.
                 </span>
               </h2>
             </div>
@@ -212,12 +228,10 @@ export default function BlogClient({ posts = [] }: { posts: Preview[] }) {
             {/* Center Column: Supporting Text & CTA */}
             <div className="journal-intro-center">
               <p className="journal-intro-desc">
-                Real stories, local voices, and deeper<br />
-                perspectives on the culture, people,<br />
-                spirituality, and everyday life of Varanasi.
+                From timeless traditions to hidden lanes, from local voices to travel tips — our blog brings you deeper perspectives on the culture, people, spirituality and everyday life of Varanasi.
               </p>
-              <a href="#featured" className="journal-intro-link">
-                Read the journal →
+              <a href="/about" className="journal-intro-link">
+                Read about our story →
               </a>
             </div>
 
@@ -256,7 +270,7 @@ export default function BlogClient({ posts = [] }: { posts: Preview[] }) {
       {/* ========================================================
           3. CATEGORY NAVIGATION (HORIZONTAL SCROLL)
           ======================================================== */}
-      <nav className="journal-categories-bar" aria-label="Journal categories">
+      <nav id="categories" className="journal-categories-bar" aria-label="Blog categories">
         <div className="journal-container">
           <div className="journal-categories-scroll">
             {CATEGORIES.map((cat) => {
@@ -278,7 +292,7 @@ export default function BlogClient({ posts = [] }: { posts: Preview[] }) {
       </nav>
 
       {/* ========================================================
-          4. FEATURED JOURNAL STORY (EDITORIAL MAGAZINE SPLIT)
+          4. FEATURED BLOG STORY (EDITORIAL MAGAZINE SPLIT)
           ======================================================== */}
       <section id="featured" className="journal-featured-section">
         <div className="journal-container">
@@ -297,7 +311,7 @@ export default function BlogClient({ posts = [] }: { posts: Preview[] }) {
                 className="journal-featured-card-img"
               />
               <div className="journal-featured-card-overlay">
-                <span className="journal-featured-tag">FEATURED STORY</span>
+                <span className="journal-featured-tag">FEATURED ARTICLE</span>
                 <div className="journal-featured-bottom">
                   <div className="journal-featured-bottom-left">
                     <div className="journal-featured-cat-label">
@@ -333,12 +347,20 @@ export default function BlogClient({ posts = [] }: { posts: Preview[] }) {
                 another story.
               </h3>
               <p className="journal-featured-notes-desc">
-                Explore our journal for local perspectives on
+                Explore the blog for local perspectives on
                 culture, spirituality, and life in Kashi.
               </p>
               <a href="#grid" className="journal-featured-notes-link">
-                Explore the journal →
+                Explore all stories →
               </a>
+              <div className="blog-mini-newsletter">
+                <span className="journal-eyebrow">A LITTLE KASHI, IN YOUR INBOX</span>
+                <form onSubmit={handleNewsletterSubmit}>
+                  <input type="email" required value={newsletterEmail} onChange={(e)=>setNewsletterEmail(e.target.value)} placeholder="Your email address" aria-label="Email address for Blog newsletter" />
+                  <button type="submit">Subscribe →</button>
+                </form>
+                {newsletterStatus && <small>{newsletterStatus}</small>}
+              </div>
             </div>
           </div>
         </div>
@@ -350,7 +372,7 @@ export default function BlogClient({ posts = [] }: { posts: Preview[] }) {
       <section id="grid" className="journal-grid-section">
         <div className="journal-container">
           <div className="journal-cards-grid">
-            {filteredArticles.slice(0, 4).map((post, idx) => {
+            {filteredArticles.map((post, idx) => {
               // Ensure image is high-res
               const fallbackImgs = [
                 "/images/journal-ref/card1_sunrise_hd.jpg",
@@ -378,7 +400,7 @@ export default function BlogClient({ posts = [] }: { posts: Preview[] }) {
                       className="journal-card-img"
                     />
                     <span className="journal-card-badge">
-                      {post.category || "Journal"}
+                      {displayCategory(post.category)}
                     </span>
                   </div>
                   <div className="journal-card-body">
@@ -403,11 +425,11 @@ export default function BlogClient({ posts = [] }: { posts: Preview[] }) {
       <section className="journal-newsletter-section">
         <div className="journal-container">
           <div className="journal-newsletter-inner">
-            {/* Left Photo: Ghats Sunset, Chai & Journal */}
+            {/* Left Photo: Ghats at sunset */}
             <div className="journal-newsletter-photo-col">
               <Image
                 src="/images/journal-ref/newsletter_ghats_hd.jpg"
-                alt="Cozy moment on Varanasi ghats with chai and travel journal"
+                alt="A quiet moment on the Varanasi ghats"
                 fill
                 sizes="(max-width: 1024px) 0vw, 280px"
                 className="journal-newsletter-photo"
@@ -416,12 +438,9 @@ export default function BlogClient({ posts = [] }: { posts: Preview[] }) {
 
             {/* Center: Heading & Subtext */}
             <div className="journal-newsletter-text-col">
-              <h3 className="journal-newsletter-title">
-                A little Kashi, in your inbox.
-              </h3>
+              <h3 className="journal-newsletter-title">Stories. Travel Tips. Local Insights.<br/>Straight from Kashi.</h3>
               <p className="journal-newsletter-desc">
-                Curated stories, travel tips, and local insights from the
-                Soul Journal, delivered with love.
+                Join our newsletter and be the first to receive new stories, guides and exclusive travel insights.
               </p>
             </div>
 
@@ -439,10 +458,10 @@ export default function BlogClient({ posts = [] }: { posts: Preview[] }) {
                     onChange={(e) => setNewsletterEmail(e.target.value)}
                     placeholder="Your email address"
                     className="journal-newsletter-input"
-                    aria-label="Email address for Soul Journal newsletter"
+                    aria-label="Email address for Soul Blog newsletter"
                   />
                   <button type="submit" className="journal-newsletter-btn">
-                    Sign up →
+                    Subscribe →
                   </button>
                 </div>
                 <span className="journal-newsletter-subnote">
@@ -460,6 +479,40 @@ export default function BlogClient({ posts = [] }: { posts: Preview[] }) {
           </div>
         </div>
       </section>
+
+      <section className="blog-interest-section" aria-labelledby="blog-interest-heading">
+        <div className="journal-container">
+          <div className="blog-interest-heading">
+            <div>
+              <span className="journal-eyebrow">EXPLORE BY INTEREST</span>
+              <h2 id="blog-interest-heading">Stories for<br/><em>every curiosity.</em></h2>
+              <p>Choose a theme to explore stories, guides and local insights that inspire your next journey.</p>
+            </div>
+            <a href="#categories">Browse the stories <ArrowRight size={14}/></a>
+          </div>
+          <div className="blog-interest-grid">
+            {INTEREST_CATEGORIES.map((category) => (
+              <button className="blog-interest-card" key={category.name} onClick={() => {
+                const filterName = category.name === "Travel Guides" ? "Travel Guide" : category.name;
+                setSelectedCategory(filterName);
+                document.getElementById("categories")?.scrollIntoView({ behavior: "smooth" });
+              }}>
+                <Image src={category.image} alt="" fill sizes="(max-width: 640px) 82vw, 20vw" />
+                <span className="blog-interest-shade" />
+                <span className="blog-interest-copy"><strong>{category.name}</strong><small>{category.description}</small></span>
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="blog-founder-quote" aria-label="A note from our founder">
+        <img src="/images/about-ref/temple_watermark_trans.png" alt="" aria-hidden="true" />
+        <blockquote>“Every lane in Kashi has a story.<br/><em>We just help you listen.</em></blockquote>
+        <p>— Anchal Pandey <span>Founder, Soil &amp; Soul</span></p>
+      </section>
+
+      <JourneyEnquiry />
 
     </div>
   );

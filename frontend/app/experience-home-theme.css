@@ -1,0 +1,379 @@
+/* Experiences page aligned with the Varanasi homepage editorial system. */
+.exp-page-root {
+  --exp-dark-bg:#24100c;
+  --exp-dark-card:#2b1711;
+  --exp-cream-bg:#f7f0e3;
+  --exp-cream-card:#efe2cd;
+  --exp-gold:#d5ae62;
+  --exp-gold-hover:#e4c27d;
+  --exp-gold-muted:#a77937;
+  --exp-text-dark:#2a1710;
+  --exp-text-muted-dark:#74675b;
+  --exp-text-light:#f7f0e3;
+  --exp-text-muted-light:#d9cbb8;
+  background:#f7f0e3;
+  color:#2a1710;
+  font-family:var(--sns-font-sans);
+}
+body:has(.exp-page-root) .exp-nav-header { background:linear-gradient(180deg,rgba(28,13,9,.5),transparent); }
+body:has(.exp-page-root) .exp-nav-header.scrolled { background:rgba(28,13,9,.96); border-bottom-color:rgba(213,174,98,.2); }
+body:has(.exp-page-root) .exp-nav-cta-btn { background:#d5ae62; color:#24100c!important; border-radius:3px; }
+body:has(.exp-page-root) .exp-nav-wa-btn { border-color:rgba(213,174,98,.6)!important; color:#d5ae62!important; }
+body:has(.exp-page-root) .exp-mobile-drawer { background:rgba(28,13,9,.98); }
+body:has(.exp-page-root) .footer-reference { background:#1c0d09; }
+.exp-page-root .exp-hero-section { min-height:70vh; min-height:70svh; background:#24100c; }
+.exp-page-root .exp-hero-overlay { background:linear-gradient(90deg,rgba(27,13,8,.8),rgba(37,19,11,.32) 66%,rgba(37,19,11,.08)),linear-gradient(0deg,rgba(28,13,9,.82),transparent 40%); }
+.exp-page-root .exp-hero-heading,.exp-page-root .exp-intro-heading,.exp-page-root .exp-title,.exp-page-root .exp-why-title,.exp-page-root .exp-why-card-title { font-family:var(--sns-font-serif); font-weight:400; }
+.exp-page-root .exp-hero-italic { color:#e2ba72; }
+.exp-page-root .exp-hero-btn { background:#d5ae62; color:#24100c!important; border-color:#d5ae62; border-radius:3px; }
+.exp-page-root .exp-hero-btn:hover { background:#e4c27d; color:#24100c!important; }
+.exp-page-root .exp-intro-section,.exp-page-root .exp-split-cream,.exp-page-root .exp-why-section { background:#f7f0e3; }
+.exp-page-root .exp-intro-section,.exp-page-root .exp-why-section { padding-block:clamp(88px,9vw,132px); }
+.exp-page-root .exp-split-section { padding-block:clamp(82px,8.5vw,124px); }
+.exp-page-root .exp-split-dark { background:#24100c; color:#f7f0e3; }
+.exp-page-root .exp-split-dark:nth-of-type(odd) { background:#8f3219; }
+.exp-page-root .exp-main-image-wrap { border:1px solid rgba(167,121,55,.3); border-radius:5px; box-shadow:0 20px 50px rgba(28,13,9,.2); }
+.exp-page-root .exp-inset-card { border:3px solid #f7f0e3; border-radius:4px; box-shadow:0 14px 36px rgba(28,13,9,.25); }
+.exp-page-root .exp-split-dark .exp-title { color:#f7f0e3; }
+.exp-page-root .exp-split-cream .exp-title { color:#2a1710; }
+.exp-page-root .exp-circle-cta { gap:12px; }
+.exp-page-root .exp-circle-arrow { background:#d5ae62; color:#24100c; box-shadow:none; }
+.exp-page-root .exp-circle-arrow-light { background:#b27b32; color:#fff8eb; }
+.exp-page-root .exp-why-card { border:1px solid rgba(167,121,55,.2); background:#fbf6ed; border-radius:4px; }
+.exp-page-root .exp-why-icon-circle { color:#a77937; border-color:rgba(167,121,55,.42); background:#f4ead8; }
+.exp-page-root .cta-cinematic-reference { background:#24100c; }
+.exp-page-root .cta-cinematic-overlay { background:linear-gradient(90deg,rgba(28,13,9,.86),rgba(28,13,9,.52)),linear-gradient(0deg,rgba(28,13,9,.45),transparent); }
+.exp-page-root .cta-large-heading { font-family:var(--sns-font-serif); font-weight:400; }
+.exp-page-root .cta-primary-btn { background:#d5ae62; color:#24100c; border-color:#d5ae62; border-radius:3px; }
+.exp-page-root .enquiry-section-reference { background:#f7f0e3; }
+.exp-page-root .enquiry-info-col { background:#24100c; border:1px solid rgba(213,174,98,.3); border-radius:4px; padding:clamp(30px,4vw,56px); }
+.exp-page-root .enquiry-info-col .enquiry-eyebrow { color:#d5ae62; }
+.exp-page-root .enquiry-info-col .enquiry-title { color:#f7f0e3; font-family:var(--sns-font-serif); font-weight:400; }
+.exp-page-root .enquiry-info-col .enquiry-title em { color:#e2ba72; }
+.exp-page-root .enquiry-info-col .enquiry-description,.exp-page-root .enquiry-info-col .enquiry-contact-link { color:#d9cbb8; }
+.exp-page-root .enquiry-form-col input,.exp-page-root .enquiry-form-col select,.exp-page-root .enquiry-form-col textarea { background:#fbf6ed; border-color:#d7c7ad; color:#2a1710; }
+.exp-page-root .enquiry-form-col input:focus,.exp-page-root .enquiry-form-col select:focus,.exp-page-root .enquiry-form-col textarea:focus { border-color:#aa7c3a; box-shadow:0 0 0 2px rgba(170,124,58,.12); }
+.exp-page-root .enquiry-form-col button { background:#d5ae62; color:#24100c; border-radius:3px; }
+@media(max-width:980px) {
+  .exp-page-root .exp-split-section { padding-block:72px; }
+  .exp-page-root .exp-main-image-wrap { height:clamp(300px,55vw,460px); }
+}
+@media(max-width:640px) {
+  .exp-page-root .exp-hero-section { min-height:680px; min-height:86svh; }
+  .exp-page-root .exp-hero-content { padding-top:48px; }
+  .exp-page-root .exp-intro-section,.exp-page-root .exp-why-section,.exp-page-root .exp-split-section { padding-block:64px; }
+  .exp-page-root .exp-inset-card { width:108px; height:124px; right:8px; bottom:-12px; }
+  .exp-page-root .exp-inset-top-right { top:auto; bottom:-12px; }
+  .exp-page-root .enquiry-info-col { padding:28px 24px; }
+}
+
+@media (max-width: 640px) {
+  .exp-hero-section {
+    padding: 110px 20px 60px;
+  }
+  .exp-split-section,
+  .exp-intro-section,
+  .exp-why-section {
+    padding: 50px 20px;
+  }
+  .exp-why-grid {
+    grid-template-columns: 1fr;
+  }
+  .exp-main-image-wrap {
+    height: 250px;
+  }
+  .exp-inset-right,
+  .exp-inset-top-right,
+  .exp-inset-overlap {
+    width: 90px;
+    height: 110px;
+    right: 8px;
+    bottom: -10px;
+  }
+}
+
+/* Final image clarity and editorial scale refinement for Experiences */
+.exp-page-root .exp-nav-header {
+  padding: 22px clamp(24px, 5.5vw, 80px);
+}
+
+.exp-page-root .exp-nav-header.scrolled {
+  padding: 14px clamp(24px, 5.5vw, 80px);
+}
+
+.exp-page-root .exp-nav-logo {
+  height: clamp(38px, 3.7vw, 46px);
+}
+
+.exp-page-root .exp-nav-links {
+  gap: clamp(22px, 2.8vw, 40px);
+}
+
+.exp-page-root .exp-nav-link {
+  font-size: 14px;
+}
+
+.exp-page-root .exp-nav-cta-btn {
+  height: 42px;
+  padding-inline: 22px;
+  font-size: 12px;
+}
+
+.exp-page-root .exp-nav-wa-btn,
+.exp-page-root .exp-nav-menu-btn {
+  width: 42px;
+  height: 42px;
+}
+
+.exp-hero-content {
+  max-width: 760px;
+}
+
+.exp-hero-heading {
+  font-size: clamp(56px, 6.4vw, 92px);
+  line-height: 1.01;
+}
+
+.exp-hero-desc {
+  max-width: 590px;
+  font-size: clamp(15px, 1.15vw, 17px);
+}
+
+.exp-intro-section {
+  padding-block: clamp(78px, 8.5vw, 122px);
+}
+
+.exp-intro-heading {
+  font-size: clamp(42px, 4.7vw, 66px);
+}
+
+.exp-intro-desc {
+  font-size: clamp(15px, 1.15vw, 17px);
+}
+
+.exp-split-section {
+  padding-block: clamp(76px, 8vw, 116px);
+}
+
+.exp-main-image-wrap {
+  height: clamp(390px, 39vw, 540px);
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.25);
+}
+
+.exp-title {
+  font-size: clamp(38px, 4vw, 56px);
+}
+
+.exp-description {
+  font-size: clamp(15px, 1.12vw, 17px);
+  line-height: 1.78;
+}
+
+.exp-bullets-list {
+  gap: 14px;
+}
+
+.exp-bullet-item {
+  gap: 14px;
+}
+
+.exp-bullet-icon {
+  width: 27px;
+  height: 27px;
+}
+
+.exp-bullet-label {
+  font-size: 15px;
+}
+
+.exp-circle-cta {
+  gap: 16px;
+  font-size: 13px;
+}
+
+.exp-circle-arrow {
+  width: 40px;
+  height: 40px;
+}
+
+.exp-why-section {
+  padding-block: clamp(82px, 8.2vw, 118px);
+}
+
+.exp-why-title {
+  font-size: clamp(40px, 4.5vw, 62px);
+}
+
+.exp-why-desc,
+.exp-why-card-text {
+  font-size: 15px;
+}
+
+.exp-why-icon-circle {
+  width: 54px;
+  height: 54px;
+}
+
+.exp-page-root .cta-cinematic-reference {
+  min-height: clamp(390px, 34vw, 500px);
+  padding-block: clamp(56px, 6vw, 82px);
+}
+
+.exp-page-root .cta-large-heading {
+  font-size: clamp(46px, 5vw, 68px);
+}
+
+.exp-page-root .cta-subtitle {
+  font-size: clamp(15px, 1.12vw, 17px);
+}
+
+.exp-page-root .cta-primary-btn,
+.exp-page-root .cta-speak-btn {
+  height: 46px;
+  font-size: 13px;
+}
+
+.exp-page-root .cta-feature-label {
+  font-size: 14px;
+}
+
+.exp-page-root ~ .enquiry-section-reference,
+.exp-page-root #enquiry .enquiry-section-reference {
+  padding-block: clamp(82px, 8vw, 118px);
+}
+
+.exp-page-root #enquiry .enquiry-description {
+  font-size: 15px;
+}
+
+.exp-page-root #enquiry .form-field label,
+.exp-page-root #enquiry .form-legend-label {
+  font-size: 12px;
+}
+
+.exp-page-root #enquiry .enquiry-form-grid input:not([type="checkbox"]),
+.exp-page-root #enquiry .enquiry-form-grid select {
+  min-height: 48px;
+  font-size: 14px;
+}
+
+.exp-page-root #enquiry .enquiry-form-grid textarea {
+  min-height: 100px;
+  font-size: 14px;
+}
+
+.exp-page-root #enquiry .interest-checkbox-label {
+  font-size: 13px;
+}
+
+.exp-page-root #enquiry .enquiry-submit-btn,
+.exp-page-root #enquiry .enquiry-whatsapp-btn {
+  height: 50px;
+  font-size: 12px;
+}
+
+@media (max-width: 980px) {
+  .exp-main-image-wrap {
+    height: clamp(360px, 58vw, 500px);
+  }
+}
+
+@media (max-width: 640px) {
+  .exp-page-root .exp-nav-header,
+  .exp-page-root .exp-nav-header.scrolled {
+    padding: 13px 18px;
+  }
+
+  .exp-page-root .exp-nav-logo {
+    height: 36px;
+  }
+
+  .exp-page-root .exp-nav-actions {
+    gap: 8px;
+  }
+
+  .exp-page-root .exp-nav-wa-btn,
+  .exp-page-root .exp-nav-menu-btn {
+    width: 38px;
+    height: 38px;
+  }
+
+  .exp-hero-section {
+    min-height: max(690px, 92svh);
+    padding: 128px 22px 72px;
+  }
+
+  .exp-hero-heading {
+    font-size: clamp(48px, 13vw, 66px);
+  }
+
+  .exp-hero-desc {
+    font-size: 15px;
+  }
+
+  .exp-intro-section,
+  .exp-split-section,
+  .exp-why-section {
+    padding-block: 64px;
+  }
+
+  .exp-intro-heading,
+  .exp-why-title {
+    font-size: clamp(38px, 10vw, 48px);
+  }
+
+  .exp-main-image-wrap {
+    height: clamp(300px, 88vw, 420px);
+  }
+
+  .exp-title {
+    font-size: clamp(36px, 9vw, 46px);
+  }
+
+  .exp-why-grid {
+    gap: 14px;
+  }
+
+  .exp-why-card {
+    padding: 22px 12px;
+  }
+
+  .exp-page-root .cta-cinematic-reference {
+    min-height: 0;
+    padding: 64px 22px;
+  }
+
+  .exp-page-root .cta-large-heading {
+    font-size: clamp(42px, 11vw, 54px);
+  }
+
+  .exp-page-root .cta-feature-label {
+    white-space: normal;
+  }
+
+  .exp-page-root #enquiry .enquiry-form-grid {
+    gap: 14px 12px;
+  }
+
+  .exp-page-root #enquiry .interest-checkbox-label {
+    padding: 8px 10px;
+  }
+
+  .exp-page-root .exp-nav-header,
+  .exp-page-root .exp-nav-header.scrolled {
+    padding: 12px clamp(12px, 3.5vw, 18px);
+  }
+
+  .exp-page-root .exp-nav-logo {
+    height: 32px;
+    max-width: 116px;
+  }
+
+  .exp-page-root .exp-nav-wa-btn,
+  .exp-page-root .exp-nav-menu-btn {
+    width: 35px;
+    height: 35px;
+  }
+}
+
+

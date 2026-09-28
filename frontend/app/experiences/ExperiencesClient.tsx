@@ -17,6 +17,7 @@ import {
   Flame,
 } from "lucide-react";
 import JourneyEnquiry from "@/components/JourneyEnquiry";
+import { journeyCategories } from "@/data/journeyCategories";
 function WhatsAppIcon() {
   return (
     <svg
@@ -32,6 +33,12 @@ function WhatsAppIcon() {
 }
 
 export default function ExperiencesClient() {
+  const testimonials = [
+    journeyCategories.dharm.testimonial,
+    journeyCategories.arth.testimonial,
+    journeyCategories.kaam.testimonial,
+  ];
+
   return (
     <div className="exp-page-root">
 
@@ -51,20 +58,21 @@ export default function ExperiencesClient() {
         <div className="exp-hero-overlay" />
 
         <div className="exp-hero-content">
-          <p className="exp-gold-eyebrow">EXPERIENCES</p>
+          <p className="exp-gold-eyebrow">EXPERIENCES • CULTURE • SPIRITUAL</p>
           <h1 className="exp-hero-heading">
             Experiences,<br />
-            Curated <span className="exp-hero-italic">Around You.</span>
+            <span className="exp-hero-italic">Curated Around You.</span>
           </h1>
           <p className="exp-hero-desc">
-            Beyond sightseeing, we design immersive, private and meaningful
-            experiences that reveal the real soul of Varanasi — its people,
-            its traditions and its timeless spirit.
+            From sacred rituals to vibrant local traditions, discover handpicked
+            experiences that connect you with the real Varanasi — its people,
+            its stories and its timeless spirit.
           </p>
           <a href="#enquiry" className="exp-hero-btn">
-            <span>Design Your Journey</span>
+            <span>Explore Experiences</span>
             <ArrowRight size={14} />
           </a>
+          <a href="#enquiry" className="exp-watch-story"><span>▶</span> WATCH OUR STORY</a>
         </div>
       </section>
 
@@ -75,7 +83,7 @@ export default function ExperiencesClient() {
         <div className="exp-intro-container">
           <div>
             <p className="exp-gold-eyebrow" style={{ color: "#cca462" }}>
-              MORE THAN EXPERIENCES
+              OUR APPROACH
             </p>
             <h2 className="exp-intro-heading">
               A Deeper<br />
@@ -85,13 +93,19 @@ export default function ExperiencesClient() {
 
           <div className="exp-intro-desc-wrap">
             <p className="exp-intro-desc">
-              Each experience is thoughtfully curated, personally guided and
-              designed to go beyond the ordinary — offering you rare access,
-              authentic immersions and a true connection with the city and its
-              timeless heritage.
+              Every experience is thoughtfully designed to go beyond sightseeing —
+              to help you connect with the city, its people, its culture and its
+              living traditions.
             </p>
             <div className="exp-intro-divider" />
           </div>
+
+          <div className="exp-approach-image">
+            <Image src="/SnS/the-sacred-morning.webp" alt="A quiet moment on the Ganga in Varanasi" fill sizes="(max-width: 700px) 80vw, 250px" quality={88} />
+            <div className="exp-approach-inset"><Image src="/SnS/the-banarasi-table.webp" alt="A taste of local life in Kashi" fill sizes="110px" /></div>
+          </div>
+          <blockquote className="exp-approach-quote">“It’s not just what<br />you do in Varanasi,<br />but how it makes<br /><em>you feel.</em>”</blockquote>
+          <div className="exp-approach-features"><span>Curated Experiences</span><span>Local Connections</span><span>Authentic Encounters</span><span>Personalised Itineraries</span></div>
         </div>
 
         {/* Subtle temple background line art */}
@@ -435,7 +449,7 @@ export default function ExperiencesClient() {
             <p className="exp-category-tag">SPECIAL EXPERIENCES</p>
             <h2 className="exp-title">Celebrations</h2>
             <p className="exp-description">
-              Be a part of Varanasi's most beautiful festivals, special rituals
+              Be a part of Varanasi&apos;s most beautiful festivals, special rituals
               and cultural celebrations, designed for an intimate and meaningful
               experience.
             </p>
@@ -559,155 +573,14 @@ export default function ExperiencesClient() {
         </div>
       </section>
 
-      {/* ========================================================
-          10. WHY SOIL N SOUL (CREAM SECTION)
-      ======================================================== */}
-      <section className="exp-why-section">
-        <div className="exp-why-container">
-          <div className="exp-why-header">
-            <div>
-              <p className="exp-gold-eyebrow" style={{ color: "#cca462" }}>
-                WHY SOIL N SOUL
-              </p>
-              <h2 className="exp-why-title">
-                A Private &amp; Personal<br />
-                Approach to Travel.
-              </h2>
-            </div>
-            <div>
-              <p className="exp-why-desc">
-                We go beyond standard tours to create deeply personal journeys,
-                with authentic experiences, local connections and thoughtful
-                care at every step.
-              </p>
-            </div>
-          </div>
-
-          <div className="exp-why-grid">
-            <div className="exp-why-card">
-              <div className="exp-why-icon-circle">
-                <Sparkles size={20} strokeWidth={1.5} />
-              </div>
-              <h3 className="exp-why-card-title">Curated Experiences</h3>
-              <p className="exp-why-card-text">
-                Thoughtfully designed, never generic.
-              </p>
-            </div>
-
-            <div className="exp-why-card">
-              <div className="exp-why-icon-circle">
-                <Compass size={20} strokeWidth={1.5} />
-              </div>
-              <h3 className="exp-why-card-title">Local Expertise</h3>
-              <p className="exp-why-card-text">
-                Deep local knowledge and trusted connections.
-              </p>
-            </div>
-
-            <div className="exp-why-card">
-              <div className="exp-why-icon-circle">
-                <UserCheck size={20} strokeWidth={1.5} />
-              </div>
-              <h3 className="exp-why-card-title">Personal Concierge</h3>
-              <p className="exp-why-card-text">
-                End-to-end support, from planning to travel.
-              </p>
-            </div>
-
-            <div className="exp-why-card">
-              <div className="exp-why-icon-circle">
-                <HeartHandshake size={20} strokeWidth={1.5} />
-              </div>
-              <h3 className="exp-why-card-title">Meaningful Travel</h3>
-              <p className="exp-why-card-text">
-                Responsible, immersive and people-focused.
-              </p>
-            </div>
-          </div>
-        </div>
+      {/* Custom journey map and interest selector */}
+      <section className="exp-custom-journey">
+        <div className="exp-custom-copy"><p className="exp-gold-eyebrow">WE DESIGN A JOURNEY FOR YOU</p><h2>We draw your Kashi<br />around <em>your needs.</em></h2><p>Whether you’re here for spirituality, culture, food or photography, we create custom experiences around your interests, time and travel style.</p><a href="#enquiry" className="exp-hero-btn">Plan your experiences <ArrowRight size={14} /></a></div>
+        <div className="exp-route-map" aria-label="Illustrated Kashi route map"><svg viewBox="0 0 520 280" role="img" aria-label="Route through Varanasi"><path d="M42 202 C100 160 124 229 185 161 S285 191 330 120 401 122 476 58"/><circle cx="42" cy="202" r="6"/><circle cx="185" cy="161" r="6"/><circle cx="330" cy="120" r="6"/><circle cx="476" cy="58" r="6"/></svg><span className="route-label route-one">Assi Ghat</span><span className="route-label route-two">Dashashwamedh Ghat</span><span className="route-label route-three">Kashi Vishwanath</span><span className="route-label route-four">Sarnath</span><span className="route-label route-five">Ramnagar Fort</span></div>
+        <div className="exp-interest-card"><h3>Tell us your interests</h3>{["Spiritual & Temples","Culture & Heritage","Food & Culinary","Photography","Local Life & Markets","Festivals & Events"].map((item)=><label key={item}><input type="checkbox" />{item}</label>)}</div>
       </section>
 
-      {/* ========================================================
-          11. FINAL PREMIUM CTA (CINEMATIC PANORAMIC SUNSET)
-      ======================================================== */}
-      <section className="cta-cinematic-reference" id="cta">
-        <Image
-          src="/SnS/kashi-after-dark.webp"
-          alt="Panoramic sunset over Varanasi Ganges river with lit candle in foreground"
-          fill
-          sizes="100vw"
-          quality={90}
-          className="cta-cinematic-bg"
-        />
-        <div className="cta-cinematic-overlay" aria-hidden="true" />
-
-        <div className="cta-container">
-          {/* Left Column */}
-          <div className="cta-left-col">
-            <p className="cta-gold-eyebrow">
-              READY FOR AN EXTRAORDINARY JOURNEY?
-            </p>
-            <h2 className="cta-large-heading">
-              Your Varanasi,<br />
-              <span className="exp-hero-italic">Your Way.</span>
-            </h2>
-            <p className="cta-subtitle">
-              Let our travel experts design a completely personalized experience,
-              crafted around your interests and pace.
-            </p>
-
-            <div className="cta-buttons-row">
-              <a href="#enquiry" className="cta-primary-btn">
-                <span>Plan My Journey</span>
-                <ArrowRight size={13} />
-              </a>
-
-              <a
-                href="https://wa.me/919580417547?text=Hello%20Soil%20n%20Soul%2C%20I%20would%20like%20to%20speak%20with%20a%20concierge%20about%20an%20experience%20in%20Varanasi."
-                target="_blank"
-                rel="noreferrer"
-                className="cta-speak-btn"
-              >
-                <WhatsAppIcon />
-                <span>Speak to a Concierge</span>
-              </a>
-            </div>
-          </div>
-
-          {/* Right Column: 4 Value Points */}
-          <div className="cta-right-col">
-            <div className="cta-feature-item">
-              <div className="cta-feature-icon-circle">
-                <Compass size={14} strokeWidth={1.5} />
-              </div>
-              <span className="cta-feature-label">Custom Itineraries</span>
-            </div>
-
-            <div className="cta-feature-item">
-              <div className="cta-feature-icon-circle">
-                <Users size={14} strokeWidth={1.5} />
-              </div>
-              <span className="cta-feature-label">Dedicated Travel Experts</span>
-            </div>
-
-            <div className="cta-feature-item">
-              <div className="cta-feature-icon-circle">
-                <ShieldCheck size={14} strokeWidth={1.5} />
-              </div>
-              <span className="cta-feature-label">Seamless Planning</span>
-            </div>
-
-            <div className="cta-feature-item">
-              <div className="cta-feature-icon-circle">
-                <HeartHandshake size={14} strokeWidth={1.5} />
-              </div>
-              <span className="cta-feature-label">
-                Thoughtful &amp; Responsible Travel
-              </span>
-            </div>
-          </div>
-        </div>
-      </section>
+      <section className="exp-traveller-stories"><div className="exp-testimonial-heading"><p className="exp-gold-eyebrow">TRAVELLER STORIES</p><h2>Experiences that<br /><em>Stay Forever.</em></h2><p>Hear from travellers who experienced the real Varanasi with us.</p></div><div className="exp-testimonial-grid">{testimonials.map((item)=><article className="exp-testimonial-card" key={item.author}><div className="exp-testimonial-photo"><Image src={item.avatar} alt={item.author} fill sizes="(max-width:700px) 80vw, 240px" /></div><p>“{item.quote}”</p><strong>{item.author}</strong><small>{item.location}</small></article>)}</div></section>
 
       {/* ========================================================
           12. INTERACTIVE JOURNEY ENQUIRY FORM

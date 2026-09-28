@@ -203,7 +203,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                 </li>
                 <li className="flex items-center space-x-3">
                   <Mail size={18} className="text-brand-saffron shrink-0" />
-                  <span>namaste@soilnsoul.in</span>
+                  <span>info@soilnsoultravels.com</span>
                 </li>
               </ul>
             </div>

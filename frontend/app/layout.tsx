@@ -5,10 +5,18 @@ import "./editorial.css";
 import "./refinement.css";
 import "./luxury.css";
 import "./experiences.css";
+import "./experience-home-theme.css";
+import "./experiences-approved-theme.css";
 import "./about.css";
+import "./about-home-theme.css";
 import "./journal.css";
+import "./blog-home-theme.css";
 import "./journey-category.css";
+import "./journey-home-theme.css";
+import "./contact-home-theme.css";
+import "./homepage-approved-theme.css";
 import "./floating-contact.css";
+import "./rounded-ctas.css";
 import SiteChrome from "@/components/SiteChrome";
 
 const cinzel = Cinzel({

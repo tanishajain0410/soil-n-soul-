@@ -622,7 +622,7 @@ const Home = () => {
               <div className="space-y-4">
                 {[
                   { icon: 'phone', label: 'Call / WhatsApp', value: '+91 95804 17547', href: 'tel:+919580417547' },
-                  { icon: 'mail', label: 'Email', value: 'hello@soilnsoul.in', href: 'mailto:hello@soilnsoul.in' },
+                  { icon: 'mail', label: 'Email', value: 'info@soilnsoultravels.com', href: 'mailto:info@soilnsoultravels.com' },
                   { icon: 'location_on', label: 'Based In', value: 'Varanasi, Uttar Pradesh, India', href: null },
                 ].map((item) => (
                   <div key={item.label} className="flex items-start gap-4 p-4 bg-white/5 rounded-xl border border-white/8">

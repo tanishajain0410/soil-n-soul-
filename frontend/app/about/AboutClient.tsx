@@ -1,52 +1,11 @@
 "use client";
 
-import { useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import {
-  ArrowRight,
-  Phone,
-  Mail,
-  MapPin,
-  Calendar,
-  Users,
-} from "lucide-react";
-import { whatsapp } from "@/data/journeys";
-
-const interestOptions = [
-  "Spiritual",
-  "Heritage",
-  "Food",
-  "Photography",
-  "Celebrations",
-  "Slow travel",
-];
+import { ArrowRight } from "lucide-react";
+import JourneyEnquiry from "@/components/JourneyEnquiry";
 
 export default function AboutClient() {
-  const formRef = useRef<HTMLFormElement>(null);
-  const [submitted, setSubmitted] = useState(false);
-  const [whatsappLink, setWhatsappLink] = useState("");
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const data = new FormData(e.currentTarget);
-    const interests = data.getAll("interests").join(", ") || "All experiences";
-    const text = `Hello Soil n Soul,\nI would love to design my private Varanasi journey.\n\n*Name:* ${data.get(
-      "name"
-    )}\n*WhatsApp:* ${data.get("contact")}\n*Email:* ${
-      data.get("email") || "Not provided"
-    }\n*Preferred Dates:* ${data.get("dates") || "Flexible"}\n*Guests:* ${
-      data.get("guests") || "2"
-    }\n*Interests:* ${interests}\n*Message:* ${
-      data.get("message") || "Looking forward to your guidance."
-    }`;
-
-    const link = whatsapp(text);
-    setWhatsappLink(link);
-    setSubmitted(true);
-    window.open(link, "_blank", "noopener,noreferrer");
-  };
-
   return (
     <div className="about-page-root">
 
@@ -416,223 +375,33 @@ export default function AboutClient() {
         </div>
       </section>
 
+      <section className="about-kashi-gallery" aria-labelledby="about-gallery-heading">
+        <div className="about-kashi-gallery-head">
+          <div>
+            <span className="about-eyebrow">A GLIMPSE OF OUR KASHI</span>
+            <h2 id="about-gallery-heading">Moments that<br/><em>inspire us.</em></h2>
+          </div>
+          <Link href="/experiences" className="about-gallery-link">View experiences <ArrowRight size={14}/></Link>
+        </div>
+        <div className="about-kashi-gallery-grid">
+          {[
+            ["/SnS/the-sacred-morning.webp", "First light on the Ganga"],
+            ["/SnS/sacred-kashi.webp", "The evening aarti"],
+            ["/SnS/varanasi-heritage.webp", "An old lane in Kashi"],
+            ["/SnS/ganga-boat.webp", "Along the ghats"],
+            ["/images/about-temple-dawn.jpg", "Temple spires at dawn"],
+          ].map(([src, alt]) => (
+            <div className="about-kashi-gallery-image" key={src}>
+              <Image src={src} alt={alt} fill sizes="(max-width: 640px) 82vw, (max-width: 960px) 40vw, 20vw" />
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* ========================================================
           6. JOURNEY ENQUIRY & MAP SECTION
       ======================================================== */}
-      <section id="contact" className="about-enquiry-section" aria-label="Design My Journey Enquiry">
-        <div className="about-enquiry-bg-art" aria-hidden="true" />
-
-        <div className="about-enquiry-inner">
-          <div className="about-enquiry-header">
-            <span className="about-eyebrow">DESIGN MY JOURNEY</span>
-            <h2 className="about-enquiry-title">
-              Every meaningful journey begins with <em>a conversation.</em>
-            </h2>
-            <p className="about-enquiry-sub">
-              Tell us what draws you to Kashi. We’ll take care of the details that make it yours.
-            </p>
-
-            {/* Contact Row */}
-            <div className="about-contact-row">
-              <a href="tel:+919580417547" className="about-contact-item">
-                <Phone size={14} />
-                <span>+91 95804 17547</span>
-              </a>
-              <a href="mailto:info@soilnsoultravels.com" className="about-contact-item">
-                <Mail size={14} />
-                <span>info@soilnsoultravels.com</span>
-              </a>
-              <div className="about-contact-item">
-                <MapPin size={14} />
-                <span>Varanasi, Uttar Pradesh, India</span>
-              </div>
-            </div>
-          </div>
-
-          <div className="about-enquiry-grid">
-            {/* Left: Journey Enquiry Form */}
-            <form ref={formRef} onSubmit={handleSubmit} className="about-form">
-              {/* Full Name & WhatsApp Number */}
-              <div className="about-form-row">
-                <div className="about-form-field">
-                  <label htmlFor="about-name">Full Name *</label>
-                  <input
-                    id="about-name"
-                    name="name"
-                    type="text"
-                    placeholder="Your name"
-                    required
-                    maxLength={100}
-                    autoComplete="name"
-                  />
-                </div>
-                <div className="about-form-field">
-                  <label htmlFor="about-contact">WhatsApp Number *</label>
-                  <input
-                    id="about-contact"
-                    name="contact"
-                    type="tel"
-                    placeholder="+91 98765 43210"
-                    required
-                    maxLength={20}
-                    autoComplete="tel"
-                  />
-                </div>
-              </div>
-
-              {/* Preferred Dates & Number of Guests */}
-              <div className="about-form-row">
-                <div className="about-form-field">
-                  <label htmlFor="about-dates">Preferred Dates *</label>
-                  <input
-                    id="about-dates"
-                    name="dates"
-                    type="text"
-                    placeholder="e.g. 12–14 October, or Flexible"
-                    required
-                    maxLength={100}
-                  />
-                </div>
-                <div className="about-form-field">
-                  <label htmlFor="about-guests">Number of Guests *</label>
-                  <select id="about-guests" name="guests" defaultValue="2">
-                    <option value="1">1 Guest</option>
-                    <option value="2">2 Guests</option>
-                    <option value="3">3 Guests</option>
-                    <option value="4">4 Guests</option>
-                    <option value="5">5 Guests</option>
-                    <option value="6+">6+ Guests (Private Group)</option>
-                  </select>
-                </div>
-              </div>
-
-              {/* Email (optional) */}
-              <div className="about-form-field">
-                <label htmlFor="about-email">Email (optional)</label>
-                <input
-                  id="about-email"
-                  name="email"
-                  type="email"
-                  placeholder="you@example.com"
-                  maxLength={120}
-                  autoComplete="email"
-                />
-              </div>
-
-              {/* Interests Checkboxes */}
-              <div className="about-interests-wrap">
-                <label className="about-eyebrow" style={{ color: "rgba(240, 237, 230, 0.8)", marginBottom: "4px" }}>
-                  Interests
-                </label>
-                <div className="about-interests-grid">
-                  {interestOptions.map((interest) => (
-                    <label key={interest} className="about-checkbox-label">
-                      <input type="checkbox" name="interests" value={interest} />
-                      <span>{interest}</span>
-                    </label>
-                  ))}
-                </div>
-              </div>
-
-              {/* Message */}
-              <div className="about-form-field">
-                <label htmlFor="about-message">Message</label>
-                <textarea
-                  id="about-message"
-                  name="message"
-                  rows={3}
-                  placeholder="A place you dream of. A moment you want to feel."
-                  maxLength={1000}
-                />
-              </div>
-
-              {/* Form Buttons */}
-              <div className="about-form-actions">
-                <button type="submit" className="about-btn-primary">
-                  <span>DESIGN MY JOURNEY</span>
-                  <ArrowRight size={13} />
-                </button>
-
-                <a
-                  href="https://wa.me/919580417547?text=Hello%20Soil%20n%20Soul%2C%20I%20would%20love%20to%20plan%20a%20journey%20to%20Varanasi."
-                  target="_blank"
-                  rel="noreferrer"
-                  className="about-btn-secondary"
-                >
-                  <WhatsAppSvg />
-                  <span>Enquire on WhatsApp</span>
-                </a>
-              </div>
-
-              <p className="about-form-note">
-                We’ll prepare your enquiry for WhatsApp. You review and send it.
-              </p>
-
-              {submitted && whatsappLink && (
-                <div style={{ marginTop: "12px", color: "var(--about-gold)", fontSize: "13px" }}>
-                  Enquiry prepared! If your WhatsApp did not open automatically,{" "}
-                  <a
-                    href={whatsappLink}
-                    target="_blank"
-                    rel="noreferrer"
-                    style={{ textDecoration: "underline", color: "#ffffff" }}
-                  >
-                    click here to open WhatsApp
-                  </a>
-                  .
-                </div>
-              )}
-            </form>
-
-            {/* Right: Location & Map Composite Card */}
-            <div className="about-map-card">
-              {/* Top Photograph */}
-              <div className="about-map-top-img">
-                <Image
-                  src="/images/enquiry_card_top_hd.jpg"
-                  alt="Sunset over the Ganges and ancient riverfront of Varanasi"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 450px"
-                  quality={95}
-                />
-              </div>
-
-              {/* Top Location Bar */}
-              <div className="about-map-top-caption">
-                <MapPin size={18} color="#b8860b" />
-                <div className="about-map-caption-text">
-                  <strong>Varanasi, Uttar Pradesh, India</strong>
-                  <small>Our home. Your beginning.</small>
-                </div>
-              </div>
-
-              {/* Interactive Google Map of Varanasi */}
-              <div className="about-map-frame">
-                <iframe
-                  title="Interactive Map of Varanasi, Uttar Pradesh, India"
-                  src="https://maps.google.com/maps?q=Varanasi%2C%20Uttar%20Pradesh%2C%20India&t=&z=13&ie=UTF8&iwloc=&output=embed"
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                />
-              </div>
-
-              {/* Bottom Dark Location Banner */}
-              <div className="about-map-bottom-banner">
-                <div className="about-map-art-watermark" aria-hidden="true" />
-                <p>OUR HOME. YOUR BEGINNING.</p>
-                <h4>Varanasi, India</h4>
-                <a
-                  href="https://www.google.com/maps/search/?api=1&query=Varanasi%2C+Uttar+Pradesh%2C+India"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Explore the map →
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <JourneyEnquiry variant="default" />
 
     </div>
   );
@@ -703,20 +472,6 @@ function DiamondIcon() {
       <line x1="28" y1="14" x2="25" y2="20" />
       <line x1="20" y1="14" x2="15" y2="20" />
       <line x1="20" y1="14" x2="25" y2="20" />
-    </svg>
-  );
-}
-
-function WhatsAppSvg() {
-  return (
-    <svg
-      width="16"
-      height="16"
-      viewBox="0 0 24 24"
-      fill="currentColor"
-      aria-hidden="true"
-    >
-      <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
     </svg>
   );
 }

@@ -2764,4 +2764,81 @@ body {
   }
 }
 
-
+/* Varanasi homepage — warm editorial palette, scoped to the existing homepage. */
+.reference-homepage {
+  --sns-dark-deep: #1c0d09;
+  --sns-dark-charcoal: #24100c;
+  --sns-dark-card: #2b1711;
+  --sns-cream-bg: #f7f0e3;
+  --sns-cream-card: #efe2cd;
+  --sns-cream-surface: #fbf6ed;
+  --sns-gold: #d5ae62;
+  --sns-gold-hover: #e4c27d;
+  --sns-gold-muted: #a77937;
+  --sns-gold-border: rgba(171, 127, 59, 0.35);
+  --sns-text-dark: #2a1710;
+  --sns-text-muted: #74675b;
+  --sns-text-light: #f7f0e3;
+  background: var(--sns-cream-bg);
+  color: var(--sns-text-dark);
+}
+.reference-homepage .hero-reference-section { min-height: 760px; height: 88svh; max-height: 980px; background: #24100c; }
+.reference-homepage .hero-cinematic-overlay { background: linear-gradient(90deg,rgba(27,13,8,.82),rgba(37,19,11,.38) 52%,rgba(37,19,11,.1)),linear-gradient(0deg,rgba(28,13,9,.88),transparent 35%,rgba(28,13,9,.15)); }
+.reference-homepage .hero-content-block { width: min(1280px, calc(100% - 12vw)); }
+.reference-homepage .hero-city-title { font-family: var(--sns-font-serif); font-weight: 400; letter-spacing: .035em; }
+.reference-homepage .hero-feeling-title { color: #e2ba72; }
+.reference-homepage .hero-primary-btn,.reference-homepage .cta-primary-btn,.reference-homepage .stay-explore-btn { background: #d5ae62; color: #24100c; border-color: #d5ae62; border-radius: 3px; }
+.reference-homepage .hero-primary-btn:hover,.reference-homepage .cta-primary-btn:hover,.reference-homepage .stay-explore-btn:hover { background:#e4c27d; color:#24100c; }
+.reference-homepage .hero-bottom-strip { background: rgba(28,13,9,.94); border-top: 1px solid rgba(213,174,98,.3); }
+.reference-homepage .hero-strip-icon { color: #d5ae62; }
+.reference-homepage .philosophy-reference-section,.reference-homepage .stays-reference-section,.reference-homepage .enquiry-section-reference { background: #f7f0e3; }
+.reference-homepage .philosophy-reference-section { padding-block: clamp(86px,9vw,132px); }
+.reference-homepage .reference-gold-eyebrow,.reference-homepage .cta-gold-eyebrow,.reference-homepage .enquiry-eyebrow { color:#a77937; }
+.reference-homepage .philosophy-heading,.reference-homepage .stay-panel-heading,.reference-homepage .experiences-heading,.reference-homepage .purushartha-heading,.reference-homepage .enquiry-title,.reference-homepage .cta-large-heading { font-family:var(--sns-font-serif); font-weight:400; }
+.reference-homepage .philosophy-heading em,.reference-homepage .enquiry-title em { color:#8f3219; }
+.reference-homepage .philosophy-photo-card { border-radius:48% 48% 4px 4px; border-color:rgba(167,121,55,.4); }
+.reference-homepage .purushartha-reference-section { background:#24100c; padding-block:clamp(88px,9vw,132px); }
+.reference-homepage .purushartha-card { background:#2b1711; border-color:rgba(213,174,98,.32); border-radius:5px; }
+.reference-homepage .purushartha-card-cta { background:#d5ae62; color:#24100c!important; border-radius:2px; }
+.reference-homepage .experiences-reference-section { background:#8f3219; padding-block:clamp(88px,9vw,132px); }
+.reference-homepage .experiences-reference-section .reference-gold-eyebrow { color:#e0bb75; }
+.reference-homepage .experiences-reference-section .experiences-heading { color:#fbf3e6; }
+.reference-homepage .experiences-intro-copy { color:#ead6c5; }
+.reference-homepage .experiences-reference-section .explore-all-link,.reference-homepage .experiences-reference-section .arrow-circle-btn { color:#f4e3c8; border-color:rgba(228,194,125,.55); }
+.reference-homepage .experience-cinematic-card,.reference-homepage .experience-cinematic-card .card-image-wrap { border-radius:5px; }
+.reference-homepage .experience-cinematic-card { border:1px solid rgba(229,193,126,.3); }
+.reference-homepage .experience-cinematic-card .card-photo,.reference-homepage .stay-tile .tile-photo { transition:transform .8s cubic-bezier(.2,.7,.2,1); }
+.reference-homepage .experience-cinematic-card:hover .card-photo,.reference-homepage .stay-tile:hover .tile-photo { transform:scale(1.045); }
+.reference-homepage .stays-reference-section { padding-block:clamp(76px,8vw,116px); }
+.reference-homepage .trust-strip-reference { background:#efe2cd; border-block:1px solid rgba(167,121,55,.2); }
+.reference-homepage .trust-num { color:#b27b32; }
+.reference-homepage .cta-cinematic-reference { background:#24100c; }
+.reference-homepage .cta-cinematic-overlay { background:linear-gradient(90deg,rgba(28,13,9,.86),rgba(28,13,9,.55)),linear-gradient(0deg,rgba(28,13,9,.5),transparent); }
+.reference-homepage .cta-large-heading { font-size:clamp(46px,6.3vw,84px); }
+.reference-homepage .enquiry-section-reference { padding-block:clamp(76px,8vw,116px); }
+.reference-homepage .enquiry-info-col { background:#24100c; border:1px solid rgba(213,174,98,.3); border-radius:4px; padding:clamp(30px,4vw,56px); }
+.reference-homepage .enquiry-info-col .enquiry-eyebrow { color:#d5ae62; }
+.reference-homepage .enquiry-info-col .enquiry-title { color:#f7f0e3; }
+.reference-homepage .enquiry-info-col .enquiry-description,.reference-homepage .enquiry-info-col .enquiry-contact-link { color:#d9cbb8; }
+.reference-homepage .enquiry-info-col .enquiry-contact-icon { color:#d5ae62; border-color:rgba(213,174,98,.4); }
+.reference-homepage .enquiry-form-col input,.reference-homepage .enquiry-form-col select,.reference-homepage .enquiry-form-col textarea { background:#fbf6ed; border-color:#d7c7ad; color:#2a1710; }
+.reference-homepage .enquiry-form-col input:focus,.reference-homepage .enquiry-form-col select:focus,.reference-homepage .enquiry-form-col textarea:focus { border-color:#aa7c3a; box-shadow:0 0 0 2px rgba(170,124,58,.12); }
+.reference-homepage .enquiry-form-col button { background:#d5ae62; color:#24100c; border-radius:3px; }
+body:has(.reference-homepage) .exp-nav-header { background:linear-gradient(180deg,rgba(28,13,9,.5),transparent); }
+body:has(.reference-homepage) .exp-nav-header.scrolled { background:rgba(28,13,9,.96); border-bottom-color:rgba(213,174,98,.2); }
+body:has(.reference-homepage) .footer-reference { background:#1c0d09; }
+body:has(.reference-homepage) .exp-nav-cta-btn { background:#d5ae62; color:#24100c!important; border-radius:3px; }
+body:has(.reference-homepage) .exp-nav-wa-btn { border-color:rgba(213,174,98,.6)!important; color:#d5ae62!important; }
+body:has(.reference-homepage) .exp-mobile-drawer { background:rgba(28,13,9,.98); }
+@media(max-width:900px) {
+  .reference-homepage .hero-reference-section { min-height:700px; height:88svh; }
+  .reference-homepage .philosophy-reference-section,.reference-homepage .purushartha-reference-section,.reference-homepage .experiences-reference-section { padding-block:76px; }
+}
+@media(max-width:640px) {
+  .reference-homepage .hero-reference-section { min-height:690px; height:92svh; }
+  .reference-homepage .hero-content-block { width:calc(100% - 44px); }
+  .reference-homepage .hero-cinematic-overlay { background:linear-gradient(90deg,rgba(27,13,8,.7),rgba(37,19,11,.23)),linear-gradient(0deg,rgba(28,13,9,.9),transparent 48%); }
+  .reference-homepage .philosophy-reference-section,.reference-homepage .purushartha-reference-section,.reference-homepage .experiences-reference-section,.reference-homepage .stays-reference-section,.reference-homepage .enquiry-section-reference { padding-block:64px; }
+  .reference-homepage .philosophy-photo-card { border-radius:42% 42% 4px 4px; }
+  .reference-homepage .enquiry-info-col { padding:28px 24px; }
+}

@@ -130,7 +130,7 @@ export const localBusinessSchema = {
     description: DEFAULT_DESC,
     url: SITE_URL,
     telephone: '+919580417547',
-    email: 'hello@soilnsoul.in',
+    email: 'info@soilnsoultravels.com',
     address: {
         '@type': 'PostalAddress',
         addressLocality: 'Varanasi',
