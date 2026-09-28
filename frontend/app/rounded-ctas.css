@@ -228,3 +228,68 @@ body:has(.journal-page-root) .exp-nav-header.scrolled .exp-nav-wa-btn,
 body:has(.contact-reference-page) .exp-nav-header.scrolled .exp-nav-wa-btn {
   background: transparent !important;
 }
+
+@media (max-width: 400px) {
+  body:has(.reference-homepage) .exp-nav-logo,
+  body:has(.about-page-root) .exp-nav-logo,
+  body:has(.exp-page-root) .exp-nav-logo,
+  body:has(.journey-page) .exp-nav-logo,
+  body:has(.jcat-page) .exp-nav-logo,
+  body:has(.journal-page-root) .exp-nav-logo,
+  body:has(.contact-reference-page) .exp-nav-logo {
+    width: 84px;
+    max-width: 84px;
+    height: 28px;
+    object-fit: contain;
+  }
+
+  body:has(.reference-homepage) .exp-nav-cta-btn,
+  body:has(.about-page-root) .exp-nav-cta-btn,
+  body:has(.exp-page-root) .exp-nav-cta-btn,
+  body:has(.journey-page) .exp-nav-cta-btn,
+  body:has(.jcat-page) .exp-nav-cta-btn,
+  body:has(.journal-page-root) .exp-nav-cta-btn,
+  body:has(.contact-reference-page) .exp-nav-cta-btn {
+    display: inline-flex;
+    width: auto;
+    min-width: 120px;
+    min-height: 34px;
+    height: 34px;
+    gap: 5px;
+    padding-inline: 10px;
+    font-size: 9px;
+    white-space: nowrap;
+  }
+
+  body:has(.reference-homepage) .exp-nav-cta-btn span,
+  body:has(.about-page-root) .exp-nav-cta-btn span,
+  body:has(.exp-page-root) .exp-nav-cta-btn span,
+  body:has(.journey-page) .exp-nav-cta-btn span,
+  body:has(.jcat-page) .exp-nav-cta-btn span,
+  body:has(.journal-page-root) .exp-nav-cta-btn span,
+  body:has(.contact-reference-page) .exp-nav-cta-btn span {
+    display: inline;
+  }
+}
+
+@media (max-width: 340px) {
+  body:has(.reference-homepage) .exp-nav-cta-btn,
+  body:has(.about-page-root) .exp-nav-cta-btn,
+  body:has(.exp-page-root) .exp-nav-cta-btn,
+  body:has(.journey-page) .exp-nav-cta-btn,
+  body:has(.jcat-page) .exp-nav-cta-btn,
+  body:has(.journal-page-root) .exp-nav-cta-btn,
+  body:has(.contact-reference-page) .exp-nav-cta-btn {
+    display: inline-flex;
+  }
+
+  body:has(.reference-homepage) .exp-nav-wa-btn,
+  body:has(.about-page-root) .exp-nav-wa-btn,
+  body:has(.exp-page-root) .exp-nav-wa-btn,
+  body:has(.journey-page) .exp-nav-wa-btn,
+  body:has(.jcat-page) .exp-nav-wa-btn,
+  body:has(.journal-page-root) .exp-nav-wa-btn,
+  body:has(.contact-reference-page) .exp-nav-wa-btn {
+    display: none;
+  }
+}
