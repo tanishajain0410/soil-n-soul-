@@ -10,14 +10,7 @@ interface JourneyEnquiryProps {
   variant?: "default" | "journeys" | "contact";
 }
 
-const interestOptions = [
-  "Spiritual",
-  "Heritage",
-  "Food",
-  "Photography",
-  "Celebrations",
-  "Slow Travel",
-];
+const interestOptions = ["A custom Kashi trip", "Spiritual experiences", "Heritage and culture", "Food and local life", "Stays and transport", "Celebrations and rituals"];
 
 export default function JourneyEnquiry({
   journey = "",
@@ -27,6 +20,7 @@ export default function JourneyEnquiry({
   const [ready, setReady] = useState("");
   const [selectedDuration, setSelectedDuration] = useState(duration);
   const [submitted, setSubmitted] = useState(false);
+  const [travellers, setTravellers] = useState("1 to 2");
   const formRef = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
@@ -51,14 +45,14 @@ export default function JourneyEnquiry({
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
-    const interests = data.getAll("interests").join(", ") || "All experiences";
+    const interests = data.get("interests") || "A custom Kashi trip";
     const text = `Hello Soil n Soul,\n${
       journey ? `I would love to plan: ${journey}.` : "I would love to design my private Varanasi journey."
     }\n\n*Name:* ${data.get("name")}\n*WhatsApp:* ${data.get("contact")}\n*Email:* ${
       data.get("email") || "Not provided"
     }\n*Preferred Dates:* ${data.get("dates") || "Flexible"}\n*Guests:* ${data.get("guests") || "2"}${
       selectedDuration ? `\n*Duration:* ${selectedDuration}` : ""
-    }\n*Interests:* ${interests}\n*Message:* ${data.get("message") || "Looking forward to your guidance."}`;
+    }\n*Travelling from:* ${data.get("origin") || "Not provided"}\n*Interests:* ${interests}\n*Message:* ${data.get("message") || "Looking forward to your guidance."}`;
 
     const link = whatsapp(text);
     setReady(link);
@@ -68,170 +62,32 @@ export default function JourneyEnquiry({
 
   return (
     <section id="contact" className={`enquiry-section-reference${variant === "journeys" ? " journey-enquiry-dark" : ""}${variant === "contact" ? " contact-enquiry-reference" : ""}`} aria-label="Journey Enquiry">
-      <div className="enquiry-container">
-        {/* Left Column: Heading, description & direct contact info */}
-        <div className="enquiry-info-col">
-          <p className="enquiry-eyebrow">DESIGN MY JOURNEY</p>
-          <h2 className="enquiry-title">
-            Every meaningful journey<br />
-            begins with <em>a conversation.</em>
-          </h2>
-          <p className="enquiry-description">
-            Tell us what draws you to Kashi. We’ll take care of the details that make it yours.
-          </p>
-
-          <div className="enquiry-contact-items">
-            <a href="tel:+919580417547" className="enquiry-contact-link">
-              <span className="enquiry-contact-icon">
-                <Phone size={14} />
-              </span>
-              <span>+91 95804 17547</span>
-            </a>
-            <a href="mailto:info@soilnsoultravels.com" className="enquiry-contact-link">
-              <span className="enquiry-contact-icon">
-                <Mail size={14} />
-              </span>
-              <span>info@soilnsoultravels.com</span>
-            </a>
-            <div className="enquiry-contact-link">
-              <span className="enquiry-contact-icon">
-                <MapPin size={14} />
-              </span>
-              <span>Varanasi, Uttar Pradesh, India</span>
-            </div>
+      <div className="enquiry-container reference-trip-shell">
+        <div className="enquiry-info-col reference-trip-intro">
+          <p className="enquiry-eyebrow">CONTACT</p>
+          <h2 className="enquiry-title">Share your dates.<br/>We’ll draw the plan.</h2>
+          <p className="enquiry-description">Tell us when you are coming and who is coming with you. We reply on WhatsApp with a full plan, including ritual timings by tithi.</p>
+          <div className="reference-contact-cards">
+            <div className="reference-contact-card"><span className="enquiry-contact-icon"><Phone size={16}/></span><span><small>CALL OR WHATSAPP</small><strong>+91 95804 17547</strong></span><button type="button" onClick={() => navigator.clipboard?.writeText("+91 95804 17547")}>Copy</button></div>
+            <div className="reference-contact-card"><span className="enquiry-contact-icon"><Mail size={16}/></span><span><small>EMAIL</small><strong>info@soilnsoultravels.com</strong></span><button type="button" onClick={() => navigator.clipboard?.writeText("info@soilnsoultravels.com")}>Copy</button></div>
+            <div className="reference-contact-card"><span className="enquiry-contact-icon"><MapPin size={16}/></span><span><small>BASED IN</small><strong>Varanasi, Uttar Pradesh</strong></span></div>
           </div>
         </div>
 
-        {/* Right Column: 2-column wide form */}
-        <div className="enquiry-form-col">
-          <form ref={formRef} onSubmit={handleSubmit} className="enquiry-form-grid">
-            {/* Full Name */}
-            <div className="form-field">
-              <label htmlFor="enquiry-name">Full Name*</label>
-              <input
-                id="enquiry-name"
-                name="name"
-                type="text"
-                placeholder="Your name"
-                required
-                maxLength={100}
-                autoComplete="name"
-              />
-            </div>
-
-            {/* WhatsApp Number */}
-            <div className="form-field">
-              <label htmlFor="enquiry-contact">WhatsApp Number*</label>
-              <input
-                id="enquiry-contact"
-                name="contact"
-                type="tel"
-                placeholder="+91 95804 17547"
-                required
-                maxLength={20}
-                autoComplete="tel"
-              />
-            </div>
-
-            {/* Preferred Dates */}
-            <div className="form-field">
-              <label htmlFor="enquiry-dates">Preferred Dates</label>
-              <input
-                id="enquiry-dates"
-                name="dates"
-                type="text"
-                placeholder="e.g. 12–14 October, or Flexible"
-                maxLength={100}
-              />
-            </div>
-
-            {/* Number of Guests */}
-            <div className="form-field">
-              <label htmlFor="enquiry-guests">Number of Guests</label>
-              <select id="enquiry-guests" name="guests" defaultValue="2">
-                <option value="1">1 Guest</option>
-                <option value="2">2 Guests</option>
-                <option value="3">3 Guests</option>
-                <option value="4">4 Guests</option>
-                <option value="5">5 Guests</option>
-                <option value="6+">6+ Guests (Private Group)</option>
-              </select>
-            </div>
-
-            {/* Email (Full Width) */}
-            <div className="form-field form-field-full">
-              <label htmlFor="enquiry-email">Email (optional)</label>
-              <input
-                id="enquiry-email"
-                name="email"
-                type="email"
-                placeholder="you@example.com"
-                maxLength={120}
-                autoComplete="email"
-              />
-            </div>
-
-            {/* Interests Checkboxes (Full Width) */}
-            <div className="form-field form-field-full">
-              <label className="form-legend-label">Interests</label>
-              <div className="form-interests-row">
-                {interestOptions.map((interest) => (
-                  <label key={interest} className="interest-checkbox-label">
-                    <input type="checkbox" name="interests" value={interest} />
-                    <span>{interest}</span>
-                  </label>
-                ))}
-              </div>
-            </div>
-
-            {/* Message (Full Width) */}
-            <div className="form-field form-field-full">
-              <label htmlFor="enquiry-message">Message</label>
-              <textarea
-                id="enquiry-message"
-                name="message"
-                rows={3}
-                placeholder="A place you dream of. A moment you want to feel..."
-                maxLength={1000}
-              />
-            </div>
-
-            {/* Form Actions (Buttons Side by Side) */}
-            <div className="form-actions-row">
-              <button type="submit" className="enquiry-submit-btn">
-                <span>DESIGN MY JOURNEY</span>
-                <ArrowRight size={14} />
-              </button>
-
-              <a
-                href="https://wa.me/919580417547?text=Hello%20Soil%20n%20Soul%2C%20I%20would%20love%20to%20plan%20a%20Varanasi%20journey."
-                target="_blank"
-                rel="noreferrer"
-                className="enquiry-whatsapp-btn"
-              >
-                <WhatsAppSvgIcon />
-                <span>Enquire on WhatsApp</span>
-              </a>
-            </div>
-
-            {submitted && ready && (
-              <div className="enquiry-success-message">
-                <p>Thank you! Your enquiry has been forwarded to WhatsApp.</p>
-                <a href={ready} target="_blank" rel="noreferrer">
-                  Re-open WhatsApp chat ↗
-                </a>
-              </div>
-            )}
+        <div className="enquiry-form-col reference-trip-form-wrap">
+          <div className="reference-trip-form-heading"><h3><strong>नमस्ते,</strong> <em>tell us about your trip</em></h3><p>Every field helps, but only your name and phone are required.</p></div>
+          <form ref={formRef} onSubmit={handleSubmit} className="enquiry-form-grid reference-trip-form">
+            <div className="form-field"><label htmlFor="enquiry-name">YOUR NAME</label><input id="enquiry-name" name="name" type="text" placeholder="Full name" required maxLength={100} autoComplete="name" /></div>
+            <div className="form-field"><label htmlFor="enquiry-contact">PHONE / WHATSAPP</label><input id="enquiry-contact" name="contact" type="tel" placeholder="+91" required maxLength={20} autoComplete="tel" /></div>
+            <div className="form-field"><label htmlFor="enquiry-dates">ARRIVAL DATE</label><input id="enquiry-dates" name="dates" type="date" /></div>
+            <div className="form-field"><label htmlFor="enquiry-origin">TRAVELLING FROM</label><input id="enquiry-origin" name="origin" type="text" placeholder="City, country" maxLength={100} /></div>
+            <div className="form-field form-field-full reference-travellers"><label>TRAVELLERS</label><input type="hidden" name="guests" value={travellers}/><div className="reference-traveller-pills">{["1 to 2", "3 to 4", "5 to 8", "9 or more"].map((value) => <button key={value} type="button" className={travellers === value ? "is-selected" : ""} onClick={() => setTravellers(value)}>{value}</button>)}</div></div>
+            <div className="form-field form-field-full"><label htmlFor="enquiry-interests">I AM INTERESTED IN</label><select id="enquiry-interests" name="interests" defaultValue={journey || interestOptions[0]}>{journey && <option value={journey}>{journey}</option>}{interestOptions.map((interest) => <option key={interest} value={interest}>{interest}</option>)}</select></div>
+            <div className="form-field form-field-full"><label htmlFor="enquiry-message">ANYTHING WE SHOULD KNOW</label><textarea id="enquiry-message" name="message" rows={3} placeholder="Elders travelling, specific rituals, dietary needs..." maxLength={1000}/></div>
+            <div className="form-actions-row reference-trip-actions"><button type="submit" className="enquiry-submit-btn"><span>Send on WhatsApp</span><ArrowRight size={14}/></button><p>Your details open in WhatsApp, ready to send to +91 95804 17547.</p></div>
+            {submitted && ready && <div className="enquiry-success-message"><p>Your enquiry is ready in WhatsApp.</p><a href={ready} target="_blank" rel="noreferrer">Re-open WhatsApp chat ↗</a></div>}
           </form>
         </div>
-        {(variant === "journeys" || variant === "contact") && <aside className={`journey-map-panel${variant === "contact" ? " contact-map-panel" : ""}`} aria-label="Our home in Varanasi">
-          {variant === "contact" && <img className="contact-map-photo" src="/images/enquiry_card_top_hd.jpg" alt="Sunset over the Ganges and Varanasi ghats" />}
-          <div className="journey-map-frame">
-            <iframe title="Map of Varanasi, Uttar Pradesh, India" src="https://maps.google.com/maps?q=Varanasi%2C%20Uttar%20Pradesh%2C%20India&t=&z=13&ie=UTF8&iwloc=&output=embed" loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
-          </div>
-          <div className="journey-map-caption"><span className="journey-map-pin"><MapPin size={17}/></span><div><strong>Varanasi, Uttar Pradesh, India</strong><small>Our home. Your beginning.</small></div><a href="https://www.google.com/maps/search/?api=1&query=Varanasi%2C+Uttar+Pradesh%2C+India" target="_blank" rel="noreferrer" aria-label="Open Varanasi in Maps"><ArrowRight size={16}/></a></div>
-          {variant === "contact" && <div className="contact-map-foot"><span>OUR HOME. YOUR BEGINNING.</span><strong>Varanasi, India</strong><a href="https://www.google.com/maps/search/?api=1&query=Varanasi%2C+Uttar+Pradesh%2C+India" target="_blank" rel="noreferrer">Explore the map →</a></div>}
-        </aside>}
       </div>
     </section>
   );

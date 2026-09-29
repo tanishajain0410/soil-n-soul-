@@ -367,41 +367,21 @@ export default function HomeClient() {
                   <VolumeX size={13} strokeWidth={2} />
                 )}
               </span>
-              <span className="sound-toggle-label">
-                {isPlayingSound ? "MUTE SOUND" : "EXPERIENCE SOUND"}
-              </span>
             </button>
           </div>
         </div>
 
-        {/* Bottom Feature Strip & Scroll Indicator */}
-        <div className="hero-bottom-strip">
-          <div className="hero-strip-items">
-            <div className="hero-strip-item">
-              <Sparkles size={17} className="hero-strip-icon" />
-              <span>PRIVATE EXPERIENCES</span>
+        <section className="home-live-stats-band home-benefits-band" aria-label="Our service promises">
+          <div className="home-live-stats-panel home-benefits-panel">
+            <div className="home-benefits-items">
+              <div className="home-benefit-item"><Sparkles size={20} /><span>PRIVATE EXPERIENCES</span></div>
+              <div className="home-benefit-item"><BedDouble size={20} /><span>HANDPICKED STAYS</span></div>
+              <div className="home-benefit-item"><HeartHandshake size={20} /><span>LOCAL CONNECTIONS</span></div>
+              <div className="home-benefit-item"><Users size={20} /><span>PERSONAL CONCIERGE</span></div>
             </div>
-            <div className="hero-strip-item">
-              <BedDouble size={17} className="hero-strip-icon" />
-              <span>HANDPICKED STAYS</span>
-            </div>
-            <div className="hero-strip-item">
-              <HeartHandshake size={17} className="hero-strip-icon" />
-              <span>LOCAL CONNECTIONS</span>
-            </div>
-            <div className="hero-strip-item">
-              <Users size={17} className="hero-strip-icon" />
-              <span>PERSONAL CONCIERGE</span>
-            </div>
+            <a href="#philosophy" className="home-benefits-scroll">SCROLL <ArrowDown size={17} /></a>
           </div>
-
-          <div className="hero-scroll-wrapper">
-            <a href="#philosophy" className="hero-scroll-btn" aria-label="Scroll to explore">
-              <span className="scroll-text">SCROLL</span>
-              <ArrowDown size={14} />
-            </a>
-          </div>
-        </div>
+        </section>
       </section>
 
       {/* ========================================================
@@ -478,6 +458,14 @@ export default function HomeClient() {
                 />
               </div>
             </div>
+          </div>
+
+          <div className="philosophy-stats" aria-label="Soil N Soul guest statistics">
+            <div className="philosophy-stat philosophy-stat-one"><strong>500+</strong><span>journeys<br/>curated</span></div>
+            <div className="philosophy-stat philosophy-stat-two"><strong>10+</strong><span>countries our<br/>guests come<br/>from</span></div>
+            <div className="philosophy-stat philosophy-stat-three"><strong>4.9</strong><span>average guest<br/>rating</span></div>
+            <div className="philosophy-stat philosophy-stat-four"><strong>97%</strong><span>guests fully<br/>satisfied</span></div>
+            <p className="philosophy-stats-caption">CLIMBING THE GHAT, ONE GUEST AT A TIME</p>
           </div>
         </div>
       </section>
@@ -790,6 +778,71 @@ export default function HomeClient() {
         </div>
       </section>
 
+      <section className="home-offers-section" id="what-we-offer" aria-labelledby="home-offers-title">
+        <div className="home-offers-inner">
+          <header className="home-offers-heading">
+            <p className="reference-gold-eyebrow">WHAT WE OFFER</p>
+            <h2 id="home-offers-title">
+              Everything a Kashi visit needs, <em>on the ground.</em>
+            </h2>
+            <p>
+              We are based in Varanasi, so every service happens where you are: at your stay,
+              on the ghats, in the temple lanes.
+            </p>
+          </header>
+
+          <div className="home-offers-grid">
+            <article className="home-offer-card home-offer-stay">
+              <Image src="/SnS/private-journey-stays.webp" alt="A heritage haveli stay overlooking the ghats of Varanasi" fill sizes="(max-width: 700px) 100vw, 50vw" />
+              <span className="home-offer-shade" aria-hidden="true" />
+              <div className="home-offer-copy">
+                <h3>Hotels, homestays &amp; havelis</h3>
+                <p>From clean hotels and family homestays to heritage havelis on the river. We visit every property ourselves before we book it for you.</p>
+                <ul className="home-offer-tags"><li>Personally inspected</li><li>Ghat-side rooms</li><li>Budget to premium</li></ul>
+              </div>
+            </article>
+
+            <article className="home-offer-card home-offer-rituals">
+              <Image src="/SnS/private-journey-rituals.webp" alt="A Ganga Aarti ceremony on the ghats of Varanasi" fill sizes="(max-width: 700px) 100vw, 50vw" />
+              <span className="home-offer-shade" aria-hidden="true" />
+              <div className="home-offer-copy">
+                <h3>Pooja &amp; ritual ceremonies</h3>
+                <p>Rudrabhishek, Kashi Vishwanath puja, Ganga Aarti seats, Shradh and Pind Daan, led by learned purohits who follow your gotra and tradition.</p>
+              </div>
+            </article>
+
+            <article className="home-offer-card home-offer-travel">
+              <Image src="/SnS/private-journey-other-support.webp" alt="A private driver welcoming a traveller at the airport" fill sizes="(max-width: 700px) 100vw, 50vw" />
+              <span className="home-offer-shade" aria-hidden="true" />
+              <div className="home-offer-copy">
+                <h3>Pickup &amp; drop</h3>
+                <p>Airport and railway pickups, a car with a local driver for the whole trip, bikes for the lanes and boats on the river.</p>
+                <ul className="home-offer-tags"><li>Car with driver</li><li>Airport &amp; rail pickup</li><li>Boats &amp; bikes too</li></ul>
+              </div>
+            </article>
+
+            <article className="home-offer-card home-offer-city">
+              <Image src="/SnS/rare-access-hidden-temple.webp" alt="A quiet temple doorway tucked into an old Varanasi lane" fill sizes="(max-width: 700px) 100vw, 33vw" />
+              <span className="home-offer-shade" aria-hidden="true" />
+              <div className="home-offer-copy">
+                <h3>City tours</h3>
+                <p>Temple circuits, heritage walks through the old city lanes and Sarnath, with guides who grew up here.</p>
+              </div>
+            </article>
+
+            <article className="home-offer-card home-offer-local">
+              <Image src="/SnS/private-artisan-visit.webp" alt="A Banarasi silk weaver working at a traditional loom" fill sizes="(max-width: 700px) 100vw, 67vw" />
+              <span className="home-offer-shade" aria-hidden="true" />
+              <div className="home-offer-copy">
+                <h3>Live the place, where it happens</h3>
+                <p>Sit with a Banarasi silk weaver at his loom, eat kachori at a century-old shop, hear a morning raga on the ghats, attend a cultural evening or plan a pre-wedding shoot.</p>
+                <ul className="home-offer-tags"><li>Silk weaving</li><li>Food walks</li><li>Music evenings</li><li>Pre-wedding shoots</li></ul>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
       <section className="home-packages-section" id="packages" aria-labelledby="home-packages-title">
         <div className="home-packages-intro">
           <p className="reference-gold-eyebrow">PACKAGES, READY TO SHAPE</p>
@@ -854,16 +907,24 @@ export default function HomeClient() {
 
       <section className="home-founder-section" aria-labelledby="home-founder-title">
         <div className="home-founder-layout">
-          <div className="home-founder-portrait">
-            <Image src="/images/founder.jpg" alt="Anchal Pandey, Founder of Soil & Soul" fill sizes="(max-width: 760px) 90vw, 37vw" />
-            <span className="home-founder-name">Anchal Pandey <small>Founder · Native of Banaras</small></span>
-          </div>
+          <figure className="home-founder-portrait">
+            <div className="home-founder-photo-frame">
+              <Image src="/images/founder.jpg" alt="Anchal Pandey, Founder of Soil & Soul" fill sizes="(max-width: 760px) 82vw, 290px" />
+            </div>
+            <figcaption className="home-founder-name">Anchal Pandey <small>Founder · Banaras, Uttar Pradesh</small></figcaption>
+          </figure>
           <div className="home-founder-copy">
-            <p className="reference-gold-eyebrow">A STORY, ROOTED IN KASHI</p>
-            <h2 id="home-founder-title">A story beginning<br/>with <em>the heart of Ganga.</em></h2>
-            <p>{founderStory[0]}</p><p>{founderStory[4]}</p>
-            <Link href="/about" className="home-map-cta">MEET ANCHAL <ArrowRight size={13}/></Link>
-            <span className="home-founder-signature">With love, from Kashi</span>
+            <p className="reference-gold-eyebrow">MEET THE FOUNDER</p>
+            <h2 id="home-founder-title">A story born <em>from<br/>the ghats</em> of Ganga.</h2>
+            <blockquote className="home-founder-quote">“{founderStory[3]}”</blockquote>
+            <div className="home-founder-story-text">{[founderStory[0], founderStory[1], founderStory[2], founderStory[4]].map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div>
+            <div className="home-founder-facts" aria-label="Soil N Soul at a glance">
+              <div><strong>500+</strong><span>JOURNEYS CURATED</span></div>
+              <div><strong>38</strong><span>COUNTRIES SERVED</span></div>
+              <div><strong>4.9</strong><span>GUEST RATING</span></div>
+            </div>
+            <div className="home-founder-signoff"><span>Anchal Pandey</span><small>Founder, Soil N Soul</small></div>
+            <div className="home-founder-actions"><span className="home-founder-signature">With love, from Kashi</span><Link href="/about" className="home-map-cta">MEET ANCHAL <ArrowRight size={13}/></Link></div>
           </div>
           <span className="home-founder-art" aria-hidden="true"/>
         </div>
@@ -898,17 +959,26 @@ export default function HomeClient() {
 
 function HomeKashiMap() {
   const locations = [
-    { x: 12, y: 65, label: "Assi Ghat", anchor: "start" },
-    { x: 39, y: 48, label: "Dashashwamedh Ghat", anchor: "middle" },
-    { x: 51, y: 31, label: "Kashi Vishwanath", anchor: "middle" },
-    { x: 70, y: 17, label: "Sarnath", anchor: "middle" },
-    { x: 85, y: 63, label: "Ramnagar Fort", anchor: "end" },
+    { x: 12, y: 65, label: "Assi Ghat", anchor: "start", photo: "/SnS/assi-ghat.webp" },
+    { x: 39, y: 48, label: "Dashashwamedh Ghat", anchor: "middle", photo: "/SnS/dashashwamedh-ghat.webp" },
+    { x: 51, y: 31, label: "Kashi Vishwanath Mandir", anchor: "middle", photo: "/SnS/kashi-vishwanath.webp" },
+    { x: 70, y: 17, label: "Sarnath", anchor: "middle", photo: "/SnS/sarnath.webp" },
+    { x: 85, y: 63, label: "Ramnagar Fort", anchor: "end", photo: "/SnS/ramnagar-fort.webp" },
   ] as const;
-  return <div className="home-kashi-map" role="img" aria-label="Illustrated route between Assi Ghat, Dashashwamedh Ghat, Kashi Vishwanath, Sarnath and Ramnagar Fort">
+  return <div className="home-kashi-map" role="img" aria-label="Illustrated route between Assi Ghat, Dashashwamedh Ghat, Kashi Vishwanath Mandir, Sarnath and Ramnagar Fort">
     <svg viewBox="0 0 100 82" aria-hidden="true">
       <path className="home-map-river" d="M2 77C19 63 27 70 38 62S58 52 67 56s17 1 31 8"/>
       <path className="home-map-route" d="M12 65c9-5 17-13 27-17s6-12 12-17 11-12 19-14m-31 31c15-2 31 2 46 15"/>
-      {locations.map((point)=><g key={point.label}><circle cx={point.x} cy={point.y} r="1.7"/><text x={point.x} y={point.y-4} textAnchor={point.anchor}>{point.label}</text></g>)}
+      {locations.map((point,index)=>{
+        const clipId = `home-map-stop-photo-${index}`;
+        return <g key={point.label} className="home-map-stop" transform={`translate(${point.x} ${point.y})`}>
+          <defs><clipPath id={clipId}><circle r="4.8" /></clipPath></defs>
+          <circle className="home-map-stop-disc" r="5.15" />
+          <image href={point.photo} x="-4.8" y="-4.8" width="9.6" height="9.6" preserveAspectRatio="xMidYMid slice" clipPath={`url(#${clipId})`} />
+          <circle className="home-map-photo-ring" r="4.8" />
+          <text x={0} y={-6.4} textAnchor={point.anchor}>{point.label}</text>
+        </g>;
+      })}
       <path className="home-map-temple" d="M77 78h17m-15 0V68h3v-5h4v5h4v10m-8-15 3-5 3 5m-4-8h2m-1-5v5"/>
     </svg>
     <span><MapPin size={12}/> KASHI · VARANASI</span>
