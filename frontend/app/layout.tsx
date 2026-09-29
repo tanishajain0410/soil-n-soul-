@@ -60,8 +60,8 @@ const resolvedSiteUrl =
 
 export const metadata: Metadata = {
   title: {
-    default: "Private Journeys in Varanasi | Soil n Soul Travels",
-    template: "%s | Soil n Soul Travels",
+    default: "Soil n Soul Travels",
+    template: "Soil n Soul Travels",
   },
   description:
     "Private journeys into the soul of Banaras. Thoughtfully designed around you, with a personal local concierge.",

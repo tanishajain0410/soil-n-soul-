@@ -899,6 +899,104 @@ body:has(:where(.about-page-root,.exp-page-root,.journey-page,.journey-detail-pa
   }
 }
 
+/* Keep the shared navigation and service layouts inside very narrow screens. */
+@media (max-width: 380px) {
+  .exp-nav-header,
+  .exp-nav-header.scrolled {
+    padding-inline: 10px !important;
+  }
+
+  .exp-page-root .exp-nav-inner {
+    gap: 6px !important;
+  }
+
+  .exp-page-root .exp-nav-logo {
+    width: min(25vw, 92px) !important;
+    max-width: 92px !important;
+    flex: 0 1 92px;
+  }
+
+  .exp-page-root .exp-nav-actions {
+    gap: 5px !important;
+    flex: 0 0 auto;
+  }
+
+  .exp-page-root .exp-nav-wa-btn,
+  .exp-page-root .exp-nav-menu-btn {
+    width: 32px !important;
+    height: 32px !important;
+    flex: 0 0 32px;
+  }
+
+  .exp-page-root .exp-nav-cta-btn {
+    width: 32px !important;
+    height: 32px !important;
+    padding-inline: 0 !important;
+    justify-content: center;
+    flex: 0 0 32px;
+  }
+}
+
+@media (max-width: 640px) {
+  .service-detail-page > section:first-child {
+    padding-top: clamp(104px, 28vw, 132px);
+    padding-bottom: 36px;
+  }
+
+  .service-detail-page > section:not(:first-child) {
+    padding-top: clamp(32px, 8vw, 48px);
+    padding-bottom: clamp(32px, 8vw, 48px);
+  }
+
+  .service-detail-page > section:not(:first-child) > .max-w-7xl,
+  .service-detail-page > section:not(:first-child) .max-w-7xl {
+    padding-left: max(16px, env(safe-area-inset-left));
+    padding-right: max(16px, env(safe-area-inset-right));
+  }
+
+  .service-detail-page > section:not(:first-child) .grid {
+    min-width: 0;
+  }
+
+  .service-detail-page :where(h1, h2, h3, p, a, button, span) {
+    overflow-wrap: anywhere;
+  }
+
+  .service-detail-page form,
+  .service-detail-page aside {
+    min-width: 0;
+    padding: clamp(16px, 5vw, 24px) !important;
+  }
+
+  .service-detail-page input,
+  .service-detail-page textarea,
+  .service-detail-page select {
+    min-width: 0;
+    max-width: 100%;
+    font-size: 16px !important;
+  }
+}
+
+@media (max-width: 380px) {
+  .service-detail-page > section:first-child nav {
+    flex-wrap: wrap;
+    row-gap: 4px;
+  }
+
+  .service-detail-page > section:first-child nav > :last-child {
+    min-width: 0;
+  }
+
+  .service-detail-page > section:first-child .flex.items-center.gap-4 {
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .service-detail-page :where(.flex.items-center.justify-between) {
+    align-items: flex-start;
+  }
+}
+
 /* Sacred Kashi typography matches the approved Taste of Kashi treatment. */
 .exp-page-root #sacred-kashi .exp-number-tag,
 .exp-page-root #sacred-kashi .exp-category-tag {
@@ -1407,10 +1505,24 @@ body:has(:where(.about-page-root,.exp-page-root,.journey-page,.journey-detail-pa
 }
 
 @media (max-width:760px) {
-  .jcat-page .jcat-hero { min-height:clamp(570px,84svh,740px)!important; padding:110px 20px 142px!important; }
+  .reference-homepage .hero-reference-section { height:100svh; min-height:820px; }
+  .reference-homepage .hero-content-block {
+    top:10%;
+    left:21px;
+    width:calc(100% - 42px);
+    max-height:none;
+    margin:0;
+  }
+  .reference-homepage .home-benefits-band {
+    top:auto;
+    bottom:12px;
+    padding:0 10px;
+  }
+  .jcat-page .jcat-hero { min-height:0!important; height:auto!important; padding:104px 20px 28px!important; gap:26px!important; }
+  .jcat-page .jcat-hero-content { width:100%; }
   .jcat-page .jcat-hero-title { font-size:clamp(52px,13vw,74px)!important; }
   .jcat-page .jcat-hero-desc { font-size:14px!important; }
-  .jcat-page .jcat-hero-strip { position:relative!important; left:auto!important; right:auto!important; bottom:auto!important; transform:none!important; width:calc(100% - 28px)!important; margin:-12px auto 20px!important; border-radius:22px!important; }
+  .jcat-page .jcat-hero-strip { position:relative!important; left:auto!important; right:auto!important; bottom:auto!important; transform:none!important; flex:0 0 auto; width:100%!important; margin:0!important; border-radius:22px!important; }
   .jcat-page .jcat-hero-strip-inner { padding:14px 12px!important; gap:7px!important; }
   .jcat-page .jcat-strip-item { justify-content:flex-start!important; gap:9px!important; padding:9px!important; }
   .jcat-page .jcat-strip-label { font-size:10px!important; line-height:1.3; }
@@ -1438,6 +1550,7 @@ body:has(:where(.about-page-root,.exp-page-root,.journey-page,.journey-detail-pa
 }
 
 @media (max-width:520px) {
+  .jcat-page .jcat-hero { padding-top:96px!important; gap:22px!important; }
   .jcat-page .jcat-hero-strip-inner { grid-template-columns:repeat(2,minmax(0,1fr))!important; }
   .jcat-page .jcat-exp-grid,
   .jcat-page .jcat-itin-grid { grid-template-columns:minmax(0,1fr)!important; max-width:460px; }
@@ -1710,5 +1823,69 @@ body:has(:where(.about-page-root,.exp-page-root,.journey-page,.journey-detail-pa
   .exp-page-root .exp-split-section {
     padding-top: clamp(28px, 6vw, 36px) !important;
     padding-bottom: clamp(28px, 6vw, 36px) !important;
+  }
+
+  .about-page-root .about-story-paragraphs p,
+  .about-page-root .about-founder-story-body p {
+    font-size: 15px !important;
+    line-height: 1.65 !important;
+    margin-bottom: 0 !important;
+  }
+
+  .about-page-root .about-story-paragraphs {
+    gap: 16px !important;
+  }
+
+  .about-page-root .about-founder-facts {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 12px !important;
+  }
+
+  .about-page-root .about-founder-facts > div {
+    min-width: 0;
+    padding: 12px 8px 0 !important;
+  }
+
+  .about-page-root .about-founder-facts strong {
+    font-size: clamp(20px, 5vw, 26px) !important;
+    line-height: 1.15 !important;
+  }
+
+  .about-page-root .about-founder-facts span {
+    display: block;
+    font-size: 11px !important;
+    line-height: 1.4 !important;
+    letter-spacing: .04em !important;
+  }
+
+  .about-page-root .about-founder-signoff,
+  .about-page-root .about-founder-signature {
+    font-size: 17px !important;
+    line-height: 1.45 !important;
+  }
+}
+
+@media(max-width:380px) {
+  .about-page-root .about-story-section {
+    padding-left: 18px !important;
+    padding-right: 18px !important;
+  }
+
+  .about-page-root .about-story-paragraphs p,
+  .about-page-root .about-founder-story-body p {
+    font-size: 14px !important;
+    line-height: 1.62 !important;
+  }
+
+  .about-page-root .about-founder-facts {
+    gap: 6px !important;
+  }
+
+  .about-page-root .about-founder-facts > div {
+    padding-inline: 4px !important;
+  }
+
+  .about-page-root .about-founder-facts span {
+    font-size: 10px !important;
   }
 }

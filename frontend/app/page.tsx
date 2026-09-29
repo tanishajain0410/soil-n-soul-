@@ -3,7 +3,7 @@ import HomeClient from "./HomeClient";
 
 export const revalidate = 3600;
 export const metadata: Metadata = {
-  title: { absolute: "Varanasi Experiences | Soil n Soul" },
+  title: { absolute: "Soil n Soul Travels" },
   description:
     "Curated Varanasi experiences, soulful stays and deeply personal journeys in the world's oldest living city.",
   alternates: { canonical: "/" },

@@ -431,7 +431,7 @@ export default function BlogClient({ posts = [] }: { posts: Preview[] }) {
                 src="/images/journal-ref/newsletter_ghats_hd.jpg"
                 alt="A quiet moment on the Varanasi ghats"
                 fill
-                sizes="(max-width: 1024px) 0vw, 280px"
+                sizes="(max-width: 700px) 100vw, (max-width: 1024px) 260px, 280px"
                 className="journal-newsletter-photo"
               />
             </div>

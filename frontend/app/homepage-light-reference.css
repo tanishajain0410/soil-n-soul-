@@ -561,7 +561,7 @@ body:has(.reference-homepage) {
   .reference-homepage .hero-feeling-title { font-size: clamp(41px, 13vw, 57px); }
   .home-live-stats-band { padding-inline: 12px; }
   .home-live-stats-panel { border-radius: 0 0 22px 22px; }
-  .home-benefits-band { bottom: 10px; padding: 0 10px; }
+  .home-benefits-band { bottom: auto; top: 448px; padding: 0 10px; }
   .home-benefits-panel { min-height: 0; display: block; padding: 13px 14px 11px; border-radius: 20px; }
   .home-benefits-items { grid-template-columns: 1fr 1fr; gap: 0; }
   .home-benefit-item { min-height: 46px; padding: 0 9px; border-right: 1px solid rgba(236,194,121,.22); border-bottom: 1px solid rgba(236,194,121,.18); white-space: normal; line-height: 1.35; }
@@ -626,13 +626,39 @@ body:has(.reference-homepage) {
   .reference-homepage .enquiry-info-col,
   .reference-homepage .enquiry-form-col { padding: 26px 20px; }
   .home-final-cta { margin-inline: 12px; border-radius: 22px; }
-  .philosophy-stats { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .philosophy-stats {
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    overflow: hidden;
+    border: 1px solid rgba(167, 121, 55, .22);
+    border-radius: 16px;
+    background: linear-gradient(135deg, #f7ead5, #efddc2);
+  }
   .philosophy-stat,
   .philosophy-stat-one,
   .philosophy-stat-two,
   .philosophy-stat-three,
-  .philosophy-stat-four { min-height: 142px; border-radius: 14px; }
-  .philosophy-stats-caption { font-size: 11.5px; letter-spacing: 1.5px; }
+  .philosophy-stat-four {
+    min-height: 112px;
+    padding: 15px 14px;
+    border-radius: 0;
+    box-shadow: none;
+    background: transparent;
+    color: #431810;
+  }
+  .philosophy-stat:nth-child(odd) { border-right: 1px solid rgba(126, 81, 43, .2); }
+  .philosophy-stat:nth-child(-n+2) { border-bottom: 1px solid rgba(126, 81, 43, .2); }
+  .philosophy-stat-four { background: linear-gradient(150deg, #57261d, #35150f); color: #fff8ec; }
+  .philosophy-stat strong { font-size: 32px; }
+  .philosophy-stat span { margin-top: 7px; font-size: 12px; }
+  .philosophy-stats-caption {
+    margin: 0;
+    padding: 11px 12px;
+    border-top: 1px solid rgba(126, 81, 43, .3);
+    background: #fbf6ed;
+    font-size: 10px;
+    letter-spacing: 1.1px;
+  }
 }
 
 @media (max-width: 520px) {
@@ -1032,4 +1058,66 @@ body:has(.reference-homepage) {
   .reference-homepage .home-founder-facts { grid-template-columns: 1fr; }
   .reference-contact-card { grid-template-columns: 36px minmax(0, 1fr); }
   .reference-contact-card button { grid-column: 2; justify-self: start; }
+}
+
+@media (max-width: 420px) {
+  .reference-homepage .home-founder-facts {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 0 !important;
+    margin-top: 16px;
+  }
+
+  .reference-homepage .home-founder-facts > div {
+    min-width: 0;
+    padding: 11px 5px 0 0;
+  }
+
+  .reference-homepage .home-founder-facts > div + div {
+    padding-left: 8px;
+  }
+
+  .reference-homepage .home-founder-facts > div + div::before {
+    left: 8px;
+  }
+
+  .reference-homepage .home-founder-facts strong {
+    font-size: clamp(21px, 7vw, 27px);
+    line-height: 1.1;
+  }
+
+  .reference-homepage .home-founder-facts span {
+    font-size: clamp(9px, 2.8vw, 11px);
+    line-height: 1.35;
+    letter-spacing: .025em;
+    overflow-wrap: normal;
+  }
+
+  .reference-homepage .home-founder-signoff {
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 2px 8px;
+    margin-top: 14px;
+  }
+
+  .reference-homepage .home-founder-signoff span {
+    font-size: 21px;
+    line-height: 1.25;
+  }
+
+  .reference-homepage .home-founder-signoff small {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .reference-homepage .home-founder-actions {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 6px;
+  }
+
+  .reference-homepage .home-founder-signature {
+    font-size: 21px;
+    line-height: 1.3;
+  }
 }

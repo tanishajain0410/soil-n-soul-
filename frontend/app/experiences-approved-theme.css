@@ -59,6 +59,32 @@ body:has(.exp-page-root) .footer-reference{background:#190a07}
 .exp-page-root .exp-nav-link.active:after{background:#d6b875}
 @media(max-width:900px){.exp-page-root .exp-intro-container{grid-template-columns:1fr 1fr}.exp-page-root .exp-approach-features{position:static;transform:none;width:100%;grid-column:1/-1;margin-top:24px}.exp-page-root .exp-custom-journey{grid-template-columns:1fr 1.2fr}.exp-page-root .exp-interest-card{grid-column:1/-1}.exp-page-root .exp-traveller-stories{grid-template-columns:1fr}.exp-page-root .exp-testimonial-grid{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:640px){.exp-page-root .exp-hero-section{min-height:700px;min-height:90svh}.exp-page-root .exp-hero-content{padding:110px 22px 80px}.exp-page-root .exp-hero-heading{font-size:clamp(44px,12vw,62px)}.exp-page-root .exp-watch-story{right:22px;bottom:25px}.exp-page-root .exp-intro-section{padding:56px 22px}.exp-page-root .exp-intro-container{grid-template-columns:1fr;gap:20px}.exp-page-root .exp-approach-image{width:72%;height:270px;margin:5px auto 16px}.exp-page-root .exp-approach-quote{font-size:24px}.exp-page-root .exp-approach-features{display:grid;grid-template-columns:1fr 1fr;gap:12px}.exp-page-root .exp-split-section{padding:56px 22px}.exp-page-root .exp-split-container,.exp-page-root .exp-split-reverse{display:flex;flex-direction:column;gap:27px}.exp-page-root .exp-split-reverse .exp-image-col{order:2}.exp-page-root .exp-main-image-wrap{height:clamp(260px,78vw,350px)}.exp-page-root .exp-inset-card{width:94px;height:108px;right:4px;bottom:-10px}.exp-page-root .exp-content-col{width:100%}.exp-page-root .exp-title{font-size:40px}.exp-page-root .exp-custom-journey{grid-template-columns:1fr;padding:60px 22px;gap:24px}.exp-page-root .exp-route-map{height:230px}.exp-page-root .exp-interest-card{grid-column:auto}.exp-page-root .exp-traveller-stories{padding:60px 22px;gap:25px}.exp-page-root .exp-testimonial-grid{grid-template-columns:1fr;gap:14px}.exp-page-root .exp-testimonial-card{display:grid;grid-template-columns:100px 1fr;align-items:center;padding:0 12px 10px 0}.exp-page-root .exp-testimonial-photo{height:100%;min-height:120px;grid-row:span 3}.exp-page-root .exp-testimonial-card p{margin:12px 4px 7px}.exp-page-root .exp-testimonial-card strong,.exp-page-root .exp-testimonial-card small{margin:0 4px}.exp-page-root #enquiry .enquiry-section-reference{padding-block:58px}}
+
+@media(max-width:640px){
+  /* Keep the first experience image and copy close together on narrow screens. */
+  .exp-page-root #sacred-kashi { min-height:0; padding:34px 22px 42px; }
+  .exp-page-root #sacred-kashi .exp-split-container {
+    display:flex;
+    flex-direction:column;
+    align-items:stretch;
+    gap:22px;
+  }
+  .exp-page-root #sacred-kashi .exp-image-col { width:100%; max-width:420px; margin:0 auto; }
+  .exp-page-root #sacred-kashi .exp-main-image-wrap {
+    width:100%;
+    height:clamp(220px,64vw,280px);
+    border-radius:20px;
+  }
+  .exp-page-root #sacred-kashi .exp-inset-card { width:82px; height:96px; right:8px; bottom:-8px; }
+  .exp-page-root #sacred-kashi .exp-content-col { width:100%; }
+  .exp-page-root #sacred-kashi .exp-number-tag { margin:0 0 3px; font-size:36px; line-height:1; }
+  .exp-page-root #sacred-kashi .exp-category-tag { margin:0 0 8px; font-size:10px; line-height:1.35; }
+  .exp-page-root #sacred-kashi .exp-title { margin:0 0 10px; font-size:clamp(34px,9vw,40px); line-height:1.05; }
+  .exp-page-root #sacred-kashi .exp-description { margin-bottom:16px; font-size:15px; line-height:1.6; }
+  .exp-page-root #sacred-kashi .exp-bullets-list { gap:10px; margin:0 0 18px; }
+  .exp-page-root #sacred-kashi .exp-bullet-label { font-size:14px; line-height:1.4; }
+  .exp-page-root #sacred-kashi .exp-circle-cta { margin-top:4px; }
+}
 /* Approved Experiences reference refinement: layout-only overrides, page scoped. */
 .exp-page-root {
   --exp-cream-bg: #f6eedf;
@@ -274,4 +300,39 @@ body:has(.exp-page-root) .exp-nav-cta-btn {
   .exp-page-root .exp-testimonial-card strong,
   .exp-page-root .exp-testimonial-card small { margin-inline: 4px; }
   .exp-page-root #enquiry .enquiry-section-reference { padding-block: 52px; }
+}
+
+/* Keep all six experience chapters visually consistent on small screens. */
+@media (max-width: 640px) {
+  .exp-page-root .exp-split-section { min-height:0; padding:38px 22px 44px; }
+  .exp-page-root .exp-split-container,
+  .exp-page-root .exp-split-reverse {
+    display:flex;
+    flex-direction:column;
+    align-items:stretch;
+    gap:22px;
+  }
+  .exp-page-root .exp-split-reverse .exp-image-col { order:-1; }
+  .exp-page-root .exp-image-col { width:100%; max-width:440px; margin:0 auto; }
+  .exp-page-root .exp-main-image-wrap {
+    width:100%;
+    height:clamp(220px,64vw,280px);
+    border-radius:18px;
+  }
+  .exp-page-root .exp-inset-card {
+    width:78px;
+    height:92px;
+    right:8px;
+    bottom:-8px;
+  }
+  .exp-page-root .exp-script-under-inset { margin-top:10px; }
+  .exp-page-root .exp-content-col { width:100%; }
+  .exp-page-root .exp-number-tag { margin:0 0 3px; font-size:36px; line-height:1; }
+  .exp-page-root .exp-category-tag { margin:0 0 8px; font-size:10px; line-height:1.35; }
+  .exp-page-root .exp-title { margin:0 0 10px; font-size:clamp(34px,9vw,40px); line-height:1.05; }
+  .exp-page-root .exp-description { margin-bottom:16px; font-size:14px; line-height:1.58; }
+  .exp-page-root .exp-bullets-list { gap:9px; margin:0 0 18px; }
+  .exp-page-root .exp-bullet-label { font-size:13px; line-height:1.4; }
+  .exp-page-root .exp-circle-cta { margin-top:2px; }
+  .exp-page-root .exp-script-side { position:static; margin-top:12px; font-size:20px; }
 }
