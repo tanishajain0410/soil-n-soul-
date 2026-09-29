@@ -19,6 +19,7 @@ import "./floating-contact.css";
 import "./rounded-ctas.css";
 import "./homepage-light-reference.css";
 import "./site-home-unification.css";
+import "./legal.css";
 import SiteChrome from "@/components/SiteChrome";
 
 const cinzel = Cinzel({

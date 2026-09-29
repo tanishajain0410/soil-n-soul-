@@ -1,5 +1,5 @@
 /* Shared visual language for every public page. Presentation only. */
-:where(.about-page-root,.exp-page-root,.journey-page,.journey-detail-page,.jcat-page,.journal-page-root,.contact-reference-page,.service-detail-page) {
+:where(.about-page-root,.exp-page-root,.journey-page,.journey-detail-page,.jcat-page,.journal-page-root,.contact-reference-page,.service-detail-page,.legal-page-root) {
   --site-cream:#fbf6ed;
   --site-paper:#fffaf2;
   --site-beige:#f3e6d3;
@@ -18,7 +18,7 @@
   color:var(--site-ink);
 }
 
-body:has(:where(.about-page-root,.exp-page-root,.journey-page,.journey-detail-page,.jcat-page,.journal-page-root,.contact-reference-page,.service-detail-page)) {
+body:has(:where(.about-page-root,.exp-page-root,.journey-page,.journey-detail-page,.jcat-page,.journal-page-root,.contact-reference-page,.service-detail-page,.legal-page-root)) {
   background:var(--site-cream);
 }
 
@@ -934,6 +934,55 @@ body:has(:where(.about-page-root,.exp-page-root,.journey-page,.journey-detail-pa
     padding-inline: 0 !important;
     justify-content: center;
     flex: 0 0 32px;
+  }
+}
+
+@media (max-width: 700px) {
+  .journal-page-root .journal-featured-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .journal-page-root .journal-featured-card {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    min-height: 0 !important;
+    aspect-ratio: 1.4;
+  }
+
+  .journal-page-root .journal-featured-card-overlay {
+    min-width: 0;
+    padding: clamp(14px, 4vw, 20px);
+  }
+
+  .journal-page-root .journal-featured-bottom {
+    min-width: 0;
+    align-items: flex-end;
+    gap: 10px;
+  }
+
+  .journal-page-root .journal-featured-bottom-left {
+    flex: 1 1 auto;
+    min-width: 0;
+    max-width: none;
+  }
+
+  .journal-page-root .journal-featured-card-title {
+    font-size: clamp(22px, 6vw, 30px) !important;
+    line-height: 1.08;
+  }
+
+  .journal-page-root .journal-featured-card-desc {
+    font-size: 12px !important;
+    line-height: 1.4 !important;
+  }
+
+  .journal-page-root .journal-featured-circle-btn {
+    flex: 0 0 34px;
+    width: 34px;
+    height: 34px;
   }
 }
 

@@ -488,3 +488,63 @@ body:has(.about-page-root) .exp-nav-header.scrolled .exp-nav-wa-btn {
     white-space: normal;
   }
 }
+
+@media (max-width: 760px) {
+  .about-page-root .about-values-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 0 !important;
+  }
+
+  .about-page-root .about-value-col,
+  .about-page-root .about-value-col:not(:first-child) {
+    display: grid;
+    grid-template-columns: 44px minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    align-items: baseline;
+    column-gap: 18px;
+    row-gap: 5px;
+    padding: 20px 0 !important;
+    border: 0 !important;
+    border-bottom: 1px solid rgba(235, 190, 107, .2) !important;
+  }
+
+  .about-page-root .about-value-col:last-child {
+    border-bottom: 0 !important;
+  }
+
+  .about-page-root .about-value-num {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    align-self: center;
+    justify-self: center;
+    margin: 0 !important;
+    min-width: 44px;
+    text-align: center;
+    font-size: 14px !important;
+    line-height: 1.2;
+  }
+
+  .about-page-root .about-value-icon {
+    display: none !important;
+  }
+
+  .about-page-root .about-value-title,
+  .about-page-root .about-value-text {
+    grid-column: 2;
+    margin: 0 !important;
+    min-width: 0;
+    text-align: left;
+  }
+
+  .about-page-root .about-value-title {
+    grid-row: 1;
+    font-size: 21px !important;
+    line-height: 1.25;
+  }
+
+  .about-page-root .about-value-text {
+    grid-row: 2;
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+  }
+}
