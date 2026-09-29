@@ -908,10 +908,9 @@ export default function HomeClient() {
       <section className="home-founder-section" aria-labelledby="home-founder-title">
         <div className="home-founder-layout">
           <figure className="home-founder-portrait">
-            <div className="home-founder-photo-frame">
-              <Image src="/images/founder.jpg" alt="Anchal Pandey, Founder of Soil & Soul" fill sizes="(max-width: 760px) 82vw, 290px" />
+            <div className="home-founder-reference-art">
+              <Image src="/images/founder-home-reference.png" alt="Anchal Pandey, Founder of Soil & Soul, in a Kashi inspired portrait composition" fill sizes="(max-width: 760px) 92vw, 48vw" />
             </div>
-            <figcaption className="home-founder-name">Anchal Pandey <small>Founder · Banaras, Uttar Pradesh</small></figcaption>
           </figure>
           <div className="home-founder-copy">
             <p className="reference-gold-eyebrow">MEET THE FOUNDER</p>

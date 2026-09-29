@@ -72,7 +72,6 @@ export default function ExperiencesClient() {
             <span>Explore Experiences</span>
             <ArrowRight size={14} />
           </a>
-          <a href="#enquiry" className="exp-watch-story"><span>▶</span> WATCH OUR STORY</a>
         </div>
       </section>
 
@@ -576,7 +575,35 @@ export default function ExperiencesClient() {
       {/* Custom journey map and interest selector */}
       <section className="exp-custom-journey">
         <div className="exp-custom-copy"><p className="exp-gold-eyebrow">WE DESIGN A JOURNEY FOR YOU</p><h2>We draw your Kashi<br />around <em>your needs.</em></h2><p>Whether you’re here for spirituality, culture, food or photography, we create custom experiences around your interests, time and travel style.</p><a href="#enquiry" className="exp-hero-btn">Plan your experiences <ArrowRight size={14} /></a></div>
-        <div className="exp-route-map" aria-label="Illustrated Kashi route map"><svg viewBox="0 0 520 280" role="img" aria-label="Route through Varanasi"><path d="M42 202 C100 160 124 229 185 161 S285 191 330 120 401 122 476 58"/><circle cx="42" cy="202" r="6"/><circle cx="185" cy="161" r="6"/><circle cx="330" cy="120" r="6"/><circle cx="476" cy="58" r="6"/></svg><span className="route-label route-one">Assi Ghat</span><span className="route-label route-two">Dashashwamedh Ghat</span><span className="route-label route-three">Kashi Vishwanath</span><span className="route-label route-four">Sarnath</span><span className="route-label route-five">Ramnagar Fort</span></div>
+        <div className="exp-route-map" aria-label="Illustrated Kashi route map with photographic place markers">
+          <svg viewBox="0 0 520 280" role="img" aria-label="Route through Assi Ghat, Dashashwamedh Ghat, Kashi Vishwanath Mandir, Sarnath and Ramnagar Fort">
+            <defs>
+              <clipPath id="exp-map-assi"><circle cx="42" cy="202" r="21"/></clipPath>
+              <clipPath id="exp-map-dashashwamedh"><circle cx="185" cy="161" r="21"/></clipPath>
+              <clipPath id="exp-map-vishwanath"><circle cx="330" cy="120" r="21"/></clipPath>
+              <clipPath id="exp-map-sarnath"><circle cx="476" cy="58" r="21"/></clipPath>
+              <clipPath id="exp-map-ramnagar"><circle cx="414" cy="220" r="21"/></clipPath>
+            </defs>
+            <path d="M42 202 C100 160 124 229 185 161 S285 191 330 120 401 122 476 58"/>
+            <path className="exp-route-branch" d="M185 161 C260 155 332 173 414 220"/>
+            <g className="exp-photo-marker">
+              <circle cx="42" cy="202" r="24"/><image href="/SnS/assi-ghat.webp" x="21" y="181" width="42" height="42" preserveAspectRatio="xMidYMid slice" clipPath="url(#exp-map-assi)"/><circle className="exp-photo-ring" cx="42" cy="202" r="21"/>
+            </g>
+            <g className="exp-photo-marker">
+              <circle cx="185" cy="161" r="24"/><image href="/SnS/dashashwamedh-ghat.webp" x="164" y="140" width="42" height="42" preserveAspectRatio="xMidYMid slice" clipPath="url(#exp-map-dashashwamedh)"/><circle className="exp-photo-ring" cx="185" cy="161" r="21"/>
+            </g>
+            <g className="exp-photo-marker">
+              <circle cx="330" cy="120" r="24"/><image href="/SnS/kashi-vishwanath.webp" x="309" y="99" width="42" height="42" preserveAspectRatio="xMidYMid slice" clipPath="url(#exp-map-vishwanath)"/><circle className="exp-photo-ring" cx="330" cy="120" r="21"/>
+            </g>
+            <g className="exp-photo-marker">
+              <circle cx="476" cy="58" r="24"/><image href="/SnS/sarnath.webp" x="455" y="37" width="42" height="42" preserveAspectRatio="xMidYMid slice" clipPath="url(#exp-map-sarnath)"/><circle className="exp-photo-ring" cx="476" cy="58" r="21"/>
+            </g>
+            <g className="exp-photo-marker">
+              <circle cx="414" cy="220" r="24"/><image href="/SnS/ramnagar-fort.webp" x="393" y="199" width="42" height="42" preserveAspectRatio="xMidYMid slice" clipPath="url(#exp-map-ramnagar)"/><circle className="exp-photo-ring" cx="414" cy="220" r="21"/>
+            </g>
+          </svg>
+          <span className="route-label route-one">Assi Ghat</span><span className="route-label route-two">Dashashwamedh Ghat</span><span className="route-label route-three">Kashi Vishwanath Mandir</span><span className="route-label route-four">Sarnath</span><span className="route-label route-five">Ramnagar Fort</span>
+        </div>
         <div className="exp-interest-card"><h3>Tell us your interests</h3>{["Spiritual & Temples","Culture & Heritage","Food & Culinary","Photography","Local Life & Markets","Festivals & Events"].map((item)=><label key={item}><input type="checkbox" />{item}</label>)}</div>
       </section>
 

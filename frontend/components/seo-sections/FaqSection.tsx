@@ -7,9 +7,9 @@ export default function FaqSection() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   return (
-    <section className="py-20 bg-[#1A120B]" id="faq">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
+    <section className="site-faq-section py-20 bg-[#1A120B]" id="faq">
+      <div className="site-faq-inner max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="site-faq-intro text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             Frequently Asked Questions - Varanasi Tour & Travel Agency
           </h2>
@@ -19,9 +19,9 @@ export default function FaqSection() {
           </p>
         </div>
 
-        <div className="space-y-4">
+        <div className="site-faq-list space-y-4">
           {FAQS.map((faq, idx) => (
-            <div key={idx} className="border border-white/10 rounded-xl overflow-hidden bg-[#23160f]">
+            <div key={idx} className={`site-faq-item border border-white/10 rounded-xl overflow-hidden bg-[#23160f]${openFaq === idx ? ' is-open' : ''}`}>
               <button
                 className="w-full text-left flex justify-between items-center px-6 py-5 hover:bg-white/5 transition-colors"
                 onClick={() => setOpenFaq(openFaq === idx ? null : idx)}

@@ -1,0 +1,1714 @@
+/* Shared visual language for every public page. Presentation only. */
+:where(.about-page-root,.exp-page-root,.journey-page,.journey-detail-page,.jcat-page,.journal-page-root,.contact-reference-page,.service-detail-page) {
+  --site-cream:#fbf6ed;
+  --site-paper:#fffaf2;
+  --site-beige:#f3e6d3;
+  --site-sand:#ead8bc;
+  --site-ink:#35170f;
+  --site-muted:#70594a;
+  --site-rust:#91341e;
+  --site-rust-deep:#742615;
+  --site-brown:#2c120d;
+  --site-gold:#d9ad57;
+  --site-line:rgba(151,98,47,.2);
+  --site-shadow:0 18px 42px rgba(67,36,19,.1);
+  background:
+    radial-gradient(circle at 8% 12%,rgba(220,170,93,.08),transparent 22%),
+    linear-gradient(180deg,var(--site-paper),var(--site-cream));
+  color:var(--site-ink);
+}
+
+body:has(:where(.about-page-root,.exp-page-root,.journey-page,.journey-detail-page,.jcat-page,.journal-page-root,.contact-reference-page,.service-detail-page)) {
+  background:var(--site-cream);
+}
+
+/* Light sections */
+:where(.about-page-root .about-story-section,
+  .about-page-root .about-philosophy-section,
+  .about-page-root .about-kashi-gallery,
+  .exp-page-root .exp-intro-section,
+  .exp-page-root .exp-split-cream,
+  .exp-page-root .exp-custom-journey,
+  .journey-page .journey-editorial,
+  .journey-page .journey-themes,
+  .journey-page .journey-stories,
+  .jcat-page .jcat-intro,
+  .jcat-page .jcat-story,
+  .jcat-page .jcat-itineraries,
+  .journal-page-root .journal-intro,
+  .journal-page-root .journal-grid-section,
+  .journal-page-root .blog-interest-section,
+  .contact-reference-page .contact-reference-values,
+  .contact-reference-page .contact-details-faq) {
+  background:
+    radial-gradient(circle at 90% 8%,rgba(222,177,106,.09),transparent 28%),
+    linear-gradient(135deg,#fffaf2 0%,#f5e9d7 100%);
+  color:var(--site-ink);
+}
+
+/* Rich editorial sections, matching the homepage rust and brown groups. */
+:where(.about-page-root .about-way-section,
+  .exp-page-root .exp-split-dark,
+  .exp-page-root .exp-traveller-stories,
+  .journey-page .journey-custom,
+  .jcat-page .jcat-experiences,
+  .jcat-page .jcat-testimonial,
+  .journal-page-root .journal-featured-section,
+  .contact-reference-page .contact-connection-section,
+  .contact-reference-page .contact-founder-quote) {
+  background:
+    radial-gradient(circle at 88% 8%,rgba(225,148,76,.15),transparent 30%),
+    linear-gradient(120deg,var(--site-rust-deep),var(--site-rust));
+}
+
+/* Consistent rounded media and card treatment. */
+:where(.about-page-root,.exp-page-root,.journey-page,.journey-detail-page,.jcat-page,.journal-page-root,.contact-reference-page,.service-detail-page)
+  :where([class*="-card"],[class*="-panel"],[class*="-tile"],[class*="-frame"],[class*="-box"]) {
+  border-radius:20px!important;
+}
+
+:where(.about-page-root,.exp-page-root,.journey-page,.journey-detail-page,.jcat-page,.journal-page-root,.contact-reference-page,.service-detail-page)
+  :where(article,[class*="-card"],[class*="-panel"],[class*="-tile"]) {
+  border-color:var(--site-line);
+}
+
+:where(.about-page-root,.exp-page-root,.journey-page,.journey-detail-page,.jcat-page,.journal-page-root,.contact-reference-page,.service-detail-page)
+  :where([class*="-card"],[class*="-panel"]):not(.enquiry-info-col):not(.enquiry-form-col) {
+  box-shadow:var(--site-shadow);
+}
+
+:where(.about-page-root,.exp-page-root,.journey-page,.journey-detail-page,.jcat-page,.journal-page-root,.contact-reference-page,.service-detail-page)
+  :where(img,video) {
+  border-radius:inherit;
+}
+
+/* Shared pill actions. */
+:where(.about-page-root,.exp-page-root,.journey-page,.journey-detail-page,.jcat-page,.journal-page-root,.contact-reference-page,.service-detail-page)
+  :where(a[class*="btn"],button[class*="btn"],a[class*="cta"],button[class*="cta"]) {
+  border-radius:999px!important;
+}
+
+/* Exact homepage-style page surfaces. */
+.about-page-root,
+.exp-page-root,
+.journal-page-root,
+.journey-page,
+.contact-reference-page {
+  background:linear-gradient(180deg,#fffaf2 0%,#f6ecdd 100%)!important;
+}
+
+.about-page-root .about-story-section,
+.about-page-root .about-way-section,
+.about-page-root .about-kashi-gallery,
+.exp-page-root .exp-intro-section,
+.exp-page-root .exp-split-cream,
+.exp-page-root .exp-custom-journey,
+.exp-page-root .exp-traveller-stories,
+.journal-page-root .journal-intro,
+.journal-page-root .journal-featured-section,
+.journal-page-root .journal-grid-section,
+.journal-page-root .blog-interest-section,
+.journal-page-root .blog-founder-quote,
+.journey-page .journey-editorial,
+.journey-page .journey-themes,
+.journey-page .journey-stories,
+.contact-reference-page .contact-reference-values,
+.contact-reference-page .contact-details-faq,
+.contact-reference-page .contact-founder-quote {
+  background:
+    radial-gradient(circle at 88% 10%,rgba(222,177,106,.1),transparent 28%),
+    linear-gradient(135deg,#fffaf2 0%,#f4e7d4 100%)!important;
+  color:var(--site-ink)!important;
+}
+
+.about-page-root .about-philosophy-section,
+.exp-page-root .exp-split-dark,
+.journey-page .journey-custom,
+.contact-reference-page .contact-connection-section {
+  background:
+    radial-gradient(circle at 88% 10%,rgba(242,181,96,.17),transparent 29%),
+    radial-gradient(circle at 7% 92%,rgba(101,24,14,.15),transparent 31%),
+    linear-gradient(120deg,#a33a20 0%,#7f2818 100%)!important;
+}
+
+.about-page-root .about-story-section :where(h2,h3),
+.about-page-root .about-way-section :where(h2,h3),
+.about-page-root .about-kashi-gallery :where(h2,h3),
+.exp-page-root .exp-intro-section :where(h2,h3),
+.exp-page-root .exp-split-cream :where(h2,h3),
+.exp-page-root .exp-custom-journey :where(h2,h3),
+.exp-page-root .exp-traveller-stories :where(h2,h3),
+.journal-page-root :where(.journal-intro,.journal-featured-section,.journal-grid-section,.blog-interest-section,.blog-founder-quote) :where(h2,h3),
+.journey-page :where(.journey-editorial,.journey-themes,.journey-stories) :where(h2,h3),
+.contact-reference-page :where(.contact-reference-values,.contact-details-faq,.contact-founder-quote) :where(h2,h3) {
+  color:var(--site-ink)!important;
+}
+
+.about-page-root .about-story-section p,
+.about-page-root .about-way-section p,
+.about-page-root .about-kashi-gallery p,
+.exp-page-root .exp-intro-section p,
+.exp-page-root .exp-split-cream p,
+.exp-page-root .exp-custom-journey p,
+.exp-page-root .exp-traveller-stories p,
+.journal-page-root :where(.journal-intro,.journal-featured-section,.journal-grid-section,.blog-interest-section,.blog-founder-quote) p,
+.journey-page :where(.journey-editorial,.journey-themes,.journey-stories) p,
+.contact-reference-page :where(.contact-reference-values,.contact-details-faq,.contact-founder-quote) p {
+  color:var(--site-muted)!important;
+}
+
+/* Home-style cards: soft paper, generous corners, restrained shadows. */
+.about-page-root :where(.about-story-card,.about-way-card,.about-philosophy-card,.about-gallery-card),
+.exp-page-root :where(.exp-intro-card,.exp-service-card,.exp-testimonial-card,.exp-custom-card),
+.journal-page-root :where(.journal-featured-card,.journal-card,.blog-interest-card),
+.journey-page :where(.journey-editorial-card,.journey-theme-card,.journey-story-card),
+.contact-reference-page :where(.contact-value-card,.contact-detail-card,.contact-faq-card,.contact-connection-card) {
+  overflow:hidden;
+  border:1px solid rgba(177,119,50,.2)!important;
+  border-radius:24px!important;
+  background:linear-gradient(155deg,rgba(255,253,248,.98),rgba(245,230,207,.96))!important;
+  box-shadow:0 18px 42px rgba(67,36,19,.1)!important;
+}
+
+/* Keep the philosophy copy legible on its warm rust background. */
+.about-page-root .about-philosophy-section .about-eyebrow {
+  color:#f2bd59!important;
+  font-size:15px!important;
+  font-weight:700!important;
+  line-height:1.2;
+  letter-spacing:.2em!important;
+  margin-bottom:24px!important;
+}
+
+.about-page-root .about-philosophy-section .about-philosophy-heading {
+  color:#fff8ec!important;
+  text-shadow:0 2px 18px rgba(45,13,7,.22);
+}
+
+.about-page-root .about-philosophy-section .about-philosophy-desc {
+  color:#f6e6d2!important;
+}
+
+.about-page-root .about-philosophy-section .about-philosophy-card {
+  min-height:0;
+  padding-bottom:16px;
+}
+
+.about-page-root .about-philosophy-section .about-phil-card-title,
+.about-page-root .about-philosophy-section .about-phil-card-sub {
+  padding-inline:16px;
+}
+
+.about-page-root .about-philosophy-section .about-phil-card-title {
+  color:#35170f!important;
+  line-height:1.08;
+  margin:2px 0 5px!important;
+}
+
+.about-page-root .about-philosophy-section .about-phil-card-sub {
+  color:#6d5144!important;
+  font-size:11px!important;
+  line-height:1.35;
+}
+
+/* Give the Kashi gallery a stronger editorial heading and softer image frames. */
+.about-page-root .about-kashi-gallery .about-eyebrow {
+  font-size:15px!important;
+  font-weight:700!important;
+  line-height:1.2;
+  letter-spacing:.2em!important;
+  margin-bottom:26px!important;
+}
+
+.about-page-root .about-kashi-gallery h2 {
+  font-size:clamp(54px,5.4vw,78px)!important;
+  line-height:.92!important;
+}
+
+.about-page-root .about-kashi-gallery-image {
+  border-radius:24px!important;
+  box-shadow:0 16px 34px rgba(60,32,18,.12);
+}
+
+@media (max-width:700px) {
+  .about-page-root .about-kashi-gallery h2 {
+    font-size:clamp(46px,14vw,62px)!important;
+  }
+
+  .about-page-root .about-kashi-gallery-image {
+    border-radius:20px!important;
+  }
+}
+
+/* Restore high contrast inside the dark Notes from Banaras panel. */
+.journal-page-root .journal-featured-right .journal-featured-notes-title {
+  color:#fff7e9!important;
+  text-shadow:0 2px 16px rgba(0,0,0,.2);
+}
+
+.journal-page-root .journal-featured-right .journal-featured-notes-desc {
+  color:#ead8c3!important;
+}
+
+.journal-page-root .journal-featured-right .journal-featured-notes-link {
+  color:#f2bd59!important;
+  border-color:#f2bd59!important;
+}
+
+.journal-page-root .journal-featured-right .journal-eyebrow {
+  color:#f3bd55!important;
+}
+
+.journal-page-root .journal-featured-right .blog-mini-newsletter input {
+  color:#34170f!important;
+  background:#fff8e9!important;
+}
+
+.journal-page-root .journal-featured-right .blog-mini-newsletter input::placeholder {
+  color:#725b50!important;
+  opacity:1;
+}
+
+/* Media frames follow the homepage's large rounded visual treatment. */
+.about-page-root :where(.about-story-image,.about-gallery-image,.about-founder-photo),
+.exp-page-root :where(.exp-split-image-wrap,.exp-card-image,.exp-testimonial-photo),
+.journal-page-root :where(.journal-featured-image,.journal-card-image,.blog-interest-image),
+.journey-page :where(.journey-editorial-image,.journey-theme-image,.journey-story-image),
+.contact-reference-page :where(.contact-connection-image,.contact-map-photo) {
+  overflow:hidden;
+  border-radius:24px!important;
+}
+
+/* Balanced section containers and rhythm across all inner pages. */
+.about-page-root :where(.about-story-section,.about-way-section,.about-philosophy-section,.about-kashi-gallery),
+.exp-page-root :where(.exp-intro-section,.exp-custom-journey,.exp-traveller-stories),
+.journal-page-root :where(.journal-intro,.journal-featured-section,.journal-grid-section,.blog-interest-section),
+.journey-page :where(.journey-editorial,.journey-themes,.journey-custom,.journey-stories),
+.contact-reference-page :where(.contact-connection-section,.contact-details-faq) {
+  padding-top: clamp(44px, 5vw, 68px) !important;
+  padding-bottom: clamp(44px, 5vw, 68px) !important;
+}
+
+/* Consecutive experience split sections: compact vertical padding to remove excessive 184px spacing gaps */
+.exp-page-root .exp-split-section {
+  padding-top: clamp(34px, 3.6vw, 48px) !important;
+  padding-bottom: clamp(34px, 3.6vw, 48px) !important;
+}
+
+/* Single-line feature/values strips: tightened to prevent vast empty bands */
+.journey-page .journey-values-strip,
+.contact-reference-page .contact-reference-values {
+  padding-top: clamp(22px, 2.4vw, 34px) !important;
+  padding-bottom: clamp(22px, 2.4vw, 34px) !important;
+}
+
+/* Standalone quotes and newsletter strips: balanced padding */
+.journal-page-root .journal-newsletter-section,
+.journal-page-root .blog-founder-quote,
+.contact-reference-page .contact-founder-quote {
+  padding-top: clamp(38px, 4vw, 54px) !important;
+  padding-bottom: clamp(38px, 4vw, 54px) !important;
+}
+
+/* Enquiry section: balanced spacing above and below */
+:where(.about-page-root, .exp-page-root, .journal-page-root, .journey-page, .contact-reference-page) .enquiry-section-reference {
+  padding-top: clamp(46px, 4.8vw, 68px) !important;
+  padding-bottom: clamp(46px, 4.8vw, 68px) !important;
+}
+
+.about-page-root :where(h2,h3),
+.exp-page-root :where(h2,h3),
+.journal-page-root :where(h2,h3),
+.journey-page :where(h2,h3),
+.contact-reference-page :where(h2,h3) {
+  font-family: var(--sns-font-cormorant), Georgia, serif;
+  font-weight: 500;
+}
+
+/* Newsletter and form panels use the same split-paper treatment as Home. */
+.journal-page-root .journal-newsletter-section {
+  background:linear-gradient(135deg,#f1dfc5,#fff8ed)!important;
+}
+
+.journal-page-root .journal-newsletter-section .journal-newsletter-title {
+  color:#35170f!important;
+}
+
+.journal-page-root .journal-newsletter-section .journal-newsletter-desc,
+.journal-page-root .journal-newsletter-section .journal-newsletter-subnote {
+  color:#765e50!important;
+}
+
+.journal-page-root .journal-newsletter-section .journal-newsletter-photo-col {
+  border-radius:24px!important;
+  box-shadow:0 16px 36px rgba(59,31,17,.14);
+}
+
+.journal-page-root .journal-newsletter-section .journal-newsletter-input {
+  color:#35170f!important;
+  background:rgba(255,252,246,.92)!important;
+  border:1px solid rgba(132,82,42,.32)!important;
+  border-radius:14px!important;
+  padding:14px 16px!important;
+}
+
+.journal-page-root .journal-newsletter-section .journal-newsletter-input::placeholder {
+  color:#80695c!important;
+  opacity:1;
+}
+
+.journal-page-root .journal-newsletter-section .journal-newsletter-btn {
+  border-radius:999px!important;
+  padding:14px 22px!important;
+}
+
+/* Keep article navigation arrows comfortably inside their cards. */
+.journal-page-root .journal-card {
+  background:linear-gradient(155deg,#f1dfc4 0%,#e8cfaa 100%)!important;
+  border-color:rgba(153,91,36,.28)!important;
+}
+
+.journal-page-root .journal-grid-section {
+  background:
+    radial-gradient(circle at 84% 12%,rgba(238,163,83,.16),transparent 31%),
+    radial-gradient(circle at 8% 88%,rgba(92,23,13,.15),transparent 34%),
+    linear-gradient(120deg,#a83b21 0%,#8f2d1b 52%,#a33a20 100%)!important;
+}
+
+@media (min-width:1100px) {
+  .journal-page-root .journal-cards-grid {
+    grid-template-columns:repeat(5,minmax(0,1fr))!important;
+  }
+}
+
+.journal-page-root .journal-card .journal-card-media {
+  margin-bottom:0!important;
+}
+
+.journal-page-root .journal-card .journal-card-body {
+  padding:14px 16px 16px;
+}
+
+.journal-page-root .journal-card .journal-card-footer {
+  min-height:36px;
+  padding-top:8px;
+}
+
+.journal-page-root .journal-card .journal-card-arrow-btn {
+  width:34px!important;
+  height:34px!important;
+  flex:0 0 34px;
+  border-width:1px;
+  background:#fff8ea;
+  box-shadow:0 6px 15px rgba(78,40,20,.1);
+}
+
+/* Lock the shared enquiry card into a clean split layout on Blog. */
+.journal-page-root .enquiry-section-reference .reference-trip-shell {
+  display:grid!important;
+  grid-template-columns:minmax(0,.86fr) minmax(0,1.14fr)!important;
+  gap:0!important;
+  width:min(1160px,100%)!important;
+}
+
+.journal-page-root .enquiry-section-reference .reference-trip-intro {
+  grid-column:1!important;
+  grid-row:1!important;
+  width:100%!important;
+}
+
+.journal-page-root .enquiry-section-reference .reference-trip-form-wrap {
+  grid-column:2!important;
+  grid-row:1!important;
+  width:100%!important;
+  min-width:0;
+}
+
+/* Contact page: keep the enquiry form directly beside its image panel. */
+.contact-reference-page .contact-enquiry-reference .reference-trip-shell {
+  display:grid!important;
+  grid-template-columns:minmax(0,.86fr) minmax(0,1.14fr)!important;
+  grid-template-rows:auto!important;
+  gap:0!important;
+  width:min(1160px,100%)!important;
+}
+
+.contact-reference-page .contact-enquiry-reference .reference-trip-intro {
+  grid-column:1!important;
+  grid-row:1!important;
+  width:100%!important;
+}
+
+.contact-reference-page .contact-enquiry-reference .reference-trip-form-wrap {
+  grid-column:2!important;
+  grid-row:1!important;
+  width:100%!important;
+  min-width:0;
+}
+
+/* High contrast copy for the rust Contact connection section. */
+.contact-reference-page .contact-connection-section .contact-ref-eyebrow {
+  color:#f2bd59!important;
+}
+
+.contact-reference-page .contact-connection-section .contact-connection-copy h2 {
+  color:#fff8ec!important;
+  text-shadow:0 2px 18px rgba(48,13,7,.2);
+}
+
+.contact-reference-page .contact-connection-section .contact-connection-copy h2 em {
+  color:#f0c879!important;
+}
+
+.contact-reference-page .contact-connection-section .contact-connection-copy > p:not(.contact-ref-eyebrow) {
+  color:#f5e4cf!important;
+}
+
+/* Keep the featured journey action readable on its dark pill. */
+.reference-homepage .home-package-link {
+  background:#2d100b!important;
+  color:#fff8ec!important;
+  border:1px solid rgba(255,220,164,.3)!important;
+}
+
+.reference-homepage .home-package-link svg {
+  color:currentColor!important;
+  stroke:currentColor!important;
+}
+
+.reference-homepage .home-package-link:hover {
+  background:#8f321b!important;
+  color:#fffaf2!important;
+}
+
+/* Supplied founder portrait composition on the homepage. */
+.reference-homepage .home-founder-layout {
+  width:min(1180px,100%)!important;
+  max-width:1180px!important;
+  grid-template-columns:minmax(390px,.95fr) minmax(0,1.05fr)!important;
+}
+
+.reference-homepage .home-founder-portrait {
+  width:min(100%,540px)!important;
+  aspect-ratio:817 / 697!important;
+}
+
+.reference-homepage .home-founder-reference-art {
+  position:absolute;
+  inset:0;
+}
+
+.reference-homepage .home-founder-reference-art img {
+  object-fit:contain;
+  object-position:center;
+}
+
+@media (max-width:760px) {
+  .reference-homepage .home-founder-layout {
+    grid-template-columns:1fr!important;
+  }
+
+  .reference-homepage .home-founder-portrait {
+    width:min(100%,560px)!important;
+  }
+}
+
+/* Keep the Experiences approach heading at a balanced medium scale. */
+.exp-page-root .exp-intro-section .exp-intro-heading {
+  font-size:clamp(34px,2.6vw,42px)!important;
+  line-height:1.08!important;
+}
+
+.exp-page-root .exp-intro-section .exp-approach-features span {
+  color:#604536!important;
+  font-size:13px!important;
+  font-weight:600;
+  line-height:1.35;
+  padding-top:12px!important;
+}
+
+/* Premium, self-contained journey filter panel. */
+.journey-page .sn-refined-filters {
+  width:min(1500px,calc(100% - 48px));
+  margin:28px auto 18px;
+  padding:22px!important;
+  gap:16px!important;
+  border:1px solid rgba(151,96,43,.22)!important;
+  border-radius:24px!important;
+  background:linear-gradient(145deg,#f5e8d3 0%,#ead2ad 100%)!important;
+  box-shadow:0 18px 42px rgba(67,36,19,.1);
+}
+
+.journey-page .sn-refined-filters > label {
+  min-height:0!important;
+  padding:0!important;
+  border:0!important;
+  gap:9px!important;
+}
+
+.journey-page .journey-filter-label {
+  color:#51372a!important;
+  font-size:12px!important;
+  font-weight:600;
+}
+
+.journey-page .sn-refined-filters select {
+  min-height:48px!important;
+  padding:10px 38px 10px 14px!important;
+  border:1px solid rgba(134,83,40,.28)!important;
+  border-radius:12px!important;
+  background:#fffaf1!important;
+  font-size:13px!important;
+  box-shadow:0 5px 14px rgba(65,35,20,.05);
+}
+
+.journey-page .sn-refined-filters .sn-filter-reset {
+  align-self:end;
+  min-height:48px!important;
+  padding:0 20px!important;
+  border:1px solid #7f2c1b!important;
+  border-radius:999px!important;
+  background:#8f321b!important;
+  color:#fff7e9!important;
+  font-size:11px!important;
+  font-weight:600;
+}
+
+.journey-page .sn-refined-filters .sn-filter-reset svg {
+  color:#f0c16c!important;
+}
+
+@media (max-width:900px) {
+  .journey-page .sn-refined-filters {
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
+}
+
+@media (max-width:560px) {
+  .journey-page .sn-refined-filters {
+    width:calc(100% - 28px);
+    grid-template-columns:1fr!important;
+    padding:18px!important;
+    border-radius:20px!important;
+  }
+
+  .journey-page .sn-refined-filters .sn-filter-reset {
+    width:100%;
+  }
+}
+
+/* Make the chapter labels following 01–06 clearly readable. */
+.exp-page-root .exp-split-section .exp-category-tag {
+  font-size:14px!important;
+  font-weight:700!important;
+  line-height:1.25;
+  letter-spacing:.14em!important;
+}
+
+@media (max-width:640px) {
+  .exp-page-root .exp-intro-section .exp-approach-features span {
+    font-size:12px!important;
+  }
+
+  .exp-page-root .exp-split-section .exp-category-tag {
+    font-size:12px!important;
+  }
+}
+
+/* Shared FAQ treatment based on the approved Questions reference. */
+.reference-homepage .home-faq-section,
+.contact-reference-page .contact-details-faq,
+.site-faq-section {
+  background:#f3e5d1!important;
+  color:#35170f!important;
+}
+
+.reference-homepage .home-faq-section {
+  display:grid;
+  grid-template-columns:minmax(270px,.72fr) minmax(0,1.28fr);
+  gap:clamp(54px,8vw,120px);
+  padding:clamp(72px,8vw,110px) clamp(34px,7vw,104px)!important;
+  align-items:start;
+}
+
+.reference-homepage .home-faq-intro h2,
+.contact-reference-page .contact-faq-panel h2,
+.site-faq-intro h2,
+.site-faq-compact > h2 {
+  color:#35170f!important;
+  font-family:var(--sns-font-cormorant),Georgia,serif!important;
+  font-size:clamp(42px,4.5vw,62px)!important;
+  font-weight:500!important;
+  line-height:.96!important;
+}
+
+.reference-homepage .home-faq-intro h2 em {
+  color:#8f321b!important;
+}
+
+.reference-homepage .home-faq-intro > p:not(.reference-gold-eyebrow),
+.contact-reference-page .contact-faq-intro,
+.site-faq-intro > p:not(:first-child) {
+  color:#654538!important;
+  font-size:15px!important;
+  line-height:1.65!important;
+}
+
+.reference-homepage .home-faq-list,
+.contact-reference-page .contact-faq-list,
+.site-faq-list {
+  display:block!important;
+}
+
+.reference-homepage .home-faq-item,
+.contact-reference-page .contact-faq-item,
+.site-faq-item {
+  margin:0!important;
+  border:0!important;
+  border-bottom:1px solid rgba(102,67,48,.25)!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+}
+
+.reference-homepage .home-faq-item summary,
+.contact-reference-page .contact-faq-item > button,
+.site-faq-item > button {
+  min-height:78px!important;
+  padding:18px 0!important;
+  color:#35170f!important;
+  background:transparent!important;
+  font-family:var(--sns-font-cormorant),Georgia,serif!important;
+  font-size:clamp(20px,1.65vw,26px)!important;
+  font-weight:500!important;
+  line-height:1.2!important;
+}
+
+.reference-homepage .home-faq-item summary > span,
+.contact-reference-page .contact-faq-item > button > svg,
+.site-faq-item > button > span:last-child {
+  display:grid!important;
+  place-items:center;
+  width:40px!important;
+  height:40px!important;
+  min-width:40px;
+  border:1px solid rgba(115,72,47,.35)!important;
+  border-radius:50%!important;
+  color:#5a2a1e!important;
+  background:transparent!important;
+}
+
+.reference-homepage .home-faq-item[open] summary > span,
+.contact-reference-page .contact-faq-item.is-open > button > svg,
+.site-faq-item.is-open > button > span:last-child {
+  border-color:#f29a20!important;
+  background:#f29a20!important;
+  color:#32150e!important;
+}
+
+.reference-homepage .home-faq-item > p,
+.contact-reference-page .contact-faq-item > p,
+.site-faq-item > div p {
+  max-width:720px!important;
+  padding:0 64px 22px 0!important;
+  color:#654538!important;
+  font-size:14px!important;
+  line-height:1.65!important;
+}
+
+.contact-reference-page .contact-details-inner,
+.site-faq-inner {
+  width:min(1180px,100%)!important;
+  margin-inline:auto!important;
+  display:grid!important;
+  grid-template-columns:minmax(280px,.72fr) minmax(0,1.28fr)!important;
+  gap:clamp(54px,8vw,110px)!important;
+  align-items:start!important;
+}
+
+.contact-reference-page .contact-faq-panel {
+  padding:0!important;
+  border:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+}
+
+.site-faq-section {
+  padding:clamp(72px,8vw,110px) clamp(24px,6vw,84px)!important;
+}
+
+.site-faq-intro {
+  margin:0!important;
+  text-align:left!important;
+}
+
+.site-faq-compact {
+  padding:30px!important;
+  border-radius:24px!important;
+  background:#f3e5d1!important;
+}
+
+.site-faq-compact > h2 {
+  font-size:clamp(34px,3vw,46px)!important;
+}
+
+/* Refine the homepage FAQ proportions to match the supplied editorial reference. */
+.reference-homepage .home-faq-section {
+  grid-template-columns:minmax(300px,.8fr) minmax(0,1.2fr)!important;
+  gap:clamp(64px,8vw,112px)!important;
+}
+
+.reference-homepage .home-faq-intro {
+  max-width:410px!important;
+}
+
+.reference-homepage .home-faq-intro h2 {
+  max-width:390px;
+  font-size:clamp(44px,3.8vw,54px)!important;
+  line-height:.98!important;
+}
+
+.reference-homepage .home-faq-intro > p:not(.reference-gold-eyebrow) {
+  max-width:370px;
+  margin:20px 0 24px!important;
+}
+
+.reference-homepage .home-faq-list {
+  overflow:visible!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+}
+
+.reference-homepage .home-faq-item:first-child {
+  border-top:1px solid rgba(102,67,48,.25)!important;
+}
+
+.reference-homepage .home-faq-item summary {
+  min-height:72px!important;
+  padding:14px 0!important;
+  font-size:clamp(20px,1.5vw,24px)!important;
+}
+
+.reference-homepage .home-faq-item summary > span {
+  box-sizing:border-box!important;
+  flex:0 0 38px!important;
+  width:38px!important;
+  height:38px!important;
+  min-width:38px!important;
+  padding:0!important;
+  font-size:20px!important;
+}
+
+.reference-homepage .home-faq-intro .home-map-cta {
+  min-height:48px;
+  padding:0 20px!important;
+  background:#f29a20!important;
+  border:1px solid #df8613;
+  box-shadow:0 9px 20px rgba(113,58,23,.12);
+}
+
+@media (max-width:820px) {
+  .reference-homepage .home-faq-section,
+  .contact-reference-page .contact-details-inner,
+  .site-faq-inner {
+    grid-template-columns:1fr!important;
+    gap:36px!important;
+  }
+}
+
+@media (max-width:560px) {
+  .reference-homepage .home-faq-section,
+  .site-faq-section {
+    padding:56px 20px!important;
+  }
+
+  .reference-homepage .home-faq-item summary,
+  .contact-reference-page .contact-faq-item > button,
+  .site-faq-item > button {
+    min-height:68px!important;
+    font-size:20px!important;
+  }
+}
+
+@media (max-width:620px) {
+  .journal-page-root .enquiry-section-reference .reference-trip-shell {
+    grid-template-columns:minmax(0,1fr)!important;
+  }
+
+  .journal-page-root .enquiry-section-reference .reference-trip-intro,
+  .journal-page-root .enquiry-section-reference .reference-trip-form-wrap {
+    grid-column:1!important;
+    grid-row:auto!important;
+  }
+
+  .contact-reference-page .contact-enquiry-reference .reference-trip-shell {
+    grid-template-columns:minmax(0,1fr)!important;
+  }
+
+  .contact-reference-page .contact-enquiry-reference .reference-trip-intro,
+  .contact-reference-page .contact-enquiry-reference .reference-trip-form-wrap {
+    grid-column:1!important;
+    grid-row:auto!important;
+  }
+}
+
+@media (max-width:560px) {
+  .journal-page-root .enquiry-section-reference .reference-trip-form {
+    grid-template-columns:minmax(0,1fr)!important;
+  }
+
+  .journal-page-root .enquiry-section-reference .reference-trip-form .form-field-full,
+  .journal-page-root .enquiry-section-reference .reference-trip-actions {
+    grid-column:1!important;
+  }
+
+  .contact-reference-page .contact-enquiry-reference .reference-trip-form {
+    grid-template-columns:minmax(0,1fr)!important;
+  }
+
+  .contact-reference-page .contact-enquiry-reference .reference-trip-form .form-field-full,
+  .contact-reference-page .contact-enquiry-reference .reference-trip-actions {
+    grid-column:1!important;
+  }
+}
+.journal-page-root .journal-newsletter-section form,
+.contact-reference-page form,
+.journey-page form,
+.exp-page-root form,
+.about-page-root form {
+  border-radius:22px!important;
+}
+
+@media(max-width:760px) {
+  .about-page-root :where(.about-story-section,.about-way-section,.about-philosophy-section,.about-kashi-gallery),
+  .exp-page-root :where(.exp-intro-section,.exp-split-section,.exp-custom-journey,.exp-traveller-stories),
+  .journal-page-root :where(.journal-intro,.journal-featured-section,.journal-grid-section,.journal-newsletter-section,.blog-interest-section,.blog-founder-quote),
+  .journey-page :where(.journey-editorial,.journey-values-strip,.journey-themes,.journey-custom,.journey-stories),
+  .contact-reference-page :where(.contact-reference-values,.contact-connection-section,.contact-details-faq,.contact-founder-quote) {
+    padding-top:48px!important;
+    padding-bottom:48px!important;
+  }
+  .about-page-root :where(.about-story-card,.about-way-card,.about-philosophy-card,.about-gallery-card),
+  .exp-page-root :where(.exp-intro-card,.exp-service-card,.exp-testimonial-card,.exp-custom-card),
+  .journal-page-root :where(.journal-featured-card,.journal-card,.blog-interest-card),
+  .journey-page :where(.journey-editorial-card,.journey-theme-card,.journey-story-card),
+  .contact-reference-page :where(.contact-value-card,.contact-detail-card,.contact-faq-card,.contact-connection-card) {
+    border-radius:18px!important;
+  }
+}
+
+/* Sacred Kashi typography matches the approved Taste of Kashi treatment. */
+.exp-page-root #sacred-kashi .exp-number-tag,
+.exp-page-root #sacred-kashi .exp-category-tag {
+  color:#e2b866!important;
+}
+.exp-page-root #sacred-kashi .exp-title {
+  color:#f6eedf!important;
+  font-family:var(--sns-font-serif)!important;
+  font-weight:400!important;
+  line-height:1.05!important;
+  letter-spacing:-.01em!important;
+}
+.exp-page-root #sacred-kashi .exp-description {
+  color:#e7d8c6!important;
+  font-family:var(--sns-font-sans)!important;
+  font-weight:400!important;
+  line-height:1.55!important;
+}
+.exp-page-root #sacred-kashi .exp-bullet-label,
+.exp-page-root #sacred-kashi .exp-circle-cta {
+  color:#f6eedf!important;
+  font-family:var(--sns-font-sans)!important;
+}
+
+/* Photographic place markers on the Experiences route map. */
+.exp-page-root .exp-route-map .exp-photo-marker > circle:first-child {
+  fill:#fff7ea;
+  stroke:#b8782e;
+  stroke-width:2;
+  filter:drop-shadow(0 5px 7px rgba(61,27,15,.28));
+}
+.exp-page-root .exp-route-map .exp-photo-ring {
+  fill:none;
+  stroke:#fff8ec;
+  stroke-width:3;
+}
+.exp-page-root .exp-route-map .exp-photo-marker image { pointer-events:none; }
+.exp-page-root .exp-route-map .exp-route-branch {
+  stroke-width:2.5;
+  opacity:.86;
+}
+.exp-page-root .exp-route-map .route-label {
+  border:1px solid rgba(174,113,48,.18);
+  border-radius:999px!important;
+  box-shadow:0 5px 14px rgba(68,35,18,.08);
+}
+
+/* Journeys map stays light and readable, like the homepage map section. */
+.journey-page .journey-custom {
+  background:
+    radial-gradient(circle at 84% 14%,rgba(183,119,48,.24),transparent 31%),
+    radial-gradient(circle at 13% 86%,rgba(151,83,38,.13),transparent 34%),
+    radial-gradient(ellipse at center,rgba(255,248,232,.82) 0%,rgba(228,198,158,.42) 68%,transparent 100%),
+    linear-gradient(135deg,#eddbc0 0%,#f5e6cf 48%,#dfc39e 100%)!important;
+  color:var(--site-ink)!important;
+}
+.journey-page .journey-custom-copy h2 { color:var(--site-ink)!important; }
+.journey-page .journey-custom-copy h2 em { color:#9b351d!important; }
+.journey-page .journey-custom-copy>p:not(.journey-eyebrow) { color:var(--site-muted)!important; }
+.journey-page .journey-route-map {
+  border-radius:28px;
+  background:radial-gradient(ellipse at center,#fffaf1 0,rgba(235,211,174,.55) 57%,transparent 78%);
+}
+.journey-page .journey-route-map .journey-photo-disc {
+  fill:#fff7ea;
+  stroke:#b8782e;
+  stroke-width:.55;
+  filter:drop-shadow(0 .8px 1.2px rgba(61,27,15,.32));
+}
+.journey-page .journey-route-map .journey-photo-ring {
+  fill:none;
+  stroke:#fff8ec;
+  stroke-width:.75;
+}
+.journey-page .journey-route-map .journey-photo-stop image { pointer-events:none; }
+.journey-page .journey-route-map .journey-photo-stop text {
+  paint-order:stroke;
+  stroke:#fff8ec;
+  stroke-width:.8px;
+  stroke-linejoin:round;
+}
+.journey-page .journey-interest-card {
+  border-radius:24px!important;
+  background:linear-gradient(145deg,#401b13,#260f0b)!important;
+  box-shadow:0 18px 40px rgba(42,16,10,.2)!important;
+}
+
+/* About values section: preserve legibility over the diya photograph. */
+.about-page-root .about-way-section {
+  background:#2b120d!important;
+  color:#fff7eb!important;
+}
+.about-page-root .about-way-gradient {
+  background:
+    linear-gradient(90deg,rgba(39,15,10,.96) 0%,rgba(49,20,13,.88) 40%,rgba(42,16,11,.7) 72%,rgba(31,11,8,.72) 100%)!important;
+}
+.about-page-root .about-way-section .about-eyebrow,
+.about-page-root .about-way-section .about-value-num,
+.about-page-root .about-way-section .about-value-icon {
+  color:#efbd62!important;
+}
+.about-page-root .about-way-section .about-way-title,
+.about-page-root .about-way-section .about-value-title {
+  color:#fff8ed!important;
+  text-shadow:0 2px 18px rgba(18,5,3,.22);
+}
+.about-page-root .about-way-section .about-way-desc,
+.about-page-root .about-way-section .about-value-text {
+  color:#ead8c7!important;
+}
+.about-page-root .about-way-section .about-values-grid {
+  border-top-color:rgba(235,190,107,.28)!important;
+}
+.about-page-root .about-way-section .about-value-col {
+  border-color:rgba(235,190,107,.23)!important;
+}
+
+:where(.about-page-root,.exp-page-root,.journey-page,.journey-detail-page,.jcat-page,.journal-page-root,.contact-reference-page,.service-detail-page)
+  :where(a[class*="btn"],button[class*="btn"],a[class*="cta"],button[class*="cta"]):not(.exp-nav-wa-btn) {
+  transition:transform .25s ease,box-shadow .25s ease,background .25s ease;
+}
+
+:where(.about-page-root,.exp-page-root,.journey-page,.journey-detail-page,.jcat-page,.journal-page-root,.contact-reference-page,.service-detail-page)
+  :where(a[class*="btn"],button[class*="btn"],a[class*="cta"],button[class*="cta"]):hover {
+  transform:translateY(-2px);
+}
+
+/* Page-specific surfaces. */
+.about-page-root .about-story-image,
+.about-page-root .about-gallery-card,
+.exp-page-root .exp-split-image-wrap,
+.exp-page-root .exp-testimonial-card,
+.journey-page .journey-editorial-card,
+.journey-page .journey-theme-card,
+.jcat-page .jcat-experience-card,
+.jcat-page .jcat-itinerary-card,
+.journal-page-root .journal-featured-card,
+.journal-page-root .journal-card,
+.contact-reference-page .contact-detail-card {
+  overflow:hidden;
+  border:1px solid var(--site-line);
+  border-radius:22px;
+  box-shadow:var(--site-shadow);
+}
+
+.journey-page .journey-values-strip,
+.contact-reference-page .contact-reference-values {
+  border-block:1px solid var(--site-line);
+  background:linear-gradient(90deg,#f1dfc5,#fff8ed,#f1dfc5);
+}
+
+.journal-page-root .journal-newsletter-section,
+.jcat-page .jcat-cta {
+  background:
+    radial-gradient(circle at 78% 20%,rgba(218,158,79,.14),transparent 30%),
+    linear-gradient(135deg,#35150f,#210c09);
+}
+
+/* Category journeys: Dharm, Arth, Kaam and Moksh follow the homepage rhythm. */
+.jcat-page {
+  background:#fff8ed!important;
+  color:#321910!important;
+}
+
+.jcat-page .jcat-hero {
+  min-height:clamp(700px,88svh,900px)!important;
+  padding:clamp(112px,13vh,158px) 24px clamp(220px,25vh,270px)!important;
+}
+
+.jcat-page .jcat-hero-overlay {
+  background:
+    radial-gradient(ellipse at 50% 42%,rgba(28,12,8,.36) 0%,rgba(20,9,6,.68) 68%,rgba(13,7,5,.84) 100%),
+    linear-gradient(180deg,rgba(18,9,6,.46),rgba(18,9,6,.14) 38%,rgba(18,9,6,.78) 100%)!important;
+}
+
+.jcat-page .jcat-hero-kicker {
+  margin-bottom:14px;
+  font-size:12px;
+  letter-spacing:.28em;
+}
+
+.jcat-page .jcat-hero-title {
+  font-family:var(--sns-font-cormorant),Georgia,serif!important;
+  font-size:clamp(58px,7.2vw,96px)!important;
+  font-weight:500!important;
+  line-height:.92!important;
+  letter-spacing:.045em!important;
+}
+
+.jcat-page .jcat-hero-subtitle {
+  margin:8px 0 18px!important;
+  font-size:clamp(23px,2.8vw,36px)!important;
+}
+
+.jcat-page .jcat-hero-desc {
+  max-width:700px;
+  margin-bottom:26px!important;
+  font-size:clamp(15px,1.2vw,17px)!important;
+  line-height:1.7!important;
+}
+
+.jcat-page .jcat-hero-actions { margin-bottom:0!important; }
+
+.jcat-page .jcat-btn-gold {
+  min-height:48px;
+  padding:0 22px!important;
+  border-radius:999px!important;
+  box-shadow:0 9px 24px rgba(17,8,5,.22);
+}
+
+.jcat-page .jcat-hero-strip {
+  left:50%!important;
+  right:auto!important;
+  bottom:24px!important;
+  width:min(calc(100% - clamp(36px,7vw,112px)),1500px)!important;
+  transform:translateX(-50%);
+  border:1px solid rgba(221,157,81,.55)!important;
+  border-radius:28px!important;
+  background:
+    radial-gradient(ellipse at 0% 50%,rgba(134,60,33,.55),transparent 55%),
+    linear-gradient(110deg,rgba(73,31,20,.96),rgba(48,20,14,.96))!important;
+  box-shadow:0 18px 42px rgba(20,8,5,.25);
+  backdrop-filter:blur(16px);
+}
+
+.jcat-page .jcat-hero-strip-inner {
+  max-width:none!important;
+  padding:clamp(20px,2.5vw,34px) clamp(18px,3vw,42px)!important;
+  gap:0!important;
+}
+
+.jcat-page .jcat-strip-item {
+  flex-direction:row!important;
+  gap:12px!important;
+  padding:8px clamp(8px,1.4vw,20px)!important;
+  color:#fff2df!important;
+}
+
+.jcat-page .jcat-strip-item:not(:last-child)::after {
+  right:0!important;
+  top:12%!important;
+  bottom:12%!important;
+  background:rgba(229,172,99,.38)!important;
+}
+
+.jcat-page .jcat-strip-icon { color:#f3bb55!important; }
+.jcat-page .jcat-strip-icon svg { width:20px; height:20px; }
+.jcat-page .jcat-strip-label { font-size:clamp(11px,.92vw,14px)!important; letter-spacing:.035em; font-weight:650!important; text-transform:uppercase!important; }
+
+.jcat-page .jcat-intro {
+  padding:clamp(58px,7vw,88px) clamp(22px,6.5vw,96px)!important;
+  background:
+    radial-gradient(circle at 88% 10%,rgba(210,164,96,.17),transparent 30%),
+    linear-gradient(135deg,#fffaf2 0%,#f4e7d3 100%)!important;
+}
+
+.jcat-page .jcat-intro-inner {
+  max-width:1280px;
+  grid-template-columns:minmax(0,1fr) minmax(0,1.05fr)!important;
+  gap:clamp(32px,5vw,68px)!important;
+}
+
+.jcat-page .jcat-intro-image-wrap {
+  aspect-ratio:1.28!important;
+  border:1px solid rgba(167,121,55,.24)!important;
+  border-radius:24px!important;
+  box-shadow:0 20px 46px rgba(55,30,17,.14)!important;
+}
+
+.jcat-page .jcat-intro-heading {
+  color:#321910!important;
+  font-family:var(--sns-font-cormorant),Georgia,serif!important;
+  font-size:clamp(36px,4vw,52px)!important;
+  line-height:1.01!important;
+  letter-spacing:0!important;
+  margin-bottom:16px!important;
+}
+
+.jcat-page .jcat-intro-p {
+  color:#6b5444!important;
+  font-size:14px!important;
+  line-height:1.68!important;
+  margin-bottom:12px!important;
+}
+
+.jcat-page .jcat-intro-quote {
+  margin:8px 0 20px!important;
+  padding:10px 0 10px 18px!important;
+  border-left:2px solid #d3a957!important;
+  color:#77422e!important;
+  font-size:20px!important;
+  line-height:1.35!important;
+}
+
+.jcat-page .jcat-intro-link {
+  min-height:42px;
+  padding:0 18px!important;
+  border:1px solid rgba(174,122,44,.24)!important;
+  background:#dfbd77!important;
+  color:#321910!important;
+}
+
+.jcat-page .jcat-experiences {
+  padding:clamp(56px,6.6vw,82px) clamp(22px,6.5vw,96px)!important;
+  border:0!important;
+  background:
+    radial-gradient(circle at 86% 12%,rgba(238,165,98,.22),transparent 34%),
+    radial-gradient(circle at 10% 90%,rgba(113,35,20,.12),transparent 34%),
+    linear-gradient(120deg,#8b301b 0%,#a34223 52%,#91341e 100%)!important;
+}
+
+.jcat-page .jcat-section-header {
+  max-width:1280px;
+  margin-bottom:26px!important;
+  padding-bottom:16px!important;
+  border-bottom-color:rgba(255,230,192,.23)!important;
+}
+
+.jcat-page .jcat-section-heading {
+  color:#fff8ed!important;
+  font-family:var(--sns-font-cormorant),Georgia,serif!important;
+  font-size:clamp(32px,3.4vw,46px)!important;
+  line-height:1.02;
+  letter-spacing:0!important;
+}
+
+.jcat-page .jcat-view-all-link {
+  min-height:38px;
+  color:#f0c777!important;
+  font-size:12px!important;
+}
+
+.jcat-page .jcat-exp-grid,
+.jcat-page .jcat-itin-grid {
+  max-width:1280px;
+  gap:clamp(14px,1.7vw,22px)!important;
+}
+
+.jcat-page .jcat-exp-card {
+  border:1px solid rgba(238,194,124,.28)!important;
+  border-radius:22px!important;
+  background:linear-gradient(160deg,#321812 0%,#1d100d 100%)!important;
+  box-shadow:0 16px 36px rgba(49,16,9,.2);
+}
+
+.jcat-page .jcat-exp-card:hover {
+  border-color:rgba(247,205,135,.55)!important;
+  box-shadow:0 22px 42px rgba(49,16,9,.26)!important;
+}
+
+.jcat-page .jcat-exp-card-media { aspect-ratio:1.62!important; }
+.jcat-page .jcat-exp-tag { top:12px; left:12px; font-size:10px!important; }
+.jcat-page .jcat-exp-body { padding:18px 19px 20px!important; }
+
+.jcat-page .jcat-exp-card-title {
+  color:#fff7e9!important;
+  font-family:var(--sns-font-cormorant),Georgia,serif!important;
+  font-size:clamp(21px,1.9vw,25px)!important;
+  line-height:1.08!important;
+  margin-bottom:8px!important;
+}
+
+.jcat-page .jcat-exp-card-desc {
+  color:#ddcbb8!important;
+  font-size:13px!important;
+  line-height:1.55!important;
+}
+
+.jcat-page .jcat-story {
+  min-height:0!important;
+  padding:clamp(56px,6.8vw,86px) 22px!important;
+  border:0!important;
+  background:
+    radial-gradient(circle at 50% 0%,rgba(255,255,255,.74),transparent 48%),
+    linear-gradient(135deg,#fffaf2 0%,#f2e4d0 54%,#fff7ea 100%)!important;
+}
+
+.jcat-page .jcat-story-inner { max-width:900px; }
+.jcat-page .jcat-story-heading {
+  color:#35170f!important;
+  font-family:var(--sns-font-cormorant),Georgia,serif!important;
+  font-size:clamp(34px,3.8vw,48px)!important;
+  line-height:1.02!important;
+  margin:8px 0 18px!important;
+}
+
+.jcat-page .jcat-story-text {
+  color:#563328!important;
+  font-size:14px!important;
+  line-height:1.72!important;
+  margin-bottom:14px!important;
+}
+
+.jcat-page .jcat-story-tags { gap:8px; margin-top:22px!important; }
+.jcat-page .jcat-story-tag { padding:8px 14px; font-size:11px!important; color:#6c341f!important; background:rgba(255,255,255,.56)!important; border-color:rgba(125,74,43,.28)!important; }
+
+.jcat-page .jcat-itineraries {
+  padding:clamp(56px,6.6vw,84px) clamp(22px,6.5vw,96px)!important;
+  border:0!important;
+  background:
+    radial-gradient(circle at 90% 7%,rgba(211,159,86,.15),transparent 30%),
+    linear-gradient(135deg,#fffaf2 0%,#f0e0c8 56%,#f8efdf 100%)!important;
+}
+
+.jcat-page .jcat-itineraries .jcat-eyebrow { color:#a17032!important; }
+.jcat-page .jcat-itineraries .jcat-section-heading { color:#321910!important; }
+.jcat-page .jcat-itineraries .jcat-section-header { border-bottom-color:rgba(112,73,44,.2)!important; }
+.jcat-page .jcat-itineraries .jcat-view-all-link { color:#8f351e!important; }
+
+.jcat-page .jcat-itin-card {
+  border:1px solid rgba(222,184,126,.25)!important;
+  border-radius:22px!important;
+  background:linear-gradient(155deg,#2c1712 0%,#17100e 100%)!important;
+  box-shadow:0 16px 34px rgba(52,31,19,.16);
+}
+
+.jcat-page .jcat-itin-card:hover {
+  border-color:rgba(208,158,84,.48)!important;
+  box-shadow:0 22px 40px rgba(52,31,19,.22)!important;
+}
+
+.jcat-page .jcat-itin-media { aspect-ratio:1.64!important; }
+.jcat-page .jcat-itin-body { padding:18px 19px 20px!important; }
+
+.jcat-page .jcat-itin-title {
+  color:#fff7e9!important;
+  font-family:var(--sns-font-cormorant),Georgia,serif!important;
+  font-size:clamp(21px,1.9vw,25px)!important;
+  line-height:1.08!important;
+  margin-bottom:8px!important;
+}
+
+.jcat-page .jcat-itin-desc {
+  color:#ddcbb8!important;
+  font-size:13px!important;
+  line-height:1.55!important;
+  margin-bottom:14px!important;
+}
+
+.jcat-page .jcat-itin-pills { gap:6px; margin-bottom:15px!important; }
+.jcat-page .jcat-itin-pill { font-size:10px!important; padding:5px 9px!important; border-radius:999px!important; }
+.jcat-page .jcat-itin-cta { color:#e6bd6e!important; font-size:12px!important; }
+
+.jcat-page .jcat-testimonial {
+  padding:clamp(48px,5.5vw,70px) 22px!important;
+  border:0!important;
+  background:
+    radial-gradient(circle at 14% 85%,rgba(88,20,12,.18),transparent 36%),
+    linear-gradient(120deg,#9c3921 0%,#822a19 100%)!important;
+}
+
+.jcat-page .jcat-quote-icon { color:#f1c877!important; font-size:60px!important; }
+.jcat-page .jcat-quote-text { color:#fff7e9!important; font-size:clamp(23px,2.5vw,32px)!important; line-height:1.26!important; margin-bottom:20px!important; }
+.jcat-page .jcat-author-name { color:#fff7e9!important; }
+.jcat-page .jcat-author-loc { color:#f0d7bc!important; }
+.jcat-page .jcat-control-btn { color:#fff5e7!important; border-color:rgba(255,239,215,.52)!important; }
+.jcat-page .jcat-control-btn:hover { background:#f0c16c!important; color:#321910!important; border-color:#f0c16c!important; }
+
+.jcat-page .jcat-cta {
+  width:calc(100% - clamp(36px,9.4vw,180px))!important;
+  min-height:clamp(350px,33vw,440px)!important;
+  margin:clamp(28px,4vw,54px) auto clamp(48px,6vw,76px)!important;
+  padding:0 22px!important;
+  border:0!important;
+  border-radius:32px!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:center!important;
+  align-items:center!important;
+  background:#39190f!important;
+  box-shadow:0 24px 60px rgba(62,35,17,.18);
+}
+
+.jcat-page .jcat-cta-overlay {
+  background:
+    radial-gradient(ellipse at 50% 28%,rgba(73,34,20,.46),rgba(48,19,12,.66) 70%,rgba(38,15,10,.76) 100%),
+    linear-gradient(180deg,rgba(53,23,14,.5),rgba(48,19,12,.7))!important;
+}
+
+.jcat-page .jcat-cta-title {
+  color:#fff7e9!important;
+  font-family:var(--sns-font-cormorant),Georgia,serif!important;
+  font-size:clamp(38px,4.4vw,58px)!important;
+  line-height:1.02!important;
+}
+
+.jcat-page .jcat-cta-desc { color:#ead8c3!important; font-size:15px!important; line-height:1.6!important; margin-bottom:24px!important; }
+.jcat-page .jcat-cta-actions { gap:12px!important; }
+
+.jcat-page .jcat-cta-content {
+  margin:0 auto!important;
+  transform:none!important;
+}
+
+.jcat-page .jcat-cta-actions .jcat-btn-primary {
+  border-radius:999px!important;
+  padding:15px 30px!important;
+  background:#f99b19!important;
+  color:#24130d!important;
+}
+
+@media (max-width:992px) {
+  .jcat-page .jcat-intro-inner { gap:30px!important; }
+  .jcat-page .jcat-exp-grid,
+  .jcat-page .jcat-itin-grid { grid-template-columns:repeat(2,minmax(0,1fr))!important; }
+}
+
+@media (max-width:760px) {
+  .jcat-page .jcat-hero { min-height:clamp(570px,84svh,740px)!important; padding:110px 20px 142px!important; }
+  .jcat-page .jcat-hero-title { font-size:clamp(52px,13vw,74px)!important; }
+  .jcat-page .jcat-hero-desc { font-size:14px!important; }
+  .jcat-page .jcat-hero-strip { position:relative!important; left:auto!important; right:auto!important; bottom:auto!important; transform:none!important; width:calc(100% - 28px)!important; margin:-12px auto 20px!important; border-radius:22px!important; }
+  .jcat-page .jcat-hero-strip-inner { padding:14px 12px!important; gap:7px!important; }
+  .jcat-page .jcat-strip-item { justify-content:flex-start!important; gap:9px!important; padding:9px!important; }
+  .jcat-page .jcat-strip-label { font-size:10px!important; line-height:1.3; }
+  .jcat-page .jcat-intro { padding:48px 20px!important; }
+  .jcat-page .jcat-intro-inner { grid-template-columns:minmax(0,1fr)!important; gap:24px!important; }
+  .jcat-page .jcat-intro-image-wrap { aspect-ratio:1.35!important; }
+  .jcat-page .jcat-intro-heading { font-size:clamp(34px,8.5vw,46px)!important; }
+  .jcat-page .jcat-intro-p { font-size:14px!important; }
+  .jcat-page .jcat-experiences,
+  .jcat-page .jcat-itineraries { padding:48px 20px!important; }
+  .jcat-page .jcat-section-header { margin-bottom:20px!important; }
+  .jcat-page .jcat-exp-grid,
+  .jcat-page .jcat-itin-grid { gap:14px!important; }
+  .jcat-page .jcat-exp-body,
+  .jcat-page .jcat-itin-body { padding:15px!important; }
+  .jcat-page .jcat-exp-card-title,
+  .jcat-page .jcat-itin-title { font-size:21px!important; }
+  .jcat-page .jcat-exp-card-desc,
+  .jcat-page .jcat-itin-desc { font-size:12px!important; }
+  .jcat-page .jcat-story { padding:48px 20px!important; }
+  .jcat-page .jcat-story-text { font-size:13px!important; }
+  .jcat-page .jcat-testimonial { padding:44px 20px!important; }
+  .jcat-page .jcat-author-wrap { gap:10px!important; }
+  .jcat-page .jcat-cta { width:calc(100% - 32px)!important; min-height:320px!important; margin:24px auto 48px!important; padding:0 20px!important; border-radius:24px!important; }
+}
+
+@media (max-width:520px) {
+  .jcat-page .jcat-hero-strip-inner { grid-template-columns:repeat(2,minmax(0,1fr))!important; }
+  .jcat-page .jcat-exp-grid,
+  .jcat-page .jcat-itin-grid { grid-template-columns:minmax(0,1fr)!important; max-width:460px; }
+  .jcat-page .jcat-exp-card-media,
+  .jcat-page .jcat-itin-media { aspect-ratio:1.62!important; }
+  .jcat-page .jcat-exp-card,
+  .jcat-page .jcat-itin-card { border-radius:20px!important; }
+  .jcat-page .jcat-section-header { align-items:flex-start!important; }
+  .jcat-page .jcat-section-heading { font-size:34px!important; }
+  .jcat-page .jcat-quote-text { font-size:22px!important; }
+}
+
+.contact-reference-page .contact-reference-hero,
+.about-page-root .about-hero,
+.exp-page-root .exp-hero-section,
+.journey-page .journey-hero,
+.jcat-page .jcat-hero {
+  overflow:hidden;
+}
+
+/* Legacy detail pages: bring their utility-built surfaces into the same system. */
+.service-detail-page > section:not(:first-child) { background:var(--site-cream); color:var(--site-ink); }
+.service-detail-page form,
+.service-detail-page aside,
+.journey-detail-page .sn-detail-card,
+.journey-detail-page .sn-card {
+  border:1px solid var(--site-line)!important;
+  border-radius:22px!important;
+  background:rgba(255,250,242,.96)!important;
+  box-shadow:var(--site-shadow);
+}
+.service-detail-page input,
+.service-detail-page textarea,
+.service-detail-page select {
+  border-color:#d8c8b2!important;
+  border-radius:12px!important;
+  background:#fffaf2!important;
+  color:var(--site-ink)!important;
+}
+
+/* ========================================================
+   BALANCED TYPOGRAPHY, BUTTON SIZING & SPACING REFINEMENTS
+======================================================== */
+
+/* Ensure all buttons and CTAs are comfortably proportioned and easily readable */
+:where(.about-page-root,.exp-page-root,.journey-page,.journey-detail-page,.jcat-page,.journal-page-root,.contact-reference-page,.service-detail-page)
+  :where(a[class*="btn"],button[class*="btn"],a[class*="cta"],button[class*="cta"]):not(.exp-nav-wa-btn):not(.exp-nav-menu-btn) {
+  font-size: clamp(12px, 0.95vw, 13.5px) !important;
+  letter-spacing: 0.04em !important;
+  font-weight: 600 !important;
+  min-height: 38px;
+}
+
+/* Experiences: Design Your Journey CTA button size increase from 9px to 12.5px */
+.exp-page-root .exp-circle-cta {
+  font-size: 12.5px !important;
+  gap: 10px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.04em !important;
+  min-height: 38px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+}
+
+.exp-page-root .exp-circle-arrow {
+  width: 34px !important;
+  height: 34px !important;
+  min-width: 34px !important;
+}
+
+/* Experiences: bullet labels & icons readable and balanced */
+.exp-page-root .exp-bullets-list {
+  gap: 10px !important;
+  margin-top: 14px !important;
+  margin-bottom: 22px !important;
+}
+
+.exp-page-root .exp-bullet-item {
+  gap: 10px !important;
+  align-items: center !important;
+}
+
+.exp-page-root .exp-bullet-label {
+  font-size: 13.5px !important;
+  letter-spacing: 0.02em !important;
+  line-height: 1.4 !important;
+  font-weight: 500 !important;
+}
+
+.exp-page-root .exp-bullet-icon {
+  width: 22px !important;
+  height: 22px !important;
+  min-width: 22px !important;
+  border-radius: 50% !important;
+}
+
+.exp-page-root .exp-bullet-icon svg {
+  width: 13px !important;
+  height: 13px !important;
+}
+
+.exp-page-root .exp-category-tag {
+  font-size: 11.5px !important;
+  letter-spacing: 0.14em !important;
+  font-weight: 600 !important;
+  margin-bottom: 6px !important;
+}
+
+.exp-page-root .exp-description {
+  font-size: clamp(14px, 1.05vw, 15.5px) !important;
+  line-height: 1.62 !important;
+  margin-bottom: 16px !important;
+}
+
+/* Contact page: CTA button & features balance */
+.contact-reference-page .contact-hero-btn {
+  font-size: 12.5px !important;
+  min-height: 44px !important;
+  padding-inline: 22px !important;
+  letter-spacing: 0.04em !important;
+  font-weight: 600 !important;
+}
+
+.contact-reference-page .contact-values-grid {
+  gap: clamp(18px, 2.5vw, 36px) !important;
+}
+
+.contact-reference-page .contact-value-title {
+  font-size: 17.5px !important;
+  font-weight: 600 !important;
+  margin-bottom: 4px !important;
+}
+
+.contact-reference-page .contact-value-desc {
+  font-size: 13.5px !important;
+  line-height: 1.5 !important;
+  color: var(--site-muted) !important;
+}
+
+/* Journey page: card typography & metadata balance */
+.journey-page :where(.journey-card-badge, .journey-card-category) {
+  font-size: 11.5px !important;
+  letter-spacing: 0.1em !important;
+  font-weight: 600 !important;
+}
+
+.journey-page .journey-card-title {
+  font-size: clamp(17px, 1.25vw, 20px) !important;
+  line-height: 1.25 !important;
+}
+
+.journey-page .journey-card-description {
+  font-size: 13px !important;
+  line-height: 1.5 !important;
+  color: #ddd9d0 !important;
+}
+
+.journey-page .journey-card-meta {
+  font-size: 12px !important;
+  gap: 12px !important;
+}
+
+.journey-page .journey-filter-bar {
+  padding: 12px 18px !important;
+  gap: 14px !important;
+}
+
+.journey-page .journey-hero-bottom {
+  font-size: 12px !important;
+  letter-spacing: 1.2px !important;
+}
+
+.journey-page .journey-value strong {
+  font-size: 13px !important;
+  letter-spacing: 0.08em !important;
+}
+
+.journey-page .journey-value span {
+  font-size: 13.5px !important;
+  line-height: 1.5 !important;
+}
+
+.exp-page-root .exp-watch-story {
+  font-size: 12.5px !important;
+  letter-spacing: 0.12em !important;
+}
+
+.exp-page-root .exp-approach-features {
+  font-size: 13px !important;
+}
+
+/* Blog / Journal: card excerpts and filter tabs balance */
+.journal-page-root .journal-filter-tab {
+  font-size: 12px !important;
+  padding: 8px 18px !important;
+  letter-spacing: 0.03em !important;
+  font-weight: 500 !important;
+}
+
+.journal-page-root .journal-card-badge {
+  font-size: 11px !important;
+  letter-spacing: 0.1em !important;
+  font-weight: 600 !important;
+}
+
+.journal-page-root .journal-card-title {
+  font-size: clamp(17px, 1.25vw, 20px) !important;
+  line-height: 1.3 !important;
+  margin-bottom: 6px !important;
+}
+
+.journal-page-root .journal-card-excerpt {
+  font-size: 13.5px !important;
+  line-height: 1.55 !important;
+  color: #6d5445 !important;
+}
+
+/* About page: value pillars & story typography */
+.about-page-root .about-value-num {
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.08em !important;
+}
+
+.about-page-root .about-value-title {
+  font-size: clamp(19px, 1.4vw, 23px) !important;
+  margin-bottom: 8px !important;
+}
+
+.about-page-root .about-value-text {
+  font-size: 14px !important;
+  line-height: 1.58 !important;
+}
+
+.about-page-root .about-founder-story-body p {
+  font-size: clamp(14px, 1.05vw, 15.5px) !important;
+  line-height: 1.68 !important;
+  margin-bottom: 14px !important;
+}
+
+/* Traveller review cards balance across pages */
+:where(.exp-page-root, .journey-page) .exp-testimonial-card,
+:where(.exp-page-root, .journey-page) .journey-story-card {
+  padding: 22px 20px !important;
+}
+
+:where(.exp-page-root, .journey-page) :where(.exp-testimonial-card, .journey-story-card) p {
+  font-size: 13.5px !important;
+  line-height: 1.58 !important;
+}
+
+@media(max-width:760px) {
+  :where(.about-page-root,.exp-page-root,.journey-page,.journey-detail-page,.jcat-page,.journal-page-root,.contact-reference-page,.service-detail-page)
+    :where([class*="-card"],[class*="-panel"],[class*="-tile"],[class*="-frame"],[class*="-box"]) {
+    border-radius: 18px;
+  }
+  :where(.about-page-root,.exp-page-root,.journey-page,.jcat-page,.journal-page-root,.contact-reference-page)
+    :where(section:not([class*="hero"]):not(.enquiry-section-reference)) {
+    padding-left: max(18px, env(safe-area-inset-left));
+    padding-right: max(18px, env(safe-area-inset-right));
+  }
+  .about-page-root :where(.about-story-section,.about-way-section,.about-philosophy-section,.about-kashi-gallery),
+  .exp-page-root :where(.exp-intro-section,.exp-custom-journey,.exp-traveller-stories),
+  .journal-page-root :where(.journal-intro,.journal-featured-section,.journal-grid-section,.blog-interest-section),
+  .journey-page :where(.journey-editorial,.journey-themes,.journey-custom,.journey-stories),
+  .contact-reference-page :where(.contact-connection-section,.contact-details-faq) {
+    padding-top: clamp(34px, 7vw, 44px) !important;
+    padding-bottom: clamp(34px, 7vw, 44px) !important;
+  }
+  .exp-page-root .exp-split-section {
+    padding-top: clamp(28px, 6vw, 36px) !important;
+    padding-bottom: clamp(28px, 6vw, 36px) !important;
+  }
+}

@@ -52,7 +52,7 @@ export default function ServiceDetailClient({ service }: { service: Service }) {
   const related = SERVICES.filter((s) => s.slug !== service.slug);
 
   return (
-    <div className="min-h-screen bg-[#1A120B] text-slate-100">
+    <div className="service-detail-page min-h-screen bg-[#1A120B] text-slate-100">
       {/* ── Header with service image as background ── */}
       <section className="relative pt-28 pb-12 overflow-hidden border-b border-white/8">
         <Image
@@ -141,7 +141,7 @@ export default function ServiceDetailClient({ service }: { service: Service }) {
 
             {/* ── Hotels Section (Only for Stay) ── */}
             {service.slug === 'stay' && (
-              <div>
+              <div className="site-faq-compact">
                 <h2 className="text-xl sm:text-2xl font-bold text-white mb-5">Our Featured Stays</h2>
                 {hotels.length > 0 ? (
                   <div
@@ -191,11 +191,11 @@ export default function ServiceDetailClient({ service }: { service: Service }) {
                 <h2 className="text-xl sm:text-2xl font-bold text-white mb-5">
                   Frequently Asked Questions
                 </h2>
-                <div className="space-y-3">
+                <div className="site-faq-list space-y-3">
                   {service.faqs.map((faq, i) => (
                     <div
                       key={i}
-                      className="border border-white/10 rounded-xl overflow-hidden hover:border-primary/30 transition-colors"
+                      className={`site-faq-item border border-white/10 rounded-xl overflow-hidden hover:border-primary/30 transition-colors${openFaq === i ? ' is-open' : ''}`}
                     >
                       <button
                         className="w-full flex items-center justify-between px-5 py-4 text-left"

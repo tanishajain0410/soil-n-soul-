@@ -50,11 +50,11 @@ body:has(.about-page-root) .footer-reference { background:#180a07; }
 .about-page-root .about-philosophy-heading { font-size:clamp(42px,4.4vw,62px); }
 .about-page-root .about-phil-img-wrap { border:1px solid rgba(167,121,55,.25); border-radius:4px; box-shadow:0 12px 28px rgba(36,16,11,.12); }
 .about-page-root .about-phil-card-title { color:#2a1712; font-family:var(--sns-font-cormorant); font-size:24px; font-weight:500; }
-.about-page-root .about-kashi-gallery { padding:clamp(70px,8vw,112px) clamp(24px,6vw,90px); background:#24100c; color:#f7f1e6; }
+.about-page-root .about-kashi-gallery { padding:clamp(50px,5vw,72px) clamp(24px,5vw,72px); background:#24100c; color:#f7f1e6; }
 .about-page-root .about-kashi-gallery-head { max-width:1280px; margin:0 auto 32px; display:flex; justify-content:space-between; align-items:end; gap:24px; }
 .about-page-root .about-kashi-gallery h2 { margin:0; color:#f7f1e6; font-size:clamp(40px,4.3vw,60px); line-height:1; }
 .about-page-root .about-kashi-gallery h2 em { color:#e1bc73; }
-.about-page-root .about-gallery-link { display:inline-flex; align-items:center; gap:12px; color:#e1bc73; font-size:10px; letter-spacing:1.2px; text-transform:uppercase; text-decoration:none; }
+.about-page-root .about-gallery-link { display:inline-flex; align-items:center; gap:12px; color:#e1bc73; font-size:12.5px; letter-spacing:1.2px; text-transform:uppercase; text-decoration:none; }
 .about-page-root .about-kashi-gallery-grid { max-width:1280px; margin:auto; display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:14px; }
 .about-page-root .about-kashi-gallery-image { position:relative; aspect-ratio:1.05; overflow:hidden; border:1px solid rgba(213,174,98,.26); border-radius:4px; }
 .about-page-root .about-kashi-gallery-image img { object-fit:cover; filter:saturate(.85) sepia(.08); transition:transform .75s cubic-bezier(.2,.7,.2,1); }
@@ -150,7 +150,7 @@ body:has(.about-page-root) .exp-nav-header.scrolled .exp-nav-wa-btn {
 }
 .about-page-root .about-hero-inner { max-width: 1280px; align-items: center; }
 .about-page-root .about-hero-left { max-width: 800px; }
-.about-page-root .about-eyebrow { font-size: 9px; letter-spacing: 2px; }
+.about-page-root .about-eyebrow { font-size: 11.5px; letter-spacing: 2px; }
 .about-page-root .about-hero-heading {
   max-width: 800px;
   margin-bottom: 16px;
@@ -159,7 +159,7 @@ body:has(.about-page-root) .exp-nav-header.scrolled .exp-nav-wa-btn {
   letter-spacing: -.025em;
 }
 .about-page-root .about-hero-heading em { color: #dfbb73; white-space: nowrap; }
-.about-page-root .about-hero-subtext { max-width: 520px; margin-bottom: 24px; font-size: 13px; }
+.about-page-root .about-hero-subtext { max-width: 520px; margin-bottom: 24px; font-size: 14.5px; line-height: 1.6; }
 .about-page-root .about-hero-btn,
 .about-page-root .about-philosophy-cta-row .about-hero-btn {
   min-height: 40px;
@@ -249,10 +249,10 @@ body:has(.about-page-root) .exp-nav-header.scrolled .exp-nav-wa-btn {
   box-shadow: 0 9px 22px rgba(40, 17, 11, .13);
 }
 .about-page-root .about-phil-card-title { margin: 0; font-size: 21px; }
-.about-page-root .about-phil-card-sub { font-size: 10px; }
+.about-page-root .about-phil-card-sub { font-size: 12.5px; }
 .about-page-root .about-philosophy-watermark { opacity: .14; }
 .about-page-root .about-kashi-gallery {
-  padding: 62px clamp(28px, 6.5vw, 96px) 66px;
+  padding: clamp(48px, 4.8vw, 66px) clamp(24px, 5vw, 72px);
   background: #a2462d;
   color: #f6eedf;
 }

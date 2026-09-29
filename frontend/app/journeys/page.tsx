@@ -135,17 +135,26 @@ export default function JourneysPage() {
 
 function JourneyMapIllustration() {
   const stops = [
-    { x: 17, y: 64, label: "Assi Ghat", anchor: "start" },
-    { x: 37, y: 47, label: "Dashashwamedh Ghat", anchor: "middle" },
-    { x: 50, y: 29, label: "Kashi Vishwanath", anchor: "middle" },
-    { x: 72, y: 18, label: "Sarnath", anchor: "middle" },
-    { x: 84, y: 61, label: "Ramnagar Fort", anchor: "end" },
+    { x: 17, y: 64, label: "Assi Ghat", anchor: "start", photo: "/SnS/assi-ghat.webp" },
+    { x: 37, y: 47, label: "Dashashwamedh Ghat", anchor: "middle", photo: "/SnS/dashashwamedh-ghat.webp" },
+    { x: 50, y: 29, label: "Kashi Vishwanath Mandir", anchor: "middle", photo: "/SnS/kashi-vishwanath.webp" },
+    { x: 72, y: 18, label: "Sarnath", anchor: "middle", photo: "/SnS/sarnath.webp" },
+    { x: 84, y: 61, label: "Ramnagar Fort", anchor: "end", photo: "/SnS/ramnagar-fort.webp" },
   ] as const;
   return <div className="journey-route-map" aria-label="Illustrated Kashi route map">
     <svg viewBox="0 0 100 82" role="img" aria-label="A route connecting five places in Kashi">
       <path className="journey-map-river" d="M8 76 C23 59 33 74 48 60 S70 49 93 57" />
       <path className="journey-map-route" d="M17 64 C23 59 29 52 37 47 S45 35 50 29 S65 21 72 18 M37 47 C50 47 65 50 84 61" />
-      {stops.map((s)=><g key={s.label}><circle cx={s.x} cy={s.y} r="1.8"/><text x={s.x} y={s.y - 4} textAnchor={s.anchor}>{s.label}</text></g>)}
+      {stops.map((s,index)=>{
+        const clipId = `journey-map-photo-${index}`;
+        return <g key={s.label} className="journey-photo-stop">
+          <defs><clipPath id={clipId}><circle cx={s.x} cy={s.y} r="5.1"/></clipPath></defs>
+          <circle className="journey-photo-disc" cx={s.x} cy={s.y} r="5.8"/>
+          <image href={s.photo} x={s.x - 5.1} y={s.y - 5.1} width="10.2" height="10.2" preserveAspectRatio="xMidYMid slice" clipPath={`url(#${clipId})`}/>
+          <circle className="journey-photo-ring" cx={s.x} cy={s.y} r="5.1"/>
+          <text x={s.x} y={s.y - 7} textAnchor={s.anchor}>{s.label}</text>
+        </g>;
+      })}
       <path className="journey-map-temple" d="M79 78h14m-12 0V69h3v-5h4v5h3v9m-8-14 3-5 3 5m-4-10h2m-1-5v5" />
     </svg>
     <span className="journey-map-label"><MapPin size={13}/> VARANASI · KASHI</span>

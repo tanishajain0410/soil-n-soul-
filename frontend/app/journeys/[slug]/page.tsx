@@ -37,7 +37,7 @@ export default async function JourneyPage({
   if (!j) notFound();
 
   return (
-    <div className="sn-site">
+    <div className="sn-site journey-detail-page">
       <header className="sn-wrap sn-page-intro">
         <Link className="sn-eyebrow" href="/journeys">
           ← Premium Personalised Journeys

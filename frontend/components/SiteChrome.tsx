@@ -1,8 +1,10 @@
 "use client";
+import { useState } from "react";
 import { usePathname } from "next/navigation";
 import LuxuryNavbar from "./LuxuryNavbar";
 import Footer from "./Footer";
 import FloatingContactButtons from "./FloatingContactButtons";
+import LeadCaptureModal from "./LeadCaptureModal";
 
 export default function SiteChrome({
   children,
@@ -11,6 +13,7 @@ export default function SiteChrome({
 }) {
   const pathname = usePathname();
   const hidden = pathname ? ["/admin", "/hakunamata"].some((p) => pathname.startsWith(p)) : false;
+  const [leadCaptureOpen, setLeadCaptureOpen] = useState(true);
 
   return (
     <>
@@ -27,6 +30,7 @@ export default function SiteChrome({
         <>
           <Footer />
           <FloatingContactButtons />
+          {leadCaptureOpen && <LeadCaptureModal onClose={() => setLeadCaptureOpen(false)} />}
         </>
       )}
     </>

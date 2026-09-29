@@ -208,18 +208,18 @@ const SeoLandingClient = ({ page }: { page: SeoPage }) => {
       </section>
 
       {/* FAQ */}
-      <section className="py-16 sm:py-20 bg-[#23160f]/60">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-10">
-          <div className="text-center mb-10">
+      <section className="site-faq-section py-16 sm:py-20 bg-[#23160f]/60">
+        <div className="site-faq-inner max-w-3xl mx-auto px-4 sm:px-6 lg:px-10">
+          <div className="site-faq-intro text-center mb-10">
             <p className="text-primary text-xs font-bold tracking-[0.25em] uppercase mb-3">FAQs</p>
             <h2 className="text-2xl sm:text-3xl font-bold text-white">Frequently Asked Questions</h2>
           </div>
 
-          <div className="space-y-3">
+          <div className="site-faq-list space-y-3">
             {page.faqs.map((faq, idx) => (
               <div
                 key={idx}
-                className="border border-white/10 hover:border-primary/30 rounded-2xl overflow-hidden transition-all duration-300"
+                className={`site-faq-item border border-white/10 hover:border-primary/30 rounded-2xl overflow-hidden transition-all duration-300${openFaq === idx ? ' is-open' : ''}`}
                 itemScope
                 itemType="https://schema.org/Question"
               >
