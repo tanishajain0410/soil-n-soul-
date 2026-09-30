@@ -17,3 +17,4 @@ frontend/*-final.png
 frontend/narrow-mobile.png
 frontend/journey-mobile.png
 responsive-*.png
+.cache*

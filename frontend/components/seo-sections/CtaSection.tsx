@@ -71,7 +71,7 @@ export default function CtaSection() {
               </div>
               <div className="flex items-center justify-center gap-2">
                 <span className="material-symbols-outlined text-primary text-lg">language</span>
-                <a href="https://www.soilnsoultravels.com" className="text-white hover:text-primary transition-colors">
+                <a href="https://soilnsoul.com" className="text-white hover:text-primary transition-colors">
                   www.soilnsoultravels.com
                 </a>
               </div>

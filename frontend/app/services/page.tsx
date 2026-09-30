@@ -24,15 +24,15 @@ export default function ServicesPage() {
   const servicesSchema = {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    '@id': 'https://www.soilnsoultravels.com/services#webpage',
-    'url': 'https://www.soilnsoultravels.com/services',
+    '@id': 'https://soilnsoul.com/services#webpage',
+    'url': 'https://soilnsoul.com/services',
     'name': 'Our Varanasi Travel Services — SoilNSoul Travels',
     'description': 'Handpicked, locally-managed travel services in Varanasi including heritage stays, Ganga Aarti bookings, local tours, car rental and custom itineraries.',
     'breadcrumb': {
       '@type': 'BreadcrumbList',
       'itemListElement': [
-        { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://www.soilnsoultravels.com/' },
-        { '@type': 'ListItem', 'position': 2, 'name': 'Services', 'item': 'https://www.soilnsoultravels.com/services' }
+        { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://soilnsoul.com/' },
+        { '@type': 'ListItem', 'position': 2, 'name': 'Services', 'item': 'https://soilnsoul.com/services' }
       ]
     },
     'mainEntity': {
@@ -45,7 +45,7 @@ export default function ServicesPage() {
           '@type': 'Service',
           'name': service.title,
           'description': service.shortDesc,
-          'url': `https://www.soilnsoultravels.com/services/${service.slug}`
+          'url': `https://soilnsoul.com/services/${service.slug}`
         }
       }))
     }

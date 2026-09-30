@@ -35,7 +35,7 @@ const SeoLandingClient = ({ page }: { page: SeoPage }) => {
   // SEO handled by server
 
   // (siteUrl available for future use)
-  // const siteUrl = 'https://www.soilnsoultravels.com';
+  // const siteUrl = 'https://soilnsoul.com';
 
   return (
     <div className="min-h-screen bg-[#1A120B] text-slate-100">

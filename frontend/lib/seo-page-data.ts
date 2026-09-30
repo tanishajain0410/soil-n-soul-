@@ -1,7 +1,7 @@
 // SEO Landing Page Data - SoilNSoul Travels
 // Content for /best-tours-and-travel-agency-in-varanasi
 
-export const SITE_DOMAIN = 'https://www.soilnsoultravels.com';
+export const SITE_DOMAIN = 'https://soilnsoul.com';
 
 export const FAQS = [
   {

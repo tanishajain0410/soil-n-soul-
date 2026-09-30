@@ -1,55 +1,37 @@
-/**
- * seed-admin.js  —  Run ONCE to create the admin user in MongoDB.
- *
- * Usage:
- *   cd server
- *   node seed-admin.js
- */
+import 'dotenv/config';
+import bcrypt from 'bcryptjs';
+import { closeDB, connectDB, getClient } from './src/config/db.js';
 
-import mongoose from 'mongoose';
-import dotenv from 'dotenv';
-import Admin from './src/models/Admin.js';
-
-dotenv.config();
-
-// ── Admin credentials — change before running ─────────────────────────────────
-const ADMIN_NAME = 'SoilNSoul Travels Admin';
-const ADMIN_EMAIL = 'admin@soilnsoul.in';
+const ADMIN_NAME = process.env.ADMIN_NAME || 'SoilNSoul Travels Admin';
+const ADMIN_EMAIL = (process.env.ADMIN_EMAIL || 'admin@soilnsoul.in').trim().toLowerCase();
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
-if (!ADMIN_PASSWORD) throw new Error('Set ADMIN_PASSWORD in your local environment before running this script.');
-// ─────────────────────────────────────────────────────────────────────────────
+if (!ADMIN_PASSWORD || ADMIN_PASSWORD.length < 6) throw new Error('Set ADMIN_PASSWORD to at least 6 characters before running this script.');
 
 async function seed() {
-    try {
-        console.log('🔌 Connecting to MongoDB...');
-        await mongoose.connect(process.env.MONGO_URI);
-        console.log('✅ Connected!\n');
-
-        const existing = await Admin.findOne({ email: ADMIN_EMAIL });
-        if (existing) {
-            console.log(`⚠️  Admin with email "${ADMIN_EMAIL}" already exists.`);
-            console.log('   Delete the document from MongoDB Atlas and re-run if you need to reset.\n');
-        } else {
-            const admin = new Admin({
-                name: ADMIN_NAME,
-                email: ADMIN_EMAIL,
-                password: ADMIN_PASSWORD,
-            });
-            await admin.save();
-            console.log('🎉 Admin created successfully!\n');
-            console.log('┌──────────────────────────────────────────────┐');
-            console.log('│  Admin Panel — Login Credentials             │');
-            console.log('├──────────────────────────────────────────────┤');
-            console.log(`│  URL      : /hakunamata                      │`);
-            console.log(`│  Email    : ${ADMIN_EMAIL.padEnd(33)} │`);
-            console.log('└──────────────────────────────────────────────┘\n');
-        }
-    } catch (err) {
-        console.error('❌ Error:', err.message);
-    } finally {
-        await mongoose.disconnect();
-        console.log('🔌 Disconnected.');
+  if (!await connectDB()) throw new Error('PostgreSQL connection failed. Check DATABASE_URL.');
+  const client = await getClient();
+  try {
+    await client.query('BEGIN');
+    await client.query('LOCK TABLE admins IN EXCLUSIVE MODE');
+    const { rows } = await client.query('SELECT id FROM admins WHERE email = $1 LIMIT 1', [ADMIN_EMAIL]);
+    if (rows[0]) {
+      console.log(`Admin account ${ADMIN_EMAIL} already exists.`);
+      await client.query('ROLLBACK');
+      return;
     }
+    const passwordHash = await bcrypt.hash(ADMIN_PASSWORD, 12);
+    await client.query('INSERT INTO admins (name,email,password_hash) VALUES ($1,$2,$3)', [ADMIN_NAME, ADMIN_EMAIL, passwordHash]);
+    await client.query('COMMIT');
+    console.log(`Admin account ${ADMIN_EMAIL} created. Sign in at /hakunamata.`);
+  } catch (error) {
+    await client.query('ROLLBACK').catch(() => {});
+    throw error;
+  } finally {
+    client.release();
+  }
 }
 
-seed();
+seed().catch((error) => {
+  console.error('Admin seed failed:', error.message);
+  process.exitCode = 1;
+}).finally(() => closeDB().catch(() => {}));

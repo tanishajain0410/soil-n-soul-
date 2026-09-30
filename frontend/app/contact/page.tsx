@@ -14,8 +14,8 @@ export default function ContactPage() {
   const contactSchema = {
     "@context": "https://schema.org",
     "@type": "ContactPage",
-    "@id": "https://www.soilnsoultravels.com/contact#webpage",
-    url: "https://www.soilnsoultravels.com/contact",
+    "@id": "https://soilnsoul.com/contact#webpage",
+    url: "https://soilnsoul.com/contact",
     name: "Contact SoilNSoul Travels",
     description:
       "Contact page of SoilNSoul Travels. Design a personalised journey through the culture, stays, and sacred traditions of Kashi.",
@@ -40,13 +40,13 @@ export default function ContactPage() {
           "@type": "ListItem",
           position: 1,
           name: "Home",
-          item: "https://www.soilnsoultravels.com/",
+          item: "https://soilnsoul.com/",
         },
         {
           "@type": "ListItem",
           position: 2,
           name: "Contact",
-          item: "https://www.soilnsoultravels.com/contact",
+          item: "https://soilnsoul.com/contact",
         },
       ],
     },

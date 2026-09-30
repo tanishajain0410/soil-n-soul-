@@ -52,7 +52,7 @@ const alexBrush = Alex_Brush({
   variable: "--font-alex-brush",
 });
 
-const productionSiteUrl = "https://www.soilnsoultravels.com";
+const productionSiteUrl = "https://soilnsoul.com";
 const resolvedSiteUrl =
   process.env.NODE_ENV === "production"
     ? (process.env.NEXT_PUBLIC_SITE_URL && !process.env.NEXT_PUBLIC_SITE_URL.includes("localhost")

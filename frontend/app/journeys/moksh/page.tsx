@@ -33,7 +33,7 @@ export default function MokshPage() {
             provider: {
               "@type": "TravelAgency",
               name: "SoilNSoul Travels",
-              url: "https://www.soilnsoultravels.com",
+              url: "https://soilnsoul.com",
             },
           }),
         }}

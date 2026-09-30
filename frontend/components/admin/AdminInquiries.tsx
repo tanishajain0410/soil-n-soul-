@@ -8,6 +8,25 @@ import {
   updateInquiry,
   deleteInquiry,
 } from '@/lib/inquiries';
+import {
+  Trash2,
+  ChevronDown,
+  Info,
+  MessageCircle,
+  Phone,
+  Mail,
+  Clock,
+  MapPin,
+  Sparkles,
+  FileText,
+  Search,
+  X,
+  RefreshCw,
+  MailQuestion,
+  MessagesSquare,
+  CheckCircle2,
+  Inbox,
+} from 'lucide-react';
 
 interface AdminInquiriesProps {
   token: string;
@@ -28,6 +47,12 @@ export default function AdminInquiries({ token }: AdminInquiriesProps) {
   const [expandedNotes, setExpandedNotes] = useState<Record<string, boolean>>({});
   const [notesDrafts, setNotesDrafts] = useState<Record<string, string>>({});
   const [savingNoteId, setSavingNoteId] = useState<string | null>(null);
+  const [deleteCandidate, setDeleteCandidate] = useState<{ id: string; name: string } | null>(null);
+  const [expandedDetails, setExpandedDetails] = useState<Record<string, boolean>>({});
+
+  const toggleDetails = (id: string) => {
+    setExpandedDetails((prev) => ({ ...prev, [id]: !prev[id] }));
+  };
 
   const fetchInquiriesData = useCallback(async () => {
     if (!token) return;
@@ -101,10 +126,13 @@ export default function AdminInquiries({ token }: AdminInquiriesProps) {
     }
   };
 
-  const handleDelete = async (id: string, name: string) => {
-    if (!window.confirm(`Are you sure you want to delete the enquiry from "${name}"?`)) {
-      return;
-    }
+  const promptDelete = (id: string, name: string) => {
+    setDeleteCandidate({ id, name });
+  };
+
+  const confirmDelete = async () => {
+    if (!deleteCandidate) return;
+    const { id } = deleteCandidate;
     setActionLoading(id);
     try {
       const res = await deleteInquiry(id, token);
@@ -114,6 +142,7 @@ export default function AdminInquiries({ token }: AdminInquiriesProps) {
         getInquiries(token, { status: 'all' }).then((d) => {
           if (d.success && d.stats) setStats(d.stats);
         });
+        setDeleteCandidate(null);
       } else {
         alert(res.message || 'Failed to delete');
       }
@@ -183,7 +212,7 @@ export default function AdminInquiries({ token }: AdminInquiriesProps) {
             <span className="text-[10px] uppercase font-bold tracking-wider text-[#a89485]">
               Total Queries
             </span>
-            <span className="material-symbols-outlined text-[#dfbf80] text-xl">contact_mail</span>
+            <Inbox size={20} className="text-[#dfbf80]" />
           </div>
           <p className="sns-admin-title text-3xl sm:text-4xl text-white m-0 font-normal">{stats.total}</p>
           <span className="text-[11px] text-[#a89485] mt-1.5 block">All incoming customer leads</span>
@@ -203,7 +232,7 @@ export default function AdminInquiries({ token }: AdminInquiriesProps) {
               <span className="w-2 h-2 rounded-full bg-[#dfbf80] animate-ping" />
               New / Unread
             </span>
-            <span className="material-symbols-outlined text-[#dfbf80] text-xl">mark_email_unread</span>
+            <MailQuestion size={20} className="text-[#dfbf80]" />
           </div>
           <p className="sns-admin-title text-3xl sm:text-4xl text-[#dfbf80] m-0 font-normal">{stats.newCount}</p>
           <span className="text-[11px] text-[#dfbf80]/80 mt-1.5 block">Requires prompt reply</span>
@@ -222,7 +251,7 @@ export default function AdminInquiries({ token }: AdminInquiriesProps) {
             <span className="text-sky-300 text-[10px] uppercase font-bold tracking-wider">
               In Contact
             </span>
-            <span className="material-symbols-outlined text-sky-400 text-xl">forum</span>
+            <MessagesSquare size={20} className="text-sky-400" />
           </div>
           <p className="sns-admin-title text-3xl sm:text-4xl text-sky-300 m-0 font-normal">{stats.contactedCount}</p>
           <span className="text-[11px] text-sky-300/80 mt-1.5 block">Discussion in progress</span>
@@ -241,7 +270,7 @@ export default function AdminInquiries({ token }: AdminInquiriesProps) {
             <span className="text-emerald-300 text-[10px] uppercase font-bold tracking-wider">
               Resolved / Booked
             </span>
-            <span className="material-symbols-outlined text-emerald-400 text-xl">check_circle</span>
+            <CheckCircle2 size={20} className="text-emerald-400" />
           </div>
           <p className="sns-admin-title text-3xl sm:text-4xl text-emerald-300 m-0 font-normal">{stats.resolvedCount}</p>
           <span className="text-[11px] text-emerald-300/80 mt-1.5 block">Successfully fulfilled</span>
@@ -252,9 +281,7 @@ export default function AdminInquiries({ token }: AdminInquiriesProps) {
       <div className="sns-card-subtle p-4 rounded-2xl flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
         {/* Search Input */}
         <div className="relative flex-1 max-w-md">
-          <span className="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-[#a89485] text-base">
-            search
-          </span>
+          <Search size={15} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#a89485] pointer-events-none" />
           <input
             type="text"
             placeholder="Search queries by name, phone, email, journey..."
@@ -267,7 +294,7 @@ export default function AdminInquiries({ token }: AdminInquiriesProps) {
               onClick={() => setSearchQuery('')}
               className="absolute right-3 top-1/2 -translate-y-1/2 text-[#a89485] hover:text-white"
             >
-              <span className="material-symbols-outlined text-xs">close</span>
+              <X size={14} />
             </button>
           )}
         </div>
@@ -304,15 +331,9 @@ export default function AdminInquiries({ token }: AdminInquiriesProps) {
             onClick={() => fetchInquiriesData()}
             disabled={loading}
             title="Refresh Inquiries"
-            className="w-8 h-8 rounded-full bg-white/5 hover:bg-[#dfbf80]/20 text-[#dfbf80] border border-[rgba(226,198,175,0.2)] flex items-center justify-center transition-colors ml-auto md:ml-2"
+            className="w-8 h-8 rounded-full bg-white/5 hover:bg-[#dfbf80]/20 text-[#dfbf80] border border-[rgba(226,198,175,0.2)] flex items-center justify-center transition-colors ml-auto md:ml-2 cursor-pointer"
           >
-            <span
-              className={`material-symbols-outlined text-[17px] ${
-                loading ? 'animate-spin text-[#dfbf80]' : ''
-              }`}
-            >
-              refresh
-            </span>
+            <RefreshCw size={14} className={loading ? 'animate-spin text-[#dfbf80]' : 'text-[#dfbf80]'} />
           </button>
         </div>
       </div>
@@ -380,10 +401,8 @@ export default function AdminInquiries({ token }: AdminInquiriesProps) {
                         </span>
                       </div>
                       <p className="text-[#a89485] text-xs mt-1 flex items-center gap-1.5 m-0">
-                        <span className="material-symbols-outlined text-[13px] text-[#dfbf80]">
-                          schedule
-                        </span>
-                        {formatDate(item.createdAt)}
+                        <Clock size={12} className="text-[#dfbf80] shrink-0" />
+                        <span>{formatDate(item.createdAt)}</span>
                       </p>
                     </div>
                   </div>
@@ -424,55 +443,55 @@ export default function AdminInquiries({ token }: AdminInquiriesProps) {
                     </select>
 
                     <button
-                      onClick={() => handleDelete(item._id, item.name)}
+                      onClick={() => promptDelete(item._id, item.name)}
                       disabled={actionLoading === item._id}
-                      className="w-8 h-8 rounded-full bg-red-500/10 hover:bg-red-500/20 border border-red-500/20 text-red-400 flex items-center justify-center transition-all"
+                      className="w-8 h-8 rounded-full bg-red-500/15 hover:bg-red-500/25 border border-red-500/30 text-red-400 flex items-center justify-center transition-all hover:scale-105 cursor-pointer shrink-0"
                       title="Delete inquiry"
                     >
-                      <span className="material-symbols-outlined text-[15px]">delete</span>
+                      <Trash2 size={15} className="shrink-0" />
                     </button>
                   </div>
                 </div>
 
-                {/* Details Grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 my-4 text-xs">
+                {/* Details Grid: By default, ONLY Phone and Email! */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 my-3.5 text-xs">
                   {/* Phone / WhatsApp */}
-                  <div className="bg-[#23140d]/80 rounded-xl p-3 border border-[rgba(226,198,175,0.12)]">
-                    <span className="text-[#a89485] uppercase tracking-wider text-[10px] font-bold block mb-1">
+                  <div className="bg-[#23140d]/80 rounded-xl p-3.5 border border-[rgba(226,198,175,0.12)]">
+                    <span className="text-[#a89485] uppercase tracking-wider text-[10px] font-bold block mb-1.5">
                       Phone / WhatsApp
                     </span>
-                    <div className="flex items-center justify-between">
-                      <span className="text-[#f7ede2] font-semibold">{item.phone || 'Not provided'}</span>
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="text-[#f7ede2] font-semibold text-sm tracking-wide">{item.phone || 'Not provided'}</span>
                       {item.phone && (
-                        <div className="flex items-center gap-1.5">
+                        <div className="flex items-center gap-2 shrink-0">
                           <a
                             href={waLink}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="w-7 h-7 rounded-full bg-green-500/10 hover:bg-green-500/20 border border-green-500/30 text-green-400 flex items-center justify-center transition-colors"
+                            className="w-8 h-8 rounded-full bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/35 text-emerald-400 flex items-center justify-center transition-all hover:scale-105 shrink-0"
                             title="Chat on WhatsApp"
                           >
-                            <span className="material-symbols-outlined text-sm">chat</span>
+                            <MessageCircle size={15} className="shrink-0" />
                           </a>
                           <a
                             href={`tel:${item.phone}`}
-                            className="w-7 h-7 rounded-full bg-sky-500/10 hover:bg-sky-500/20 border border-sky-500/30 text-sky-400 flex items-center justify-center transition-colors"
+                            className="w-8 h-8 rounded-full bg-sky-500/15 hover:bg-sky-500/25 border border-sky-500/35 text-sky-400 flex items-center justify-center transition-all hover:scale-105 shrink-0"
                             title="Call Phone"
                           >
-                            <span className="material-symbols-outlined text-sm">phone</span>
+                            <Phone size={14} className="shrink-0" />
                           </a>
                         </div>
                       )}
                     </div>
                   </div>
 
-                  {/* Email */}
-                  <div className="bg-[#23140d]/80 rounded-xl p-3 border border-[rgba(226,198,175,0.12)]">
-                    <span className="text-[#a89485] uppercase tracking-wider text-[10px] font-bold block mb-1">
+                  {/* Email Address */}
+                  <div className="bg-[#23140d]/80 rounded-xl p-3.5 border border-[rgba(226,198,175,0.12)]">
+                    <span className="text-[#a89485] uppercase tracking-wider text-[10px] font-bold block mb-1.5">
                       Email Address
                     </span>
-                    <div className="flex items-center justify-between">
-                      <span className="text-[#f7ede2] font-semibold truncate max-w-[150px]">
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="text-[#f7ede2] font-semibold truncate max-w-[240px] text-sm">
                         {item.email || '—'}
                       </span>
                       {item.email && (
@@ -480,139 +499,192 @@ export default function AdminInquiries({ token }: AdminInquiriesProps) {
                           href={`mailto:${item.email}?subject=${encodeURIComponent(
                             `SoilNSoul Travels - Inquiry for ${item.service || 'Varanasi'}`
                           )}`}
-                          className="w-7 h-7 rounded-full bg-[#dfbf80]/10 hover:bg-[#dfbf80]/20 border border-[#dfbf80]/30 text-[#dfbf80] flex items-center justify-center transition-colors"
+                          className="w-8 h-8 rounded-full bg-[#dfbf80]/15 hover:bg-[#dfbf80]/25 border border-[#dfbf80]/35 text-[#dfbf80] flex items-center justify-center transition-all hover:scale-105 shrink-0"
                           title="Send Email"
                         >
-                          <span className="material-symbols-outlined text-sm">mail</span>
+                          <Mail size={15} className="shrink-0" />
                         </a>
                       )}
                     </div>
                   </div>
-
-                  {/* Service / Journey */}
-                  <div className="bg-[#23140d]/80 rounded-xl p-3 border border-[rgba(226,198,175,0.12)]">
-                    <span className="text-[#a89485] uppercase tracking-wider text-[10px] font-bold block mb-1">
-                      Service / Journey
-                    </span>
-                    <span className="text-[#dfbf80] font-semibold truncate block" title={item.service}>
-                      {item.service || 'General Inquiry'}
-                    </span>
-                  </div>
-
-                  {/* Travel Dates & Guests */}
-                  <div className="bg-[#23140d]/80 rounded-xl p-3 border border-[rgba(226,198,175,0.12)]">
-                    <span className="text-[#a89485] uppercase tracking-wider text-[10px] font-bold block mb-1">
-                      Dates &amp; Guests
-                    </span>
-                    <span className="text-[#f7ede2] font-semibold block">
-                      {item.dates || 'Flexible'}{' '}
-                      {item.guests ? `• ${item.guests} guests` : ''}
-                    </span>
-                  </div>
                 </div>
 
-                {/* Origin & Interests if available */}
-                {(item.origin || item.interests) && (
-                  <div className="flex flex-wrap items-center gap-2 mb-3.5 text-xs">
-                    {item.origin && (
-                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#23140d] border border-[rgba(226,198,175,0.15)] text-[#d4c5b8]">
-                        <span className="material-symbols-outlined text-[14px] text-[#dfbf80]">
-                          location_on
+                {/* More Info Collapsible Section */}
+                {expandedDetails[item._id] && (
+                  <div className="mt-3.5 pt-3.5 border-t border-[rgba(226,198,175,0.14)] space-y-3 animate-fade-in">
+                    {/* Secondary Details: Service, Dates & Guests */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                      {/* Service / Journey */}
+                      <div className="bg-[#1c110b]/90 rounded-xl p-3 border border-[rgba(226,198,175,0.12)]">
+                        <span className="text-[#a89485] uppercase tracking-wider text-[10px] font-bold block mb-1">
+                          Service / Journey
                         </span>
-                        Traveling from: <strong className="text-white">{item.origin}</strong>
-                      </span>
-                    )}
-                    {item.interests && (
-                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#23140d] border border-[rgba(226,198,175,0.15)] text-[#d4c5b8]">
-                        <span className="material-symbols-outlined text-[14px] text-[#dfbf80]">
-                          interests
+                        <span className="text-[#dfbf80] font-semibold block" title={item.service}>
+                          {item.service || 'General Inquiry'}
                         </span>
-                        Interests: <strong className="text-white">{item.interests}</strong>
-                      </span>
-                    )}
-                  </div>
-                )}
+                      </div>
 
-                {/* Message Box */}
-                {item.message && (
-                  <div className="bg-[#1a0e08] border border-[rgba(226,198,175,0.18)] rounded-xl p-4 mb-3.5 text-sm">
-                    <p className="text-[#a89485] text-[10px] font-bold mb-1.5 uppercase tracking-wider">
-                      Client Message / Requirements:
-                    </p>
-                    <p className="text-[#fffaf4] leading-relaxed font-serif italic text-base m-0 whitespace-pre-wrap">
-                      "{item.message}"
-                    </p>
-                  </div>
-                )}
-
-                {/* Internal Admin Note Bar */}
-                <div className="mt-3.5 pt-3.5 border-t border-[rgba(226,198,175,0.12)]">
-                  <div className="flex items-center justify-between">
-                    <button
-                      onClick={() =>
-                        setExpandedNotes((prev) => ({ ...prev, [item._id]: !prev[item._id] }))
-                      }
-                      className="text-xs text-[#a89485] hover:text-[#dfbf80] flex items-center gap-1.5 transition-colors"
-                    >
-                      <span className="material-symbols-outlined text-sm">
-                        {isNoteOpen ? 'expand_less' : 'edit_note'}
-                      </span>
-                      {item.notes ? (
-                        <span>
-                          Internal Note:{' '}
-                          <strong className="text-[#d4c5b8] font-normal">
-                            {item.notes.slice(0, 50)}
-                            {item.notes.length > 50 ? '...' : ''}
-                          </strong>
+                      {/* Travel Dates & Guests */}
+                      <div className="bg-[#1c110b]/90 rounded-xl p-3 border border-[rgba(226,198,175,0.12)]">
+                        <span className="text-[#a89485] uppercase tracking-wider text-[10px] font-bold block mb-1">
+                          Dates &amp; Guests
                         </span>
-                      ) : (
-                        <span>+ Add internal note</span>
-                      )}
-                    </button>
+                        <span className="text-[#f7ede2] font-semibold block">
+                          {item.dates || 'Flexible'}{' '}
+                          {item.guests ? `• ${item.guests} guests` : ''}
+                        </span>
+                      </div>
+                    </div>
 
-                    {/* Quick WhatsApp Contact CTA */}
-                    {item.phone && (
-                      <a
-                        href={waLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="sns-btn-gold !bg-gradient-to-r !from-emerald-700 !to-emerald-600 !text-white !border-emerald-500/30 !py-1.5 !px-3.5 text-xs shadow-sm"
-                      >
-                        <span className="material-symbols-outlined text-sm">chat</span>
-                        <span>Reply on WhatsApp</span>
-                      </a>
+                    {/* Origin & Interests if available */}
+                    {(item.origin || item.interests) && (
+                      <div className="flex flex-wrap items-center gap-2 text-xs">
+                        {item.origin && (
+                          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#23140d] border border-[rgba(226,198,175,0.15)] text-[#d4c5b8]">
+                            <MapPin size={13} className="text-[#dfbf80] shrink-0" />
+                            <span>Traveling from: <strong className="text-white">{item.origin}</strong></span>
+                          </span>
+                        )}
+                        {item.interests && (
+                          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#23140d] border border-[rgba(226,198,175,0.15)] text-[#d4c5b8]">
+                            <Sparkles size={13} className="text-[#dfbf80] shrink-0" />
+                            <span>Interests: <strong className="text-white">{item.interests}</strong></span>
+                          </span>
+                        )}
+                      </div>
                     )}
-                  </div>
 
-                  {isNoteOpen && (
-                    <div className="mt-3 bg-[#1d100a] border border-[rgba(226,198,175,0.18)] rounded-xl p-3.5 space-y-2">
-                      <label className="text-[10px] text-[#a89485] uppercase tracking-wider font-bold block">
-                        Internal Team Notes (Only visible to admin):
-                      </label>
+                    {/* Message Box */}
+                    {item.message && (
+                      <div className="bg-[#180c07] border border-[rgba(226,198,175,0.18)] rounded-xl p-4 text-sm">
+                        <p className="text-[#a89485] text-[10px] font-bold mb-1.5 uppercase tracking-wider">
+                          Client Message / Requirements:
+                        </p>
+                        <p className="text-[#fffaf4] leading-relaxed font-serif italic text-base m-0 whitespace-pre-wrap">
+                          "{item.message}"
+                        </p>
+                      </div>
+                    )}
+
+                    {/* Internal Admin Note Bar */}
+                    <div className="bg-[#1c110b]/70 rounded-xl p-3 border border-[rgba(226,198,175,0.1)]">
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="text-[#a89485] text-[10px] font-bold uppercase tracking-wider flex items-center gap-1.5">
+                          <FileText size={13} className="text-[#dfbf80] shrink-0" />
+                          <span>Internal Team Notes (Only visible to admin):</span>
+                        </span>
+                        {item.notes && (
+                          <span className="text-[10px] text-emerald-400 font-semibold flex items-center gap-1">
+                            ● Note saved
+                          </span>
+                        )}
+                      </div>
                       <textarea
                         rows={2}
                         value={currentDraft}
                         onChange={(e) =>
                           setNotesDrafts((prev) => ({ ...prev, [item._id]: e.target.value }))
                         }
-                        placeholder="e.g. Sent bespoke itinerary via WhatsApp. Waiting for confirmed dates."
-                        className="w-full bg-[#23140d] border border-[rgba(226,198,175,0.2)] focus:border-[#dfbf80] rounded-lg p-2.5 text-xs text-white placeholder:text-[#8e7a6d] outline-none resize-none"
+                        placeholder="Add internal notes about this client (e.g. Budget discussed, itinerary sent, preferred language)..."
+                        className="w-full bg-[#120804] border border-[rgba(226,198,175,0.2)] focus:border-[#dfbf80] rounded-lg p-2.5 text-xs text-white placeholder:text-[#8e7a6d] outline-none resize-none"
                       />
-                      <div className="flex justify-end gap-2">
+                      <div className="flex justify-end mt-2">
                         <button
                           onClick={() => handleSaveNote(item._id)}
                           disabled={savingNoteId === item._id}
-                          className="sns-btn-gold !py-1 !px-3.5 text-[10px]"
+                          className="sns-btn-gold !py-1 !px-3.5 text-[10px] cursor-pointer"
                         >
                           {savingNoteId === item._id ? 'Saving...' : 'Save Note'}
                         </button>
                       </div>
                     </div>
+                  </div>
+                )}
+
+                {/* Bottom Actions Bar: More Info Toggle + WhatsApp Reply */}
+                <div className="mt-3.5 pt-3 border-t border-[rgba(226,198,175,0.12)] flex items-center justify-between flex-wrap gap-2.5">
+                  <button
+                    type="button"
+                    onClick={() => toggleDetails(item._id)}
+                    className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-[#251811] hover:bg-[#322016] border border-[#dfbf80]/25 hover:border-[#dfbf80]/45 text-[#dfbf80] text-xs font-semibold transition-all cursor-pointer shadow-sm group"
+                  >
+                    <Info size={14} className="group-hover:rotate-12 transition-transform" />
+                    <span>{expandedDetails[item._id] ? 'Less Info' : 'More Info'}</span>
+                    <ChevronDown
+                      size={14}
+                      className={`transition-transform duration-200 ${expandedDetails[item._id] ? 'rotate-180' : ''}`}
+                    />
+                  </button>
+
+                  {/* Quick WhatsApp Contact CTA */}
+                  {item.phone && (
+                    <a
+                      href={waLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="sns-btn-gold !bg-gradient-to-r !from-emerald-700 !to-emerald-600 !text-white !border-emerald-500/30 !py-1.5 !px-4 text-xs shadow-sm flex items-center gap-2 hover:scale-[1.02] transition-transform"
+                    >
+                      <MessageCircle size={15} className="shrink-0" />
+                      <span>Reply on WhatsApp</span>
+                    </a>
                   )}
                 </div>
               </div>
             );
           })}
+        </div>
+      )}
+      {/* Custom Luxury Delete Confirmation Modal */}
+      {deleteCandidate && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-fade-in"
+          onClick={() => setDeleteCandidate(null)}
+        >
+          <div
+            className="bg-[#1c120c] border border-[#dfbf80]/35 rounded-2xl max-w-md w-full p-6 sm:p-7 shadow-2xl text-left relative overflow-hidden"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="absolute top-0 right-0 w-32 h-32 bg-[radial-gradient(circle,rgba(223,191,128,0.12),transparent_70%)] pointer-events-none" />
+            <div className="flex items-start gap-4 mb-4 relative z-10">
+              <div className="w-11 h-11 rounded-2xl bg-red-500/10 border border-red-500/30 flex items-center justify-center text-red-400 shrink-0 shadow-inner">
+                <Trash2 size={20} />
+              </div>
+              <div className="min-w-0 flex-1">
+                <h3 className="sns-admin-title text-xl text-white m-0 font-medium tracking-tight">
+                  Delete Customer Enquiry?
+                </h3>
+                <p className="text-xs text-[#a89485] m-0 mt-1">
+                  This enquiry record will be permanently removed.
+                </p>
+              </div>
+            </div>
+
+            <p className="text-sm text-[#e2c6af] mb-6 leading-relaxed relative z-10 bg-[#251811]/60 p-3.5 rounded-xl border border-[rgba(226,198,175,0.12)]">
+              Are you sure you want to delete the enquiry from{' '}
+              <strong className="text-white font-semibold">{deleteCandidate.name}</strong>?
+            </p>
+
+            <div className="flex items-center justify-end gap-3 relative z-10">
+              <button
+                type="button"
+                onClick={() => setDeleteCandidate(null)}
+                disabled={Boolean(actionLoading)}
+                className="px-4 py-2.5 rounded-xl text-xs font-semibold text-[#c7b4a3] hover:text-white bg-[#251811] hover:bg-[#322117] border border-[rgba(226,198,175,0.2)] transition-all cursor-pointer"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                onClick={confirmDelete}
+                disabled={Boolean(actionLoading)}
+                className="px-5 py-2.5 rounded-xl text-xs font-semibold text-white bg-red-600 hover:bg-red-500 border border-red-400/30 shadow-lg shadow-red-950/50 transition-all flex items-center gap-1.5 cursor-pointer disabled:opacity-50"
+              >
+                {actionLoading ? 'Deleting…' : 'Delete Enquiry'}
+              </button>
+            </div>
+          </div>
         </div>
       )}
     </div>

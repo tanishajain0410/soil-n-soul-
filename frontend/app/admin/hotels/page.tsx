@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { API_URL } from '@/lib/constants';
+import { Trash2 } from 'lucide-react';
 
 export default function AdminHotels() {
     const router = useRouter();
@@ -14,6 +15,8 @@ export default function AdminHotels() {
     const [token, setToken] = useState<string | null>(null);
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const [currentHotel, setCurrentHotel] = useState<any>({ name: '', description: '', image: '', whatsappMessage: '' });
+    const [deleteHotelCandidate, setDeleteHotelCandidate] = useState<{ id: string; name: string } | null>(null);
+    const [isDeletingHotel, setIsDeletingHotel] = useState(false);
 
     useEffect(() => {
         const storedToken = localStorage.getItem('token');
@@ -29,20 +32,27 @@ export default function AdminHotels() {
         }
     }, [router]);
 
-    const handleDelete = async (id: string) => {
-        if (!window.confirm('Are you sure you want to delete this hotel?')) return;
+    const promptDeleteHotel = (id: string, name: string) => {
+        setDeleteHotelCandidate({ id, name });
+    };
+
+    const confirmDeleteHotel = async () => {
+        if (!deleteHotelCandidate) return;
+        setIsDeletingHotel(true);
         try {
-            const res = await fetch(`${API_URL}/hotels/${id}`, {
+            const res = await fetch(`${API_URL}/hotels/${deleteHotelCandidate.id}`, {
                 method: 'DELETE',
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             const data = await res.json();
             if (data.success) {
-                setHotels(hotels.filter(h => h._id !== id));
+                setHotels(hotels.filter(h => h._id !== deleteHotelCandidate.id));
+                setDeleteHotelCandidate(null);
             }
         } catch (err) {
             console.error(err);
-            alert('Failed to delete');
+        } finally {
+            setIsDeletingHotel(false);
         }
     };
 
@@ -367,8 +377,8 @@ export default function AdminHotels() {
                                                         <span className="hidden sm:inline">Edit</span>
                                                     </button>
                                                     <button
-                                                        onClick={() => handleDelete(hotel._id)}
-                                                        className="sns-btn-danger text-xs px-3 py-1.5"
+                                                        onClick={() => promptDeleteHotel(hotel._id, hotel.name)}
+                                                        className="sns-btn-danger text-xs px-3 py-1.5 cursor-pointer"
                                                         title="Delete Property"
                                                     >
                                                         <span className="material-symbols-outlined text-[14px]">delete</span>
@@ -396,6 +406,59 @@ export default function AdminHotels() {
                     </div>
                 )}
             </div>
+
+            {/* Custom Luxury Delete Hotel Confirmation Modal */}
+            {deleteHotelCandidate && (
+                <div
+                    role="dialog"
+                    aria-modal="true"
+                    className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-fade-in"
+                    onClick={() => setDeleteHotelCandidate(null)}
+                >
+                    <div
+                        className="bg-[#1c120c] border border-[#dfbf80]/35 rounded-2xl max-w-md w-full p-6 sm:p-7 shadow-2xl text-left relative overflow-hidden"
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        <div className="absolute top-0 right-0 w-32 h-32 bg-[radial-gradient(circle,rgba(223,191,128,0.12),transparent_70%)] pointer-events-none" />
+                        <div className="flex items-start gap-4 mb-4 relative z-10">
+                            <div className="w-11 h-11 rounded-2xl bg-red-500/10 border border-red-500/30 flex items-center justify-center text-red-400 shrink-0 shadow-inner">
+                                <Trash2 size={20} />
+                            </div>
+                            <div className="min-w-0 flex-1">
+                                <h3 className="sns-admin-title text-xl text-white m-0 font-medium tracking-tight">
+                                    Delete Hotel Property?
+                                </h3>
+                                <p className="text-xs text-[#a89485] m-0 mt-1">
+                                    This listing will be permanently removed from recommendations.
+                                </p>
+                            </div>
+                        </div>
+
+                        <p className="text-sm text-[#e2c6af] mb-6 leading-relaxed relative z-10 bg-[#251811]/60 p-3.5 rounded-xl border border-[rgba(226,198,175,0.12)]">
+                            Are you sure you want to delete <strong className="text-white font-semibold">"{deleteHotelCandidate.name}"</strong>?
+                        </p>
+
+                        <div className="flex items-center justify-end gap-3 relative z-10">
+                            <button
+                                type="button"
+                                onClick={() => setDeleteHotelCandidate(null)}
+                                disabled={isDeletingHotel}
+                                className="px-4 py-2.5 rounded-xl text-xs font-semibold text-[#c7b4a3] hover:text-white bg-[#251811] hover:bg-[#322117] border border-[rgba(226,198,175,0.2)] transition-all cursor-pointer"
+                            >
+                                Cancel
+                            </button>
+                            <button
+                                type="button"
+                                onClick={confirmDeleteHotel}
+                                disabled={isDeletingHotel}
+                                className="px-5 py-2.5 rounded-xl text-xs font-semibold text-white bg-red-600 hover:bg-red-500 border border-red-400/30 shadow-lg shadow-red-950/50 transition-all flex items-center gap-1.5 cursor-pointer disabled:opacity-50"
+                            >
+                                {isDeletingHotel ? 'Deleting…' : 'Delete Property'}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

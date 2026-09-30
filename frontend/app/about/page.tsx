@@ -19,13 +19,13 @@ export default function AboutPage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "AboutPage",
-            url: "https://www.soilnsoultravels.com/about",
+            url: "https://soilnsoul.com/about",
             name: "About SoilNSoul Travels",
             mainEntity: {
               "@type": "Person",
               name: "Anchal Pandey",
               jobTitle: "Founder",
-              image: "https://www.soilnsoultravels.com/images/founder.jpg",
+              image: "https://soilnsoul.com/images/founder.jpg",
               worksFor: {
                 "@type": "TravelAgency",
                 name: "SoilNSoul Travels",

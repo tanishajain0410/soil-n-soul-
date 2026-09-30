@@ -3,9 +3,10 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { API_URL, SITE_URL } from '@/lib/constants';
+import { API_URL } from '@/lib/constants';
 import AdminInquiries from '@/components/admin/AdminInquiries';
 import { getInquiries } from '@/lib/inquiries';
+import { Trash2, Pencil } from 'lucide-react';
 
 type RevalStatus = 'idle' | 'loading' | 'success' | 'error';
 type TabType = 'inquiries' | 'blogs';
@@ -21,6 +22,8 @@ export default function AdminDashboard() {
     const [blogStatusFilter, setBlogStatusFilter] = useState<'all' | 'published' | 'draft'>('all');
     const [blogCategoryFilter, setBlogCategoryFilter] = useState<string>('all');
     const [blogSearch, setBlogSearch] = useState<string>('');
+    const [deleteBlogCandidate, setDeleteBlogCandidate] = useState<{ id: string; title: string } | null>(null);
+    const [isDeletingBlog, setIsDeletingBlog] = useState(false);
 
     useEffect(() => {
         const storedToken = localStorage.getItem('token');
@@ -53,21 +56,27 @@ export default function AdminDashboard() {
         }
     };
 
-    const handleDelete = async (id: string) => {
-        if (!window.confirm('Are you sure you want to delete this blog?')) return;
+    const promptDeleteBlog = (id: string, title: string) => {
+        setDeleteBlogCandidate({ id, title });
+    };
 
+    const confirmDeleteBlog = async () => {
+        if (!deleteBlogCandidate) return;
+        setIsDeletingBlog(true);
         try {
-            const res = await fetch(`${API_URL}/blogs/${id}`, {
+            const res = await fetch(`${API_URL}/blogs/${deleteBlogCandidate.id}`, {
                 method: 'DELETE',
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             const data = await res.json();
             if (data.success) {
-                setBlogs(blogs.filter(b => b._id !== id));
+                setBlogs(blogs.filter(b => b._id !== deleteBlogCandidate.id));
+                setDeleteBlogCandidate(null);
             }
         } catch (err) {
             console.error(err);
-            alert('Failed to delete');
+        } finally {
+            setIsDeletingBlog(false);
         }
     };
 
@@ -446,17 +455,17 @@ export default function AdminDashboard() {
                                                     <div className="flex items-center justify-end gap-2 sm:gap-2.5 opacity-100 sm:opacity-80 sm:group-hover:opacity-100 transition-opacity">
                                                         <Link
                                                             href={`/admin/blog/edit/${blog.slug}`}
-                                                            className="w-8 h-8 rounded-full bg-white/5 hover:bg-[#d9ad57]/20 border border-[rgba(226,198,175,0.15)] hover:border-[#d9ad57]/40 text-[#dfbf80] flex items-center justify-center transition-all"
+                                                            className="w-8 h-8 rounded-full bg-white/5 hover:bg-[#d9ad57]/20 border border-[rgba(226,198,175,0.15)] hover:border-[#d9ad57]/40 text-[#dfbf80] flex items-center justify-center transition-all hover:scale-105 shrink-0"
                                                             title="Edit Story"
                                                         >
-                                                            <span className="material-symbols-outlined text-[15px]">edit</span>
+                                                            <Pencil size={14} className="shrink-0" />
                                                         </Link>
                                                         <button
-                                                            onClick={() => handleDelete(blog._id)}
-                                                            className="w-8 h-8 rounded-full bg-red-500/10 hover:bg-red-500/20 border border-red-500/20 text-red-400 flex items-center justify-center transition-all"
+                                                            onClick={() => promptDeleteBlog(blog._id, blog.title)}
+                                                            className="w-8 h-8 rounded-full bg-red-500/15 hover:bg-red-500/25 border border-red-500/30 text-red-400 flex items-center justify-center transition-all hover:scale-105 cursor-pointer shrink-0"
                                                             title="Delete Story"
                                                         >
-                                                            <span className="material-symbols-outlined text-[15px]">delete</span>
+                                                            <Trash2 size={14} className="shrink-0" />
                                                         </button>
                                                     </div>
                                                 </td>
@@ -497,33 +506,60 @@ export default function AdminDashboard() {
                     </div>
                 )}
 
-                {/* ── Sitemap & SEO Quicklinks ── */}
-                <div className="pt-4 border-t border-[rgba(226,198,175,0.18)] grid sm:grid-cols-3 gap-4">
-                    {[
-                        { label: 'Dynamic Sitemap', href: `${SITE_URL}/sitemap.xml`, icon: 'sitemap', desc: 'Auto-updating XML index for search bots' },
-                        { label: 'Crawl Directives', href: `${SITE_URL}/robots.txt`, icon: 'smart_toy', desc: 'Inspect robots.txt search directives' },
-                        { label: 'Google Search Console', href: 'https://search.google.com/search-console/', icon: 'query_stats', desc: 'Monitor impressions, rankings & index status' },
-                    ].map(item => (
-                        <a
-                            key={item.label}
-                            href={item.href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="sns-card p-4 sm:p-5 hover:border-[rgba(226,198,175,0.38)] transition-all group flex items-start gap-3.5"
-                        >
-                            <span className="material-symbols-outlined text-[#dfbf80] text-xl mt-0.5 group-hover:scale-110 transition-transform">
-                                {item.icon}
-                            </span>
-                            <div>
-                                <p className="text-[#fffaf4] font-serif font-semibold text-base group-hover:text-[#dfbf80] transition-colors m-0">
-                                    {item.label}
-                                </p>
-                                <p className="text-[#a89485] text-xs mt-1 m-0 leading-relaxed">{item.desc}</p>
-                            </div>
-                        </a>
-                    ))}
-                </div>
             </div>
+
+            {/* Custom Luxury Delete Blog Confirmation Modal */}
+            {deleteBlogCandidate && (
+                <div
+                    role="dialog"
+                    aria-modal="true"
+                    className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-fade-in"
+                    onClick={() => setDeleteBlogCandidate(null)}
+                >
+                    <div
+                        className="bg-[#1c120c] border border-[#dfbf80]/35 rounded-2xl max-w-md w-full p-6 sm:p-7 shadow-2xl text-left relative overflow-hidden"
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        <div className="absolute top-0 right-0 w-32 h-32 bg-[radial-gradient(circle,rgba(223,191,128,0.12),transparent_70%)] pointer-events-none" />
+                        <div className="flex items-start gap-4 mb-4 relative z-10">
+                            <div className="w-11 h-11 rounded-2xl bg-red-500/10 border border-red-500/30 flex items-center justify-center text-red-400 shrink-0 shadow-inner">
+                                <Trash2 size={20} />
+                            </div>
+                            <div className="min-w-0 flex-1">
+                                <h3 className="sns-admin-title text-xl text-white m-0 font-medium tracking-tight">
+                                    Delete Blog Story?
+                                </h3>
+                                <p className="text-xs text-[#a89485] m-0 mt-1">
+                                    This story will be permanently removed from publication.
+                                </p>
+                            </div>
+                        </div>
+
+                        <p className="text-sm text-[#e2c6af] mb-6 leading-relaxed relative z-10 bg-[#251811]/60 p-3.5 rounded-xl border border-[rgba(226,198,175,0.12)]">
+                            Are you sure you want to delete <strong className="text-white font-semibold">"{deleteBlogCandidate.title}"</strong>?
+                        </p>
+
+                        <div className="flex items-center justify-end gap-3 relative z-10">
+                            <button
+                                type="button"
+                                onClick={() => setDeleteBlogCandidate(null)}
+                                disabled={isDeletingBlog}
+                                className="px-4 py-2.5 rounded-xl text-xs font-semibold text-[#c7b4a3] hover:text-white bg-[#251811] hover:bg-[#322117] border border-[rgba(226,198,175,0.2)] transition-all cursor-pointer"
+                            >
+                                Cancel
+                            </button>
+                            <button
+                                type="button"
+                                onClick={confirmDeleteBlog}
+                                disabled={isDeletingBlog}
+                                className="px-5 py-2.5 rounded-xl text-xs font-semibold text-white bg-red-600 hover:bg-red-500 border border-red-400/30 shadow-lg shadow-red-950/50 transition-all flex items-center gap-1.5 cursor-pointer disabled:opacity-50"
+                            >
+                                {isDeletingBlog ? 'Deleting…' : 'Delete Story'}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

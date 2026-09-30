@@ -5,9 +5,8 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { connectDB } from './config/db.js';
+import { connectDB, isDatabaseReady, query } from './config/db.js';
 import { cacheClear, cacheGet, cacheSet } from './cache.js';
-import Blog from './models/Blog.js';
 import jwt from 'jsonwebtoken';
 
 // Route imports
@@ -25,8 +24,8 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 const SITE_URL = process.env.SITE_URL || 'https://www.soilnsoultravels.com';
 
-// Connect Database
-connectDB();
+// Connect PostgreSQL before accepting requests.
+await connectDB();
 
 // Security middleware
 app.use(helmet({ crossOriginResourcePolicy: { policy: 'cross-origin' } }));
@@ -82,7 +81,7 @@ app.use('/api/hotels', hotelRoutes);
 
 // ─── Health check ─────────────────────────────────────────────────────────────
 app.get('/api/health', (req, res) => {
-    res.json({ status: 'ok', message: 'SoilNSoul Travels API is running', time: new Date() });
+    res.json({ status: 'ok', database: isDatabaseReady() ? 'postgresql' : 'unavailable', message: 'SoilNSoul Travels API is running', time: new Date() });
 });
 
 // ─── On-Demand Revalidation ───────────────────────────────────────────────────
@@ -114,7 +113,7 @@ app.get('/sitemap.xml', async (req, res) => {
             return res.send(cached);
         }
 
-        const blogs = await Blog.find({ status: 'published' }, 'slug updatedAt').sort({ updatedAt: -1 });
+        const { rows: blogs } = await query('SELECT slug, updated_at FROM blogs WHERE status = $1 ORDER BY updated_at DESC', ['published']);
 
         const staticPages = [
             { url: '/', priority: '1.0', changefreq: 'daily' },
@@ -171,7 +170,7 @@ app.get('/sitemap.xml', async (req, res) => {
 
         // Blog posts (dynamic)
         blogs.forEach(blog => {
-            const lastmod = blog.updatedAt ? blog.updatedAt.toISOString().split('T')[0] : '';
+            const lastmod = blog.updated_at ? new Date(blog.updated_at).toISOString().split('T')[0] : '';
             xmlLines.push(`  <url>
     <loc>${SITE_URL}/blog/${blog.slug}</loc>
     ${lastmod ? `<lastmod>${lastmod}</lastmod>` : ''}
@@ -222,8 +221,8 @@ app.use((err, req, res, next) => {
     });
 });
 
-app.listen(PORT, () => {
-    console.log(`\n🕉️  SoilNSoul Travels API running on http://localhost:${PORT}`);
+app.listen(PORT, '0.0.0.0', () => {
+    console.log(`\n🕉️  SoilNSoul Travels API running on port ${PORT}`);
     console.log(`📦 Environment: ${process.env.NODE_ENV}`);
-    console.log(`🗄️  MongoDB: ${process.env.MONGO_URI}\n`);
+    console.log(`🗄️  PostgreSQL: ${isDatabaseReady() ? 'connected' : 'not configured'}\n`);
 });

@@ -17,8 +17,8 @@ export default async function BlogPage() {
   const blogSchema = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    "@id": "https://www.soilnsoultravels.com/blog#webpage",
-    url: "https://www.soilnsoultravels.com/blog",
+    "@id": "https://soilnsoul.com/blog#webpage",
+    url: "https://soilnsoul.com/blog",
     name: "Varanasi Travel Blog — Stories from Kashi",
     description:
       "Curated essays, cultural dispatches, and spiritual reflections from the ancient streets of Varanasi by SoilNSoul Travels.",
@@ -29,13 +29,13 @@ export default async function BlogPage() {
           "@type": "ListItem",
           position: 1,
           name: "Home",
-          item: "https://www.soilnsoultravels.com/",
+          item: "https://soilnsoul.com/",
         },
         {
           "@type": "ListItem",
           position: 2,
           name: "Blog",
-          item: "https://www.soilnsoultravels.com/blog",
+          item: "https://soilnsoul.com/blog",
         },
       ],
     },
