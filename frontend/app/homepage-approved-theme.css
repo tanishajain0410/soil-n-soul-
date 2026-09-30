@@ -172,8 +172,9 @@ body:has(.reference-homepage) .exp-nav-cta-btn:hover { transform:translateY(-1px
 .home-river-heading h2 { margin:0; color:var(--home-cream); font:400 clamp(36px,4vw,52px)/.98 var(--sns-font-cormorant); }
 .home-river-heading h2 em { color:#d7b875; font-weight:400; }
 .home-river-tabs { display:flex; gap:17px; padding-bottom:5px; }
-.home-river-tabs span { padding-bottom:7px; border-bottom:1px solid transparent; color:#dbcdb8; font-size:13px; }
-.home-river-tabs span:first-child { border-color:#d7b875; color:#e0c486; }
+.home-river-tabs a { padding-bottom:7px; border-bottom:1px solid transparent; color:#dbcdb8; font-size:13px; text-decoration:none; transition:color .2s ease,border-color .2s ease; }
+.home-river-tabs a:first-child,.home-river-tabs a:hover { border-color:#d7b875; color:#e0c486; }
+.home-river-tabs a:focus-visible { border-color:#d7b875; outline:2px solid #e0c486; outline-offset:4px; }
 .home-river-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; }
 .home-river-card { position:relative; min-height:270px; overflow:hidden; border:1px solid #d7b87542; border-radius:6px; isolation:isolate; }
 .home-river-card>img { z-index:-2; object-fit:cover; filter:saturate(.78) sepia(.1); transition:transform .7s ease; }

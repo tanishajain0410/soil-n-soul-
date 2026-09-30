@@ -34,6 +34,13 @@ const riverMoments = [
   { title: "A Moment of Stillness", detail: "Room to pause and take it in", image: "/SnS/private-journey-rituals.webp", category: "INNER KASHI" },
 ];
 
+const riverThemes = [
+  { label: "Spiritual", href: "/journeys/dharm" },
+  { label: "Culture", href: "/journeys/arth" },
+  { label: "Food", href: "/journeys/kaam" },
+  { label: "Heritage", href: "/journeys/arth" },
+];
+
 const kashiVoices = [
   { label: "Testimonial video 1", reel: "https://www.instagram.com/reel/DbShNSGCVEi/", thumbnail: "/images/testimonials/testimonial-1-cover.png" },
   { label: "Testimonial video 2", reel: "https://www.instagram.com/reel/Dau_-F6qUIb/", thumbnail: "/api/reel-cover/Dau_-F6qUIb?v=2" },
@@ -687,7 +694,13 @@ export default function HomeClient() {
         <div className="home-river-inner">
           <div className="home-river-heading">
             <div><p className="reference-gold-eyebrow">A RIVER, EIGHTY-FOUR GHATS</p><h2 id="home-river-title">One river, eighty-four ghats,<br/><em>four dawn to aarti.</em></h2></div>
-            <div className="home-river-tabs" aria-label="Explore themes"><span>Spiritual</span><span>Culture</span><span>Food</span><span>Heritage</span></div>
+            <nav className="home-river-tabs" aria-label="Explore journey themes">
+              {riverThemes.map((theme) => (
+                <Link href={theme.href} key={theme.label}>
+                  {theme.label}
+                </Link>
+              ))}
+            </nav>
           </div>
           <div className="home-river-grid">
             {riverMoments.map((moment) => <article className="home-river-card" key={moment.title}>
