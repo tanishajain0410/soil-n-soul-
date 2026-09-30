@@ -5,12 +5,12 @@ import { journeyCategories } from "@/data/journeyCategories";
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "Arth — Heritage & Markets in Varanasi | Soil n Soul",
+  title: "Arth — Heritage & Markets in Varanasi | SoilNSoul Travels",
   description:
     "Discover the artistic heart of Varanasi through its ancient markets, master artisans, Banarasi silk, architecture and living traditions.",
   alternates: { canonical: "/journeys/arth" },
   openGraph: {
-    title: "Arth — Heritage & Markets in Varanasi | Soil n Soul",
+    title: "Arth — Heritage & Markets in Varanasi | SoilNSoul Travels",
     description:
       "A journey through craft, culture and enduring legacy in the ancient city of Varanasi.",
     images: [{ url: "/images/journeys/arth-hero.jpg" }],
@@ -32,7 +32,7 @@ export default function ArthPage() {
             description: data.heroDescription,
             provider: {
               "@type": "TravelAgency",
-              name: "Soil n Soul Travels",
+              name: "SoilNSoul Travels",
               url: "https://www.soilnsoultravels.com",
             },
           }),

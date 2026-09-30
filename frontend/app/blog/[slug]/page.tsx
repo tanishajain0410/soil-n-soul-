@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const image = post.bannerImage || `${SITE_URL}/images/og-default.jpg`;
 
   return {
-    title: `${title} | Soil n Soul Travels Blog`,
+    title: `${title} | SoilNSoul Travels Blog`,
     description,
     keywords: post.keywords || '',
     openGraph: {
@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       publishedTime: post.createdAt,
       modifiedTime: post.updatedAt || post.createdAt,
       images: [{ url: image, width: 1200, height: 630, alt: title }],
-      siteName: 'Soil n Soul Travels',
+      siteName: 'SoilNSoul Travels',
     },
     twitter: {
       card: 'summary_large_image',
@@ -65,10 +65,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     image: post.bannerImage,
     datePublished: post.createdAt,
     dateModified: post.updatedAt || post.createdAt,
-    author: { '@type': 'Organization', name: 'Soil n Soul Travels' },
+    author: { '@type': 'Organization', name: 'SoilNSoul Travels' },
     publisher: {
       '@type': 'Organization',
-      name: 'Soil n Soul Travels',
+      name: 'SoilNSoul Travels',
       logo: { '@type': 'ImageObject', url: `${SITE_URL}/images/logo.png` },
     },
     mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE_URL}/blog/${post.slug}` },

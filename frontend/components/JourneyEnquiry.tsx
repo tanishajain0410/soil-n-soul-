@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight, Phone, Mail, MapPin } from "lucide-react";
 import { whatsapp } from "@/data/journeys";
+import { submitInquiry } from "@/lib/inquiries";
 
 interface JourneyEnquiryProps {
   journey?: string;
@@ -20,6 +21,7 @@ export default function JourneyEnquiry({
   const [ready, setReady] = useState("");
   const [selectedDuration, setSelectedDuration] = useState(duration);
   const [submitted, setSubmitted] = useState(false);
+  const [adminSubmitState, setAdminSubmitState] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [travellers, setTravellers] = useState("1 to 2");
   const formRef = useRef<HTMLFormElement>(null);
 
@@ -42,17 +44,57 @@ export default function JourneyEnquiry({
     return () => window.removeEventListener("journey-preferences", handlePreferences);
   }, []);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
-    const interests = data.get("interests") || "A custom Kashi trip";
-    const text = `Hello Soil n Soul,\n${
+    const submitter = (e.nativeEvent as SubmitEvent).submitter as HTMLButtonElement | null;
+    const name = String(data.get("name") || "").trim();
+    const contact = String(data.get("contact") || "").trim();
+    const email = String(data.get("email") || "").trim();
+    const dates = String(data.get("dates") || "").trim();
+    const origin = String(data.get("origin") || "").trim();
+    const guests = String(data.get("guests") || travellers || "").trim();
+    const message = String(data.get("message") || "").trim();
+    const interests = String(data.get("interests") || "A custom Kashi trip");
+    const serviceName = journey || "Private Varanasi Journey Planning";
+
+    const inquiry = {
+      name,
+      phone: contact,
+      email,
+      service: serviceName,
+      dates,
+      guests,
+      origin,
+      interests,
+      message,
+      source: variant === "contact" ? "contact_page" : variant === "journeys" ? "journeys_page" : "journey_enquiry",
+      metadata: {
+        duration: selectedDuration,
+      },
+    };
+
+    if (submitter?.value === "admin") {
+      setAdminSubmitState("submitting");
+      try {
+        const result = await submitInquiry(inquiry);
+        setAdminSubmitState(result.success ? "success" : "error");
+      } catch {
+        setAdminSubmitState("error");
+      }
+      return;
+    }
+
+    // Keep WhatsApp enquiries in the admin inbox as well as opening the chat.
+    void submitInquiry(inquiry).catch(console.error);
+
+    const text = `Hello SoilNSoul Travels,\n${
       journey ? `I would love to plan: ${journey}.` : "I would love to design my private Varanasi journey."
-    }\n\n*Name:* ${data.get("name")}\n*WhatsApp:* ${data.get("contact")}\n*Email:* ${
-      data.get("email") || "Not provided"
-    }\n*Preferred Dates:* ${data.get("dates") || "Flexible"}\n*Guests:* ${data.get("guests") || "2"}${
+    }\n\n*Name:* ${name}\n*WhatsApp:* ${contact}\n*Email:* ${
+      email || "Not provided"
+    }\n*Preferred Dates:* ${dates || "Flexible"}\n*Guests:* ${guests || "2"}${
       selectedDuration ? `\n*Duration:* ${selectedDuration}` : ""
-    }\n*Travelling from:* ${data.get("origin") || "Not provided"}\n*Interests:* ${interests}\n*Message:* ${data.get("message") || "Looking forward to your guidance."}`;
+    }\n*Travelling from:* ${origin || "Not provided"}\n*Interests:* ${interests}\n*Message:* ${message || "Looking forward to your guidance."}`;
 
     const link = whatsapp(text);
     setReady(link);
@@ -84,7 +126,12 @@ export default function JourneyEnquiry({
             <div className="form-field form-field-full reference-travellers"><label>TRAVELLERS</label><input type="hidden" name="guests" value={travellers}/><div className="reference-traveller-pills">{["1 to 2", "3 to 4", "5 to 8", "9 or more"].map((value) => <button key={value} type="button" className={travellers === value ? "is-selected" : ""} onClick={() => setTravellers(value)}>{value}</button>)}</div></div>
             <div className="form-field form-field-full"><label htmlFor="enquiry-interests">I AM INTERESTED IN</label><select id="enquiry-interests" name="interests" defaultValue={journey || interestOptions[0]}>{journey && <option value={journey}>{journey}</option>}{interestOptions.map((interest) => <option key={interest} value={interest}>{interest}</option>)}</select></div>
             <div className="form-field form-field-full"><label htmlFor="enquiry-message">ANYTHING WE SHOULD KNOW</label><textarea id="enquiry-message" name="message" rows={3} placeholder="Elders travelling, specific rituals, dietary needs..." maxLength={1000}/></div>
-            <div className="form-actions-row reference-trip-actions"><button type="submit" className="enquiry-submit-btn"><span>Send on WhatsApp</span><ArrowRight size={14}/></button><p>Your details open in WhatsApp, ready to send to +91 95804 17547.</p></div>
+            <div className="form-actions-row reference-trip-actions">
+              <button type="submit" name="destination" value="admin" className="enquiry-submit-btn" disabled={adminSubmitState === "submitting"}><span>{adminSubmitState === "submitting" ? "Submitting…" : "Submit Enquiry"}</span><ArrowRight size={14}/></button>
+              <button type="submit" name="destination" value="whatsapp" className="enquiry-whatsapp-btn"><WhatsAppSvgIcon/><span>Send on WhatsApp</span></button>
+            </div>
+            {adminSubmitState === "success" && <p className="enquiry-success-message" role="status">Your enquiry has been sent to our team. We’ll be in touch shortly.</p>}
+            {adminSubmitState === "error" && <p className="enquiry-error-message" role="alert">We couldn’t submit your enquiry just now. Please try again or use WhatsApp.</p>}
             {submitted && ready && <div className="enquiry-success-message"><p>Your enquiry is ready in WhatsApp.</p><a href={ready} target="_blank" rel="noreferrer">Re-open WhatsApp chat ↗</a></div>}
           </form>
         </div>

@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ArrowRight, Menu, X } from "lucide-react";
+import { ArrowRight, Menu, X, Lock } from "lucide-react";
 
 const navItems = [
   ["Home", "/"],
@@ -73,10 +73,10 @@ export default function LuxuryNavbar() {
       <header className={`exp-nav-header ${scrolled ? "scrolled" : ""}`}>
         <div className="exp-nav-inner">
           {/* Logo */}
-          <Link href="/" aria-label="Soil N Soul Travels home">
+          <Link href="/" aria-label="SoilNSoul Travels home">
             <img
               src={scrolled ? "/soil-n-soul-logo-dark.svg" : "/soil-n-soul-logo.svg"}
-              alt="Soil N Soul Varanasi Experiences"
+              alt="SoilNSoul Travels Varanasi Experiences"
               className="exp-nav-logo"
             />
           </Link>
@@ -102,8 +102,18 @@ export default function LuxuryNavbar() {
 
           {/* Right Actions */}
           <div className="exp-nav-actions">
+            {/* Admin Lock Button */}
+            <Link
+              href="/admin"
+              className="exp-nav-lock-btn"
+              title="Admin Portal"
+              aria-label="Admin Portal"
+            >
+              <Lock size={14} />
+              <span className="exp-nav-lock-text">Admin</span>
+            </Link>
             <a
-              href="https://wa.me/919580417547?text=Hello%20Soil%20n%20Soul%2C%20I%20would%20like%20to%20plan%20a%20journey%20to%20Varanasi."
+              href="https://wa.me/919580417547?text=Hello%20SoilNSoul%20Travels%2C%20I%20would%20like%20to%20plan%20a%20journey%20to%20Varanasi."
               target="_blank"
               rel="noreferrer"
               className="exp-nav-wa-btn"
@@ -158,6 +168,14 @@ export default function LuxuryNavbar() {
                 </Link>
               );
             })}
+            <Link
+              href="/admin"
+              className="exp-mobile-link flex items-center justify-center gap-2 text-[#d9ad57]"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <Lock size={18} />
+              <span>Admin Portal</span>
+            </Link>
           </div>
           <a
               href={isJourneyPage || isAboutPage || isContactPage || isBlogPage || currentPath === "/" ? "#contact" : "/#contact"}

@@ -1,5 +1,5 @@
 /**
- * Curated Unsplash image URLs for Soil n Soul Travel website
+ * Curated Unsplash image URLs for SoilNSoul Travels website
  * All images are free to use under Unsplash License
  * Format: https://images.unsplash.com/photo-{ID}?auto=format&fit=crop&w={W}&q=80
  */

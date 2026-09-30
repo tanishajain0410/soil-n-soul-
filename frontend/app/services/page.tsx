@@ -8,7 +8,7 @@ export const revalidate = 3600;
 export const metadata: Metadata = {
   title: 'Our Services — Varanasi Travel, Stays & Rituals',
   description:
-    'Trusted, verified Varanasi travel services: airport pickups, heritage stays, Ganga Aarti pooja bookings, city tours and custom itineraries. Book with Soil n Soul Travels.',
+    'Trusted, verified Varanasi travel services: airport pickups, heritage stays, Ganga Aarti pooja bookings, city tours and custom itineraries. Book with SoilNSoul Travels.',
   alternates: { canonical: '/services' },
 };
 
@@ -26,7 +26,7 @@ export default function ServicesPage() {
     '@type': 'CollectionPage',
     '@id': 'https://www.soilnsoultravels.com/services#webpage',
     'url': 'https://www.soilnsoultravels.com/services',
-    'name': 'Our Varanasi Travel Services — Soil n Soul Travels',
+    'name': 'Our Varanasi Travel Services — SoilNSoul Travels',
     'description': 'Handpicked, locally-managed travel services in Varanasi including heritage stays, Ganga Aarti bookings, local tours, car rental and custom itineraries.',
     'breadcrumb': {
       '@type': 'BreadcrumbList',

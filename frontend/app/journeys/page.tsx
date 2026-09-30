@@ -85,7 +85,7 @@ export default function JourneysPage() {
         </section>
       </JourneyFilterGrid>
 
-      <section className="journey-values-strip" aria-label="The Soil n Soul difference">
+      <section className="journey-values-strip" aria-label="The SoilNSoul Travels difference">
         {values.map(({icon: Icon,title,text})=><div className="journey-value" key={title}><Icon size={26} strokeWidth={1.2}/><div><strong>{title}</strong><span>{text}</span></div></div>)}
       </section>
 

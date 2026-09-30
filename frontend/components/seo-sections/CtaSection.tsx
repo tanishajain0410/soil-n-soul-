@@ -18,7 +18,7 @@ export default function CtaSection() {
             Every year, millions seek the blessings of Kashi Vishwanath, the fire of Ganga Aarti, and the silence of
             a pre-dawn boat ride on the holiest river in the world. But peak season (October to March) fills up fast -
             ghat-view hotels sell out weeks in advance, and VIP darshan slots are limited. Do not leave your spiritual
-            journey to chance. Contact Soil N Soul Travels now and get a custom itinerary with transparent pricing
+            journey to chance. Contact SoilNSoul Travels now and get a custom itinerary with transparent pricing
             delivered to your WhatsApp within 30 minutes.
           </p>
 
@@ -49,12 +49,12 @@ export default function CtaSection() {
           </div>
 
           <p className="text-2xl font-bold text-primary italic font-serif mb-8">
-            "Soil N Soul Travels - Where Every Journey Becomes a Story Worth Telling."
+            "SoilNSoul Travels - Where Every Journey Becomes a Story Worth Telling."
           </p>
 
           <div className="bg-[#1A120B] border border-white/10 rounded-2xl p-8 max-w-2xl mx-auto">
             <address className="not-italic text-slate-300 space-y-3">
-              <div className="text-xl font-bold text-white">Soil N Soul Travels</div>
+              <div className="text-xl font-bold text-white">SoilNSoul Travels</div>
               <div className="flex items-center justify-center gap-2">
                 <span className="material-symbols-outlined text-primary text-lg">location_on</span>
                 Varanasi, Uttar Pradesh - 221001, India
@@ -91,7 +91,7 @@ export default function CtaSection() {
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="Soil N Soul Travels Location in Varanasi, Uttar Pradesh"
+              title="SoilNSoul Travels Location in Varanasi, Uttar Pradesh"
             />
           </div>
         </div>

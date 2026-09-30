@@ -1,5 +1,5 @@
 /* ========================================================
-   SOIL N SOUL — EXPERIENCES PAGE LUXURY STYLING
+   SoilNSoul Travels — EXPERIENCES PAGE LUXURY STYLING
    Visual Source of Truth: Premium Reference Implementation
 ======================================================== */
 
@@ -120,6 +120,55 @@
   background: rgba(223, 191, 128, 0.15);
   transform: scale(1.05);
   border-color: var(--exp-gold) !important;
+}
+
+.exp-nav-lock-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 38px;
+  padding: 0 13px;
+  border-radius: 9999px;
+  border: 1px solid rgba(223, 191, 128, 0.5) !important;
+  color: var(--exp-gold, #dfbf80) !important;
+  background: rgba(12, 13, 15, 0.45);
+  backdrop-filter: blur(8px);
+  font-family: var(--sns-font-sans, inherit);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.exp-nav-lock-btn:hover {
+  background: rgba(223, 191, 128, 0.18);
+  border-color: var(--exp-gold, #dfbf80) !important;
+  transform: translateY(-1px);
+}
+
+.exp-nav-header.scrolled .exp-nav-lock-btn {
+  background: rgba(38, 20, 13, 0.05);
+  border-color: rgba(184, 134, 54, 0.45) !important;
+  color: #7b4f12 !important;
+}
+
+.exp-nav-header.scrolled .exp-nav-lock-btn:hover {
+  background: rgba(184, 134, 54, 0.12);
+  border-color: #7b4f12 !important;
+}
+
+@media (max-width: 640px) {
+  .exp-nav-lock-text {
+    display: none;
+  }
+  .exp-nav-lock-btn {
+    padding: 0;
+    width: 38px;
+    height: 38px;
+    justify-content: center;
+  }
 }
 
 .exp-nav-cta-btn {
@@ -666,7 +715,7 @@
 }
 
 /* ========================================================
-   10. WHY SOIL N SOUL
+   10. WHY SoilNSoul Travels
 ======================================================== */
 .exp-why-section {
   background: var(--exp-cream-bg);

@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { BlogPost } from "@/lib/api";
 import { journalImage } from "@/lib/media";
+import { submitInquiry } from "@/lib/inquiries";
 const categories = [
   "All stories",
   "Travel Guide",
@@ -142,7 +143,17 @@ export default function SoulJournal({
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            const email = new FormData(e.currentTarget).get("email");
+            const email = String(new FormData(e.currentTarget).get("email") || "").trim();
+            if (email) {
+              submitInquiry({
+                name: "Newsletter Subscriber",
+                email,
+                phone: "N/A",
+                service: "The Soul Journal Newsletter",
+                message: "Requested newsletter subscription",
+                source: "newsletter_form",
+              }).catch(console.error);
+            }
             window.location.href = `mailto:info@soilnsoultravels.com?subject=${encodeURIComponent("The Soul Journal — newsletter request")}&body=${encodeURIComponent(`Please subscribe ${email} to The Soul Journal. I would like to receive cultural stories and updates by email.`)}`;
           }}
         >

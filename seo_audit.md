@@ -1,5 +1,5 @@
 # On-Page SEO Audit & Performance Report
-**Project:** Tours & Travels Agency Website (Soil n Soul Travels)  
+**Project:** Tours & Travels Agency Website (SoilNSoul Travels)  
 **Audit Date:** May 2026  
 **Target Domain:** `https://www.soilnsoultravels.com`  
 **Framework Audited:** React SPA (Client) & Next.js App Router (Frontend)
@@ -8,7 +8,7 @@
 
 ## 1. Executive Summary
 
-This SEO audit evaluates the on-page optimization, structural metadata, semantic HTML, internal linking architecture, and schema validation for the public-facing pages of **Soil n Soul Travels**. 
+This SEO audit evaluates the on-page optimization, structural metadata, semantic HTML, internal linking architecture, and schema validation for the public-facing pages of **SoilNSoul Travels**. 
 
 The codebase contains a dual-architecture: a client React Single Page Application (SPA) and a Next.js App Router project. This audit focuses on the **Next.js frontend app**, which serves as the production-ready, SEO-optimized deployment with Server-Side Rendering (SSR) and dynamic metadata generation.
 
@@ -33,9 +33,9 @@ The codebase contains a dual-architecture: a client React Single Page Applicatio
     *   Next.js SSR: `frontend/app/page.tsx` & `frontend/app/HomeClient.tsx`
 *   **Word Count:** 459 words (template base text)
 *   **On-Page SEO Metadata:**
-    *   **Title:** `Varanasi Tour Packages & Local Travel Operator | Soil n Soul Travels`
-    *   **Description:** `Experience Varanasi authentically with Soil n Soul Travels. Verified stays, Ganga Aarti, cultural tours and more — led by Anchal Pandey, a native of Banaras.`
-    *   **Keywords:** `Varanasi Tour Packages, Varanasi Travel Operator, Kashi Tours, SoilnSoul`
+    *   **Title:** `Varanasi Tour Packages & Local Travel Operator | SoilNSoul Travels`
+    *   **Description:** `Experience Varanasi authentically with SoilNSoul Travels. Verified stays, Ganga Aarti, cultural tours and more — led by Anchal Pandey, a native of Banaras.`
+    *   **Keywords:** `Varanasi Tour Packages, Varanasi Travel Operator, Kashi Tours, SoilNSoul Travels`
     *   **Canonical URL:** `https://www.soilnsoultravels.com/`
 *   **Heading Structure:**
     *   `H1`: `Discover Kashi — Beyond Tourism` (Single H1, highly engaging and branded)
@@ -70,7 +70,7 @@ The codebase contains a dual-architecture: a client React Single Page Applicatio
 *   **Word Count:** ~82 (Base template) / ~600 words (Fully rendered with dynamic service data cards).
 *   **On-Page SEO Metadata:**
     *   **Title:** `Our Services — Varanasi Travel, Stays & Rituals`
-    *   **Description:** `Trusted, verified Varanasi travel services: airport pickups, heritage stays, Ganga Aarti pooja bookings, city tours and custom itineraries. Book with Soil n Soul Travels.`
+    *   **Description:** `Trusted, verified Varanasi travel services: airport pickups, heritage stays, Ganga Aarti pooja bookings, city tours and custom itineraries. Book with SoilNSoul Travels.`
     *   **Keywords:** None (falls back to defaults).
     *   **Canonical URL:** `https://www.soilnsoultravels.com/services`
 *   **Heading Structure:**
@@ -97,7 +97,7 @@ The codebase contains a dual-architecture: a client React Single Page Applicatio
     *   Next.js SSR: `frontend/app/services/[slug]/page.tsx`
 *   **Word Count:** ~281 (Base template) / ~450 to ~750 words (Rendered, depending on slug content).
 *   **On-Page SEO Metadata:**
-    *   **Title:** Dynamic (e.g. `Travel in Varanasi | Soil n Soul Travels`)
+    *   **Title:** Dynamic (e.g. `Travel in Varanasi | SoilNSoul Travels`)
     *   **Description:** Dynamic (matches the service's `shortDesc`).
     *   **Canonical URL:** `https://www.soilnsoultravels.com/services/[slug]`
 *   **Heading Structure:**
@@ -117,7 +117,7 @@ The codebase contains a dual-architecture: a client React Single Page Applicatio
     *   **Images with Alt Tags:** 100% correct matching service titles and names.
 *   **Structured Data / Schema Markup:**
     *   **Type:** `Service` and nested `BreadcrumbList`.
-    *   **Properties Defined:** service type, area served (`Varanasi`), provider (`Soil n Soul Travels`).
+    *   **Properties Defined:** service type, area served (`Varanasi`), provider (`SoilNSoul Travels`).
 *   **Evaluation:** Excellent transactional intent layout. The FAQ section provides structured context helpful for voice search and AEO (Answer Engine Optimization).
 
 ---
@@ -129,7 +129,7 @@ The codebase contains a dual-architecture: a client React Single Page Applicatio
 *   **Word Count:** ~130 (Base template) / ~500 words (Fully rendered with dynamic post details).
 *   **On-Page SEO Metadata:**
     *   **Title:** `Travel Journal — Stories from Varanasi`
-    *   **Description:** `Curated essays, cultural dispatches, and inner reflections from the ancient streets of Varanasi by Soil n Soul Travels.`
+    *   **Description:** `Curated essays, cultural dispatches, and inner reflections from the ancient streets of Varanasi by SoilNSoul Travels.`
     *   **Canonical URL:** `https://www.soilnsoultravels.com/blog`
 *   **Heading Structure:**
     *   `H1`: `Stories from the Heart of India`
@@ -152,7 +152,7 @@ The codebase contains a dual-architecture: a client React Single Page Applicatio
     *   Next.js SSR: `frontend/app/blog/[slug]/page.tsx`
 *   **Word Count:** Dynamic (Content is managed from the Admin panel; usually ranges from 600 to 1,500+ words).
 *   **On-Page SEO Metadata:**
-    *   **Title:** `${post.metaTitle || post.title} | Soil n Soul Travels Blog`
+    *   **Title:** `${post.metaTitle || post.title} | SoilNSoul Travels Blog`
     *   **Description:** `${post.metaDescription || post.excerpt}`
     *   **Keywords:** `${post.keywords}` (Inputted via admin interface)
     *   **Canonical URL:** `https://www.soilnsoultravels.com/blog/[slug]`
@@ -179,8 +179,8 @@ The codebase contains a dual-architecture: a client React Single Page Applicatio
     *   Next.js SSR: `frontend/app/about/page.tsx`
 *   **Word Count:** 194 (base text) / ~650 words (rendered with values and founder story).
 *   **On-Page SEO Metadata:**
-    *   **Title:** `About Soil n Soul Travels`
-    *   **Description:** `Learn about Soil n Soul Travels, our founder, and the values behind our Varanasi journeys.`
+    *   **Title:** `About SoilNSoul Travels`
+    *   **Description:** `Learn about SoilNSoul Travels, our founder, and the values behind our Varanasi journeys.`
     *   **Canonical URL:** `https://www.soilnsoultravels.com/about`
 *   **Heading Structure:**
     *   `H1`: `Born from the Heart of Kashi`
@@ -199,7 +199,7 @@ The codebase contains a dual-architecture: a client React Single Page Applicatio
     *   **Images with Alt Tags:** 2 (100% optimized).
 *   **Structured Data / Schema Markup:**
     *   **Type:** `AboutPage` with a nested `Person` object.
-    *   **Properties Defined:** Person name (`Anchal Pandey`), role (`Founder`), company name (`Soil n Soul Travels`).
+    *   **Properties Defined:** Person name (`Anchal Pandey`), role (`Founder`), company name (`SoilNSoul Travels`).
 *   **Evaluation:** Establishes EEAT (Experience, Expertise, Authoritativeness, and Trustworthiness) for Google Quality Raters. Direct personal links build trust.
 
 ---
@@ -210,8 +210,8 @@ The codebase contains a dual-architecture: a client React Single Page Applicatio
     *   Next.js SSR: `frontend/app/contact/page.tsx` & `frontend/app/contact/ContactClient.tsx`
 *   **Word Count:** ~130 words
 *   **On-Page SEO Metadata:**
-    *   **Title:** `Contact Soil n Soul Travels -- Varanasi`
-    *   **Description:** `Get in touch with Soil n Soul Travels for authentic Varanasi experiences. Reach us via WhatsApp, email, or drop by our office.`
+    *   **Title:** `Contact SoilNSoul Travels -- Varanasi`
+    *   **Description:** `Get in touch with SoilNSoul Travels for authentic Varanasi experiences. Reach us via WhatsApp, email, or drop by our office.`
     *   **Canonical URL:** `https://www.soilnsoultravels.com/contact`
 *   **Heading Structure:**
     *   `H1`: `Begin Your Sacred Journey`
@@ -238,18 +238,18 @@ The codebase contains a dual-architecture: a client React Single Page Applicatio
     *   Next.js SSR: `frontend/app/best-tours-and-travel-agency-in-varanasi/page.tsx`
 *   **Word Count:** **2,612 words** (High density, long-form content rich in target terms).
 *   **On-Page SEO Metadata:**
-    *   **Title:** `Best Tours & Travel Agency in Varanasi | Soil N Soul`
-    *   **Description:** `Book trusted tours & travel packages in Varanasi with Soil N Soul Travels. Ganga Aarti, pooja booking, city tours, car rental & spiritual packages from ₹999.`
+    *   **Title:** `Best Tours & Travel Agency in Varanasi | SoilNSoul Travels`
+    *   **Description:** `Book trusted tours & travel packages in Varanasi with SoilNSoul Travels. Ganga Aarti, pooja booking, city tours, car rental & spiritual packages from ₹999.`
     *   **Keywords:** `best tours and travel agency in varanasi, tour and travel agency in varanasi, travel agent in varanasi, best travel agency in varanasi, varanasi travel agency, varanasi tour packages, tours and travels varanasi, varanasi city tour packages 2026, spiritual tour packages varanasi, luxury tour packages varanasi, varanasi pooja booking service, ganga aarti tour varanasi, varanasi sightseeing packages, car rental service in varanasi, hotel booking varanasi near ghats`
     *   **Canonical URL:** `https://www.soilnsoultravels.com/best-tours-and-travel-agency-in-varanasi`
 *   **Heading Structure:**
-    *   `H1`: `Best Tours & Travel Agency in Varanasi – Soil N Soul Travels`
+    *   `H1`: `Best Tours & Travel Agency in Varanasi – SoilNSoul Travels`
     *   `H2`:
         *   `Who We Are — Varanasi's Most Trusted Tour & Travel Agency`
         *   `Our Tour & Travel Services in Varanasi — Everything You Need, One Agency`
-        *   `Why Soil N Soul Travels Is the Best Tour & Travel Agency in Varanasi`
+        *   `Why SoilNSoul Travels Is the Best Tour & Travel Agency in Varanasi`
         *   `Most Booked Varanasi Tour Packages in 2026`
-        *   `What Travelers Say About Soil N Soul Travels — Varanasi's Top Rated Agency`
+        *   `What Travelers Say About SoilNSoul Travels — Varanasi's Top Rated Agency`
         *   `We Serve Travelers Across Varanasi & the Entire Kashi Pilgrimage Belt`
         *   `Best Time to Visit Varanasi — A Month-by-Month Guide`
         *   `Frequently Asked Questions — Varanasi Tour & Travel Agency`
@@ -284,13 +284,13 @@ The codebase contains a dual-architecture: a client React Single Page Applicatio
     *   Next.js SSR: `frontend/app/travel/[slug]/page.tsx`
 *   **Word Count:** ~240 (Base template) / ~650 to ~800 words (Fully populated per page).
 *   **On-Page SEO Metadata:**
-    *   **Title:** Dynamic matching the intent (e.g. `Ganga Aarti Varanasi 2025 | Best View, Timings & Booking | Soil n Soul`)
+    *   **Title:** Dynamic matching the intent (e.g. `Ganga Aarti Varanasi 2025 | Best View, Timings & Booking | SoilNSoul Travels`)
     *   **Description:** Dynamic (highly compelling intro paragraph).
     *   **Canonical URL:** `https://www.soilnsoultravels.com/travel/[slug]`
 *   **Heading Structure:**
     *   `H1`: Dynamic target keyword (e.g., `Ganga Aarti Varanasi — A Divine Spectacle`)
     *   `H2`:
-        *   `Why Trust Soil n Soul for Your Varanasi Journey?`
+        *   `Why Trust SoilNSoul Travels for Your Varanasi Journey?`
         *   `Everything You Need to Know`
         *   `Frequently Asked Questions`
         *   `Ready to Experience Varanasi?`

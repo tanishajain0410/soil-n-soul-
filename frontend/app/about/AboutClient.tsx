@@ -129,7 +129,7 @@ export default function AboutClient() {
               <div className="about-main-portrait">
                 <Image
                   src="/images/founder.jpg"
-                  alt="Anchal Pandey, Founder of Soil N Soul Travels"
+                  alt="Anchal Pandey, Founder of SoilNSoul Travels"
                   fill
                   sizes="(max-width: 768px) 90vw, (max-width: 1200px) 450px, 400px"
                   quality={95}
@@ -190,8 +190,7 @@ export default function AboutClient() {
               </p>
               <p>
                 Seeing this repeatedly made me realize that visitors to this sacred city
-                deserve honesty, guidance, and care. That is why I decided to start Soil N Soul
-                Travels.
+                deserve honesty, guidance, and care. That is why I decided to start SoilNSoul Travels.
               </p>
               <p>
                 My vision is simple: to ensure that every traveler who chooses our services
@@ -200,7 +199,7 @@ export default function AboutClient() {
                 city.
               </p>
               <p>
-                At Soil N Soul Travels, we focus on authenticity, transparency, and heartfelt
+                At SoilNSoul Travels, we focus on authenticity, transparency, and heartfelt
                 hospitality — so that every journey becomes truly memorable.
               </p>
             </div>
@@ -209,9 +208,9 @@ export default function AboutClient() {
       </section>
 
       {/* ========================================================
-          4. THE SOIL N SOUL WAY SECTION
+          4. THE SoilNSoul Travels WAY SECTION
       ======================================================== */}
-      <section className="about-way-section" aria-label="The Soil N Soul Way">
+      <section className="about-way-section" aria-label="The SoilNSoul Travels Way">
         {/* Right background photograph: Clay diya overlooking dusk Ganges */}
         <div className="about-way-bg">
           <Image
@@ -229,7 +228,7 @@ export default function AboutClient() {
         <div className="about-way-inner">
           <div className="about-way-header">
             <div>
-              <span className="about-eyebrow">THE SOIL N SOUL WAY</span>
+              <span className="about-eyebrow">THE SoilNSoul Travels WAY</span>
               <h2 className="about-way-title">
                 Rooted here.<br />
                 Thoughtfully shared.

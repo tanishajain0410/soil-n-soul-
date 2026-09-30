@@ -25,7 +25,7 @@ export default function PackagesSection() {
           </h2>
           <p className="text-slate-400 max-w-3xl mx-auto text-lg leading-relaxed">
             From half-day city tours starting at ₹999 to luxury heritage experiences — choose a varanasi tour package
-            that matches your budget, timeline, and spiritual intent. Every package by Soil N Soul is fully customizable,
+            that matches your budget, timeline, and spiritual intent. Every package by SoilNSoul Travels is fully customizable,
             transparently priced, and includes 24/7 on-ground support throughout your stay.
           </p>
         </div>
@@ -86,7 +86,7 @@ export default function PackagesSection() {
             Looking for a Custom Varanasi Tour Package?
           </h3>
           <p className="text-slate-400 leading-relaxed mb-4">
-            The packages listed above are our most popular options, but Soil N Soul Travels specializes in building
+            The packages listed above are our most popular options, but SoilNSoul Travels specializes in building
             completely customized itineraries. Whether you need a <strong className="text-white">varanasi 1 night 2 days
             package</strong> for a quick spiritual stopover, a <strong className="text-white">luxury tour package
             in Varanasi</strong> with heritage hotel stays and private photography, a{' '}

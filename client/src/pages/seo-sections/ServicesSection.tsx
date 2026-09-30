@@ -17,7 +17,7 @@ export default function ServicesSection() {
             Our Tour & Travel Services in Varanasi — Everything You Need, One Agency
           </h2>
           <p className="max-w-3xl mx-auto text-slate-400 text-lg leading-relaxed">
-            Soil N Soul Travels provides comprehensive, end-to-end travel services across Varanasi and the entire UP
+            SoilNSoul Travels provides comprehensive, end-to-end travel services across Varanasi and the entire UP
             pilgrimage belt. From your first airport pickup to your final ghat darshan, from pooja samagri arrangement
             to heritage hotel booking — one trusted local agency handles it all with transparent pricing and 24/7 support.
           </p>
@@ -55,7 +55,7 @@ export default function ServicesSection() {
         {/* Additional SEO paragraph below services grid */}
         <div className="mt-16 max-w-4xl mx-auto">
           <p className="text-slate-400 text-center leading-relaxed">
-            As the most trusted <strong className="text-white">travel agent in Varanasi</strong>, Soil N Soul Travels
+            As the most trusted <strong className="text-white">travel agent in Varanasi</strong>, SoilNSoul Travels
             also arranges corporate travel packages for companies hosting retreats or team outings in Kashi, wedding
             travel planning for destination weddings near the ghats, and specialized{' '}
             <em>varanasi travel packages for families</em> with senior citizens, children, or differently-abled members.

@@ -1,7 +1,7 @@
 {
   "name": "soilnsoul-server",
   "version": "1.0.0",
-  "description": "Backend API for Soil n Soul Travel - Blog CMS + Inquiries",
+  "description": "Backend API for SoilNSoul Travels - Blog CMS + Inquiries",
   "main": "src/index.js",
   "type": "module",
   "scripts": {

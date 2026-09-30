@@ -20,6 +20,7 @@ import "./rounded-ctas.css";
 import "./homepage-light-reference.css";
 import "./site-home-unification.css";
 import "./legal.css";
+import "./responsive-hardening.css";
 import SiteChrome from "@/components/SiteChrome";
 
 const cinzel = Cinzel({
@@ -61,8 +62,8 @@ const resolvedSiteUrl =
 
 export const metadata: Metadata = {
   title: {
-    default: "Soil n Soul Travels",
-    template: "Soil n Soul Travels",
+    default: "SoilNSoul Travels",
+    template: "SoilNSoul Travels",
   },
   description:
     "Private journeys into the soul of Banaras. Thoughtfully designed around you, with a personal local concierge.",
@@ -70,12 +71,12 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_IN",
-    siteName: "Soil N Soul Travels",
+    siteName: "SoilNSoul Travels",
     images: [{ url: "/images/hero/hero-3.jpg" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Private Journeys in Varanasi | Soil n Soul Travels",
+    title: "Private Journeys in Varanasi | SoilNSoul Travels",
     description:
       "Private journeys into the soul of Banaras. Thoughtfully designed around you, with a personal local concierge.",
     images: ["/images/hero/hero-3.jpg"],
@@ -83,6 +84,18 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
+  },
+  icons: {
+    icon: [
+      { url: '/icon.svg', type: 'image/svg+xml' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon.ico', sizes: 'any' },
+    ],
+    shortcut: '/favicon.ico',
+    apple: [
+      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
   },
 };
 
@@ -97,6 +110,9 @@ export default function RootLayout({
       className={`${cinzel.variable} ${cormorant.variable} ${plusJakarta.variable} ${alexBrush.variable}`}
     >
       <head>
+        <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link

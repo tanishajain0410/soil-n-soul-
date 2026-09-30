@@ -1,5 +1,5 @@
 /* ==========================================================================
-   SOIL N SOUL — LEGAL PAGES THEME (PRIVACY POLICY & TERMS & CONDITIONS)
+   SoilNSoul Travels — LEGAL PAGES THEME (PRIVACY POLICY & TERMS & CONDITIONS)
    Harmonized with the luxury heritage, editorial typography and warm palette
    ========================================================================== */
 
@@ -461,9 +461,116 @@ body:has(.legal-page-root) {
 
 /* Mobile responsive fine-tuning */
 @media (max-width: 640px) {
+  .legal-hero {
+    padding: 108px 18px 54px;
+    background-position: 58% center;
+  }
+
+  .legal-breadcrumb {
+    flex-wrap: wrap;
+    gap: 5px 7px;
+    margin-bottom: 17px;
+    font-size: 9px;
+    line-height: 1.5;
+  }
+
+  .legal-eyebrow-badge {
+    margin-bottom: 18px;
+    padding: 6px 12px;
+    font-size: 9px;
+    letter-spacing: .16em;
+  }
+
+  .legal-hero-title {
+    margin-bottom: 14px;
+    font-size: clamp(40px, 12vw, 48px);
+  }
+
+  .legal-hero-subtitle {
+    margin-bottom: 20px;
+    font-size: 14px;
+    line-height: 1.65;
+  }
+
+  .legal-meta-pill {
+    max-width: 100%;
+    justify-content: center;
+    padding: 7px 11px;
+    font-size: 8px;
+    line-height: 1.55;
+    text-align: center;
+    white-space: normal;
+  }
+
+  .legal-main {
+    padding: 34px 14px 52px;
+  }
+
   .legal-paper-card {
     padding: 22px 18px;
     border-radius: 20px;
+  }
+
+  .legal-toc-bar {
+    flex-wrap: nowrap;
+    gap: 7px;
+    margin-right: -18px;
+    margin-bottom: 30px;
+    padding-right: 18px;
+    padding-bottom: 18px;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scrollbar-width: none;
+  }
+
+  .legal-toc-bar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .legal-toc-item {
+    flex: 0 0 auto;
+    padding: 7px 11px;
+    font-size: 11px;
+  }
+
+  .legal-section-header {
+    align-items: flex-start;
+    gap: 9px;
+  }
+
+  .legal-number-badge {
+    margin-top: 3px;
+  }
+
+  .legal-section-title {
+    font-size: 25px;
+    line-height: 1.12;
+  }
+
+  .legal-prose {
+    font-size: 14px;
+    line-height: 1.75;
+  }
+
+  .legal-list {
+    padding-left: 18px;
+    list-style-position: outside;
+  }
+
+  .legal-card-grid {
+    grid-template-columns: 1fr;
+    gap: 11px;
+  }
+
+  .legal-feature-card,
+  .legal-alert-box,
+  .legal-contact-box {
+    border-radius: 15px;
+  }
+
+  .legal-contact-links {
+    flex-direction: column;
+    gap: 6px;
   }
 
   .legal-bottom-nav {

@@ -12,11 +12,11 @@ export default function TestimonialsSection() {
             Verified Reviews
           </span>
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            What Travelers Say About Soil N Soul Travels - Varanasi's Top Rated Agency
+            What Travelers Say About SoilNSoul Travels - Varanasi's Top Rated Agency
           </h2>
           <p className="text-slate-400 text-lg max-w-3xl mx-auto">
             Real reviews from real travelers. These are authentic experiences shared by families, solo explorers,
-            international tourists, and corporate groups who chose Soil N Soul for their Varanasi journey.
+            international tourists, and corporate groups who chose SoilNSoul Travels for their Varanasi journey.
           </p>
           <div className="flex items-center justify-center gap-3 mt-4">
             <div className="flex text-primary text-xl">★★★★★</div>

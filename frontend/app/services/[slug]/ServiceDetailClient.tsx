@@ -7,6 +7,7 @@ import ServiceInquiryModal from '@/components/ServiceInquiryModal';
 import type { Service } from '@/data/services';
 import { SERVICES } from '@/data/services';
 import { API_URL } from '@/lib/constants';
+import { submitInquiry } from '@/lib/inquiries';
 
 const SERVICE_ICONS: Record<string, string> = {
   travel: 'directions_car',
@@ -45,6 +46,17 @@ export default function ServiceDetailClient({ service }: { service: Service }) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Asynchronously persist to database so it arrives on admin panel
+    submitInquiry({
+      name: form.name.trim(),
+      phone: form.phone.trim(),
+      dates: form.date.trim(),
+      service: service.title,
+      message: form.message.trim(),
+      source: 'service_detail',
+    }).catch(console.error);
+
     const text = `Hi! I'm interested in *${service.title}*.\n\n*Name:* ${form.name}\n*Phone:* ${form.phone}\n*Preferred Date:* ${form.date || 'Flexible'}\n*Message:* ${form.message}`;
     window.open(`https://wa.me/919580417547?text=${encodeURIComponent(text)}`, '_blank');
   };

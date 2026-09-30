@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       description: page.metaDescription,
       url: `${SITE_URL}/travel/${page.slug}`,
       type: 'website',
-      siteName: 'Soil n Soul Travels',
+      siteName: 'SoilNSoul Travels',
     },
     alternates: { canonical: `${SITE_URL}/travel/${page.slug}` },
   };

@@ -57,7 +57,7 @@ const ServiceDetail = () => {
         '@type': 'Service',
         name: service.title,
         description: service.shortDesc,
-        provider: { '@type': 'TravelAgency', name: 'Soil n Soul Travels' },
+        provider: { '@type': 'TravelAgency', name: 'SoilNSoul Travels' },
         areaServed: 'Varanasi',
       },
       breadcrumbSchema([

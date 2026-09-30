@@ -68,7 +68,7 @@ export default function ContactClient() {
 
       <JourneyEnquiry variant="contact" />
 
-      <section className="contact-reference-values" aria-label="The Soil N Soul difference">
+      <section className="contact-reference-values" aria-label="The SoilNSoul Travels difference">
         <div className="contact-values-inner">
           {values.map(([Icon, title, copy]) => (
             <div className="contact-value" key={title}>
@@ -134,7 +134,7 @@ export default function ContactClient() {
         <div className="contact-founder-quote-copy">
           <p className="contact-ref-eyebrow">A PERSONAL WELCOME</p>
           <blockquote>Every journey to Kashi<br/>begins with <em>a conversation.</em></blockquote>
-          <p>— Anchal Pandey <span>Founder, Soil &amp; Soul</span></p>
+          <p>— Anchal Pandey <span>Founder, SoilNSoul Travels</span></p>
         </div>
       </section>
 

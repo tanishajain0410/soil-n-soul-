@@ -5,7 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowDown,
-  ArrowLeft,
   ArrowRight,
   BedDouble,
   Compass,
@@ -17,36 +16,10 @@ import {
   Users,
   Volume2,
   VolumeX,
+  X,
 } from "lucide-react";
 import JourneyEnquiry from "@/components/JourneyEnquiry";
 import { founderStory, journeys } from "@/data/journeys";
-
-const experiences = [
-  {
-    title: "Private Sunrise Boat Experience",
-    copy: "A serene start to your day on the sacred Ganges.",
-    image: "/SnS/the-sacred-morning.webp",
-    alt: "Sunrise over Varanasi from a private boat on the Ganges",
-  },
-  {
-    title: "Ganga Aarti (Private Access)",
-    copy: "Witness the divine ritual from exclusive vantage points.",
-    image: "/SnS/sacred-kashi.webp",
-    alt: "The evening Ganga Aarti ceremony at Dashashwamedh Ghat",
-  },
-  {
-    title: "Heritage Walks Through Old Varanasi",
-    copy: "Explore hidden lanes, ancient temples and living traditions.",
-    image: "/SnS/varanasi-heritage.webp",
-    alt: "Historic architecture and lanes in old Varanasi",
-  },
-  {
-    title: "Local Food Trails",
-    copy: "Taste authentic Varanasi through curated culinary journeys.",
-    image: "/SnS/the-banarasi-table.webp",
-    alt: "Traditional Banarasi food served for a shared meal",
-  },
-];
 
 const philosophyFeatures = [
   { icon: Sparkles, title: "Authentic Experiences" },
@@ -62,10 +35,9 @@ const riverMoments = [
 ];
 
 const kashiVoices = [
-  { title: "The River at Dawn", detail: "A city finding its first light.", image: "/SnS/assi-ghat.webp" },
-  { title: "Hands of Banaras", detail: "Craft passed from one generation to the next.", image: "/SnS/the-hands-of-banaras.webp" },
-  { title: "Ritual and Reverence", detail: "Tradition woven into everyday life.", image: "/SnS/sacred-kashi.webp" },
-  { title: "The Living Lanes", detail: "Stories found around every turn.", image: "/SnS/varanasi-heritage.webp" },
+  { label: "Testimonial video 1", reel: "https://www.instagram.com/reel/DbShNSGCVEi/", thumbnail: "/images/testimonials/testimonial-1-cover.png" },
+  { label: "Testimonial video 2", reel: "https://www.instagram.com/reel/Dau_-F6qUIb/", thumbnail: "/api/reel-cover/Dau_-F6qUIb?v=2" },
+  { label: "Testimonial video 3", reel: "https://www.instagram.com/reel/DcyH-xLiZhJ/", thumbnail: "/images/testimonials/testimonial-3-cover.png" },
 ];
 
 const homeStories = [
@@ -193,6 +165,21 @@ export default function HomeClient() {
   const heroVideoRef = useRef<HTMLVideoElement>(null);
   const audioRef = useRef<HTMLAudioElement>(null);
   const [isPlayingSound, setIsPlayingSound] = useState(false);
+  const [activeTestimonial, setActiveTestimonial] = useState<(typeof kashiVoices)[number] | null>(null);
+
+  useEffect(() => {
+    if (!activeTestimonial) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setActiveTestimonial(null);
+    };
+    window.addEventListener("keydown", closeOnEscape);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", closeOnEscape);
+    };
+  }, [activeTestimonial]);
 
   const toggleSound = () => {
     const audio = audioRef.current;
@@ -385,14 +372,14 @@ export default function HomeClient() {
       </section>
 
       {/* ========================================================
-          SECTION 02: SOIL N SOUL PHILOSOPHY
+          SECTION 02: SoilNSoul Travels PHILOSOPHY
       ======================================================== */}
       <section className="philosophy-reference-section" id="philosophy">
         <div className="philosophy-container">
           <div className="philosophy-three-zones">
             {/* Zone 1: Left Copy & Badges */}
             <div className="philosophy-zone-left">
-              <p className="reference-gold-eyebrow">THE SOIL N SOUL PHILOSOPHY</p>
+              <p className="reference-gold-eyebrow">THE SoilNSoul Travels PHILOSOPHY</p>
               <h2 className="philosophy-heading">
                 Soil is the Ganga<br />
                 and Soul is what<br />
@@ -460,7 +447,7 @@ export default function HomeClient() {
             </div>
           </div>
 
-          <div className="philosophy-stats" aria-label="Soil N Soul guest statistics">
+          <div className="philosophy-stats" aria-label="SoilNSoul Travels guest statistics">
             <div className="philosophy-stat philosophy-stat-one"><strong>500+</strong><span>journeys<br/>curated</span></div>
             <div className="philosophy-stat philosophy-stat-two"><strong>10+</strong><span>countries our<br/>guests come<br/>from</span></div>
             <div className="philosophy-stat philosophy-stat-three"><strong>4.9</strong><span>average guest<br/>rating</span></div>
@@ -485,295 +472,6 @@ export default function HomeClient() {
               {["Ganga Aarti Experience", "Heritage Walks", "Temple Visits", "Local Food Trails", "Art & Crafts", "Spiritual Encounters"].map((experience) => <li key={experience}><span aria-hidden="true"><Sparkles size={13}/></span>{experience}</li>)}
             </ul>
             <Link href="/experiences">Explore experiences <ArrowRight size={13}/></Link>
-          </div>
-        </div>
-      </section>
-
-      {/* ========================================================
-          SECTION 02B: THE PURPOSE OF LIFE (PURUSHARTHAS)
-      ======================================================== */}
-      <section className="purushartha-reference-section" id="purusharthas" aria-label="The Purpose of Life: Dharm, Arth, Kaam, Moksh">
-        {/* Subtle Ornamental Corner Details */}
-        <div className="purushartha-corner-ornament purushartha-corner-left" aria-hidden="true">
-          <MandalaCornerSvg />
-        </div>
-        <div className="purushartha-corner-ornament purushartha-corner-right" aria-hidden="true">
-          <MandalaCornerSvg />
-        </div>
-
-        <div className="purushartha-container">
-          {/* Header Row */}
-          <div className="purushartha-header-row">
-            <div className="purushartha-header-left">
-              <p className="reference-gold-eyebrow">THE PURPOSE OF LIFE</p>
-              <h2 className="purushartha-heading">
-                Dharm • Arth • Kaam • Moksh
-              </h2>
-              <p className="purushartha-subheading">A Complete Journey in Varanasi</p>
-            </div>
-
-            <div className="purushartha-header-right">
-              <p className="purushartha-intro-copy">
-                Varanasi is a rare place where the four purusharthas of life come together — guiding you towards a meaningful and balanced life.
-              </p>
-            </div>
-          </div>
-
-          {/* 4 Editorial Experience Cards */}
-          <div className="purushartha-cards-grid">
-            {purusharthas.map((item) => {
-              const Icon = item.icon;
-              return (
-                <article className="purushartha-card" key={item.id}>
-                  <div className="purushartha-card-image-wrap">
-                    <Image
-                      src={item.image}
-                      alt={item.alt}
-                      fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                      className="purushartha-card-img"
-                      quality={90}
-                    />
-                    <div className="purushartha-card-image-gradient" />
-                  </div>
-
-                  {/* Circular Gold Icon overlapping boundary */}
-                  <div className="purushartha-icon-badge" aria-hidden="true">
-                    <Icon />
-                  </div>
-
-                  {/* Card Content Area */}
-                  <div className="purushartha-card-body">
-                    <h3 className="purushartha-card-title">{item.title}</h3>
-                    <p className="purushartha-card-subtitle">{item.subtitle}</p>
-                    <p className="purushartha-card-desc">{item.description}</p>
-                    <Link href={item.href} className="purushartha-card-cta">
-                      <span>{item.cta}</span>
-                      <span className="purushartha-cta-arrow">→</span>
-                    </Link>
-                  </div>
-                </article>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* ========================================================
-          SECTION 03: SIGNATURE EXPERIENCES
-      ======================================================== */}
-      <section className="experiences-reference-section" id="experiences">
-        <div className="experiences-container">
-          {/* Header Row */}
-          <div className="experiences-header-row">
-            <div className="experiences-header-left">
-              <p className="reference-gold-eyebrow">SIGNATURE EXPERIENCES</p>
-              <h2 className="experiences-heading">
-                Everything Kashi visits,<br />
-                <em>on the ground.</em>
-              </h2>
-            </div>
-
-            <div className="experiences-header-center">
-              <p className="experiences-intro-copy">
-                From serene boat rides to private temple rituals, from local
-                cuisine to artisan walks — each experience is thoughtfully
-                designed to reveal the real Varanasi.
-              </p>
-            </div>
-
-            <div className="experiences-header-right">
-              <Link href="/experiences" className="explore-all-link">
-                <span>Explore All Experiences</span>
-                <ArrowRight size={13} />
-              </Link>
-              <div className="carousel-nav-arrows">
-                <button
-                  type="button"
-                  className="arrow-circle-btn"
-                  aria-label="Previous experiences"
-                  onClick={() => {
-                    const el = document.getElementById("exp-cards-row");
-                    if (el) el.scrollBy({ left: -320, behavior: "smooth" });
-                  }}
-                >
-                  <ArrowLeft size={14} />
-                </button>
-                <button
-                  type="button"
-                  className="arrow-circle-btn"
-                  aria-label="Next experiences"
-                  onClick={() => {
-                    const el = document.getElementById("exp-cards-row");
-                    if (el) el.scrollBy({ left: 320, behavior: "smooth" });
-                  }}
-                >
-                  <ArrowRight size={14} />
-                </button>
-              </div>
-            </div>
-          </div>
-
-          {/* 4 Large Tall Cinematic Cards */}
-          <div className="experience-cards-grid experience-editorial-masonry" id="exp-cards-row">
-            {experiences.map((exp) => (
-              <Link
-                href="/experiences"
-                className="experience-cinematic-card"
-                key={exp.title}
-              >
-                <div className="card-image-wrap">
-                  <Image
-                    src={exp.image}
-                    alt={exp.alt}
-                    fill
-                    sizes="(max-width: 640px) 85vw, (max-width: 1024px) 45vw, 24vw"
-                    className="card-photo"
-                    quality={90}
-                  />
-                  <div className="card-gradient-shade" />
-
-                  <div className="card-content-overlay">
-                    <h3 className="card-title">{exp.title}</h3>
-                    <p className="card-description">{exp.copy}</p>
-                  </div>
-
-                  <div className="card-arrow-circle" aria-hidden="true">
-                    <ArrowRight size={14} />
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ========================================================
-          SECTION 04: HANDPICKED STAYS
-      ======================================================== */}
-      <section className="stays-reference-section" id="stays">
-        <div className="stays-container">
-          <div className="stays-editorial-grid">
-            {/* Left: Large Luxury Heritage Stay Photo */}
-            <div className="stay-left-feature">
-              <div className="stay-large-image-frame">
-                <Image
-                  src="/SnS/private-journey-stays.webp"
-                  alt="Luxury heritage stay in Varanasi overlooking the Ganges"
-                  fill
-                  sizes="(max-width: 900px) 100vw, 42vw"
-                  className="stay-large-photo"
-                  quality={90}
-                />
-              </div>
-            </div>
-
-            {/* Center: Cream Editorial Content Panel */}
-            <div className="stay-center-panel">
-              <p className="reference-gold-eyebrow">STAY IN TIMELESS LUXURY</p>
-              <h2 className="stay-panel-heading">
-                Handpicked stays<br />
-                with soulful views.
-              </h2>
-              <p className="stay-panel-description">
-                From heritage properties on the ghats to boutique stays in the
-                old city, we curate accommodations that add meaning to your
-                Varanasi experience.
-              </p>
-              <Link href="/services/stay" className="stay-explore-btn">
-                <span>Explore Stays</span>
-                <ArrowRight size={13} />
-              </Link>
-            </div>
-
-            {/* Right: Three Visual Tiles */}
-            <div className="stay-right-tiles">
-              {/* Tile 1 (Top, wider): Heritage Havelis */}
-              <Link href="/services/stay" className="stay-tile stay-tile-top">
-                <Image
-                  src="/SnS/rare-access-heritage-home.webp"
-                  alt="Heritage Havelis in Varanasi"
-                  fill
-                  sizes="(max-width: 900px) 100vw, 28vw"
-                  className="tile-photo"
-                  quality={90}
-                />
-                <div className="tile-overlay-shade" />
-                <span className="tile-label">Heritage Havelis</span>
-              </Link>
-
-              {/* Bottom Row: 2 tiles side by side */}
-              <div className="stay-tile-bottom-row">
-                {/* Tile 2: Boutique Stays */}
-                <Link href="/services/stay" className="stay-tile stay-tile-bottom">
-                  <Image
-                    src="/SnS/private-journey-stays.webp"
-                    alt="Boutique Stays in Varanasi"
-                    fill
-                    sizes="(max-width: 900px) 50vw, 14vw"
-                    className="tile-photo"
-                    quality={90}
-                  />
-                  <div className="tile-overlay-shade" />
-                  <span className="tile-label">Boutique Stays</span>
-                </Link>
-
-                {/* Tile 3: Riverside Villas */}
-                <Link href="/services/stay" className="stay-tile stay-tile-bottom">
-                  <Image
-                    src="/SnS/kashi-after-dark.webp"
-                    alt="Riverside Villas in Varanasi"
-                    fill
-                    sizes="(max-width: 900px) 50vw, 14vw"
-                    className="tile-photo"
-                    quality={90}
-                  />
-                  <div className="tile-overlay-shade" />
-                  <span className="tile-label">Riverside Villas</span>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ========================================================
-          SECTION 05: PREMIUM SERVICE / TRUST STRIP
-      ======================================================== */}
-      <section className="trust-strip-reference" aria-label="Premium Services">
-        <div className="trust-strip-container">
-          <div className="trust-item">
-            <span className="trust-num">01</span>
-            <div className="trust-text">
-              <strong className="trust-title">Private experiences</strong>
-              <small className="trust-copy">
-                Thoughtfully designed, one-of-a-kind journeys
-              </small>
-            </div>
-          </div>
-
-          <div className="trust-item">
-            <span className="trust-num">02</span>
-            <div className="trust-text">
-              <strong className="trust-title">Local knowledge</strong>
-              <small className="trust-copy">Meet the real Varanasi</small>
-            </div>
-          </div>
-
-          <div className="trust-item">
-            <span className="trust-num">03</span>
-            <div className="trust-text">
-              <strong className="trust-title">Personal concierge</strong>
-              <small className="trust-copy">Care at every step</small>
-            </div>
-          </div>
-
-          <div className="trust-item">
-            <span className="trust-num">04</span>
-            <div className="trust-text">
-              <strong className="trust-title">Seamless planning</strong>
-              <small className="trust-copy">For a truly effortless experience</small>
-            </div>
           </div>
         </div>
       </section>
@@ -874,6 +572,117 @@ export default function HomeClient() {
         </div>
       </section>
 
+      {/* ========================================================
+          SECTION 02B: THE PURPOSE OF LIFE (PURUSHARTHAS)
+      ======================================================== */}
+      <section className="purushartha-reference-section" id="purusharthas" aria-label="The Purpose of Life: Dharm, Arth, Kaam, Moksh">
+        {/* Subtle Ornamental Corner Details */}
+        <div className="purushartha-corner-ornament purushartha-corner-left" aria-hidden="true">
+          <MandalaCornerSvg />
+        </div>
+        <div className="purushartha-corner-ornament purushartha-corner-right" aria-hidden="true">
+          <MandalaCornerSvg />
+        </div>
+
+        <div className="purushartha-container">
+          {/* Header Row */}
+          <div className="purushartha-header-row">
+            <div className="purushartha-header-left">
+              <p className="reference-gold-eyebrow">THE PURPOSE OF LIFE</p>
+              <h2 className="purushartha-heading">
+                Dharm • Arth • Kaam • Moksh
+              </h2>
+              <p className="purushartha-subheading">A Complete Journey in Varanasi</p>
+            </div>
+
+            <div className="purushartha-header-right">
+              <p className="purushartha-intro-copy">
+                Varanasi is a rare place where the four purusharthas of life come together — guiding you towards a meaningful and balanced life.
+              </p>
+            </div>
+          </div>
+
+          {/* 4 Editorial Experience Cards */}
+          <div className="purushartha-cards-grid">
+            {purusharthas.map((item) => {
+              const Icon = item.icon;
+              return (
+                <article className="purushartha-card" key={item.id}>
+                  <div className="purushartha-card-image-wrap">
+                    <Image
+                      src={item.image}
+                      alt={item.alt}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                      className="purushartha-card-img"
+                      quality={90}
+                    />
+                    <div className="purushartha-card-image-gradient" />
+                  </div>
+
+                  {/* Circular Gold Icon overlapping boundary */}
+                  <div className="purushartha-icon-badge" aria-hidden="true">
+                    <Icon />
+                  </div>
+
+                  {/* Card Content Area */}
+                  <div className="purushartha-card-body">
+                    <h3 className="purushartha-card-title">{item.title}</h3>
+                    <p className="purushartha-card-subtitle">{item.subtitle}</p>
+                    <p className="purushartha-card-desc">{item.description}</p>
+                    <Link href={item.href} className="purushartha-card-cta">
+                      <span>{item.cta}</span>
+                      <span className="purushartha-cta-arrow">→</span>
+                    </Link>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================
+          SECTION 05: PREMIUM SERVICE / TRUST STRIP
+      ======================================================== */}
+      <section className="trust-strip-reference" aria-label="Premium Services">
+        <div className="trust-strip-container">
+          <div className="trust-item">
+            <span className="trust-num">01</span>
+            <div className="trust-text">
+              <strong className="trust-title">Private experiences</strong>
+              <small className="trust-copy">
+                Thoughtfully designed, one-of-a-kind journeys
+              </small>
+            </div>
+          </div>
+
+          <div className="trust-item">
+            <span className="trust-num">02</span>
+            <div className="trust-text">
+              <strong className="trust-title">Local knowledge</strong>
+              <small className="trust-copy">Meet the real Varanasi</small>
+            </div>
+          </div>
+
+          <div className="trust-item">
+            <span className="trust-num">03</span>
+            <div className="trust-text">
+              <strong className="trust-title">Personal concierge</strong>
+              <small className="trust-copy">Care at every step</small>
+            </div>
+          </div>
+
+          <div className="trust-item">
+            <span className="trust-num">04</span>
+            <div className="trust-text">
+              <strong className="trust-title">Seamless planning</strong>
+              <small className="trust-copy">For a truly effortless experience</small>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="home-river-section" id="ghats" aria-labelledby="home-river-title">
         <div className="home-river-inner">
           <div className="home-river-heading">
@@ -893,15 +702,32 @@ export default function HomeClient() {
 
       <section className="home-kashi-words" aria-labelledby="home-kashi-words-title">
         <div className="home-kashi-words-heading">
-          <div><p className="reference-gold-eyebrow">A CITY, FELT THROUGH ITS PEOPLE</p><h2 id="home-kashi-words-title">Kashi, in our<br/><em>own words.</em></h2></div>
-          <p>Small moments, shared generously. This is the Varanasi that stays with you.</p>
+          <div><p className="home-testimonial-eyebrow">OUR VALUABLE VISITORS</p><h2 id="home-kashi-words-title">Kashi, in <em>our<br/>guests&apos;</em> own words.</h2></div>
+          <div className="home-voice-stats" aria-label="Guest ratings">
+            <div><strong>4.9</strong><span className="home-voice-stars" aria-label="5 out of 5 stars">★★★★★</span><span>Average guest rating</span></div>
+            <div><strong>97%</strong><span>Guests fully satisfied</span></div>
+          </div>
         </div>
         <div className="home-voice-layout">
-          <div className="home-voice-grid">{kashiVoices.map((voice) => <article className="home-voice-card" key={voice.title}>
-            <Image src={voice.image} alt={voice.title} fill sizes="(max-width: 760px) 45vw, 19vw" />
-            <span className="home-voice-shade"/><div><h3>{voice.title}</h3><p>{voice.detail}</p></div>
+          <div className="home-voice-grid">{kashiVoices.map((voice) => <article
+            className="home-voice-card"
+            key={voice.reel}
+            role="button"
+            tabIndex={0}
+            aria-label={`Open ${voice.label}`}
+            onClick={() => setActiveTestimonial(voice)}
+            onKeyDown={(event) => {
+              if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                setActiveTestimonial(voice);
+              }
+            }}
+          >
+            <div className="home-voice-preview">
+              <img className="home-voice-thumbnail" src={voice.thumbnail} alt="" loading="eager" />
+              <span className="home-voice-play" aria-hidden="true" />
+            </div>
           </article>)}</div>
-          <div className="home-voice-stats"><div><strong>84</strong><span>GHATS ALONG THE GANGA</span></div><div><strong>3,000+</strong><span>YEARS OF LIVING HISTORY</span></div><div><strong>ONE</strong><span>RIVER THROUGH IT ALL</span></div></div>
         </div>
       </section>
 
@@ -909,7 +735,7 @@ export default function HomeClient() {
         <div className="home-founder-layout">
           <figure className="home-founder-portrait">
             <div className="home-founder-reference-art">
-              <Image src="/images/founder-home-reference.png" alt="Anchal Pandey, Founder of Soil & Soul, in a Kashi inspired portrait composition" fill sizes="(max-width: 760px) 92vw, 48vw" />
+              <Image src="/images/founder-home-reference.png" alt="Anchal Pandey, Founder of SoilNSoul Travels, in a Kashi inspired portrait composition" fill sizes="(max-width: 760px) 92vw, 48vw" />
             </div>
           </figure>
           <div className="home-founder-copy">
@@ -917,12 +743,12 @@ export default function HomeClient() {
             <h2 id="home-founder-title">A story born <em>from<br/>the ghats</em> of Ganga.</h2>
             <blockquote className="home-founder-quote">“{founderStory[3]}”</blockquote>
             <div className="home-founder-story-text">{[founderStory[0], founderStory[1], founderStory[2], founderStory[4]].map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div>
-            <div className="home-founder-facts" aria-label="Soil N Soul at a glance">
+            <div className="home-founder-facts" aria-label="SoilNSoul Travels at a glance">
               <div><strong>500+</strong><span>JOURNEYS CURATED</span></div>
               <div><strong>38</strong><span>COUNTRIES SERVED</span></div>
               <div><strong>4.9</strong><span>GUEST RATING</span></div>
             </div>
-            <div className="home-founder-signoff"><span>Anchal Pandey</span><small>Founder, Soil N Soul</small></div>
+            <div className="home-founder-signoff"><span>Anchal Pandey</span><small>Founder, SoilNSoul Travels</small></div>
             <div className="home-founder-actions"><span className="home-founder-signature">With love, from Kashi</span><Link href="/about" className="home-map-cta">MEET ANCHAL <ArrowRight size={13}/></Link></div>
           </div>
           <span className="home-founder-art" aria-hidden="true"/>
@@ -952,6 +778,21 @@ export default function HomeClient() {
         <span className="home-final-cta-shade"/>
         <div><p className="reference-gold-eyebrow">YOUR KASHI JOURNEY STARTS HERE</p><h2>Tell us your dates.<br/>We’ll take care of you<br/><em>in Kashi.</em></h2><a href="#contact" className="cta-primary-btn">PLAN YOUR JOURNEY <ArrowRight size={13}/></a></div>
       </section>
+
+      {activeTestimonial && <div className="testimonial-instagram-backdrop" onMouseDown={(event) => {
+        if (event.target === event.currentTarget) setActiveTestimonial(null);
+      }}>
+        <section className="testimonial-instagram-modal" role="dialog" aria-modal="true" aria-label={activeTestimonial.label}>
+          <button type="button" className="testimonial-instagram-close" onClick={() => setActiveTestimonial(null)} aria-label="Close testimonial video"><X size={20}/></button>
+          <iframe
+            src={`${activeTestimonial.reel}embed/?autoplay=1`}
+            title={activeTestimonial.label}
+            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+            allowFullScreen
+          />
+        </section>
+      </div>}
+
     </div>
   );
 }

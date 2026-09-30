@@ -32,8 +32,8 @@ export default function Footer() {
       <div className="footer-reference-inner">
         {/* Column 1: Brand & Social */}
         <div className="footer-col footer-col-brand">
-          <Link href="/" className="footer-brand-logo" aria-label="Soil n Soul home">
-            <img src="/soil-n-soul-logo.svg" alt="Soil n Soul Varanasi Experiences" />
+          <Link href="/" className="footer-brand-logo" aria-label="SoilNSoul Travels home">
+            <img src="/soil-n-soul-logo.svg" alt="SoilNSoul Travels Varanasi Experiences" />
           </Link>
           <p className="footer-tagline">
             Thoughtful journeys into<br />the soul of Varanasi.
@@ -166,7 +166,7 @@ export default function Footer() {
       <div className="footer-bottom-bar">
         <div className="footer-bottom-inner">
           <p className="footer-copyright">
-            © {new Date().getFullYear()} Soil N Soul Experiences. All rights reserved.
+            © {new Date().getFullYear()} SoilNSoul Travels. All rights reserved.
           </p>
           <div className="footer-legal-links">
             <Link href="/privacy-policy">Privacy Policy</Link>

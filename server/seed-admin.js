@@ -13,7 +13,7 @@ import Admin from './src/models/Admin.js';
 dotenv.config();
 
 // ── Admin credentials — change before running ─────────────────────────────────
-const ADMIN_NAME = 'Soil n Soul Admin';
+const ADMIN_NAME = 'SoilNSoul Travels Admin';
 const ADMIN_EMAIL = 'admin@soilnsoul.in';
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
 if (!ADMIN_PASSWORD) throw new Error('Set ADMIN_PASSWORD in your local environment before running this script.');

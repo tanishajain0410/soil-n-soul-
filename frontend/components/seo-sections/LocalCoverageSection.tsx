@@ -15,7 +15,7 @@ export default function LocalCoverageSection() {
           </h2>
           <p className="text-slate-400 text-lg max-w-3xl mx-auto">
             From the bustling lanes of Godaulia to the serene banks of Assi Ghat, from Varanasi airport to the Sangam
-            at Prayagraj - Soil N Soul Travels operates across the entire Kashi region with local drivers, verified
+            at Prayagraj - SoilNSoul Travels operates across the entire Kashi region with local drivers, verified
             guides, and partner hotels at every major node.
           </p>
         </div>
@@ -29,7 +29,7 @@ export default function LocalCoverageSection() {
               Varanasi Ghats & Neighborhoods Covered
             </h3>
             <p className="text-slate-400 leading-relaxed">
-              Soil N Soul Travels operates across all major ghats of Varanasi. Our guided tours, boat rides, and pickup
+              SoilNSoul Travels operates across all major ghats of Varanasi. Our guided tours, boat rides, and pickup
               services seamlessly cover <strong className="text-white">Dashashwamedh Ghat</strong> - the epicenter of
               the evening Ganga Aarti and the most photographed ghat in India,{' '}
               <strong className="text-white">Assi Ghat</strong> - beloved by artists, yoga practitioners, and morning
@@ -87,7 +87,7 @@ export default function LocalCoverageSection() {
               Outstation Circuits from Varanasi
             </h3>
             <p className="text-slate-400 leading-relaxed">
-              Varanasi is the gateway to the UP pilgrimage belt, and Soil N Soul Travels offers day trips and multi-day
+              Varanasi is the gateway to the UP pilgrimage belt, and SoilNSoul Travels offers day trips and multi-day
               packages to every major destination in the circuit:{' '}
               <strong className="text-white">Prayagraj</strong> (3 hours) - home to the sacred Triveni Sangam where
               three rivers converge, the Anand Bhavan museum, and the historic Hanuman Mandir,{' '}
@@ -126,7 +126,7 @@ export default function LocalCoverageSection() {
             <div className="bg-primary/10 border border-primary/30 rounded-xl p-5">
               <p className="text-white font-semibold text-[15px] italic leading-relaxed">
                 "Whether you're arriving at VNS airport at 2 AM or need a last-minute Kashi Vishwanath darshan slot -
-                Soil N Soul Travels is your local lifeline in Varanasi. We are a travel agency near Dashashwamedh Ghat,
+                SoilNSoul Travels is your local lifeline in Varanasi. We are a travel agency near Dashashwamedh Ghat,
                 a tour operator near Varanasi Cantt, and a trusted travel agent near Godaulia - all in one."
               </p>
             </div>

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { submitInquiry } from '@/lib/inquiries';
 
 interface Props {
   isOpen: boolean;
@@ -29,6 +30,20 @@ export default function ServiceInquiryModal({ isOpen, onClose, serviceName, subS
     const subject = subServiceName
       ? `${serviceName} -- ${subServiceName}`
       : serviceName;
+
+    // Asynchronously persist to database so it arrives on admin panel
+    submitInquiry({
+      name: form.name.trim(),
+      phone: form.phone.trim(),
+      email: form.email.trim(),
+      service: subject,
+      message: form.message.trim(),
+      source: 'service_modal',
+      metadata: {
+        serviceName,
+        subServiceName,
+      },
+    }).catch(console.error);
 
     const text = `Hi! I'm interested in *${subject}*.\n\n*Name:* ${form.name}\n*Phone:* ${form.phone}\n*Email:* ${form.email || 'Not provided'}\n*Message:* ${form.message || 'No additional details'}`;
 

@@ -149,7 +149,7 @@ export const journeyCategories: Record<string, JourneyCategoryData> = {
     storyHeading: "Temples, Ghats and Timeless Traditions",
     storyContent: [
       "For millennia, seekers, sages, and travelers have walked the sacred labyrinth of Kashi in search of deeper meaning. Built on the trident of Lord Shiva, Varanasi remains one of the world's oldest continually inhabited cities, where life and eternity intertwine seamlessly.",
-      "Along the crescent curve of the holy Ganga, eighty-four ghats bear witness to an unbroken rhythm of devotion. Soil & Soul curates dignified, unhurried journeys into this spiritual realm—providing privileged access, scholar storytellers, and private sanctuaries that let you experience the sacred without distraction.",
+      "Along the crescent curve of the holy Ganga, eighty-four ghats bear witness to an unbroken rhythm of devotion. SoilNSoul Travels curates dignified, unhurried journeys into this spiritual realm—providing privileged access, scholar storytellers, and private sanctuaries that let you experience the sacred without distraction.",
     ],
     storyTags: [
       "Ancient Temples",
@@ -188,7 +188,7 @@ export const journeyCategories: Record<string, JourneyCategoryData> = {
     ],
     testimonial: {
       quote:
-        "Visiting Varanasi with Soil & Soul was a spiritual experience. Every detail felt thoughtfully curated and deeply meaningful.",
+        "Visiting Varanasi with SoilNSoul Travels was a spiritual experience. Every detail felt thoughtfully curated and deeply meaningful.",
       author: "Radhika Mehta",
       location: "Traveler, Mumbai",
       avatar: "/images/journeys/traveler-radhika.jpg",
@@ -230,7 +230,7 @@ export const journeyCategories: Record<string, JourneyCategoryData> = {
     introDescription1:
       "Varanasi's heritage lives not only in its temples, but also in its craftsmen, weavers, markets, music, architecture and traditions passed with reverence from one generation to another.",
     introDescription2:
-      "For centuries, Banaras has stood as India's preeminent center of arts, literature, and commerce. Soil & Soul unlocks the doors of heritage havelis, century-old weaver workshops, and forgotten bazaar quarters rarely seen by the casual traveler.",
+      "For centuries, Banaras has stood as India's preeminent center of arts, literature, and commerce. SoilNSoul Travels unlocks the doors of heritage havelis, century-old weaver workshops, and forgotten bazaar quarters rarely seen by the casual traveler.",
     introQuote:
       "Where master weavers weave dreams into gold threads, Varanasi's heritage breathes through every warp and weft.",
     introImage: "/images/journeys/arth-intro.jpg",
@@ -278,7 +278,7 @@ export const journeyCategories: Record<string, JourneyCategoryData> = {
     storyHeading: "Where Tradition Becomes Art",
     storyContent: [
       "Beyond the sacred riverfront lies the intoxicating rhythm of old Varanasi—a city that has nurtured classical maestros, Nobel scholars, and generations of world-renowned handloom weavers. Here, every lane preserves an oral tradition, and every workshop is an atelier of living history.",
-      "Through narrow alleys shaded by historic arches and scented with cardamom and sandalwood, Soil & Soul connects you directly with the custodians of this heritage. You meet the weavers in their ancestral loom houses, converse with classical musicians in traditional baithaks, and savor recipes perfected across centuries.",
+      "Through narrow alleys shaded by historic arches and scented with cardamom and sandalwood, SoilNSoul Travels connects you directly with the custodians of this heritage. You meet the weavers in their ancestral loom houses, converse with classical musicians in traditional baithaks, and savor recipes perfected across centuries.",
     ],
     storyTags: [
       "Banarasi Silk",
@@ -318,7 +318,7 @@ export const journeyCategories: Record<string, JourneyCategoryData> = {
     ],
     testimonial: {
       quote:
-        "The heritage walk was a highlight of our trip. Soil & Soul gave us access to experiences we could never have found on our own.",
+        "The heritage walk was a highlight of our trip. SoilNSoul Travels gave us access to experiences we could never have found on our own.",
       author: "Arjun Verma",
       location: "Traveler, Bangalore",
       avatar: "/images/journeys/traveler-arjun.jpg",
@@ -408,7 +408,7 @@ export const journeyCategories: Record<string, JourneyCategoryData> = {
     storyHeading: "Moments Made for Two",
     storyContent: [
       "Varanasi in the soft light of dusk is an enchanting sensory sanctuary. Gliding across the sacred river on a private decorated boat with marigold garlands, sipping hand-blended teas as flute melodies echo across the water, the city offers couples an unforgettable blend of intimacy, tranquility, and cultural grandeur.",
-      "Soil & Soul designs these moments with utmost discretion and sensitivity. Whether it's an anniversary toast on a private ghat terrace, an unhurried morning stroll through quiet morning riverbanks, or an intimate dinner under the stars, every touchpoint is crafted to let you connect deeply.",
+      "SoilNSoul Travels designs these moments with utmost discretion and sensitivity. Whether it's an anniversary toast on a private ghat terrace, an unhurried morning stroll through quiet morning riverbanks, or an intimate dinner under the stars, every touchpoint is crafted to let you connect deeply.",
     ],
     storyTags: [
       "Private Boat Rides",
@@ -449,7 +449,7 @@ export const journeyCategories: Record<string, JourneyCategoryData> = {
     ],
     testimonial: {
       quote:
-        "Our sunset boat ride with Soil & Soul was unforgettable. The entire experience felt so personal and beautifully curated.",
+        "Our sunset boat ride with SoilNSoul Travels was unforgettable. The entire experience felt so personal and beautifully curated.",
       author: "Neha & Karan",
       location: "Travelers, Delhi",
       avatar: "/images/journeys/traveler-couple.jpg",
@@ -491,7 +491,7 @@ export const journeyCategories: Record<string, JourneyCategoryData> = {
     introDescription1:
       "Find stillness in the sacred energy of Varanasi through meditation, yoga, spiritual retreats and experiences designed to reconnect you with yourself.",
     introDescription2:
-      "In the city where life, death, and liberation merge into oneness, Soil & Soul curates silent sanctuaries of rejuvenation. Experience dawn yoga by the calm riverbank, guided mindfulness among Buddhist stupas, and restorative Ayurvedic therapies.",
+      "In the city where life, death, and liberation merge into oneness, SoilNSoul Travels curates silent sanctuaries of rejuvenation. Experience dawn yoga by the calm riverbank, guided mindfulness among Buddhist stupas, and restorative Ayurvedic therapies.",
     introQuote:
       "In the quiet spaces between temple bells and river tides, find the silence your soul has been longing for.",
     introImage: "/images/journeys/moksh-intro.jpg",
@@ -539,7 +539,7 @@ export const journeyCategories: Record<string, JourneyCategoryData> = {
     storyHeading: "Stillness by the Sacred Ganga",
     storyContent: [
       "Kashi has been recognized for over three millennia as the supreme threshold between the finite and the eternal. In its early dawn mist, as the sacred river flows silently southward, the noise of modern life falls away, leaving room for profound reflection and renewal.",
-      "Soil & Soul curates restorative retreats that combine classical hatha yoga, Buddhist mindfulness at Sarnath, and personalized Ayurvedic consultations to guide you into profound inner stillness. Let the ancient energy of the river soothe your mind, body, and soul.",
+      "SoilNSoul Travels curates restorative retreats that combine classical hatha yoga, Buddhist mindfulness at Sarnath, and personalized Ayurvedic consultations to guide you into profound inner stillness. Let the ancient energy of the river soothe your mind, body, and soul.",
     ],
     storyTags: [
       "Yoga",
@@ -579,7 +579,7 @@ export const journeyCategories: Record<string, JourneyCategoryData> = {
     ],
     testimonial: {
       quote:
-        "The wellness retreat with Soil & Soul helped me slow down and reconnect with myself. It was truly transformative.",
+        "The wellness retreat with SoilNSoul Travels helped me slow down and reconnect with myself. It was truly transformative.",
       author: "Priya Shah",
       location: "Traveler, Pune",
       avatar: "/images/journeys/traveler-priya.jpg",

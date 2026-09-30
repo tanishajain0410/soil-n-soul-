@@ -1,4 +1,4 @@
-﻿import { Metadata } from "next";
+import { Metadata } from "next";
 import { fetchBlogs } from "@/lib/api";
 import BlogClient from "./BlogClient";
 
@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: "The Soul Blog - Stories from Kashi",
   alternates: { canonical: "/blog" },
   description:
-    "Curated essays, cultural dispatches, and inner reflections from the ancient streets of Varanasi by Soil n Soul Travels.",
+    "Curated essays, cultural dispatches, and inner reflections from the ancient streets of Varanasi by SoilNSoul Travels.",
 };
 
 export default async function BlogPage() {
@@ -21,7 +21,7 @@ export default async function BlogPage() {
     url: "https://www.soilnsoultravels.com/blog",
     name: "Varanasi Travel Blog — Stories from Kashi",
     description:
-      "Curated essays, cultural dispatches, and spiritual reflections from the ancient streets of Varanasi by Soil n Soul Travels.",
+      "Curated essays, cultural dispatches, and spiritual reflections from the ancient streets of Varanasi by SoilNSoul Travels.",
     breadcrumb: {
       "@type": "BreadcrumbList",
       itemListElement: [

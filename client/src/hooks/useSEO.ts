@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 
-const SITE_NAME = 'Soil N Soul Travels';
+const SITE_NAME = 'SoilNSoul Travels';
 const SITE_URL = (import.meta.env.VITE_SITE_URL as string) || (typeof window !== 'undefined' ? window.location.origin : 'https://www.soilnsoultravels.com');
 const DEFAULT_IMAGE = '/images/hero/hero-1.jpg';
 const DEFAULT_DESC =
-    'Book trusted tours & travel packages in Varanasi with Soil N Soul Travels. Ganga Aarti, pooja booking, city tours, car rental & spiritual packages from ₹999.';
+    'Book trusted tours & travel packages in Varanasi with SoilNSoul Travels. Ganga Aarti, pooja booking, city tours, car rental & spiritual packages from ₹999.';
 
 interface SEOOptions {
     title?: string;
@@ -126,7 +126,7 @@ export function useSEO({
 export const localBusinessSchema = {
     '@context': 'https://schema.org',
     '@type': 'TravelAgency',
-    name: 'Soil n Soul Travels',
+    name: 'SoilNSoul Travels',
     description: DEFAULT_DESC,
     url: SITE_URL,
     telephone: '+919580417547',
@@ -185,7 +185,7 @@ export function blogPostSchema(blog: {
         },
         publisher: {
             '@type': 'Organization',
-            name: 'Soil n Soul Travels',
+            name: 'SoilNSoul Travels',
             logo: {
                 '@type': 'ImageObject',
                 url: `${SITE_URL}/images/logo.png`,

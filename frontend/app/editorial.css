@@ -1,4 +1,4 @@
-/* Soil n Soul editorial system. Scoped to preserve legacy service/admin layouts. */
+/* SoilNSoul Travels editorial system. Scoped to preserve legacy service/admin layouts. */
 .sn-site {
   --sn-ivory: #f5f1e9;
   --sn-ink: #242521;
@@ -1838,7 +1838,7 @@
   transform: scale(1.03);
 }
 
-/* 2. The Soil N Soul Way (Values) */
+/* 2. The SoilNSoul Travels Way (Values) */
 .sn-way-header-split {
   display: flex;
   justify-content: space-between;

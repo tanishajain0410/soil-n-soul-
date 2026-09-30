@@ -15,7 +15,7 @@ const Blog = () => {
 
   useSEO({
     title: 'Travel Journal — Stories from Varanasi',
-    description: 'Curated essays, cultural dispatches, and inner reflections from the ancient streets of Varanasi by Soil n Soul Travels.',
+    description: 'Curated essays, cultural dispatches, and inner reflections from the ancient streets of Varanasi by SoilNSoul Travels.',
     url: '/blog',
     canonical: '/blog',
   });

@@ -17,7 +17,7 @@ export default function AboutSection() {
 
             <div className="text-slate-300 leading-relaxed text-[17px] space-y-6">
               <p>
-                <strong className="text-white">Soil N Soul Travels</strong> was born from a simple frustration: watching
+                <strong className="text-white">SoilNSoul Travels</strong> was born from a simple frustration: watching
                 visitors to our beloved Kashi get overcharged by outsiders, under-served by generic agencies, and leave
                 without ever experiencing the real Varanasi. As born-and-raised Varanasi locals, we knew every winding
                 lane of Godaulia, every secret pre-dawn boat route on the Ganga, every pandit who could conduct a
@@ -27,7 +27,7 @@ export default function AboutSection() {
               </p>
 
               <p>
-                Today, Soil N Soul Travels is recognized as one of the <strong className="text-white">best travel
+                Today, SoilNSoul Travels is recognized as one of the <strong className="text-white">best travel
                 companies in Varanasi</strong> — a GSTIN-registered business with transparent pricing, zero hidden charges,
                 and a founding team that collectively knows all 84 ghats of the Ganga by name, by history, and by the best
                 time of day to visit each one. We are not a call-center agency operating from Delhi or Jaipur. We are a{' '}
@@ -45,17 +45,17 @@ export default function AboutSection() {
                 the Ganga. Whether you are a family with elderly pilgrims needing wheelchair-accessible darshan, a solo
                 backpacker exploring the silk-weaving lanes of Banaras, a foreign tourist seeking an English-speaking guide
                 for Sarnath's Buddhist heritage, a honeymooner wanting a private sunset boat ride, or a corporate group
-                planning a spiritual retreat — Soil N Soul Travels designs a journey that fits you, not the other way around.
+                planning a spiritual retreat — SoilNSoul Travels designs a journey that fits you, not the other way around.
               </p>
 
               <blockquote className="border-l-4 border-primary pl-6 my-8 py-2">
                 <p className="text-white font-semibold text-xl italic font-serif">
-                  "When you travel with Soil N Soul, you don't just visit Varanasi — you belong to it."
+                  "When you travel with SoilNSoul Travels, you don't just visit Varanasi — you belong to it."
                 </p>
               </blockquote>
 
               <p className="text-sm text-slate-500">
-                Soil N Soul Travels is a GSTIN-registered travel business operating from Varanasi, Uttar Pradesh — 221001.
+                SoilNSoul Travels is a GSTIN-registered travel business operating from Varanasi, Uttar Pradesh — 221001.
                 All pricing is published transparently. No commission from hotel or vendor partnerships is passed to travelers.
               </p>
             </div>

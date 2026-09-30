@@ -79,7 +79,7 @@ const SeoLandingClient = ({ page }: { page: SeoPage }) => {
           {/* Badge */}
           <span className="inline-flex items-center gap-2 bg-primary/15 border border-primary/30 text-primary text-xs font-bold tracking-[0.18em] uppercase px-4 py-1.5 rounded-full mb-6">
             <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-            Soil n Soul Travels - Varanasi
+            SoilNSoul Travels - Varanasi
           </span>
 
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.1] mb-6">
@@ -145,7 +145,7 @@ const SeoLandingClient = ({ page }: { page: SeoPage }) => {
             <div className="lg:col-span-3 space-y-5">
               <p className="text-primary text-xs font-bold tracking-[0.25em] uppercase">About This Guide</p>
               <h2 className="text-2xl sm:text-3xl font-bold text-white leading-snug">
-                Why Trust <span className="text-primary italic font-light">Soil n Soul</span> for Your Varanasi Journey?
+                Why Trust <span className="text-primary italic font-light">SoilNSoul Travels</span> for Your Varanasi Journey?
               </h2>
               {page.intro.map((para, i) => (
                 <p key={i} className="text-slate-300 leading-relaxed text-sm sm:text-base">

@@ -1,9 +1,9 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import HomeClient from "./HomeClient";
 
 export const revalidate = 3600;
 export const metadata: Metadata = {
-  title: { absolute: "Soil n Soul Travels" },
+  title: { absolute: "SoilNSoul Travels" },
   description:
     "Curated Varanasi experiences, soulful stays and deeply personal journeys in the world's oldest living city.",
   alternates: { canonical: "/" },
@@ -16,7 +16,7 @@ export default async function HomePage() {
       {
         "@type": "TravelAgency",
         "@id": "https://www.soilnsoultravels.com/#agency",
-        name: "Soil n Soul Travels",
+        name: "SoilNSoul Travels",
         url: "https://www.soilnsoultravels.com",
         logo: "https://www.soilnsoultravels.com/soil-n-soul-logo.svg",
         image: "https://www.soilnsoultravels.com/images/hero/hero-3.jpg",
@@ -60,8 +60,8 @@ export default async function HomePage() {
         "@type": "WebSite",
         "@id": "https://www.soilnsoultravels.com/#website",
         url: "https://www.soilnsoultravels.com",
-        name: "Soil n Soul Travels",
-        description: "Plan your Varanasi journey with Soil n Soul Travels.",
+        name: "SoilNSoul Travels",
+        description: "Plan your Varanasi journey with SoilNSoul Travels.",
         publisher: {
           "@id": "https://www.soilnsoultravels.com/#agency",
         },

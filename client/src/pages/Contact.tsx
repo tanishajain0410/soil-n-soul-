@@ -17,7 +17,7 @@ const Contact = () => {
 
   useSEO({
     title: 'Contact Us — Plan Your Varanasi Journey',
-    description: 'Get in touch with Soil n Soul Travels to plan your perfect Varanasi experience. WhatsApp, email, or fill our inquiry form. We reply within the hour.',
+    description: 'Get in touch with SoilNSoul Travels to plan your perfect Varanasi experience. WhatsApp, email, or fill our inquiry form. We reply within the hour.',
     url: '/contact',
     canonical: '/contact',
   });

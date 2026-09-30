@@ -10,7 +10,15 @@ export default function BlogPostClient({ post, recentBlogs }: { post: any, recen
   const [progress, setProgress] = useState(0);
   const [copied, setCopied] = useState(false);
   const [shareUrl, setShareUrl] = useState('');
-  const API_BASE = API_URL ? API_URL.replace('/api', '') : '';
+  const API_BASE = API_URL ? API_URL.replace(/\/api\/?$/, '').replace(/\/$/, '') : '';
+  const resolveBlogImage = (source?: string) => {
+    if (!source) return '';
+    if (/^(https?:|data:|blob:)/i.test(source)) return source;
+    // Backend uploads need the API host; paths in /public are already site-relative.
+    if (source.startsWith('/uploads/')) return `${API_BASE}${source}`;
+    if (source.startsWith('/')) return source;
+    return API_BASE ? `${API_BASE}/${source}` : `/${source}`;
+  };
 
   useEffect(() => {
     setShareUrl(window.location.href);
@@ -25,13 +33,7 @@ export default function BlogPostClient({ post, recentBlogs }: { post: any, recen
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  const bannerSrc = post.bannerImage?.startsWith('http')
-    ? post.bannerImage
-    : post.bannerImage?.startsWith('/')
-    ? post.bannerImage
-    : post.bannerImage && API_BASE
-    ? `${API_BASE}${post.bannerImage.startsWith('/') ? '' : '/'}${post.bannerImage}`
-    : post.bannerImage || '';
+  const bannerSrc = resolveBlogImage(post.bannerImage);
 
   // Fix any relative /uploads image paths in content
   const fixedContent = API_BASE
@@ -203,9 +205,7 @@ export default function BlogPostClient({ post, recentBlogs }: { post: any, recen
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             {recentBlogs.map((r) => {
-              const rBanner = r.bannerImage?.startsWith('http')
-                ? r.bannerImage
-                : r.bannerImage ? `${API_BASE}${r.bannerImage}` : '';
+              const rBanner = resolveBlogImage(r.bannerImage);
               return (
                 <Link key={r._id} href={`/blog/${r.slug}`} className="group block">
                   <div className="relative h-44 rounded-2xl overflow-hidden mb-4 bg-white/5">

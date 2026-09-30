@@ -31,10 +31,10 @@ export default function Navbar() {
   }, [open]);
   return (
     <header className={`sn-nav ${scrolled || pathname !== "/" || open ? "sn-nav-solid" : ""}`}>
-      <Link href="/" className="sn-brand" aria-label="Soil n Soul Travels home" style={{ display: 'flex', alignItems: 'center' }}>
+      <Link href="/" className="sn-brand" aria-label="SoilNSoul Travels home" style={{ display: 'flex', alignItems: 'center' }}>
         <img
           src="/soil-n-soul-logo.svg" 
-          alt="Soil n Soul Travels" 
+          alt="SoilNSoul Travels" 
           className="sn-logo-img"
         />
       </Link>

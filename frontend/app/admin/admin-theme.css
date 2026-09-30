@@ -1,0 +1,347 @@
+/* ========================================================
+   SoilNSoul Travels — LUXURY HERITAGE ADMIN DASHBOARD THEME
+   Unified with public website brand aesthetics
+   ======================================================== */
+
+.sns-admin-root {
+  min-height: 100vh;
+  background: 
+    radial-gradient(circle at 10% 12%, rgba(217, 173, 87, 0.09) 0%, transparent 35%),
+    radial-gradient(circle at 90% 85%, rgba(145, 52, 30, 0.12) 0%, transparent 40%),
+    #140d09;
+  color: #f7ede2;
+  font-family: var(--font-plus-jakarta), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Serif headings */
+.sns-admin-title {
+  font-family: var(--font-cormorant), 'Cormorant Garamond', Georgia, serif;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: #fffaf4;
+}
+
+.sns-admin-title em {
+  font-style: italic;
+  font-family: var(--font-cormorant), 'Cormorant Garamond', Georgia, serif;
+  color: #dfbf80;
+  font-weight: 400;
+}
+
+/* Eyebrows */
+.sns-admin-eyebrow {
+  font-family: var(--font-plus-jakarta), sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2.2px;
+  text-transform: uppercase;
+  color: #dfbf80;
+}
+
+/* Heritage Cards */
+.sns-card {
+  background: linear-gradient(145deg, rgba(38, 22, 16, 0.78) 0%, rgba(22, 12, 8, 0.88) 100%);
+  border: 1px solid rgba(226, 198, 175, 0.16);
+  border-radius: 20px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(12px);
+}
+
+.sns-card-subtle {
+  background: rgba(28, 16, 11, 0.65);
+  border: 1px solid rgba(226, 198, 175, 0.12);
+  border-radius: 16px;
+}
+
+/* Pill Buttons matching rounded-ctas.css */
+.sns-btn-gold {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #d9ad57 0%, #b88636 100%);
+  color: #1a0e08 !important;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 10px 22px;
+  border: 1px solid rgba(255, 235, 195, 0.3);
+  box-shadow: 0 4px 16px rgba(217, 173, 87, 0.28);
+  transition: all 0.25s ease;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.sns-btn-gold:hover {
+  background: linear-gradient(135deg, #ecd29b 0%, #c99642 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(217, 173, 87, 0.38);
+}
+
+.sns-btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 999px;
+  background: rgba(255, 245, 235, 0.05);
+  border: 1px solid rgba(226, 198, 175, 0.22);
+  color: #f7ede2;
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  padding: 9px 18px;
+  transition: all 0.25s ease;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.sns-btn-outline:hover {
+  background: rgba(255, 245, 235, 0.12);
+  border-color: rgba(226, 198, 175, 0.45);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+/* Nav Tabs */
+.sns-tab-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 22px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  transition: all 0.25s ease;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.sns-tab-pill.active {
+  background: linear-gradient(135deg, #d9ad57 0%, #b88636 100%);
+  color: #1a0e08;
+  font-weight: 700;
+  box-shadow: 0 4px 18px rgba(217, 173, 87, 0.3);
+  border: 1px solid rgba(255, 235, 195, 0.4);
+}
+
+.sns-tab-pill.inactive {
+  background: rgba(255, 245, 235, 0.05);
+  color: #d6c7ba;
+  border: 1px solid rgba(226, 198, 175, 0.16);
+}
+
+.sns-tab-pill.inactive:hover {
+  background: rgba(255, 245, 235, 0.1);
+  color: #ffffff;
+  border-color: rgba(226, 198, 175, 0.3);
+}
+
+/* Table Enhancements */
+.sns-table-head {
+  border-bottom: 1px solid rgba(226, 198, 175, 0.18);
+  font-family: var(--font-plus-jakarta), sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: #a89485;
+}
+
+.sns-table-row {
+  border-bottom: 1px solid rgba(226, 198, 175, 0.08);
+  transition: background-color 0.2s ease;
+}
+
+.sns-table-row:hover {
+  background: rgba(226, 198, 175, 0.04);
+}
+
+.sns-blog-title {
+  font-family: var(--font-cormorant), 'Cormorant Garamond', Georgia, serif;
+  font-size: 19px;
+  font-weight: 600;
+  color: #fffaf4;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+}
+
+.sns-blog-slug {
+  font-family: monospace;
+  font-size: 11px;
+  color: #9e8e82;
+}
+
+/* Status Badges */
+.sns-badge-published {
+  background: rgba(46, 125, 50, 0.22);
+  color: #81c784;
+  border: 1px solid rgba(129, 199, 132, 0.35);
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  padding: 3px 11px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.sns-badge-draft {
+  background: rgba(217, 173, 87, 0.18);
+  color: #dfbf80;
+  border: 1px solid rgba(217, 173, 87, 0.35);
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  padding: 3px 11px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Luxury Form Controls */
+.sns-input {
+  width: 100%;
+  background: rgba(18, 11, 7, 0.72);
+  border: 1px solid rgba(226, 198, 175, 0.18);
+  border-radius: 12px;
+  padding: 12px 16px;
+  color: #fffaf4;
+  font-size: 14px;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.sns-input:focus {
+  border-color: #dfbf80;
+  background: rgba(26, 16, 10, 0.85);
+  box-shadow: 0 0 0 3px rgba(223, 191, 128, 0.15);
+}
+
+.sns-input::placeholder {
+  color: rgba(226, 198, 175, 0.35);
+}
+
+.sns-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: #c9b7a8;
+  margin-bottom: 6px;
+}
+
+/* Danger Pill Button */
+.sns-btn-danger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border-radius: 999px;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.28);
+  color: #fca5a5;
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  padding: 8px 16px;
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.sns-btn-danger:hover {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: rgba(239, 68, 68, 0.5);
+  color: #ffffff;
+}
+
+/* SoilNSoul Travels Quill Editor Styling */
+.sns-quill-wrapper .ql-toolbar {
+  background: rgba(28, 16, 11, 0.95) !important;
+  border-color: rgba(226, 198, 175, 0.18) !important;
+  border-radius: 16px 16px 0 0;
+  padding: 12px 16px !important;
+}
+
+.sns-quill-wrapper .ql-container {
+  background: rgba(18, 11, 7, 0.72) !important;
+  border-color: rgba(226, 198, 175, 0.18) !important;
+  border-radius: 0 0 16px 16px;
+  min-height: 380px;
+  font-family: inherit;
+}
+
+.sns-quill-wrapper .ql-editor {
+  color: #f7ede2;
+  font-size: 15px;
+  line-height: 1.85;
+  min-height: 380px;
+  padding: 24px 28px;
+}
+
+.sns-quill-wrapper .ql-editor.ql-blank::before {
+  color: rgba(226, 198, 175, 0.35);
+  font-style: italic;
+}
+
+.sns-quill-wrapper .ql-editor h1,
+.sns-quill-wrapper .ql-editor h2,
+.sns-quill-wrapper .ql-editor h3 {
+  font-family: var(--font-cormorant), Georgia, serif;
+  color: #fffaf4;
+  font-weight: 500;
+}
+
+.sns-quill-wrapper .ql-editor blockquote {
+  border-left: 3px solid #dfbf80;
+  background: rgba(217, 173, 87, 0.08);
+  padding: 14px 20px;
+  border-radius: 0 10px 10px 0;
+  color: #dfbf80;
+  font-style: italic;
+}
+
+.sns-quill-wrapper .ql-toolbar .ql-stroke {
+  stroke: #c9b7a8;
+}
+
+.sns-quill-wrapper .ql-toolbar .ql-fill {
+  fill: #c9b7a8;
+}
+
+.sns-quill-wrapper .ql-toolbar .ql-picker {
+  color: #c9b7a8;
+}
+
+.sns-quill-wrapper .ql-toolbar button:hover .ql-stroke,
+.sns-quill-wrapper .ql-toolbar button.ql-active .ql-stroke {
+  stroke: #dfbf80 !important;
+}
+
+.sns-quill-wrapper .ql-toolbar button:hover .ql-fill,
+.sns-quill-wrapper .ql-toolbar button.ql-active .ql-fill {
+  fill: #dfbf80 !important;
+}
+
+.sns-quill-wrapper .ql-toolbar .ql-picker-label:hover,
+.sns-quill-wrapper .ql-toolbar .ql-picker-item:hover {
+  color: #dfbf80 !important;
+}
+
+.sns-quill-wrapper .ql-toolbar .ql-picker-options {
+  background: #1e130c;
+  border-color: rgba(226, 198, 175, 0.2);
+  border-radius: 10px;
+}
+

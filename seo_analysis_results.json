@@ -41,8 +41,8 @@
     "imagesWithoutAlt": 0,
     "meta": {
       "title": "Varanasi Tour Packages & Local Travel Operator",
-      "description": "Experience Varanasi authentically with Soil n Soul Travels. Verified stays, Ganga Aarti, cultural tours and more — led by Anchal Pandey, a native of Banaras.",
-      "keywords": "Varanasi Tour Packages, Varanasi Travel Operator, Kashi Tours, SoilnSoul",
+      "description": "Experience Varanasi authentically with SoilNSoul Travels. Verified stays, Ganga Aarti, cultural tours and more — led by Anchal Pandey, a native of Banaras.",
+      "keywords": "Varanasi Tour Packages, Varanasi Travel Operator, Kashi Tours, SoilNSoul Travels",
       "canonical": "/",
       "structuredDataExists": true
     }
@@ -75,7 +75,7 @@
     "imagesWithoutAlt": 0,
     "meta": {
       "title": "Our Services — Varanasi Travel, Stays & Rituals",
-      "description": "Trusted, verified Varanasi travel services: airport pickups, heritage stays, Ganga Aarti pooja bookings, city tours and custom itineraries. Book with Soil n Soul Travels.",
+      "description": "Trusted, verified Varanasi travel services: airport pickups, heritage stays, Ganga Aarti pooja bookings, city tours and custom itineraries. Book with SoilNSoul Travels.",
       "keywords": "",
       "canonical": "/services",
       "structuredDataExists": false
@@ -152,7 +152,7 @@
     "imagesWithoutAlt": 0,
     "meta": {
       "title": "Travel Journal — Stories from Varanasi",
-      "description": "Curated essays, cultural dispatches, and inner reflections from the ancient streets of Varanasi by Soil n Soul Travels.",
+      "description": "Curated essays, cultural dispatches, and inner reflections from the ancient streets of Varanasi by SoilNSoul Travels.",
       "keywords": "",
       "canonical": "/blog",
       "structuredDataExists": false
@@ -268,7 +268,7 @@
     "imagesWithoutAlt": 0,
     "meta": {
       "title": "Contact Us — Plan Your Varanasi Journey",
-      "description": "Get in touch with Soil n Soul Travels to plan your perfect Varanasi experience. WhatsApp, email, or fill our inquiry form. We reply within the hour.",
+      "description": "Get in touch with SoilNSoul Travels to plan your perfect Varanasi experience. WhatsApp, email, or fill our inquiry form. We reply within the hour.",
       "keywords": "",
       "canonical": "/contact",
       "structuredDataExists": false
@@ -281,14 +281,14 @@
     "wordCount": 2612,
     "headings": {
       "h1": [
-        "Best Tours & Travel Agency in Varanasi – Soil N Soul Travels"
+        "Best Tours & Travel Agency in Varanasi – SoilNSoul Travels"
       ],
       "h2": [
         "Who We Are — Varanasi's Most Trusted Tour & Travel Agency",
         "Our Tour & Travel Services in Varanasi — Everything You Need, One Agency",
-        "Why Soil N Soul Travels Is the Best Tour & Travel Agency in Varanasi",
+        "Why SoilNSoul Travels Is the Best Tour & Travel Agency in Varanasi",
         "Most Booked Varanasi Tour Packages in 2026",
-        "What Travelers Say About Soil N Soul Travels — Varanasi's Top Rated Agency",
+        "What Travelers Say About SoilNSoul Travels — Varanasi's Top Rated Agency",
         "We Serve Travelers Across Varanasi & the Entire Kashi Pilgrimage Belt",
         "Best Time to Visit Varanasi — A Month-by-Month Guide",
         "Frequently Asked Questions — Varanasi Tour & Travel Agency",
@@ -341,8 +341,8 @@
     "imagesWithAlt": 1,
     "imagesWithoutAlt": 0,
     "meta": {
-      "title": "Best Tours & Travel Agency in Varanasi | Soil N Soul",
-      "description": "Book trusted tours & travel packages in Varanasi with Soil N Soul Travels. Ganga Aarti, pooja booking, city tours, car rental & spiritual packages from ₹999.",
+      "title": "Best Tours & Travel Agency in Varanasi | SoilNSoul Travels",
+      "description": "Book trusted tours & travel packages in Varanasi with SoilNSoul Travels. Ganga Aarti, pooja booking, city tours, car rental & spiritual packages from ₹999.",
       "keywords": "best tours and travel agency in varanasi, tour and travel agency in varanasi, travel agent in varanasi, best travel agency in varanasi, varanasi travel agency, varanasi tour packages, tours and travels varanasi, varanasi city tour packages 2026, spiritual tour packages varanasi, luxury tour packages varanasi, varanasi pooja booking service, ganga aarti tour varanasi, varanasi sightseeing packages, car rental service in varanasi, hotel booking varanasi near ghats",
       "canonical": "/best-tours-and-travel-agency-in-varanasi",
       "structuredDataExists": true
@@ -359,7 +359,7 @@
         "{page.heroHeading.split(' — ').length > 1 ? ( <> ... — ... ) : ( <> ... ... )}"
       ],
       "h2": [
-        "Why Trust Soil n Soul for Your Varanasi Journey?",
+        "Why Trust SoilNSoul Travels for Your Varanasi Journey?",
         "Everything You Need to Know",
         "Frequently Asked Questions",
         "Ready to Experience Varanasi?"

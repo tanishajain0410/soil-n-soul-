@@ -37,14 +37,14 @@ interface BlogPreview {
 // ─── Founder ─────────────────────────────────────────────────────────────────
 const FOUNDER = {
   name: 'Anchal Pandey',
-  role: 'Founder, Soil n Soul Travels',
+  role: 'Founder, SoilNSoul Travels',
   img: '/images/founder.jpg',
   story: [
     'I am a resident of Banaras, a city known for its ancient traditions, spiritual energy, and timeless culture.',
     'While growing up here, I often observed the challenges many tourists face when visiting Kashi. Many travelers come with deep faith, curiosity, and excitement — but unfortunately, they sometimes end up paying a lot without receiving genuine services or authentic experiences.',
-    'Seeing this repeatedly made me realize that visitors to this sacred city deserve honesty, guidance, and care. That is why I decided to start Soil n Soul Travels.',
+    'Seeing this repeatedly made me realize that visitors to this sacred city deserve honesty, guidance, and care. That is why I decided to start SoilNSoul Travels.',
     'My vision is simple: to ensure that every traveler who chooses our services feels satisfied with every rupee they spend, and leaves Kashi with beautiful memories, meaningful experiences, and a sense of connection to this incredible city.',
-    'At Soil n Soul Travels, we focus on authenticity, transparency, and heartfelt hospitality — so that every journey becomes truly memorable.',
+    'At SoilNSoul Travels, we focus on authenticity, transparency, and heartfelt hospitality — so that every journey becomes truly memorable.',
   ],
 };
 
@@ -89,11 +89,11 @@ const Home = () => {
 
   useSEO({
     title: 'Varanasi Tour Packages & Local Travel Operator',
-    description: 'Experience Varanasi authentically with Soil n Soul Travels. Verified stays, Ganga Aarti, cultural tours and more — led by Anchal Pandey, a native of Banaras.',
+    description: 'Experience Varanasi authentically with SoilNSoul Travels. Verified stays, Ganga Aarti, cultural tours and more — led by Anchal Pandey, a native of Banaras.',
     url: '/',
     canonical: '/',
     structuredData: localBusinessSchema,
-    keywords: 'Varanasi Tour Packages, Varanasi Travel Operator, Kashi Tours, SoilnSoul',
+    keywords: 'Varanasi Tour Packages, Varanasi Travel Operator, Kashi Tours, SoilNSoul Travels',
   });
 
   // Fetch latest 3 blogs from backend
@@ -122,7 +122,7 @@ const Home = () => {
 
   const handleContactSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const text = `Hello Soil n Soul!\n\n*Name:* ${contactForm.name}\n*Phone:* ${contactForm.phone}\n*Service:* ${contactForm.service || 'General Inquiry'}\n*Message:* ${contactForm.message}`;
+    const text = `Hello SoilNSoul Travels!\n\n*Name:* ${contactForm.name}\n*Phone:* ${contactForm.phone}\n*Service:* ${contactForm.service || 'General Inquiry'}\n*Message:* ${contactForm.message}`;
     window.open(`https://wa.me/919580417547?text=${encodeURIComponent(text)}`, '_blank');
   };
 
@@ -238,7 +238,7 @@ const Home = () => {
                 <span className="text-primary italic font-light">Kashi</span>
               </h2>
               <p className="text-slate-300 leading-relaxed text-base md:text-lg">
-                In 2018, Kavita Shastri began leading small, intimate groups through the sacred sites of Varanasi that most tourists never discover. Word spread. The demand grew. And in 2020, Soil n Soul was formally born.
+                In 2018, Kavita Shastri began leading small, intimate groups through the sacred sites of Varanasi that most tourists never discover. Word spread. The demand grew. And in 2020, SoilNSoul Travels was formally born.
               </p>
               <p className="text-slate-400 leading-relaxed text-sm md:text-base">
                 Our name tells you our mission. &ldquo;Soil&rdquo; is the earth beneath your feet — the particular, dusty, riverbank soil of the Gangetic plains. &ldquo;Soul&rdquo; is what you carry home.

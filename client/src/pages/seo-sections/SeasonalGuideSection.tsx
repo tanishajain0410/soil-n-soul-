@@ -16,7 +16,7 @@ export default function SeasonalGuideSection() {
           <p className="text-slate-400 text-lg max-w-3xl mx-auto">
             The best time to visit Varanasi depends on what you want to experience. Here is a season-by-season breakdown
             to help you choose the perfect window for your spiritual journey, city tour, or pilgrimage package with
-            Soil N Soul Travels.
+            SoilNSoul Travels.
           </p>
         </div>
 
@@ -42,8 +42,7 @@ export default function SeasonalGuideSection() {
                 every ghat from Assi to Rajghat, experience the <strong className="text-white">Ganga Mahotsav</strong>{' '}
                 cultural festival with classical music performances on the ghats, and enjoy foggy winter sunrises over the
                 Ganga that photographers dream about for years. This is the ideal season for spiritual ceremonies, outdoor
-                sightseeing, walking tours through the old city lanes, and the full varanasi city tour experience. Soil N
-                Soul Travels recommends booking at least 2 weeks in advance during this period, as accommodation near ghats
+                sightseeing, walking tours through the old city lanes, and the full varanasi city tour experience. SoilNSoul Travels recommends booking at least 2 weeks in advance during this period, as accommodation near ghats
                 and VIP Kashi Vishwanath darshan slots sell out rapidly.
               </p>
               <div className="mt-4 flex flex-wrap gap-2">
@@ -71,7 +70,7 @@ export default function SeasonalGuideSection() {
                 Summers in Varanasi are intense, with temperatures climbing to 45°C — but this is also when the city
                 reveals a quieter, more intimate side. The ghats are less crowded, temple queues at Kashi Vishwanath are
                 shorter (often under 15 minutes), and hotel rates drop 30–50% from peak pricing. Budget travelers can
-                access premium ghat-view rooms at off-season prices. Soil N Soul's summer packages focus on early
+                access premium ghat-view rooms at off-season prices. SoilNSoul Travels summer packages focus on early
                 morning (5–8 AM) and evening (5–9 PM) activities — the best strategy for avoiding midday heat while
                 still capturing the full spiritual experience. Short 1-night spiritual packages are especially popular
                 during this window. This season is best suited for budget travelers, short business trips, repeat
@@ -106,7 +105,7 @@ export default function SeasonalGuideSection() {
                 <strong className="text-white">Nag Panchami</strong> (serpent worship at ancient temples),{' '}
                 <strong className="text-white">Raksha Bandhan</strong> ceremonies at the ghats, and the breathtaking
                 intensity of daily Ganga Aarti performed in monsoon rain. With fewer tourists, this is the season for
-                truly immersive, authentic local experiences that most visitors never get to see. Soil N Soul's monsoon
+                truly immersive, authentic local experiences that most visitors never get to see. SoilNSoul Travels monsoon
                 packages include covered boat rides, temple-focused itineraries, indoor heritage walks through the silk
                 weaving lanes, and curated culinary walks — perfect for travelers who want Kashi at its most raw and real.
               </p>

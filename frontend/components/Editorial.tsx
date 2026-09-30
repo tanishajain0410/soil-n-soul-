@@ -144,7 +144,7 @@ export function Founder({ full = false }: { full?: boolean }) {
       <div className="sn-founder-image">
         <Image
           src="/images/founder.jpg"
-          alt="Anchal Pandey, founder of Soil n Soul Travels"
+          alt="Anchal Pandey, founder of SoilNSoul Travels"
           fill
           sizes="(max-width: 700px) 90vw, 40vw"
         />
@@ -183,14 +183,14 @@ export function Values() {
       <div className="sn-wrap">
         <div className="sn-way-header-split">
           <SectionHeading
-            label="The Soil n Soul Way"
+            label="The SoilNSoul Travels Way"
             title="Rooted here. Thoughtfully shared."
             text="Our connection to Kashi shapes every choice we make — and every journey we create."
           />
           <div className="sn-way-image">
             <Image
               src="/SnS/rooted-in-kashi.webp"
-              alt="Rooted in Kashi — authentic philosophy of Soil n Soul"
+              alt="Rooted in Kashi — authentic philosophy of SoilNSoul Travels"
               width={300}
               height={195}
               className="object-cover"

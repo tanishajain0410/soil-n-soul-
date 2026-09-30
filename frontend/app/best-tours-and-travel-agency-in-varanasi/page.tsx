@@ -14,9 +14,9 @@ import CtaSection from '@/components/seo-sections/CtaSection';
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: 'Best Tours & Travel Agency in Varanasi | Soil N Soul',
+  title: 'Best Tours & Travel Agency in Varanasi | SoilNSoul Travels',
   description:
-    'Book trusted tours & travel packages in Varanasi with Soil N Soul Travels. Ganga Aarti, pooja booking, city tours, car rental & spiritual packages from Rs 999.',
+    'Book trusted tours & travel packages in Varanasi with SoilNSoul Travels. Ganga Aarti, pooja booking, city tours, car rental & spiritual packages from Rs 999.',
   alternates: { canonical: '/best-tours-and-travel-agency-in-varanasi' },
 };
 

@@ -5,10 +5,10 @@ import { Scale, Mail, Phone, AlertCircle, ArrowLeft, ArrowRight } from "lucide-r
 export const metadata: Metadata = {
   title: "Terms & Conditions",
   description:
-    "Terms and Conditions governing private journeys, bespoke boat charters, and curated travel experiences with Soil n Soul Travels in Varanasi.",
+    "Terms and Conditions governing private journeys, bespoke boat charters, and curated travel experiences with SoilNSoul Travels in Varanasi.",
   alternates: { canonical: "/terms-and-conditions" },
   openGraph: {
-    title: "Terms & Conditions | Soil n Soul Travels",
+    title: "Terms & Conditions | SoilNSoul Travels",
     description:
       "Transparent terms and booking conditions for private, curated journeys into the soul of Kashi.",
     images: [{ url: "/images/hero/hero-3.jpg" }],
@@ -88,7 +88,7 @@ export default function TermsAndConditionsPage() {
             </div>
             <div className="legal-prose">
               <p>
-                Soil &amp; Soul Travels designs custom, private journeys tailored to individual travelers, couples, and private families. By confirming an itinerary or paying an advance deposit, you agree to these Terms and Conditions.
+                SoilNSoul Travels designs custom, private journeys tailored to individual travelers, couples, and private families. By confirming an itinerary or paying an advance deposit, you agree to these Terms and Conditions.
               </p>
               <p>
                 Each journey proposal is custom-crafted. All services, including private wooden boat charters, certified heritage concierges, artisan studio visits, and heritage stays, are reserved exclusively for your party.
@@ -188,7 +188,7 @@ export default function TermsAndConditionsPage() {
               </p>
               <div className="legal-contact-box">
                 <div className="legal-contact-name">Contact Us Regarding Your Booking</div>
-                <div className="legal-contact-address">Soil &amp; Soul Travels Concierge · Assi Ghat Road, Varanasi, UP, India</div>
+                <div className="legal-contact-address">SoilNSoul Travels Concierge · Assi Ghat Road, Varanasi, UP, India</div>
                 <div className="legal-contact-links">
                   <a href="mailto:info@soilnsoultravels.com" className="legal-contact-link">
                     <Mail size={14} /> info@soilnsoultravels.com

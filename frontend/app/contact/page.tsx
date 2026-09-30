@@ -6,7 +6,7 @@ export const revalidate = 3600;
 export const metadata: Metadata = {
   title: "Design My Journey",
   description:
-    "Get in touch with Soil n Soul Travels for authentic Varanasi experiences. Reach us via WhatsApp, email, or drop by our office.",
+    "Get in touch with SoilNSoul Travels for authentic Varanasi experiences. Reach us via WhatsApp, email, or drop by our office.",
   alternates: { canonical: "/contact" },
 };
 
@@ -16,12 +16,12 @@ export default function ContactPage() {
     "@type": "ContactPage",
     "@id": "https://www.soilnsoultravels.com/contact#webpage",
     url: "https://www.soilnsoultravels.com/contact",
-    name: "Contact Soil n Soul Travels",
+    name: "Contact SoilNSoul Travels",
     description:
-      "Contact page of Soil n Soul Travels. Design a personalised journey through the culture, stays, and sacred traditions of Kashi.",
+      "Contact page of SoilNSoul Travels. Design a personalised journey through the culture, stays, and sacred traditions of Kashi.",
     mainEntity: {
       "@type": "TravelAgency",
-      name: "Soil n Soul Travels",
+      name: "SoilNSoul Travels",
       telephone: "+919580417547",
       email: "info@soilnsoultravels.com",
       address: {

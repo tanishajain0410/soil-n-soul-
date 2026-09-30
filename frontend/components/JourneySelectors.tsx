@@ -16,7 +16,7 @@ export default function JourneySelectors({
   const [guests, setGuests] = useState(groupSizeOptions?.[0] || "2 Guests");
   const [date, setDate] = useState("");
 
-  const message = `Hi Soil n Soul,\n\nI'm interested in the ${journeyName} journey.\n\nDuration: ${duration}\nGuests: ${guests}\nPreferred Date: ${date || "Flexible"}\n\nI'd love to know more and design the journey.`;
+  const message = `Hi SoilNSoul Travels,\n\nI'm interested in the ${journeyName} journey.\n\nDuration: ${duration}\nGuests: ${guests}\nPreferred Date: ${date || "Flexible"}\n\nI'd love to know more and design the journey.`;
   const link = whatsapp(message);
 
   return (

@@ -28,7 +28,7 @@ export const posts = [
       <p>Handloom sarees will have a fuzzy, slightly uneven texture on the reverse side due to the floating threads. Powerloom sarees will be smooth.</p>
       <h2>The Ring Test</h2>
       <p>Authentic silk is incredibly soft and can pass through a wedding ring. While not a definitive test, it is a good indicator of quality.</p>
-      <p>At Soil n Soul, we take you directly to the weavers, ensuring you get authentic products at fair prices.</p>
+      <p>At SoilNSoul Travels, we take you directly to the weavers, ensuring you get authentic products at fair prices.</p>
     `,
     author: 'Meera Devi',
     date: 'September 22, 2025',

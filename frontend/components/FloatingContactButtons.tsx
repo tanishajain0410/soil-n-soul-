@@ -1,7 +1,7 @@
 "use client";
 
 const WHATSAPP_URL =
-  "https://wa.me/919580417547?text=Hello%20Soil%20n%20Soul%2C%20I%20would%20like%20to%20plan%20a%20journey%20to%20Varanasi.";
+  "https://wa.me/919580417547?text=Hello%20SoilNSoul%20Travels%2C%20I%20would%20like%20to%20plan%20a%20journey%20to%20Varanasi.";
 
 function WhatsAppSvgIcon() {
   return (

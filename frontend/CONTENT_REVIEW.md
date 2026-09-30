@@ -1,4 +1,4 @@
-# Soil n Soul refinement — content review
+# SoilNSoul Travels refinement — content review
 
 ## Preserved
 
@@ -28,4 +28,4 @@ Existing journey names, all 16 journey routes and their data, founder story, ser
 
 ## Run
 
-From `Soilnsoul-Travels-main/frontend`, run `npm run dev` and open http://localhost:3000. Production: `npm run build`, then `npm start`.
+From `SoilNSoul Travels-Travels-main/frontend`, run `npm run dev` and open http://localhost:3000. Production: `npm run build`, then `npm start`.

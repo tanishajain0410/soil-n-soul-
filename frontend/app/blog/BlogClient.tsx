@@ -255,7 +255,7 @@ export default function BlogClient({ posts = [] }: { posts: Preview[] }) {
               <div className="journal-intro-stamp-box">
                 <img
                   src="/images/about-ref/founder_stamp_trans.png"
-                  alt="Soil N Soul Heritage Seal"
+                  alt="SoilNSoul Travels Heritage Seal"
                   className="journal-intro-stamp-img"
                 />
                 <div className="journal-intro-stamp-script">
@@ -509,7 +509,7 @@ export default function BlogClient({ posts = [] }: { posts: Preview[] }) {
       <section className="blog-founder-quote" aria-label="A note from our founder">
         <img src="/images/about-ref/temple_watermark_trans.png" alt="" aria-hidden="true" />
         <blockquote>“Every lane in Kashi has a story.<br/><em>We just help you listen.</em></blockquote>
-        <p>— Anchal Pandey <span>Founder, Soil &amp; Soul</span></p>
+        <p>— Anchal Pandey <span>Founder, SoilNSoul Travels</span></p>
       </section>
 
       <JourneyEnquiry />

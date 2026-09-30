@@ -5,10 +5,10 @@ import { ShieldCheck, Mail, Phone, ArrowLeft, ArrowRight, Compass } from "lucide
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
-    "Privacy Policy for Soil n Soul Travels. Learn how we collect, protect, and handle your personal information for bespoke Varanasi travel experiences.",
+    "Privacy Policy for SoilNSoul Travels. Learn how we collect, protect, and handle your personal information for bespoke Varanasi travel experiences.",
   alternates: { canonical: "/privacy-policy" },
   openGraph: {
-    title: "Privacy Policy | Soil n Soul Travels",
+    title: "Privacy Policy | SoilNSoul Travels",
     description:
       "Our commitment to protecting your personal data and privacy across all private Varanasi journeys.",
     images: [{ url: "/images/hero/hero-3.jpg" }],
@@ -43,7 +43,7 @@ export default function PrivacyPolicyPage() {
           </h1>
 
           <p className="legal-hero-subtitle">
-            At Soil &amp; Soul Travels, we honor your privacy with the same mindfulness and reverence that we bring to our bespoke journeys in Kashi.
+            At SoilNSoul Travels, we honor your privacy with the same mindfulness and reverence that we bring to our bespoke journeys in Kashi.
           </p>
 
           <div>
@@ -85,7 +85,7 @@ export default function PrivacyPolicyPage() {
             </div>
             <div className="legal-prose">
               <p>
-                Soil &amp; Soul Travels (&ldquo;we&rdquo;, &ldquo;our&rdquo;, or &ldquo;us&rdquo;) operates the website <span className="legal-domain-highlight">soilnsoultravels.com</span> and provides bespoke private travel concierge services, heritage walks, luxury boat charters, and cultural experiences in Varanasi, Uttar Pradesh, India.
+                SoilNSoul Travels (&ldquo;we&rdquo;, &ldquo;our&rdquo;, or &ldquo;us&rdquo;) operates the website <span className="legal-domain-highlight">soilnsoultravels.com</span> and provides bespoke private travel concierge services, heritage walks, luxury boat charters, and cultural experiences in Varanasi, Uttar Pradesh, India.
               </p>
               <p>
                 This Privacy Policy details how we collect, use, store, and safeguard your personal data when you interact with our website, request custom journey proposals, or travel with our local concierges.
@@ -174,7 +174,7 @@ export default function PrivacyPolicyPage() {
                 You have the right to request access to your personal information, request corrections, or ask for the deletion of your data once your journey is concluded.
               </p>
               <div className="legal-contact-box">
-                <div className="legal-contact-name">Soil &amp; Soul Travels Concierge</div>
+                <div className="legal-contact-name">SoilNSoul Travels Concierge</div>
                 <div className="legal-contact-address">Assi Ghat Road, Varanasi, Uttar Pradesh 221005, India</div>
                 <div className="legal-contact-links">
                   <a href="mailto:info@soilnsoultravels.com" className="legal-contact-link">

@@ -25,7 +25,7 @@ import CtaSection from './seo-sections/CtaSection';
  * tags, and conversion-focused CTAs.
  *
  * Target word count: 4,000–5,000 words
- * H1: Best Tours & Travel Agency in Varanasi – Soil N Soul Travels
+ * H1: Best Tours & Travel Agency in Varanasi – SoilNSoul Travels
  * Canonical: /best-tours-and-travel-agency-in-varanasi
  */
 export default function BestToursVaranasi() {
@@ -33,9 +33,9 @@ export default function BestToursVaranasi() {
   const schemaGraph = buildSchemaGraph();
 
   useSEO({
-    title: 'Best Tours & Travel Agency in Varanasi | Soil N Soul',
+    title: 'Best Tours & Travel Agency in Varanasi | SoilNSoul Travels',
     description:
-      'Book trusted tours & travel packages in Varanasi with Soil N Soul Travels. Ganga Aarti, pooja booking, city tours, car rental & spiritual packages from ₹999.',
+      'Book trusted tours & travel packages in Varanasi with SoilNSoul Travels. Ganga Aarti, pooja booking, city tours, car rental & spiritual packages from ₹999.',
     url: '/best-tours-and-travel-agency-in-varanasi',
     canonical: '/best-tours-and-travel-agency-in-varanasi',
     structuredData: schemaGraph as any,

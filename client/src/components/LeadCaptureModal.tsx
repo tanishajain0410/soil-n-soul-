@@ -47,7 +47,7 @@ const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({ onClose }) => {
                     <div className="flex items-center gap-3 mb-2">
                         <span className="material-symbols-outlined text-3xl text-primary">flare</span>
                         <div>
-                            <p className="text-primary text-xs font-bold tracking-widest uppercase">Soil n Soul Travel</p>
+                            <p className="text-primary text-xs font-bold tracking-widest uppercase">SoilNSoul Travels</p>
                             <h3 className="text-white font-bold text-lg leading-tight">Plan Your Varanasi Journey</h3>
                         </div>
                     </div>

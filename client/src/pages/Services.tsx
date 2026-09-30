@@ -16,7 +16,7 @@ const SERVICE_ICONS: Record<string, string> = {
 const Services = () => {
   useSEO({
     title: 'Our Services — Varanasi Travel, Stays & Rituals',
-    description: 'Trusted, verified Varanasi travel services: airport pickups, heritage stays, Ganga Aarti pooja bookings, city tours and custom itineraries. Book with Soil n Soul Travels.',
+    description: 'Trusted, verified Varanasi travel services: airport pickups, heritage stays, Ganga Aarti pooja bookings, city tours and custom itineraries. Book with SoilNSoul Travels.',
     url: '/services',
     canonical: '/services',
   });

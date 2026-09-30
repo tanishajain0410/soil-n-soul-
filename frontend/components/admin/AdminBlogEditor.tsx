@@ -11,6 +11,7 @@ import { API_URL } from '@/lib/constants';
 const ReactQuill = dynamic(
     async () => {
         const { default: RQ } = await import('react-quill-new');
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         return function Comp({ forwardedRef, ...props }: any) {
             return <RQ ref={forwardedRef} {...props} />;
         };
@@ -122,7 +123,7 @@ export default function AdminBlogEditor() {
         'header', 'font', 'size',
         'bold', 'italic', 'underline', 'strike',
         'color', 'background', 'align',
-        'list', 'bullet', 'indent',
+        'list', 'indent',
         'blockquote', 'code-block',
         'link', 'image',
     ];
@@ -175,7 +176,8 @@ export default function AdminBlogEditor() {
             const data = await res.json();
             if (data.success && data.url) {
                 const url = data.url.startsWith('http') ? data.url : `${API_URL.replace('/api', '')}${data.url}`;
-                setForm(f => ({ ...f, bannerImage: url }));
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                setForm((f: any) => ({ ...f, bannerImage: url }));
             } else {
                 setError(data.message || 'Upload failed.');
             }
@@ -222,7 +224,7 @@ export default function AdminBlogEditor() {
             });
             const data = await res.json();
             if (data.success) {
-                setSuccess(status === 'published' ? '✅ Published!' : '📝 Draft saved!');
+                setSuccess(status === 'published' ? '✨ Published successfully!' : '📝 Saved as draft!');
                 setTimeout(() => router.push('/admin'), 1500);
             } else {
                 setError(data.message || 'Save failed.');
@@ -239,274 +241,374 @@ export default function AdminBlogEditor() {
     if (!token) return null;
 
     if (loading) return (
-        <div className="min-h-screen bg-[#0f0f13] flex items-center justify-center">
-            <div className="text-indigo-400 font-bold tracking-widest uppercase animate-pulse">Loading Editor…</div>
+        <div className="min-h-screen sns-admin-root flex flex-col items-center justify-center gap-4">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+                src="/soil-n-soul-logo.svg"
+                alt="SoilNSoul Travels"
+                className="h-10 w-auto object-contain brightness-0 invert animate-pulse opacity-80"
+            />
+            <div className="sns-admin-eyebrow text-[#dfbf80]">Loading Chronicle Editor…</div>
         </div>
     );
 
     return (
-        <div className="min-h-screen bg-[#0f0f13] text-slate-100">
-            {/* ── Quill dark-mode overrides ── */}
-            <style>{`
-        .ql-toolbar { background: #1a1a24 !important; border-color: rgba(255,255,255,0.1) !important; border-radius: 12px 12px 0 0; flex-wrap: wrap; }
-        .ql-container { background: #0f0f13 !important; border-color: rgba(255,255,255,0.1) !important; border-radius: 0 0 12px 12px; min-height: 320px; font-family: inherit; }
-        .ql-editor { color: #cbd5e1; font-size: 15px; line-height: 1.8; min-height: 320px; padding: 20px 24px; }
-        .ql-editor.ql-blank::before { color: #475569; font-style: normal; }
-        .ql-editor h1 { font-size: 2em; font-weight: 700; color: #fff; margin-bottom: 0.5em; }
-        .ql-editor h2 { font-size: 1.5em; font-weight: 700; color: #fff; margin-bottom: 0.4em; }
-        .ql-editor h3 { font-size: 1.2em; font-weight: 600; color: #fff; margin-bottom: 0.3em; }
-        .ql-editor h4 { font-size: 1em; font-weight: 600; color: #e2e8f0; margin-bottom: 0.3em; }
-        .ql-editor p { margin-bottom: 1em; }
-        .ql-editor blockquote { border-left: 4px solid #6366f1; padding-left: 16px; color: #94a3b8; font-style: italic; margin: 1em 0; }
-        .ql-editor pre.ql-syntax { background: #1e1e2e; border-radius: 8px; padding: 16px; font-size: 13px; color: #a5f3fc; font-family: monospace; overflow-x: auto; }
-        .ql-editor a { color: #818cf8; text-decoration: underline; }
-        .ql-editor img { max-width: 100%; border-radius: 10px; margin: 16px auto; display: block; box-shadow: 0 4px 24px rgba(0,0,0,0.4); }
-        .ql-editor ul, .ql-editor ol { padding-left: 1.5em; margin-bottom: 1em; }
-        .ql-editor li { margin-bottom: 0.3em; }
-        .ql-toolbar .ql-stroke { stroke: #94a3b8; }
-        .ql-toolbar .ql-fill { fill: #94a3b8; }
-        .ql-toolbar .ql-picker { color: #94a3b8; }
-        .ql-toolbar button:hover .ql-stroke,
-        .ql-toolbar button.ql-active .ql-stroke { stroke: #818cf8 !important; }
-        .ql-toolbar button:hover .ql-fill,
-        .ql-toolbar button.ql-active .ql-fill { fill: #818cf8 !important; }
-        .ql-toolbar .ql-picker-label:hover,
-        .ql-toolbar .ql-picker-item:hover { color: #818cf8 !important; }
-        .ql-toolbar .ql-picker-options { background: #1a1a24; border-color: rgba(255,255,255,0.1); border-radius: 8px; }
-        .ql-toolbar .ql-picker-item { color: #94a3b8; }
-        .ql-picker-label { border-color: transparent !important; }
-        .ql-snow.ql-toolbar button { border-radius: 4px; }
-        .ql-snow.ql-toolbar button:hover,
-        .ql-snow.ql-toolbar button.ql-active { background: rgba(255,255,255,0.08); }
-        /* Blog post view styling */
-        .blog-body h1 { font-size: 2rem; font-weight: 700; color: #fff; margin: 1.5rem 0 0.75rem; line-height: 1.25; }
-        .blog-body h2 { font-size: 1.5rem; font-weight: 700; color: #fff; margin: 1.4rem 0 0.6rem; line-height: 1.3; }
-        .blog-body h3 { font-size: 1.2rem; font-weight: 600; color: #e2e8f0; margin: 1.2rem 0 0.5rem; }
-        .blog-body h4 { font-size: 1rem; font-weight: 600; color: #e2e8f0; margin: 1rem 0 0.4rem; }
-        .blog-body p { margin-bottom: 1.25rem; line-height: 1.85; color: #cbd5e1; }
-        .blog-body a { color: #818cf8; text-decoration: underline; }
-        .blog-body img { max-width: 100%; border-radius: 12px; margin: 1.5rem auto; display: block; box-shadow: 0 4px 32px rgba(0,0,0,0.5); }
-        .blog-body blockquote { border-left: 4px solid #6366f1; background: rgba(99,102,241,0.07); padding: 14px 20px; border-radius: 0 8px 8px 0; margin: 1.5rem 0; color: #94a3b8; font-style: italic; }
-        .blog-body pre { background: #1e1e2e; border-radius: 10px; padding: 1.25rem; overflow-x: auto; margin: 1.25rem 0; }
-        .blog-body code { font-family: 'Courier New', monospace; font-size: 13px; color: #a5f3fc; }
-        .blog-body ul { list-style: disc; padding-left: 1.75rem; margin-bottom: 1.25rem; }
-        .blog-body ol { list-style: decimal; padding-left: 1.75rem; margin-bottom: 1.25rem; }
-        .blog-body li { margin-bottom: 0.4rem; line-height: 1.7; color: #cbd5e1; }
-        .blog-body strong { color: #fff; font-weight: 700; }
-        .blog-body em { color: #e2e8f0; }
-      `}</style>
-
+        <div className="sns-admin-root text-slate-100 min-h-screen pb-16">
             {/* ── Top Bar ───────────────────────────────────────────────────────── */}
-            <div className="sticky top-0 z-30 bg-[#0f0f13]/95 backdrop-blur border-b border-white/8 px-3 sm:px-8 py-2.5 sm:py-3 flex flex-wrap items-center justify-between gap-3">
-                <div className="flex items-center gap-2.5 min-w-0">
-                    <Link href="/admin" className="text-slate-400 hover:text-white transition-colors shrink-0">
-                        <span className="material-symbols-outlined text-[18px]">arrow_back</span>
+            <div className="sticky top-0 z-30 bg-[#140d09]/95 backdrop-blur-md border-b border-[rgba(226,198,175,0.14)] px-4 sm:px-8 py-3.5 flex flex-wrap items-center justify-between gap-4">
+                <div className="flex items-center gap-4 min-w-0">
+                    <Link href="/admin" className="shrink-0 group">
+                        <div className="p-2 rounded-xl bg-[#140d09] border border-[#dfbf80]/30 shadow group-hover:border-[#dfbf80]/60 transition-all flex items-center gap-2">
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img
+                                src="/soil-n-soul-logo.svg"
+                                alt="SoilNSoul Travels"
+                                className="h-7 w-auto object-contain brightness-0 invert drop-shadow-[0_2px_8px_rgba(223,191,128,0.25)]"
+                            />
+                        </div>
                     </Link>
-                    <span className="text-indigo-400 text-xs font-bold tracking-[0.2em] uppercase truncate max-w-[150px] sm:max-w-xs">
-                        {isEditing ? `Edit: ${form.title || slug}` : 'New Post'}
-                    </span>
+                    <div className="min-w-0">
+                        <div className="flex items-center gap-2">
+                            <Link href="/admin" className="text-xs text-[#a89485] hover:text-[#dfbf80] transition-colors flex items-center gap-1 font-semibold uppercase tracking-wider">
+                                <span className="material-symbols-outlined text-[13px]">arrow_back</span>
+                                Admin
+                            </Link>
+                            <span className="text-xs text-[#dfbf80]/40">•</span>
+                            <span className="sns-admin-eyebrow text-[9px] truncate">
+                                {isEditing ? 'Editing Story' : 'New Chronicle'}
+                            </span>
+                        </div>
+                        <h2 className="sns-admin-title text-base sm:text-lg truncate max-w-xs sm:max-w-md mt-0.5">
+                            {form.title ? form.title : (isEditing ? slug : 'Untitled Story')}
+                        </h2>
+                    </div>
                 </div>
-                <div className="flex flex-wrap items-center gap-2">
-                    <button onClick={() => setPreview(p => !p)}
-                        className="flex items-center gap-1.5 text-slate-400 hover:text-white border border-white/10 px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors">
-                        <span className="material-symbols-outlined text-[13px]">{preview ? 'edit' : 'visibility'}</span>
-                        {preview ? 'Edit' : 'Preview'}
+
+                <div className="flex flex-wrap items-center gap-2.5">
+                    <button 
+                        type="button"
+                        onClick={() => setPreview(p => !p)}
+                        className="sns-btn-outline text-xs px-3.5 py-2"
+                    >
+                        <span className="material-symbols-outlined text-[15px]">{preview ? 'edit_note' : 'visibility'}</span>
+                        {preview ? 'Edit Content' : 'Preview Article'}
                     </button>
-                    <button onClick={() => handleSave('draft')} disabled={saving}
-                        className="flex items-center gap-1.5 text-slate-300 bg-white/8 border border-white/10 px-3 py-1.5 rounded-lg text-xs font-semibold disabled:opacity-50 transition-colors hover:bg-white/12">
-                        <span className="material-symbols-outlined text-[13px]">save</span>
-                        Draft
+                    <button 
+                        type="button"
+                        onClick={() => handleSave('draft')} 
+                        disabled={saving}
+                        className="sns-btn-outline text-xs px-3.5 py-2"
+                    >
+                        <span className="material-symbols-outlined text-[15px]">save</span>
+                        Save Draft
                     </button>
-                    <button onClick={() => handleSave('published')} disabled={saving}
-                        className="flex items-center gap-1.5 bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 text-white px-4 py-1.5 rounded-lg text-xs font-bold transition-colors">
-                        {saving ? '…' : '🚀 Publish'}
+                    <button 
+                        type="button"
+                        onClick={() => handleSave('published')} 
+                        disabled={saving}
+                        className="sns-btn-gold text-xs px-5 py-2"
+                    >
+                        <span className="material-symbols-outlined text-[16px]">auto_awesome</span>
+                        {saving ? 'Publishing…' : 'Publish Story'}
                     </button>
                 </div>
             </div>
 
             {/* Alerts */}
-            <div className="max-w-5xl mx-auto px-4 sm:px-8">
+            <div className="max-w-5xl mx-auto px-4 sm:px-8 mt-5">
                 {error && (
-                    <div className="mt-4 bg-red-500/10 border border-red-500/30 text-red-400 rounded-xl p-3 flex items-center gap-2 text-sm">
-                        <span className="material-symbols-outlined text-[14px]">close</span>
-                        {error}
+                    <div className="bg-red-500/10 border border-red-500/30 text-red-300 rounded-xl p-3.5 flex items-center gap-2.5 text-sm shadow">
+                        <span className="material-symbols-outlined text-base text-red-400">error</span>
+                        <span>{error}</span>
                     </div>
                 )}
                 {success && (
-                    <div className="mt-4 bg-green-500/10 border border-green-500/30 text-green-400 rounded-xl p-3 text-sm">{success}</div>
+                    <div className="bg-[#dfbf80]/15 border border-[#dfbf80]/40 text-[#fffaf4] rounded-xl p-3.5 flex items-center gap-2.5 text-sm shadow">
+                        <span className="material-symbols-outlined text-base text-[#dfbf80]">check_circle</span>
+                        <span>{success}</span>
+                    </div>
                 )}
             </div>
 
-            <div className="max-w-5xl mx-auto px-4 sm:px-8 py-6 space-y-5">
+            <div className="max-w-5xl mx-auto px-4 sm:px-8 py-6 space-y-6">
 
-                {/* ── CONTENT ─────────────────────────────────────────────────────── */}
-                <div className="bg-white/4 border border-white/8 rounded-2xl overflow-hidden">
-                    <div className="px-6 py-3.5 border-b border-white/8">
-                        <h2 className="text-indigo-400 font-bold text-xs tracking-[0.15em] uppercase">Content</h2>
+                {/* ── CONTENT SECTION ── */}
+                <div className="sns-card p-6 sm:p-8 space-y-6">
+                    <div className="pb-4 border-b border-[rgba(226,198,175,0.14)] flex items-center justify-between">
+                        <div>
+                            <span className="sns-admin-eyebrow">Editorial Narrative</span>
+                            <h2 className="sns-admin-title text-2xl text-white mt-0.5">
+                                Story Title &amp; <em>Narrative</em>
+                            </h2>
+                        </div>
                     </div>
-                    <div className="p-6 space-y-4">
+
+                    <div className="space-y-5">
                         {/* Title */}
                         <div>
-                            <label className="text-xs text-slate-400 font-semibold mb-1.5 block">Title <span className="text-red-400">*</span></label>
-                            <input name="title" required value={form.title} onChange={handleChange}
-                                placeholder="Blog post title"
-                                className="w-full bg-[#0f0f13] border border-white/10 focus:border-indigo-500 rounded-xl px-4 py-3 text-white text-base placeholder:text-slate-600 outline-none transition-colors" />
+                            <label className="sns-label">
+                                Chronicle Title <span className="text-[#dfbf80]">*</span>
+                            </label>
+                            <input 
+                                name="title" 
+                                required 
+                                value={form.title} 
+                                onChange={handleChange}
+                                placeholder="e.g. Subah-e-Banaras: Dawn Awakening along the Ancient Ghats"
+                                className="sns-input text-lg font-serif" 
+                            />
                             {form.title && (
-                                <p className="text-slate-600 text-xs mt-1.5">
-                                    URL: <span className="text-indigo-400">/blog/{slugPreview}</span>
+                                <p className="text-xs text-[#a89485] mt-1.5 flex items-center gap-1">
+                                    <span className="material-symbols-outlined text-[12px]">link</span>
+                                    Canonical URL: <span className="text-[#dfbf80]">/blog/{slugPreview}</span>
                                 </p>
                             )}
                         </div>
 
                         {/* Excerpt */}
                         <div>
-                            <label className="text-xs text-slate-400 font-semibold mb-1.5 block">Excerpt <span className="text-red-400">*</span></label>
-                            <textarea name="excerpt" rows={2} value={form.excerpt} onChange={handleChange}
-                                placeholder="Short description shown on listing cards"
-                                className="w-full bg-[#0f0f13] border border-white/10 focus:border-indigo-500 rounded-xl px-4 py-3 text-white text-sm placeholder:text-slate-600 outline-none transition-colors resize-none" />
-                            <p className="text-slate-600 text-xs mt-1">{form.excerpt.length} / 500</p>
+                            <div className="flex justify-between items-center mb-1.5">
+                                <label className="sns-label mb-0">
+                                    Editorial Excerpt / Teaser <span className="text-[#dfbf80]">*</span>
+                                </label>
+                                <span className={`text-[11px] ${form.excerpt.length > 500 ? 'text-red-400' : 'text-[#a89485]'}`}>
+                                    {form.excerpt.length} / 500
+                                </span>
+                            </div>
+                            <textarea 
+                                name="excerpt" 
+                                rows={3} 
+                                value={form.excerpt} 
+                                onChange={handleChange}
+                                placeholder="A rich, poetic summary that introduces the spirit of this journey..."
+                                className="sns-input text-sm leading-relaxed resize-none" 
+                            />
                         </div>
 
-                        {/* Editor or Preview */}
+                        {/* Quill Editor or HTML Preview */}
                         <div>
-                            <label className="text-xs text-slate-400 font-semibold mb-1.5 block">Content <span className="text-red-400">*</span></label>
+                            <label className="sns-label">
+                                Chronicle Body <span className="text-[#dfbf80]">*</span>
+                            </label>
                             {preview ? (
-                                <div
-                                    className="min-h-[300px] border border-white/10 rounded-xl p-6 blog-body text-slate-200"
-                                    dangerouslySetInnerHTML={{ __html: content || '<p class="text-slate-500">Nothing to preview yet.</p>' }}
-                                />
+                                <div className="sns-card-subtle p-8 rounded-2xl min-h-[380px] prose prose-invert max-w-none border border-[#dfbf80]/20">
+                                    <div className="text-xs font-semibold uppercase tracking-widest text-[#dfbf80] mb-4 pb-2 border-b border-[rgba(226,198,175,0.15)] flex items-center gap-2">
+                                        <span className="material-symbols-outlined text-[16px]">visibility</span>
+                                        Live Reader Preview
+                                    </div>
+                                    <div 
+                                        className="text-[#f7ede2] leading-relaxed font-serif text-base space-y-4"
+                                        dangerouslySetInnerHTML={{ __html: content || '<p class="text-[#a89485] italic font-sans">No content crafted yet.</p>' }}
+                                    />
+                                </div>
                             ) : (
-                                <ReactQuill
-                                    forwardedRef={quillRef}
-                                    theme="snow"
-                                    value={content}
-                                    onChange={setContent}
-                                    modules={modules}
-                                    formats={formats}
-                                    placeholder="Write your blog content here..."
-                                />
+                                <div className="sns-quill-wrapper rounded-2xl overflow-hidden border border-[rgba(226,198,175,0.18)]">
+                                    <ReactQuill
+                                        forwardedRef={quillRef}
+                                        theme="snow"
+                                        value={content}
+                                        onChange={setContent}
+                                        modules={modules}
+                                        formats={formats}
+                                        placeholder="Begin writing your soulful story..."
+                                    />
+                                </div>
                             )}
                         </div>
                     </div>
                 </div>
 
-                {/* ── FEATURED IMAGE ────────────────────────────────────────────── */}
-                <div className="bg-white/4 border border-white/8 rounded-2xl overflow-hidden">
-                    <div className="px-6 py-3.5 border-b border-white/8">
-                        <h2 className="text-indigo-400 font-bold text-xs tracking-[0.15em] uppercase">Featured Image</h2>
+                {/* ── FEATURED BANNER IMAGE ── */}
+                <div className="sns-card p-6 sm:p-8 space-y-6">
+                    <div className="pb-4 border-b border-[rgba(226,198,175,0.14)]">
+                        <span className="sns-admin-eyebrow">Visual Heritage</span>
+                        <h2 className="sns-admin-title text-2xl text-white mt-0.5">
+                            Featured <em>Hero Banner</em>
+                        </h2>
                     </div>
-                    <div className="p-6 flex items-start gap-5">
+
+                    <div className="flex flex-col sm:flex-row items-start gap-6">
                         {/* Upload box */}
                         <label className="cursor-pointer shrink-0">
-                            <div className={`w-28 h-24 rounded-xl border-2 border-dashed flex flex-col items-center justify-center gap-1.5 transition-colors overflow-hidden ${form.bannerImage ? 'border-indigo-500/50' : 'border-white/15 hover:border-white/30'}`}>
+                            <div className={`w-40 h-28 rounded-2xl border-2 border-dashed flex flex-col items-center justify-center gap-1.5 transition-all overflow-hidden bg-[#120b07] ${form.bannerImage ? 'border-[#dfbf80]/60 ring-2 ring-[#dfbf80]/20' : 'border-[rgba(226,198,175,0.22)] hover:border-[#dfbf80]/50'}`}>
                                 {form.bannerImage ? (
                                     /* eslint-disable-next-line @next/next/no-img-element */
                                     <img src={form.bannerImage} alt="Banner" className="w-full h-full object-cover" />
                                 ) : (
                                     <>
-                                        <span className="material-symbols-outlined text-[20px] text-slate-500">upload</span>
-                                        <span className="text-slate-500 text-xs text-center leading-tight px-1">Upload Image</span>
+                                        <span className="material-symbols-outlined text-[24px] text-[#dfbf80]">add_photo_alternate</span>
+                                        <span className="text-[#c9b7a8] text-xs font-semibold text-center leading-tight px-2">Upload Banner</span>
                                     </>
                                 )}
                             </div>
                             <input type="file" accept="image/*" className="hidden" onChange={handleBannerUpload} disabled={uploadingBanner} />
                         </label>
 
-                        <div className="flex-1 space-y-2">
-                            <p className="text-slate-500 text-xs">Recommended: <strong className="text-slate-300">1200×630px</strong> · Max 5MB · JPG/PNG/WebP</p>
-                            {uploadingBanner && <p className="text-indigo-400 text-xs animate-pulse">Uploading…</p>}
+                        <div className="flex-1 w-full space-y-2.5">
+                            <p className="text-[#a89485] text-xs leading-relaxed">
+                                Recommended: <strong className="text-[#f7ede2]">1600×900px</strong> or <strong className="text-[#f7ede2]">1200×630px</strong> · Landscape · Max 5MB · JPG/PNG/WebP
+                            </p>
+                            {uploadingBanner && <p className="text-[#dfbf80] text-xs font-semibold animate-pulse flex items-center gap-1.5"><span className="material-symbols-outlined text-[14px]">sync</span> Uploading banner imagery…</p>}
                             <input
-                                type="url" name="bannerImage" value={form.bannerImage} onChange={handleChange}
-                                placeholder="Or paste image URL…"
-                                className="w-full bg-[#0f0f13] border border-white/10 focus:border-indigo-500 rounded-lg px-3 py-2 text-white text-xs placeholder:text-slate-600 outline-none transition-colors"
+                                type="url" 
+                                name="bannerImage" 
+                                value={form.bannerImage} 
+                                onChange={handleChange}
+                                placeholder="Or enter direct image URL (https://...)"
+                                className="sns-input text-xs"
                             />
                             {form.bannerImage && (
-                                <button type="button" onClick={() => setForm(f => ({ ...f, bannerImage: '' }))}
-                                    className="text-red-400 hover:text-red-300 text-xs flex items-center gap-1 transition-colors">
-                                    <span className="material-symbols-outlined text-[11px]">close</span> Remove
+                                <button 
+                                    type="button" 
+                                    onClick={() => setForm(f => ({ ...f, bannerImage: '' }))}
+                                    className="text-red-400 hover:text-red-300 text-xs flex items-center gap-1 pt-1 transition-colors"
+                                >
+                                    <span className="material-symbols-outlined text-[13px]">delete</span>
+                                    Remove Banner
                                 </button>
                             )}
                         </div>
                     </div>
                 </div>
 
-                {/* ── METADATA ──────────────────────────────────────────────────── */}
-                <div className="bg-white/4 border border-white/8 rounded-2xl overflow-hidden">
-                    <div className="px-6 py-3.5 border-b border-white/8">
-                        <h2 className="text-indigo-400 font-bold text-xs tracking-[0.15em] uppercase">Metadata</h2>
+                {/* ── METADATA & TAXONOMY ── */}
+                <div className="sns-card p-6 sm:p-8 space-y-6">
+                    <div className="pb-4 border-b border-[rgba(226,198,175,0.14)]">
+                        <span className="sns-admin-eyebrow">Classification</span>
+                        <h2 className="sns-admin-title text-2xl text-white mt-0.5">
+                            Category &amp; <em>Publishing State</em>
+                        </h2>
                     </div>
-                    <div className="p-6 grid sm:grid-cols-2 gap-4">
+
+                    <div className="grid sm:grid-cols-2 gap-5">
                         <div>
-                            <label className="text-xs text-slate-400 font-semibold mb-1.5 block">Category</label>
+                            <label className="sns-label">Journal Category</label>
                             <div className="relative">
-                                <select name="category" value={form.category} onChange={handleChange}
-                                    className="w-full appearance-none bg-[#0f0f13] border border-white/10 focus:border-indigo-500 rounded-xl px-4 py-3 text-white text-sm outline-none pr-8">
-                                    {CATEGORIES.map(c => <option key={c} value={c}>{c}</option>)}
+                                <select 
+                                    name="category" 
+                                    value={form.category} 
+                                    onChange={handleChange}
+                                    className="sns-input appearance-none pr-10 cursor-pointer"
+                                >
+                                    {CATEGORIES.map(c => <option key={c} value={c} className="bg-[#180e09] text-white">{c}</option>)}
                                 </select>
-                                <span className="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-500 text-lg pointer-events-none">expand_more</span>
+                                <span className="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-[#dfbf80] pointer-events-none text-lg">
+                                    expand_more
+                                </span>
                             </div>
                         </div>
+
                         <div>
-                            <label className="text-xs text-slate-400 font-semibold mb-1.5 block">Status</label>
+                            <label className="sns-label">Publication State</label>
                             <div className="relative">
-                                <select name="status" value={form.status} onChange={handleChange}
-                                    className="w-full appearance-none bg-[#0f0f13] border border-white/10 focus:border-indigo-500 rounded-xl px-4 py-3 text-white text-sm outline-none pr-8">
-                                    <option value="draft">Draft</option>
-                                    <option value="published">Published</option>
+                                <select 
+                                    name="status" 
+                                    value={form.status} 
+                                    onChange={handleChange}
+                                    className="sns-input appearance-none pr-10 cursor-pointer"
+                                >
+                                    <option value="draft" className="bg-[#180e09] text-[#dfbf80]">Draft (Private)</option>
+                                    <option value="published" className="bg-[#180e09] text-emerald-400">Published (Public)</option>
                                 </select>
-                                <span className="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-500 text-lg pointer-events-none">expand_more</span>
+                                <span className="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-[#dfbf80] pointer-events-none text-lg">
+                                    expand_more
+                                </span>
                             </div>
                         </div>
+
                         <div className="sm:col-span-2">
-                            <label className="text-xs text-slate-400 font-semibold mb-1.5 block">Tags <span className="text-slate-600 font-normal">(comma-separated)</span></label>
-                            <input name="tags" value={form.tags} onChange={handleChange}
-                                placeholder="varanasi, travel, spiritual"
-                                className="w-full bg-[#0f0f13] border border-white/10 focus:border-indigo-500 rounded-xl px-4 py-3 text-white text-sm placeholder:text-slate-600 outline-none transition-colors" />
+                            <label className="sns-label">
+                                Topic Tags <span className="text-[#a89485] font-normal lowercase">(comma-separated)</span>
+                            </label>
+                            <input 
+                                name="tags" 
+                                value={form.tags} 
+                                onChange={handleChange}
+                                placeholder="kashi, ganga-aarti, morning-boat, spiritual-travel"
+                                className="sns-input text-sm" 
+                            />
                         </div>
                     </div>
                 </div>
 
-                {/* ── SEO ──────────────────────────────────────────────────────── */}
-                <div className="bg-white/4 border border-white/8 rounded-2xl overflow-hidden">
-                    <div className="px-6 py-3.5 border-b border-white/8">
-                        <h2 className="text-indigo-400 font-bold text-xs tracking-[0.15em] uppercase">SEO Settings</h2>
+                {/* ── SEO ENHANCEMENT ── */}
+                <div className="sns-card p-6 sm:p-8 space-y-6">
+                    <div className="pb-4 border-b border-[rgba(226,198,175,0.14)]">
+                        <span className="sns-admin-eyebrow">Search Engine Optimization</span>
+                        <h2 className="sns-admin-title text-2xl text-white mt-0.5">
+                            Search &amp; <em>Social Meta</em>
+                        </h2>
                     </div>
-                    <div className="p-6 space-y-4">
+
+                    <div className="space-y-5">
                         <div>
-                            <label className="text-xs text-slate-400 font-semibold mb-1.5 block">SEO Title</label>
-                            <input name="seoTitle" value={form.seoTitle} onChange={handleChange}
-                                placeholder="Custom title for search engines"
-                                className="w-full bg-[#0f0f13] border border-white/10 focus:border-indigo-500 rounded-xl px-4 py-3 text-white text-sm placeholder:text-slate-600 outline-none transition-colors" />
-                            <p className={`text-xs mt-1 ${form.seoTitle.length > 60 ? 'text-yellow-400' : 'text-slate-600'}`}>{form.seoTitle.length} / 60 chars</p>
+                            <div className="flex justify-between items-center mb-1.5">
+                                <label className="sns-label mb-0">Custom SEO Meta Title</label>
+                                <span className={`text-[11px] ${form.seoTitle.length > 60 ? 'text-[#dfbf80]' : 'text-[#a89485]'}`}>
+                                    {form.seoTitle.length} / 60
+                                </span>
+                            </div>
+                            <input 
+                                name="seoTitle" 
+                                value={form.seoTitle} 
+                                onChange={handleChange}
+                                placeholder="Optimal title displayed on Google Search and social cards"
+                                className="sns-input text-sm" 
+                            />
                         </div>
+
                         <div>
-                            <label className="text-xs text-slate-400 font-semibold mb-1.5 block">SEO Description</label>
-                            <textarea name="seoDescription" rows={2} value={form.seoDescription} onChange={handleChange}
-                                placeholder="Meta description for search engines (150–160 chars)"
-                                className="w-full bg-[#0f0f13] border border-white/10 focus:border-indigo-500 rounded-xl px-4 py-3 text-white text-sm placeholder:text-slate-600 outline-none transition-colors resize-none" />
-                            <p className={`text-xs mt-1 ${form.seoDescription.length > 160 ? 'text-red-400' : 'text-slate-600'}`}>{form.seoDescription.length} / 160</p>
+                            <div className="flex justify-between items-center mb-1.5">
+                                <label className="sns-label mb-0">Meta Description</label>
+                                <span className={`text-[11px] ${form.seoDescription.length > 160 ? 'text-red-400' : 'text-[#a89485]'}`}>
+                                    {form.seoDescription.length} / 160
+                                </span>
+                            </div>
+                            <textarea 
+                                name="seoDescription" 
+                                rows={2} 
+                                value={form.seoDescription} 
+                                onChange={handleChange}
+                                placeholder="Concise snippet summarizing this chronicle for search results (140-160 characters)"
+                                className="sns-input text-sm leading-relaxed resize-none" 
+                            />
                         </div>
+
                         <div>
-                            <label className="text-xs text-slate-400 font-semibold mb-1.5 block">SEO Keywords <span className="text-slate-600 font-normal">(comma-separated)</span></label>
-                            <input name="seoKeywords" value={form.seoKeywords} onChange={handleChange}
-                                placeholder="keyword1, keyword2, keyword3"
-                                className="w-full bg-[#0f0f13] border border-white/10 focus:border-indigo-500 rounded-xl px-4 py-3 text-white text-sm placeholder:text-slate-600 outline-none transition-colors" />
+                            <label className="sns-label">SEO Keywords (comma-separated)</label>
+                            <input 
+                                name="seoKeywords" 
+                                value={form.seoKeywords} 
+                                onChange={handleChange}
+                                placeholder="varanasi travel, luxury spiritual experience, ghats guide"
+                                className="sns-input text-sm" 
+                            />
                         </div>
                     </div>
                 </div>
 
-                {/* ── Bottom buttons ──────────────────────────────────────────── */}
-                <div className="flex items-center justify-end gap-3 pb-8">
-                    <Link href="/admin" className="text-slate-400 hover:text-white border border-white/10 px-5 py-2.5 rounded-xl text-sm font-semibold transition-colors">
-                        Cancel
+                {/* ── Bottom Save Action Bar ── */}
+                <div className="flex flex-wrap items-center justify-end gap-3 pt-4">
+                    <Link href="/admin" className="sns-btn-outline text-xs">
+                        Cancel &amp; Return
                     </Link>
-                    <button onClick={() => handleSave('draft')} disabled={saving}
-                        className="flex items-center gap-2 text-slate-300 bg-white/8 border border-white/15 px-5 py-2.5 rounded-xl text-sm font-semibold disabled:opacity-50 transition-colors hover:bg-white/12">
-                        <span className="material-symbols-outlined text-[15px]">save</span> Save Draft
+                    <button 
+                        type="button" 
+                        onClick={() => handleSave('draft')} 
+                        disabled={saving}
+                        className="sns-btn-outline text-xs"
+                    >
+                        <span className="material-symbols-outlined text-[15px]">save</span>
+                        Save Draft
                     </button>
-                    <button onClick={() => handleSave('published')} disabled={saving}
-                        className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 text-white px-6 py-2.5 rounded-xl text-sm font-bold transition-colors shadow-lg">
-                        {saving ? 'Saving…' : '🚀 Publish Post'}
+                    <button 
+                        type="button" 
+                        onClick={() => handleSave('published')} 
+                        disabled={saving}
+                        className="sns-btn-gold text-xs px-6 py-2.5"
+                    >
+                        <span className="material-symbols-outlined text-[16px]">auto_awesome</span>
+                        {saving ? 'Publishing…' : 'Publish Story'}
                     </button>
                 </div>
             </div>

@@ -11,7 +11,7 @@ const DEMO_REVIEWS = [
   },
   {
     author: "David M.",
-    text: "Exploring the hidden alleys of Varanasi with Soil n Soul was the highlight of our India trip. We saw temples and tasted street food that we would never have found on our own. A perfectly curated experience.",
+    text: "Exploring the hidden alleys of Varanasi with SoilNSoul Travels was the highlight of our India trip. We saw temples and tasted street food that we would never have found on our own. A perfectly curated experience.",
     rating: 5,
   },
   {

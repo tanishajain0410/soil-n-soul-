@@ -4,8 +4,11 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { API_URL, SITE_URL } from '@/lib/constants';
+import AdminInquiries from '@/components/admin/AdminInquiries';
+import { getInquiries } from '@/lib/inquiries';
 
 type RevalStatus = 'idle' | 'loading' | 'success' | 'error';
+type TabType = 'inquiries' | 'blogs';
 
 export default function AdminDashboard() {
     const router = useRouter();
@@ -13,6 +16,11 @@ export default function AdminDashboard() {
     const [blogs, setBlogs] = useState<any[]>([]);
     const [revalStatus, setRevalStatus] = useState<RevalStatus>('idle');
     const [token, setToken] = useState<string | null>(null);
+    const [activeTab, setActiveTab] = useState<TabType>('inquiries');
+    const [newInquiriesCount, setNewInquiriesCount] = useState<number>(0);
+    const [blogStatusFilter, setBlogStatusFilter] = useState<'all' | 'published' | 'draft'>('all');
+    const [blogCategoryFilter, setBlogCategoryFilter] = useState<string>('all');
+    const [blogSearch, setBlogSearch] = useState<string>('');
 
     useEffect(() => {
         const storedToken = localStorage.getItem('token');
@@ -21,6 +29,7 @@ export default function AdminDashboard() {
         } else {
             setToken(storedToken);
             fetchBlogs();
+            fetchInquiryStats(storedToken);
         }
     }, [router]);
 
@@ -31,6 +40,17 @@ export default function AdminDashboard() {
                 if (data.success) setBlogs(data.blogs);
             })
             .catch(err => console.error(err));
+    };
+
+    const fetchInquiryStats = async (authToken: string) => {
+        try {
+            const data = await getInquiries(authToken, { status: 'new' });
+            if (data.success && data.stats) {
+                setNewInquiriesCount(data.stats.newCount || 0);
+            }
+        } catch (err) {
+            console.error('Error fetching inquiry stats:', err);
+        }
     };
 
     const handleDelete = async (id: string) => {
@@ -80,148 +100,425 @@ export default function AdminDashboard() {
         }
     };
 
+    const categories = Array.from(
+        new Set(blogs.map(b => b.category?.trim()).filter(Boolean))
+    ).sort();
+
+    const publishedCount = blogs.filter(b => b.status === 'published').length;
+    const draftCount = blogs.filter(b => b.status !== 'published').length;
+
+    const filteredBlogs = blogs.filter(blog => {
+        // Status filter
+        const status = blog.status === 'published' ? 'published' : 'draft';
+        if (blogStatusFilter !== 'all' && status !== blogStatusFilter) {
+            return false;
+        }
+        // Category filter
+        if (blogCategoryFilter !== 'all' && blog.category?.trim().toLowerCase() !== blogCategoryFilter.toLowerCase()) {
+            return false;
+        }
+        // Search filter
+        if (blogSearch.trim()) {
+            const query = blogSearch.toLowerCase();
+            const matchesTitle = blog.title?.toLowerCase().includes(query);
+            const matchesSlug = blog.slug?.toLowerCase().includes(query);
+            const matchesCat = blog.category?.toLowerCase().includes(query);
+            if (!matchesTitle && !matchesSlug && !matchesCat) return false;
+        }
+        return true;
+    });
+
     if (!token) return null;
 
     return (
-        <div className="min-h-screen bg-[#1A120B] text-slate-100 p-4 sm:p-8 pt-12 sm:pt-16">
-            <div className="max-w-6xl mx-auto">
-                <div className="flex flex-wrap justify-between items-center mb-8 pb-6 border-b border-white/10 relative gap-4">
-                    <div>
-                        <span className="text-primary text-xs font-bold tracking-[0.2em] uppercase mb-2 block">CMS Dashboard</span>
-                        <h1 className="text-2xl sm:text-4xl font-bold text-white">Manage Content</h1>
-                    </div>
-                    <button
-                        onClick={handleLogout}
-                        className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors"
-                    >
-                        <span className="material-symbols-outlined text-[18px]">logout</span> Logout
-                    </button>
-                </div>
-
-                {/* ── ISR Revalidation Banner ── */}
-                <div className="mb-8 bg-white/5 border border-white/10 rounded-2xl p-5 flex flex-col sm:flex-row items-start sm:items-center gap-4">
-                    <div className="flex-1">
-                        <p className="text-white font-bold mb-1 flex items-center gap-2">
-                            <span className="material-symbols-outlined text-[16px] text-primary">autorenew</span>
-                            Cache Revalidation
-                        </p>
-                        <p className="text-slate-400 text-sm">
-                            After publishing or editing a blog, click <strong className="text-white">Revalidate Cache</strong> to make it live instantly — without restarting the server. New visitors will get fresh data from the database.
-                        </p>
-                    </div>
-                    <button
-                        onClick={handleRevalidate}
-                        disabled={revalStatus === 'loading'}
-                        className={`shrink-0 flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm uppercase tracking-wider transition-all active:scale-95 ${revalStatus === 'success'
-                            ? 'bg-green-600 text-white'
-                            : revalStatus === 'error'
-                                ? 'bg-red-600/20 border border-red-500/40 text-red-400'
-                                : 'bg-primary hover:bg-primary/90 text-white'
-                            }`}
-                    >
-                        {revalStatus === 'loading' && <span className="material-symbols-outlined text-[16px] animate-spin">autorenew</span>}
-                        {revalStatus === 'success' && <span className="material-symbols-outlined text-[16px]">check_circle</span>}
-                        {revalStatus === 'error' && <span className="material-symbols-outlined text-[16px]">error</span>}
-                        {revalStatus === 'idle' && <span className="material-symbols-outlined text-[16px]">autorenew</span>}
-                        {revalStatus === 'loading' ? 'Clearing Cache...' : revalStatus === 'success' ? 'Cache Cleared ✓' : revalStatus === 'error' ? 'Failed — Retry' : 'Revalidate Cache'}
-                    </button>
-                </div>
-
-                <div className="bg-white/5 border border-white/10 p-6 rounded-2xl">
-                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
-                        <h2 className="text-2xl font-bold text-white">All Blogs</h2>
-                        <div className="flex flex-wrap items-center gap-3">
-                            <Link
-                                href="/admin/hotels"
-                                className="bg-white/10 hover:bg-white/20 text-white px-4 sm:px-5 py-2.5 rounded-lg text-xs sm:text-sm font-bold tracking-widest uppercase transition-all shadow-xl active:scale-95 flex items-center gap-2"
-                            >
-                                Manage Hotels
-                            </Link>
-                            <Link
-                                href="/admin/blog/new"
-                                className="bg-primary hover:bg-primary/90 text-white px-4 sm:px-5 py-2.5 rounded-lg text-xs sm:text-sm font-bold tracking-widest uppercase transition-all shadow-xl active:scale-95 flex items-center gap-2"
-                            >
-                                <span className="material-symbols-outlined text-[18px]">add_circle</span> New Blog
-                            </Link>
+        <div className="sns-admin-root py-10 sm:py-14 px-4 sm:px-8">
+            <div className="max-w-6xl mx-auto space-y-8">
+                {/* ── Top Header ── */}
+                <header className="flex flex-wrap justify-between items-center pb-6 border-b border-[rgba(226,198,175,0.18)] gap-6">
+                    <div className="flex items-center gap-4">
+                        <Link href="/" target="_blank" className="block shrink-0">
+                            <img
+                                src="/soil-n-soul-logo.svg"
+                                alt="SoilNSoul Travels"
+                                className="h-10 w-auto object-contain hover:opacity-90 transition-opacity"
+                            />
+                        </Link>
+                        <div className="h-8 w-px bg-[rgba(226,198,175,0.2)] hidden sm:block" />
+                        <div>
+                            <span className="sns-admin-eyebrow block mb-0.5">ADMIN CONCIERGE &amp; CMS</span>
+                            <h1 className="sns-admin-title text-2xl sm:text-3xl m-0 leading-tight">
+                                Editorial <em>&amp; Operations</em>
+                            </h1>
                         </div>
                     </div>
 
-                    <div className="overflow-x-auto">
-                        <table className="w-full text-left">
-                            <thead>
-                                <tr className="border-b border-white/10 text-slate-400 text-xs uppercase tracking-wider">
-                                    <th className="pb-3 px-4">Title</th>
-                                    <th className="pb-3 px-4">Category</th>
-                                    <th className="pb-3 px-4">Status</th>
-                                    <th className="pb-3 px-4">Date</th>
-                                    <th className="pb-3 px-4 text-right">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {blogs.map(blog => (
-                                    <tr key={blog._id} className="border-b border-white/5 hover:bg-white/5 transition-colors group">
-                                        <td className="py-4 px-4">
-                                             <p className="font-semibold text-white">{blog.title}</p>
-                                             <p className="text-xs text-slate-400 mt-1">/blog/{blog.slug}</p>
-                                        </td>
-                                        <td className="py-4 px-4 text-sm text-slate-300">{blog.category}</td>
-                                        <td className="py-4 px-4">
-                                            <span className={`text-xs font-bold px-2.5 py-1 rounded-full ${blog.status === 'published' ? 'bg-green-600/20 text-green-400 border border-green-600/30' : 'bg-yellow-600/20 text-yellow-400 border border-yellow-600/30'}`}>
-                                                {blog.status || 'draft'}
-                                            </span>
-                                        </td>
-                                        <td className="py-4 px-4 text-sm text-slate-300">
-                                            {new Date(blog.createdAt).toLocaleDateString()}
-                                        </td>
-                                        <td className="py-4 px-4 text-right">
-                                            <div className="flex items-center justify-end gap-2 sm:gap-3 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
-                                                <Link
-                                                    href={`/admin/blog/edit/${blog.slug}`}
-                                                    className="bg-white/10 hover:bg-white/20 text-white p-2 rounded-lg transition-colors"
-                                                    title="Edit"
-                                                >
-                                                    <span className="material-symbols-outlined text-[16px]">edit</span>
-                                                </Link>
-                                                <button
-                                                    onClick={() => handleDelete(blog._id)}
-                                                    className="bg-red-500/10 hover:bg-red-500/20 text-red-500 p-2 rounded-lg transition-colors border border-red-500/20"
-                                                    title="Delete"
-                                                >
-                                                    <span className="material-symbols-outlined text-[16px]">delete</span>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-
-                        {blogs.length === 0 && (
-                            <div className="text-center py-12 text-slate-400 text-sm">
-                                No blogs found. Click the button above to create one.
-                            </div>
-                        )}
+                    <div className="flex items-center gap-3">
+                        <Link
+                            href="/"
+                            target="_blank"
+                            className="sns-btn-outline"
+                        >
+                            <span>Live Website</span>
+                            <span className="material-symbols-outlined text-[15px]">open_in_new</span>
+                        </Link>
+                        <button
+                            onClick={handleLogout}
+                            className="sns-btn-outline hover:!border-red-400/40 hover:!text-red-300"
+                        >
+                            <span>Logout</span>
+                            <span className="material-symbols-outlined text-[16px]">logout</span>
+                        </button>
                     </div>
+                </header>
+
+                {/* ── Navigation Tabs ── */}
+                <div className="flex flex-wrap items-center gap-3 pb-2">
+                    <button
+                        onClick={() => setActiveTab('inquiries')}
+                        className={`sns-tab-pill ${activeTab === 'inquiries' ? 'active' : 'inactive'}`}
+                    >
+                        <span className="material-symbols-outlined text-[18px]">mark_email_unread</span>
+                        <span>Customer Enquiries</span>
+                        {newInquiriesCount > 0 && (
+                            <span className={`px-2 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wider ${
+                                activeTab === 'inquiries' ? 'bg-[#1a0e08] text-[#dfbf80]' : 'bg-[#d9ad57] text-[#1a0e08] animate-pulse'
+                            }`}>
+                                {newInquiriesCount} new
+                            </span>
+                        )}
+                    </button>
+
+                    <button
+                        onClick={() => setActiveTab('blogs')}
+                        className={`sns-tab-pill ${activeTab === 'blogs' ? 'active' : 'inactive'}`}
+                    >
+                        <span className="material-symbols-outlined text-[18px]">article</span>
+                        <span>Editorial &amp; Blogs</span>
+                        <span className={`text-[10px] px-2 py-0.5 rounded-full font-bold ${
+                            activeTab === 'blogs' ? 'bg-[#1a0e08] text-[#dfbf80]' : 'bg-white/10 text-slate-300'
+                        }`}>
+                            {blogs.length}
+                        </span>
+                    </button>
+
+                    <Link
+                        href="/admin/hotels"
+                        className="sns-btn-outline ml-auto hidden sm:inline-flex"
+                    >
+                        <span className="material-symbols-outlined text-[17px]">hotel</span>
+                        <span>Manage Stays &amp; Hotels</span>
+                    </Link>
                 </div>
 
+                {/* ── Tab Content ── */}
+                {activeTab === 'inquiries' ? (
+                    <div className="animate-in fade-in duration-200">
+                        <AdminInquiries token={token} />
+                    </div>
+                ) : (
+                    <div className="animate-in fade-in duration-200 space-y-8">
+                        {/* ── ISR Revalidation Banner ── */}
+                        <div className="sns-card p-5 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 border border-[rgba(226,198,175,0.2)]">
+                            <div className="flex-1">
+                                <div className="flex items-center gap-2 mb-1.5">
+                                    <span className="material-symbols-outlined text-[#dfbf80] text-[20px]">autorenew</span>
+                                    <h3 className="sns-admin-title text-xl text-white m-0">
+                                        Instant Cache <em>Revalidation</em>
+                                    </h3>
+                                </div>
+                                <p className="text-[#c7b8aa] text-xs sm:text-sm leading-relaxed max-w-2xl m-0">
+                                    Published or edited an article? Clear the edge cache so travelers receive the latest content instantly across the live website without server restarts.
+                                </p>
+                            </div>
+                            <button
+                                onClick={handleRevalidate}
+                                disabled={revalStatus === 'loading'}
+                                className={
+                                    revalStatus === 'success'
+                                        ? 'sns-btn-gold !bg-emerald-600 !text-white'
+                                        : revalStatus === 'error'
+                                        ? 'sns-btn-outline !border-red-400 !text-red-300'
+                                        : 'sns-btn-gold'
+                                }
+                            >
+                                {revalStatus === 'loading' && <span className="material-symbols-outlined text-[16px] animate-spin">autorenew</span>}
+                                {revalStatus === 'success' && <span className="material-symbols-outlined text-[16px]">check_circle</span>}
+                                {revalStatus === 'error' && <span className="material-symbols-outlined text-[16px]">error</span>}
+                                {revalStatus === 'idle' && <span className="material-symbols-outlined text-[16px]">autorenew</span>}
+                                <span>{revalStatus === 'loading' ? 'Clearing Cache...' : revalStatus === 'success' ? 'Cache Cleared ✓' : revalStatus === 'error' ? 'Failed — Retry' : 'Revalidate Cache'}</span>
+                            </button>
+                        </div>
+
+                        {/* ── Blogs Table ── */}
+                        <div className="sns-card p-6 sm:p-8">
+                            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
+                                <div>
+                                    <span className="sns-admin-eyebrow block mb-1">CURATED EDITORIAL</span>
+                                    <h2 className="sns-admin-title text-2xl sm:text-3xl m-0">All <em>Stories &amp; Guides</em></h2>
+                                    <p className="text-xs text-[#a89485] mt-1.5">
+                                        Showing {filteredBlogs.length} of {blogs.length} articles in database
+                                    </p>
+                                </div>
+                                <div className="flex flex-wrap items-center gap-3">
+                                    <Link
+                                        href="/admin/hotels"
+                                        className="sns-btn-outline"
+                                    >
+                                        <span className="material-symbols-outlined text-[16px]">hotel</span>
+                                        <span>Manage Hotels</span>
+                                    </Link>
+                                    <Link
+                                        href="/admin/blog/new"
+                                        className="sns-btn-gold"
+                                    >
+                                        <span className="material-symbols-outlined text-[17px]">add_circle</span>
+                                        <span>New Story</span>
+                                    </Link>
+                                </div>
+                            </div>
+
+                            {/* ── Blog Filter Controls: Category, Published, Draft ── */}
+                            <div className="sns-card-subtle p-4 mb-6 flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4">
+                                {/* Status Filters: All, Published, Draft */}
+                                <div className="flex flex-wrap items-center gap-2">
+                                    <span className="text-[11px] uppercase tracking-wider text-[#a89485] font-bold mr-1">Status:</span>
+                                    <button
+                                        type="button"
+                                        onClick={() => setBlogStatusFilter('all')}
+                                        className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 ${
+                                            blogStatusFilter === 'all'
+                                                ? 'bg-[#d9ad57] text-[#1a0e08] shadow-sm font-extrabold'
+                                                : 'bg-white/5 hover:bg-white/10 text-[#d4c5b8] border border-white/5'
+                                        }`}
+                                    >
+                                        <span>All</span>
+                                        <span className={`text-[10px] px-1.5 py-0.2 rounded-full ${
+                                            blogStatusFilter === 'all' ? 'bg-[#1a0e08]/20 text-[#1a0e08]' : 'bg-white/10 text-slate-300'
+                                        }`}>
+                                            {blogs.length}
+                                        </span>
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        onClick={() => setBlogStatusFilter('published')}
+                                        className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 ${
+                                            blogStatusFilter === 'published'
+                                                ? 'bg-emerald-600 text-white shadow-md'
+                                                : 'bg-emerald-600/10 hover:bg-emerald-600/20 text-emerald-300 border border-emerald-500/25'
+                                        }`}
+                                    >
+                                        <span className="w-2 h-2 rounded-full bg-emerald-400" />
+                                        <span>Published</span>
+                                        <span className={`text-[10px] px-1.5 py-0.2 rounded-full ${
+                                            blogStatusFilter === 'published' ? 'bg-black/30 text-white' : 'bg-emerald-500/20 text-emerald-300'
+                                        }`}>
+                                            {publishedCount}
+                                        </span>
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        onClick={() => setBlogStatusFilter('draft')}
+                                        className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 ${
+                                            blogStatusFilter === 'draft'
+                                                ? 'bg-[#d9ad57] text-[#1a0e08] shadow-md font-extrabold'
+                                                : 'bg-[#d9ad57]/10 hover:bg-[#d9ad57]/20 text-[#dfbf80] border border-[#d9ad57]/25'
+                                        }`}
+                                    >
+                                        <span className="w-2 h-2 rounded-full bg-[#dfbf80]" />
+                                        <span>Draft</span>
+                                        <span className={`text-[10px] px-1.5 py-0.2 rounded-full ${
+                                            blogStatusFilter === 'draft' ? 'bg-[#1a0e08]/20 text-[#1a0e08]' : 'bg-[#dfbf80]/20 text-[#dfbf80]'
+                                        }`}>
+                                            {draftCount}
+                                        </span>
+                                    </button>
+                                </div>
+
+                                {/* Right: Category Dropdown & Search */}
+                                <div className="flex flex-wrap sm:flex-nowrap items-center gap-3">
+                                    {/* Category Filter Dropdown */}
+                                    <div className="flex items-center gap-2 w-full sm:w-auto">
+                                        <span className="text-[11px] uppercase tracking-wider text-[#a89485] font-bold whitespace-nowrap">Category:</span>
+                                        <div className="relative w-full sm:w-auto">
+                                            <select
+                                                value={blogCategoryFilter}
+                                                onChange={(e) => setBlogCategoryFilter(e.target.value)}
+                                                className="w-full sm:w-auto bg-[#23140d] border border-[rgba(226,198,175,0.2)] hover:border-[#dfbf80]/40 focus:border-[#dfbf80] text-[#f7ede2] text-xs font-medium rounded-full pl-4 pr-9 py-2 outline-none cursor-pointer appearance-none transition-colors"
+                                            >
+                                                <option value="all">All Categories ({blogs.length})</option>
+                                                {categories.map((cat) => {
+                                                    const count = blogs.filter(b => b.category?.trim().toLowerCase() === cat.toLowerCase()).length;
+                                                    return (
+                                                        <option key={cat} value={cat}>
+                                                            {cat} ({count})
+                                                        </option>
+                                                    );
+                                                })}
+                                            </select>
+                                            <span className="material-symbols-outlined text-[#dfbf80] text-base absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
+                                                expand_more
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    {/* Search Input */}
+                                    <div className="relative w-full sm:w-56">
+                                        <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[#a89485] text-base">
+                                            search
+                                        </span>
+                                        <input
+                                            type="text"
+                                            placeholder="Search stories..."
+                                            value={blogSearch}
+                                            onChange={(e) => setBlogSearch(e.target.value)}
+                                            className="w-full bg-[#23140d] border border-[rgba(226,198,175,0.2)] focus:border-[#dfbf80] rounded-full pl-9 pr-8 py-2 text-xs text-white placeholder:text-[#8e7a6d] outline-none transition-all"
+                                        />
+                                        {blogSearch && (
+                                            <button
+                                                type="button"
+                                                onClick={() => setBlogSearch('')}
+                                                className="absolute right-3 top-1/2 -translate-y-1/2 text-[#a89485] hover:text-white"
+                                            >
+                                                <span className="material-symbols-outlined text-xs">close</span>
+                                            </button>
+                                        )}
+                                    </div>
+
+                                    {/* Reset Button */}
+                                    {(blogStatusFilter !== 'all' || blogCategoryFilter !== 'all' || blogSearch.trim() !== '') && (
+                                        <button
+                                            type="button"
+                                            onClick={() => {
+                                                setBlogStatusFilter('all');
+                                                setBlogCategoryFilter('all');
+                                                setBlogSearch('');
+                                            }}
+                                            className="text-xs text-[#dfbf80] hover:text-white underline font-semibold whitespace-nowrap"
+                                        >
+                                            Reset
+                                        </button>
+                                    )}
+                                </div>
+                            </div>
+
+                            <div className="overflow-x-auto">
+                                <table className="w-full text-left">
+                                    <thead>
+                                        <tr className="sns-table-head">
+                                            <th className="pb-3 px-4">Story Title</th>
+                                            <th className="pb-3 px-4">Category</th>
+                                            <th className="pb-3 px-4">Status</th>
+                                            <th className="pb-3 px-4">Published Date</th>
+                                            <th className="pb-3 px-4 text-right">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {filteredBlogs.map(blog => (
+                                            <tr key={blog._id} className="sns-table-row group">
+                                                <td className="py-4 px-4">
+                                                    <p className="sns-blog-title m-0">{blog.title}</p>
+                                                    <p className="sns-blog-slug mt-1 m-0">/blog/{blog.slug}</p>
+                                                </td>
+                                                <td className="py-4 px-4 text-xs text-[#d6c7ba] font-medium">{blog.category}</td>
+                                                <td className="py-4 px-4">
+                                                    {blog.status === 'published' ? (
+                                                        <span className="sns-badge-published">
+                                                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                                                            published
+                                                        </span>
+                                                    ) : (
+                                                        <span className="sns-badge-draft">
+                                                            <span className="w-1.5 h-1.5 rounded-full bg-[#dfbf80]" />
+                                                            {blog.status || 'draft'}
+                                                        </span>
+                                                    )}
+                                                </td>
+                                                <td className="py-4 px-4 text-xs text-[#a89485]">
+                                                    {new Date(blog.createdAt).toLocaleDateString('en-US', {
+                                                        year: 'numeric',
+                                                        month: 'short',
+                                                        day: 'numeric',
+                                                    })}
+                                                </td>
+                                                <td className="py-4 px-4 text-right">
+                                                    <div className="flex items-center justify-end gap-2 sm:gap-2.5 opacity-100 sm:opacity-80 sm:group-hover:opacity-100 transition-opacity">
+                                                        <Link
+                                                            href={`/admin/blog/edit/${blog.slug}`}
+                                                            className="w-8 h-8 rounded-full bg-white/5 hover:bg-[#d9ad57]/20 border border-[rgba(226,198,175,0.15)] hover:border-[#d9ad57]/40 text-[#dfbf80] flex items-center justify-center transition-all"
+                                                            title="Edit Story"
+                                                        >
+                                                            <span className="material-symbols-outlined text-[15px]">edit</span>
+                                                        </Link>
+                                                        <button
+                                                            onClick={() => handleDelete(blog._id)}
+                                                            className="w-8 h-8 rounded-full bg-red-500/10 hover:bg-red-500/20 border border-red-500/20 text-red-400 flex items-center justify-center transition-all"
+                                                            title="Delete Story"
+                                                        >
+                                                            <span className="material-symbols-outlined text-[15px]">delete</span>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+
+                                {filteredBlogs.length === 0 && (
+                                    <div className="text-center py-14 text-[#a89485] text-sm">
+                                        {blogs.length === 0 ? (
+                                            <p>No stories found. Click the button above to create one.</p>
+                                        ) : (
+                                            <div className="space-y-2">
+                                                <p className="text-white font-semibold font-serif text-lg">No stories matched your filter criteria.</p>
+                                                <p className="text-xs text-[#a89485]">
+                                                    {blogStatusFilter !== 'all' ? `Status: "${blogStatusFilter}"` : ''} 
+                                                    {blogCategoryFilter !== 'all' ? ` • Category: "${blogCategoryFilter}"` : ''}
+                                                    {blogSearch.trim() ? ` • Search: "${blogSearch}"` : ''}
+                                                </p>
+                                                <button
+                                                    type="button"
+                                                    onClick={() => {
+                                                        setBlogStatusFilter('all');
+                                                        setBlogCategoryFilter('all');
+                                                        setBlogSearch('');
+                                                    }}
+                                                    className="mt-2 text-xs text-[#dfbf80] hover:underline font-semibold"
+                                                >
+                                                    Reset all filters
+                                                </button>
+                                            </div>
+                                        )}
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                )}
+
                 {/* ── Sitemap & SEO Quicklinks ── */}
-                <div className="mt-6 grid sm:grid-cols-3 gap-4">
+                <div className="pt-4 border-t border-[rgba(226,198,175,0.18)] grid sm:grid-cols-3 gap-4">
                     {[
-                        { label: 'View Sitemap', href: `${SITE_URL}/sitemap.xml`, icon: 'sitemap', desc: 'Check your dynamic XML sitemap' },
-                        { label: 'View robots.txt', href: `${SITE_URL}/robots.txt`, icon: 'robots', desc: 'Check crawl rules' },
-                        { label: 'Google Search Console', href: 'https://search.google.com/search-console/', icon: 'search', desc: 'Submit sitemap & monitor SEO' },
+                        { label: 'Dynamic Sitemap', href: `${SITE_URL}/sitemap.xml`, icon: 'sitemap', desc: 'Auto-updating XML index for search bots' },
+                        { label: 'Crawl Directives', href: `${SITE_URL}/robots.txt`, icon: 'smart_toy', desc: 'Inspect robots.txt search directives' },
+                        { label: 'Google Search Console', href: 'https://search.google.com/search-console/', icon: 'query_stats', desc: 'Monitor impressions, rankings & index status' },
                     ].map(item => (
                         <a
                             key={item.label}
                             href={item.href}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex items-start gap-3 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-primary/30 rounded-xl p-4 transition-all group"
+                            className="sns-card p-4 sm:p-5 hover:border-[rgba(226,198,175,0.38)] transition-all group flex items-start gap-3.5"
                         >
-                            <span className="material-symbols-outlined text-primary text-xl mt-0.5">open_in_new</span>
+                            <span className="material-symbols-outlined text-[#dfbf80] text-xl mt-0.5 group-hover:scale-110 transition-transform">
+                                {item.icon}
+                            </span>
                             <div>
-                                <p className="text-white font-semibold text-sm group-hover:text-primary transition-colors">{item.label}</p>
-                                <p className="text-slate-500 text-xs mt-0.5">{item.desc}</p>
+                                <p className="text-[#fffaf4] font-serif font-semibold text-base group-hover:text-[#dfbf80] transition-colors m-0">
+                                    {item.label}
+                                </p>
+                                <p className="text-[#a89485] text-xs mt-1 m-0 leading-relaxed">{item.desc}</p>
                             </div>
                         </a>
                     ))}

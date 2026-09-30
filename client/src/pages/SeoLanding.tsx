@@ -24,16 +24,16 @@ export const SEO_PAGES: Record<string, {
     slug: 'best-travel-agency-varanasi',
     keyword: 'Best Travel Agency in Varanasi',
     title: 'Best Travel Agency in Varanasi',
-    metaTitle: 'Best Travel Agency in Varanasi | Soil n Soul Travels',
+    metaTitle: 'Best Travel Agency in Varanasi | SoilNSoul Travels',
     metaDescription:
-      'Looking for the best travel agency in Varanasi? Soil n Soul Travels offers verified stays, Ganga Aarti packages, cultural tours & airport transfers — trusted by 500+ travellers.',
+      'Looking for the best travel agency in Varanasi? SoilNSoul Travels offers verified stays, Ganga Aarti packages, cultural tours & airport transfers — trusted by 500+ travellers.',
     keywords:
       'best travel agency in Varanasi, best tours and travel agency in Varanasi, varanasi travel agency, travel agency in varanasi, top travel agency in varanasi, local travel agency varanasi, trusted travel company Varanasi, Varanasi tour operator',
     heroHeading: 'Best Travel Agency in Varanasi',
     heroSubtitle:
       'Authentic, transparent & heartfelt Varanasi experiences — trusted by 500+ travellers from 38 countries.',
     intro: [
-      'Finding the best travel agency in Varanasi can be overwhelming. The city is full of touts, overpriced packages, and misleading promises. Soil n Soul Travels was born precisely to solve this problem.',
+      'Finding the best travel agency in Varanasi can be overwhelming. The city is full of touts, overpriced packages, and misleading promises. SoilNSoul Travels was born precisely to solve this problem.',
       'Founded by Anchal Pandey, a native of Banaras, we offer honest pricing, personally inspected accommodation, and experiences rooted in real local culture — not tourist gimmicks.',
     ],
     sections: [
@@ -60,7 +60,7 @@ export const SEO_PAGES: Record<string, {
     ],
     faqs: [
       {
-        q: 'Is Soil n Soul the best travel agency in Varanasi?',
+        q: 'Is SoilNSoul Travels the best travel agency in Varanasi?',
         a: 'We are rated 4.9 stars by 500+ travellers from 38 countries. Our founder is a native of Banaras and every experience we curate is personally reviewed for authenticity and value.',
       },
       {
@@ -68,7 +68,7 @@ export const SEO_PAGES: Record<string, {
         a: 'Simply WhatsApp us at +91 95804 17547 or fill in our contact form. We respond within the hour and will design a custom itinerary for you — no off-the-shelf packages.',
       },
       {
-        q: 'What makes Soil n Soul different from other travel agencies in Varanasi?',
+        q: 'What makes SoilNSoul Travels different from other travel agencies in Varanasi?',
         a: 'We are local, honest, and fully transparent. Our founder personally vets every hotel, guide, and vendor. We do not charge commissions from partners — our loyalty is entirely to the traveller.',
       },
     ],
@@ -83,9 +83,9 @@ export const SEO_PAGES: Record<string, {
     slug: 'varanasi-tour-packages',
     keyword: 'Varanasi Tour Packages',
     title: 'Varanasi Tour Packages',
-    metaTitle: 'Varanasi Tour Packages 2025 | Customised & Affordable | Soil n Soul',
+    metaTitle: 'Varanasi Tour Packages 2025 | Customised & Affordable | SoilNSoul Travels',
     metaDescription:
-      'Explore handcrafted Varanasi tour packages for 2025. Ganga Aarti, heritage walks, pilgrimage packages & luxury stays. Book with Soil n Soul Travels — Varanasi\'s most trusted agency.',
+      'Explore handcrafted Varanasi tour packages for 2025. Ganga Aarti, heritage walks, pilgrimage packages & luxury stays. Book with SoilNSoul Travels — Varanasi\'s most trusted agency.',
     keywords:
       'Varanasi tour packages, varanasi tour package price, varanasi travel packages, book varanasi tour package, varanasi trip planning services, varanasi travel planner, 2 day varanasi tour package, 3 day varanasi itinerary, varanasi trip plan for family, varanasi travel guide 2026',
     heroHeading: 'Varanasi Tour Packages 2025',
@@ -93,7 +93,7 @@ export const SEO_PAGES: Record<string, {
       'Bespoke, fully customised Varanasi tour packages for every traveller — pilgrims, culture seekers, families, and luxury travellers.',
     intro: [
       'Varanasi is unlike any other destination in the world. Its ghats, temples, rituals, and labyrinthine lanes demand more than a quick visit — they demand a thoughtfully curated journey.',
-      'Soil n Soul Travels designs completely bespoke Varanasi tour packages built around your interests, dates, and budget. No cookie-cutter itineraries. Every package is made fresh for you.',
+      'SoilNSoul Travels designs completely bespoke Varanasi tour packages built around your interests, dates, and budget. No cookie-cutter itineraries. Every package is made fresh for you.',
     ],
     sections: [
       {
@@ -142,9 +142,9 @@ export const SEO_PAGES: Record<string, {
     slug: 'ganga-aarti-varanasi',
     keyword: 'Ganga Aarti Varanasi',
     title: 'Ganga Aarti Varanasi — Complete Guide & Booking',
-    metaTitle: 'Ganga Aarti Varanasi 2025 | Best View, Timings & Booking | Soil n Soul',
+    metaTitle: 'Ganga Aarti Varanasi 2025 | Best View, Timings & Booking | SoilNSoul Travels',
     metaDescription:
-      'Witness the grand Ganga Aarti in Varanasi with the best view guaranteed. Know timings, what to expect, and how to book a front-row experience with Soil n Soul Travels.',
+      'Witness the grand Ganga Aarti in Varanasi with the best view guaranteed. Know timings, what to expect, and how to book a front-row experience with SoilNSoul Travels.',
     keywords:
       'Ganga Aarti Varanasi, ganga aarti booking varanasi, Dashashwamedh Ghat Aarti, Ganga Aarti timings, Ganga Aarti boat ride, varanasi pooja booking, kashi vishwanath darshan booking, varanasi temple tour package',
     heroHeading: 'Ganga Aarti Varanasi — A Divine Spectacle',
@@ -152,7 +152,7 @@ export const SEO_PAGES: Record<string, {
       'Experience the most magnificent evening ritual in India with a guaranteed front-row view and deep cultural insight.',
     intro: [
       'The Ganga Aarti at Dashashwamedh Ghat in Varanasi is one of the most mesmerising spiritual events in the world. Every evening as dusk falls over the Ganges, a team of priests perform a grand, synchronised ritual of fire offerings — a ceremony unchanged for centuries.',
-      'Watching the Ganga Aarti for the first time can be emotionally overwhelming. Thousands gather on the ghat steps and in boats on the river. Fire, chanting, incense, and the sound of bells fill the air. Soil n Soul Travels ensures you experience this not as a tourist in a crowd, but with genuine understanding and the best possible view.',
+      'Watching the Ganga Aarti for the first time can be emotionally overwhelming. Thousands gather on the ghat steps and in boats on the river. Fire, chanting, incense, and the sound of bells fill the air. SoilNSoul Travels ensures you experience this not as a tourist in a crowd, but with genuine understanding and the best possible view.',
     ],
     sections: [
       {
@@ -201,9 +201,9 @@ export const SEO_PAGES: Record<string, {
     slug: 'varanasi-hotels',
     keyword: 'Best Hotels in Varanasi',
     title: 'Best Hotels in Varanasi — Verified Stays',
-    metaTitle: 'Best Hotels in Varanasi 2025 | Ghat View & Heritage Stays | Soil n Soul',
+    metaTitle: 'Best Hotels in Varanasi 2025 | Ghat View & Heritage Stays | SoilNSoul Travels',
     metaDescription:
-      'Find verified hotels in Varanasi for every budget. Ghat-view guesthouses, heritage havelis, and luxury boutique hotels — handpicked and personally inspected by Soil n Soul Travels.',
+      'Find verified hotels in Varanasi for every budget. Ghat-view guesthouses, heritage havelis, and luxury boutique hotels — handpicked and personally inspected by SoilNSoul Travels.',
     keywords:
       'best hotels in Varanasi, Varanasi ghat view hotels, heritage hotels Varanasi, luxury hotels Varanasi, budget stays Varanasi, guesthouses Varanasi',
     heroHeading: 'Best Hotels in Varanasi — Personally Verified',
@@ -211,7 +211,7 @@ export const SEO_PAGES: Record<string, {
       'Ghat-view guesthouses, heritage havelis, and luxury stays — every property inspected by our team for safety, cleanliness, and character.',
     intro: [
       'Choosing where to stay in Varanasi can make or break your entire trip. The wrong hotel — poorly located, noisy, or unsanitary — can ruin what should be a life-changing journey.',
-      'Soil n Soul Travels personally inspects every property we recommend. We stay in them ourselves. We check room quality, staff responsiveness, water supply, power backup, wifi, and most importantly — the character and warmth of the property. We only recommend places we would confidently send our own family to.',
+      'SoilNSoul Travels personally inspects every property we recommend. We stay in them ourselves. We check room quality, staff responsiveness, water supply, power backup, wifi, and most importantly — the character and warmth of the property. We only recommend places we would confidently send our own family to.',
     ],
     sections: [
       {
@@ -260,9 +260,9 @@ export const SEO_PAGES: Record<string, {
     slug: 'varanasi-sightseeing',
     keyword: 'Varanasi Sightseeing',
     title: 'Varanasi Sightseeing — Complete Guide',
-    metaTitle: 'Varanasi Sightseeing 2025 | Ghats, Temples & Hidden Gems | Soil n Soul',
+    metaTitle: 'Varanasi Sightseeing 2025 | Ghats, Temples & Hidden Gems | SoilNSoul Travels',
     metaDescription:
-      'Discover the best Varanasi sightseeing spots — ancient ghats, Kashi Vishwanath, Sarnath, Ramnagar Fort, and hidden local gems. Guided tours with Soil n Soul Travels.',
+      'Discover the best Varanasi sightseeing spots — ancient ghats, Kashi Vishwanath, Sarnath, Ramnagar Fort, and hidden local gems. Guided tours with SoilNSoul Travels.',
     keywords:
       'Varanasi sightseeing, places to visit in Varanasi, Varanasi tourist spots, ghats in Varanasi, Kashi tourist places, best places Varanasi, travel agency near me varanasi, varanasi city tour near me, best tour guide in varanasi, varanasi local tour services, varanasi sarnath tour package',
     heroHeading: 'Varanasi Sightseeing — See Kashi Beyond Tourism',
@@ -270,7 +270,7 @@ export const SEO_PAGES: Record<string, {
       'From ancient ghats and sacred temples to hidden lanes and living traditions — a complete insider\'s guide to Varanasi sightseeing.',
     intro: [
       'Varanasi (Kashi / Banaras) is one of the world\'s oldest continuously inhabited cities. Every lane, every ghat, every crumbling haveli carries centuries of history, mythology, and living culture.',
-      'Most tourist guides only show you the surface. Soil n Soul Travels was founded by a native of Banaras who knows which temple opens at 4 AM for the most sacred darshan, which ghat is peaceful at sunrise, and which silk weaver family in Madanpura creates the finest Banarasi sarees. We take you beyond the photograph to the experience.',
+      'Most tourist guides only show you the surface. SoilNSoul Travels was founded by a native of Banaras who knows which temple opens at 4 AM for the most sacred darshan, which ghat is peaceful at sunrise, and which silk weaver family in Madanpura creates the finest Banarasi sarees. We take you beyond the photograph to the experience.',
     ],
     sections: [
       {
@@ -319,9 +319,9 @@ export const SEO_PAGES: Record<string, {
     slug: 'varanasi-honeymoon',
     keyword: 'Varanasi Honeymoon Package',
     title: 'Varanasi Honeymoon Package',
-    metaTitle: 'Varanasi Honeymoon Package 2025 | Romantic Stays & Private Experiences | Soil n Soul',
+    metaTitle: 'Varanasi Honeymoon Package 2025 | Romantic Stays & Private Experiences | SoilNSoul Travels',
     metaDescription:
-      'Plan a magical honeymoon in Varanasi. Romantic ghat-view stays, private boat rides at sunrise, couple\'s puja, pre-wedding photography & personalised experiences by Soil n Soul Travels.',
+      'Plan a magical honeymoon in Varanasi. Romantic ghat-view stays, private boat rides at sunrise, couple\'s puja, pre-wedding photography & personalised experiences by SoilNSoul Travels.',
     keywords:
       'Varanasi honeymoon package, romantic Varanasi tour, Varanasi couple tour, honeymoon in Kashi, Varanasi pre-wedding shoot',
     heroHeading: 'Varanasi Honeymoon Package — Romance by the Ganges',
@@ -329,7 +329,7 @@ export const SEO_PAGES: Record<string, {
       'Begin your journey together with the mystical, timeless beauty of Kashi — private boat rides, heritage stays, and moments you\'ll never forget.',
     intro: [
       'Varanasi as a honeymoon destination surprises many — but couples who come here often say it was the most meaningful and romantic trip of their lives. There is something about the Ganges, the ancient ghats, and the spiritual energy of Kashi that creates an atmosphere of deep connection.',
-      'Soil n Soul Travels designs private, personalised honeymoon experiences — intimate boat rides at dawn, candlelit dinners with a Ganges view, pre-wedding photography sessions in the most photogenic corners of the old city, and stays in heritage rooms with river-facing terraces.',
+      'SoilNSoul Travels designs private, personalised honeymoon experiences — intimate boat rides at dawn, candlelit dinners with a Ganges view, pre-wedding photography sessions in the most photogenic corners of the old city, and stays in heritage rooms with river-facing terraces.',
     ],
     sections: [
       {
@@ -379,9 +379,9 @@ export const SEO_PAGES: Record<string, {
     slug: 'varanasi-pooja-booking',
     keyword: 'Varanasi Pooja Booking',
     title: 'Varanasi Pooja & Spiritual Booking Service',
-    metaTitle: 'Varanasi Pooja Booking | Ganga Aarti, Kashi Vishwanath Darshan & Pandit | Soil n Soul',
+    metaTitle: 'Varanasi Pooja Booking | Ganga Aarti, Kashi Vishwanath Darshan & Pandit | SoilNSoul Travels',
     metaDescription:
-      'Book authentic puja ceremonies, Kashi Vishwanath darshan, Ganga Aarti, and pandit services in Varanasi. Spiritual arrangements handled end-to-end by Soil n Soul Travels.',
+      'Book authentic puja ceremonies, Kashi Vishwanath darshan, Ganga Aarti, and pandit services in Varanasi. Spiritual arrangements handled end-to-end by SoilNSoul Travels.',
     keywords:
       'varanasi pooja booking, ganga aarti booking varanasi, kashi vishwanath darshan booking, pandit booking varanasi, varanasi temple tour package, varanasi spiritual tour, puja arrangement varanasi, ganga puja varanasi',
     heroHeading: 'Varanasi Pooja Booking — Authentic Spiritual Arrangements',
@@ -389,7 +389,7 @@ export const SEO_PAGES: Record<string, {
       'Ganga Aarti, Kashi Vishwanath darshan, personalised puja, and pandit booking — arranged with reverence and deep local knowledge.',
     intro: [
       'Varanasi is the spiritual capital of India. Every ritual performed here — whether a simple ghat puja or the full Kashi Vishwanath darshan — carries an energy and significance that is unlike anywhere else in the world.',
-      'But navigating spiritual bookings in Varanasi as a visitor can be daunting. Long queues, language barriers, and the risk of being misled by touts are real challenges. Soil n Soul Travels handles all spiritual arrangements personally — ensuring every ritual is authentic, conducted by qualified pandits, and deeply meaningful.',
+      'But navigating spiritual bookings in Varanasi as a visitor can be daunting. Long queues, language barriers, and the risk of being misled by touts are real challenges. SoilNSoul Travels handles all spiritual arrangements personally — ensuring every ritual is authentic, conducted by qualified pandits, and deeply meaningful.',
     ],
     sections: [
       {
@@ -439,9 +439,9 @@ export const SEO_PAGES: Record<string, {
     slug: 'varanasi-multi-city-tours',
     keyword: 'Varanasi Multi-City Tour Packages',
     title: 'Varanasi Multi-City Tour Packages — Ayodhya, Prayagraj & More',
-    metaTitle: 'Varanasi Ayodhya Prayagraj Tour Package | Multi-City Pilgrimage | Soil n Soul',
+    metaTitle: 'Varanasi Ayodhya Prayagraj Tour Package | Multi-City Pilgrimage | SoilNSoul Travels',
     metaDescription:
-      'Combine Varanasi with Ayodhya, Prayagraj, Sarnath, or Bodhgaya for an epic multi-city pilgrimage tour. Custom packages by Soil n Soul Travels — fully arranged, end-to-end.',
+      'Combine Varanasi with Ayodhya, Prayagraj, Sarnath, or Bodhgaya for an epic multi-city pilgrimage tour. Custom packages by SoilNSoul Travels — fully arranged, end-to-end.',
     keywords:
       'varanasi ayodhya tour package, varanasi prayagraj tour package, varanasi sarnath tour package, varanasi bodhgaya tour, multi city pilgrimage tour UP, varanasi allahabad tour, varanasi lucknow tour, kashi mathura vrindavan tour',
     heroHeading: 'Varanasi Multi-City Tours — The Great Pilgrimage Circuit',
@@ -449,7 +449,7 @@ export const SEO_PAGES: Record<string, {
       'Combine the spiritual power of Varanasi with Ayodhya, Prayagraj, Sarnath, and Bodhgaya — fully curated, end-to-end pilgrim circuits.',
     intro: [
       'Varanasi sits at the heart of India\'s most spiritually dense region. Within 300 km, you have Ayodhya (birthplace of Ram), Prayagraj (the Triveni Sangam), Sarnath (where Buddha preached), and Bodhgaya (where Buddha attained enlightenment). No other region on earth concentrates this much sacred significance.',
-      'Soil n Soul Travels designs seamless multi-city pilgrimage circuits starting from Varanasi. We handle all road transport, accommodation at each destination, local guides, and ritual arrangements — so your journey is sacred and stress-free from the first day to the last.',
+      'SoilNSoul Travels designs seamless multi-city pilgrimage circuits starting from Varanasi. We handle all road transport, accommodation at each destination, local guides, and ritual arrangements — so your journey is sacred and stress-free from the first day to the last.',
     ],
     sections: [
       {
@@ -499,9 +499,9 @@ export const SEO_PAGES: Record<string, {
     slug: 'how-to-choose-travel-agency-varanasi',
     keyword: 'How to Choose a Travel Agency in Varanasi',
     title: 'How to Choose the Best Travel Agency in Varanasi',
-    metaTitle: 'How to Choose a Travel Agency in Varanasi | Honest Guide | Soil n Soul',
+    metaTitle: 'How to Choose a Travel Agency in Varanasi | Honest Guide | SoilNSoul Travels',
     metaDescription:
-      'Avoid tourist traps. Learn exactly how to identify and choose the best travel agency in Varanasi — red flags to avoid, questions to ask, and why Soil n Soul Travels is different.',
+      'Avoid tourist traps. Learn exactly how to identify and choose the best travel agency in Varanasi — red flags to avoid, questions to ask, and why SoilNSoul Travels is different.',
     keywords:
       'how to choose travel agency in varanasi, best vs cheap travel agency varanasi, varanasi tour packages comparison, which travel agency is best in varanasi, avoid tourist trap varanasi, reliable travel agency varanasi, trusted tour operator varanasi',
     heroHeading: 'How to Choose — The Best Travel Agency in Varanasi',
@@ -509,7 +509,7 @@ export const SEO_PAGES: Record<string, {
       'An honest, no-nonsense guide to avoiding tourist traps, spotting red flags, and finding an agency that genuinely serves your interests.',
     intro: [
       'Varanasi is one of India\'s most visited cities — and unfortunately, that makes it a target for overpriced packages, fake guides, and agencies that prioritise their own commissions over your experience.',
-      'This guide is written by Anchal Pandey, founder of Soil n Soul Travels and a lifelong resident of Banaras. It is completely honest — including things that many travel agencies would never tell you. Read it before you book anything.',
+      'This guide is written by Anchal Pandey, founder of SoilNSoul Travels and a lifelong resident of Banaras. It is completely honest — including things that many travel agencies would never tell you. Read it before you book anything.',
     ],
     sections: [
       {
@@ -528,7 +528,7 @@ export const SEO_PAGES: Record<string, {
         icon: 'balance',
       },
       {
-        heading: 'Why Soil n Soul Is Different',
+        heading: 'Why SoilNSoul Travels Is Different',
         body: 'We were born from frustration at the exact problems described above. Our founder saw tourists being exploited and decided to build an alternative. We charge no commissions from hotels or vendors. All pricing is fixed and agreed in writing. And our 4.9-star rating from 500+ travellers from 38 countries is our proof.',
         icon: 'diversity_3',
       },
@@ -536,7 +536,7 @@ export const SEO_PAGES: Record<string, {
     faqs: [
       {
         q: 'Which travel agency is best in Varanasi?',
-        a: 'Soil n Soul Travels is consistently rated 4.9 stars. We are founded by a native of Banaras, charge no hidden commissions, and have served 500+ travellers from 38 countries. We believe the best agency is one that is fully transparent — and we put that in writing before every journey.',
+        a: 'SoilNSoul Travels is consistently rated 4.9 stars. We are founded by a native of Banaras, charge no hidden commissions, and have served 500+ travellers from 38 countries. We believe the best agency is one that is fully transparent — and we put that in writing before every journey.',
       },
       {
         q: 'How do I compare Varanasi tour packages?',
@@ -582,7 +582,7 @@ const SeoLanding = () => {
 
   // SEO
   useSEO({
-    title: page.metaTitle.replace(' | Soil n Soul Travels', '').replace(' | Soil n Soul', ''),
+    title: page.metaTitle.replace(' | SoilNSoul Travels', '').replace(' | SoilNSoul Travels', ''),
     description: page.metaDescription,
     keywords: page.keywords,
     url: `/travel/${slug}`,
@@ -657,7 +657,7 @@ const SeoLanding = () => {
           {/* Badge */}
           <span className="inline-flex items-center gap-2 bg-primary/15 border border-primary/30 text-primary text-xs font-bold tracking-[0.18em] uppercase px-4 py-1.5 rounded-full mb-6">
             <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-            Soil n Soul Travels — Varanasi
+            SoilNSoul Travels — Varanasi
           </span>
 
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.1] mb-6">
@@ -724,7 +724,7 @@ const SeoLanding = () => {
             <div className="lg:col-span-3 space-y-5">
               <p className="text-primary text-xs font-bold tracking-[0.25em] uppercase">About This Guide</p>
               <h2 className="text-2xl sm:text-3xl font-bold text-white leading-snug">
-                Why Trust <span className="text-primary italic font-light">Soil n Soul</span> for Your Varanasi Journey?
+                Why Trust <span className="text-primary italic font-light">SoilNSoul Travels</span> for Your Varanasi Journey?
               </h2>
               {page.intro.map((para, i) => (
                 <p key={i} className="text-slate-300 leading-relaxed text-sm sm:text-base">

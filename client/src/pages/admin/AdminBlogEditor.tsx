@@ -98,7 +98,7 @@ export default function AdminBlogEditor() {
         'header', 'font', 'size',
         'bold', 'italic', 'underline', 'strike',
         'color', 'background', 'align',
-        'list', 'bullet', 'indent',
+        'list', 'indent',
         'blockquote', 'code-block',
         'link', 'image',
     ];

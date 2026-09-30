@@ -5,12 +5,12 @@ import { journeyCategories } from "@/data/journeyCategories";
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "Kaam — Love & Leisure in Varanasi | Soil n Soul",
+  title: "Kaam — Love & Leisure in Varanasi | SoilNSoul Travels",
   description:
     "Experience the romantic, vibrant and soulful side of Kashi — from golden sunsets and serene boat rides to food, music and timeless moments together.",
   alternates: { canonical: "/journeys/kaam" },
   openGraph: {
-    title: "Kaam — Love & Leisure in Varanasi | Soil n Soul",
+    title: "Kaam — Love & Leisure in Varanasi | SoilNSoul Travels",
     description:
       "A journey of beauty, connection and the joy of living in Varanasi.",
     images: [{ url: "/images/purushartha-kaam.jpg" }],
@@ -32,7 +32,7 @@ export default function KaamPage() {
             description: data.heroDescription,
             provider: {
               "@type": "TravelAgency",
-              name: "Soil n Soul Travels",
+              name: "SoilNSoul Travels",
               url: "https://www.soilnsoultravels.com",
             },
           }),

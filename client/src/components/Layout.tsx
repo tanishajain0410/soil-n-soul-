@@ -50,7 +50,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                 S
               </div>
               <span className="font-serif text-2xl font-bold text-brand-text-primary tracking-wide group-hover:text-brand-saffron transition-colors duration-300">
-                Soil n Soul
+                SoilNSoul Travels
               </span>
             </Link>
 
@@ -146,7 +146,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                   S
                 </div>
                 <span className="font-serif text-xl font-bold text-brand-text-primary tracking-wide">
-                  Soil n Soul
+                  SoilNSoul Travels
                 </span>
               </div>
               <p className="text-brand-text-secondary/80 text-sm leading-relaxed max-w-xs font-light">
@@ -210,7 +210,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           </div>
 
           <div className="mt-20 pt-8 border-t border-brand-glass-border flex flex-col md:flex-row justify-between items-center text-xs text-brand-text-secondary/60">
-            <p>&copy; {new Date().getFullYear()} Soil n Soul. All rights reserved.</p>
+            <p>&copy; {new Date().getFullYear()} SoilNSoul Travels. All rights reserved.</p>
             <p className="mt-2 md:mt-0 italic font-serif text-brand-gold/80 text-sm">"Kashi is older than history, older than tradition, older even than legend."</p>
           </div>
         </div>

@@ -36,7 +36,7 @@ export async function generateMetadata({
     description: service.shortDesc,
     alternates: { canonical: `${SITE_URL}/services/${service.slug}` },
     openGraph: {
-      title: `${service.title} -- Soil n Soul Travels`,
+      title: `${service.title} -- SoilNSoul Travels`,
       description: service.shortDesc,
       url: `${SITE_URL}/services/${service.slug}`,
       images: [{ url: service.image, alt: service.title }],
@@ -66,7 +66,7 @@ export default async function ServiceDetailPage({
         description: service.shortDesc,
         provider: {
           '@type': 'TravelAgency',
-          'name': 'Soil n Soul Travels',
+          'name': 'SoilNSoul Travels',
           'url': SITE_URL
         },
         areaServed: {

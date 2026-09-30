@@ -5,12 +5,12 @@ import { journeyCategories } from "@/data/journeyCategories";
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "Moksh — Wellness & Retreats in Varanasi | Soil n Soul",
+  title: "Moksh — Wellness & Retreats in Varanasi | SoilNSoul Travels",
   description:
     "Find stillness in the sacred energy of Varanasi through meditation, yoga, spiritual retreats and experiences that bring you closer to yourself.",
   alternates: { canonical: "/journeys/moksh" },
   openGraph: {
-    title: "Moksh — Wellness & Retreats in Varanasi | Soil n Soul",
+    title: "Moksh — Wellness & Retreats in Varanasi | SoilNSoul Travels",
     description:
       "A journey towards stillness, inner peace and a higher purpose in Varanasi.",
     images: [{ url: "/images/journeys/moksh-hero.jpg" }],
@@ -32,7 +32,7 @@ export default function MokshPage() {
             description: data.heroDescription,
             provider: {
               "@type": "TravelAgency",
-              name: "Soil n Soul Travels",
+              name: "SoilNSoul Travels",
               url: "https://www.soilnsoultravels.com",
             },
           }),

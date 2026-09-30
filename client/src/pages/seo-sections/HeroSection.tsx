@@ -9,7 +9,7 @@ export default function HeroSection() {
         <div className="absolute inset-0 z-0">
           <img
             src="/images/varanasi-hero.png"
-            alt="Best tour and travel agency in Varanasi - Soil N Soul Travels"
+            alt="Best tour and travel agency in Varanasi - SoilNSoul Travels"
             className="w-full h-full object-cover"
             loading="eager"
             fetchPriority="high"
@@ -34,7 +34,7 @@ export default function HeroSection() {
 
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-tight mb-6">
               Best Tours & Travel Agency in Varanasi –{' '}
-              <span className="text-primary italic font-serif">Soil N Soul Travels</span>
+              <span className="text-primary italic font-serif">SoilNSoul Travels</span>
             </h1>
 
             <p className="text-lg sm:text-xl text-slate-200 mb-4 font-medium leading-snug">
@@ -43,14 +43,13 @@ export default function HeroSection() {
 
             <p className="text-base sm:text-lg text-slate-300 mb-8 leading-relaxed">
               Varanasi (also called Kashi or Banaras) is not just a destination — it is a doorway to the soul of India.
-              And no one understands this ancient city's heartbeat better than <strong className="text-white">Soil N Soul
-              Travels</strong>, the best travel agency in Varanasi with <strong className="text-white">500+ happy
+              And no one understands this ancient city's heartbeat better than <strong className="text-white">SoilNSoul Travels</strong>, the best travel agency in Varanasi with <strong className="text-white">500+ happy
               travelers</strong>, a <strong className="text-white">4.9★ Google rating</strong>, and{' '}
               <strong className="text-white">6+ years of born-and-raised local expertise</strong>. Whether you seek the
               golden fire of the Ganga Aarti at Dashashwamedh Ghat, a serene sunrise boat ride past Manikarnika, Kashi
               Vishwanath VIP darshan through the grand corridor, or a complete spiritual tour package covering Prayagraj,
               Ayodhya, and Vindhyachal — your journey begins here. Let Kashi's oldest living soul guide your travel, and
-              let Soil N Soul turn every moment into a memory worth keeping.
+              let SoilNSoul Travels turn every moment into a memory worth keeping.
             </p>
 
             {/* Dual CTA — WhatsApp + Explore */}

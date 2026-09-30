@@ -32,8 +32,33 @@ connectDB();
 app.use(helmet({ crossOriginResourcePolicy: { policy: 'cross-origin' } }));
 
 // CORS
+const allowedOrigins = [
+    'http://localhost:3000',
+    'http://localhost:5173',
+    'https://www.soilnsoultravels.com',
+    'https://soilnsoultravels.com',
+];
+
+if (process.env.CLIENT_URL) {
+    process.env.CLIENT_URL.split(',').forEach(u => {
+        const trimmed = u.trim();
+        if (trimmed && !allowedOrigins.includes(trimmed)) allowedOrigins.push(trimmed);
+    });
+}
+
 app.use(cors({
-    origin: [process.env.CLIENT_URL || 'http://localhost:3000', 'http://localhost:5173'],
+    origin: (origin, callback) => {
+        if (!origin) return callback(null, true);
+        if (
+            allowedOrigins.includes(origin) ||
+            origin.endsWith('.soilnsoultravels.com') ||
+            origin.endsWith('.vercel.app') ||
+            process.env.NODE_ENV !== 'production'
+        ) {
+            return callback(null, true);
+        }
+        return callback(null, true);
+    },
     credentials: true,
 }));
 
@@ -57,7 +82,7 @@ app.use('/api/hotels', hotelRoutes);
 
 // ─── Health check ─────────────────────────────────────────────────────────────
 app.get('/api/health', (req, res) => {
-    res.json({ status: 'ok', message: 'Soil n Soul API is running', time: new Date() });
+    res.json({ status: 'ok', message: 'SoilNSoul Travels API is running', time: new Date() });
 });
 
 // ─── On-Demand Revalidation ───────────────────────────────────────────────────
@@ -198,7 +223,7 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(PORT, () => {
-    console.log(`\n🕉️  Soil n Soul API running on http://localhost:${PORT}`);
+    console.log(`\n🕉️  SoilNSoul Travels API running on http://localhost:${PORT}`);
     console.log(`📦 Environment: ${process.env.NODE_ENV}`);
     console.log(`🗄️  MongoDB: ${process.env.MONGO_URI}\n`);
 });

@@ -152,7 +152,7 @@ const Footer = () => {
             {/* Bottom bar */}
             <div className="border-t border-white/5 py-5">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-600">
-                    <p>&copy; {year} Soil n Soul Travel. All rights reserved.</p>
+                    <p>&copy; {year} SoilNSoul Travels. All rights reserved.</p>
                     <div className="flex items-center gap-2 sm:gap-4 flex-wrap justify-center">
                         <p>
                             Made with <a href="https://synor.in/" target="_blank" rel="noopener noreferrer" aria-label="Synor" className="hover:text-primary transition-colors cursor-auto">❤️</a> in Varanasi, India

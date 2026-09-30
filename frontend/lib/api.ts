@@ -23,8 +23,8 @@ export const EDITORIAL_POSTS: Record<string, BlogPost> = {
     excerpt: 'Faith, fire, and an experience that stays with you forever as dusk falls over Dashashwamedh Ghat.',
     category: 'Spirituality',
     bannerImage: '/images/journal-ref/featured_ganga_aarti_clean.jpg',
-    metaTitle: 'The Magic of Ganga Aarti in Varanasi | Soil n Soul Travels',
-    metaDescription: 'Experience the mystical Ganga Aarti ceremony at Dashashwamedh Ghat in Varanasi. Ancient chants, brass lamps, and river reflections with Soil n Soul Travels.',
+    metaTitle: 'The Magic of Ganga Aarti in Varanasi | SoilNSoul Travels',
+    metaDescription: 'Experience the mystical Ganga Aarti ceremony at Dashashwamedh Ghat in Varanasi. Ancient chants, brass lamps, and river reflections with SoilNSoul Travels.',
     keywords: 'Ganga Aarti Varanasi, Dashashwamedh Ghat Aarti, Varanasi spiritual ceremony, Ganga Aarti timing, Varanasi evening boat ride',
     createdAt: '2025-01-15T18:00:00.000Z',
     content: `
@@ -47,7 +47,7 @@ export const EDITORIAL_POSTS: Record<string, BlogPost> = {
         <li><strong>Cultural Etiquette:</strong> Maintain silence during the sacred aarti hymns, dress modestly covering shoulders and knees, and respectfully offer your diya with both hands to the river.</li>
       </ul>
 
-      <p>At Soil & Soul Travels, our private twilight boat journeys include a dedicated local cultural guide who explains the esoteric meaning behind each step of the ceremony, from the peacock-feather fans to the sacred fire rituals honoring Mother Ganga.</p>
+      <p>At SoilNSoul Travels, our private twilight boat journeys include a dedicated local cultural guide who explains the esoteric meaning behind each step of the ceremony, from the peacock-feather fans to the sacred fire rituals honoring Mother Ganga.</p>
     `,
   },
   'a-perfect-day-in-varanasi': {
@@ -57,7 +57,7 @@ export const EDITORIAL_POSTS: Record<string, BlogPost> = {
     excerpt: 'A soulful guide to experiencing Kashi beyond the usual, from silent sunrise oars to hidden haveli courtyards.',
     category: 'Travel Guide',
     bannerImage: '/images/journal-ref/card1_sunrise_hd.jpg',
-    metaTitle: 'A Perfect Day in Varanasi | Soil n Soul Travels',
+    metaTitle: 'A Perfect Day in Varanasi | SoilNSoul Travels',
     metaDescription: 'How to spend a perfect day in Varanasi. An authentic 24-hour itinerary through sacred dawn boat rides, street food, ancient alleys, and silk quarters.',
     keywords: 'one day in Varanasi, Varanasi travel itinerary, best things to do in Varanasi, sunrise boat ride Varanasi, hidden Banaras',
     createdAt: '2025-01-20T06:00:00.000Z',
@@ -88,7 +88,7 @@ export const EDITORIAL_POSTS: Record<string, BlogPost> = {
     excerpt: 'Stories of the weavers keeping centuries-old traditions alive through pure silk, intricate zari, and heritage pit looms.',
     category: 'Crafts & Culture',
     bannerImage: '/SnS/banarasi-silk-detail.webp',
-    metaTitle: 'The Artisans of Banaras: Master Silk Weavers | Soil n Soul Travels',
+    metaTitle: 'The Artisans of Banaras: Master Silk Weavers | SoilNSoul Travels',
     metaDescription: 'Meet the master Banarasi silk weavers of Varanasi. Learn about handloom traditions, pure zari craft, and the artisan families preserving century-old textiles.',
     keywords: 'Banarasi silk saree weavers, Varanasi handloom, Banaras craft heritage, traditional silk weaving Varanasi, authentic Banarasi saree',
     createdAt: '2025-01-25T11:00:00.000Z',
@@ -106,7 +106,7 @@ export const EDITORIAL_POSTS: Record<string, BlogPost> = {
       </blockquote>
 
       <h2>Supporting Living Heritage</h2>
-      <p>With the rise of industrial powerlooms, genuine handloom weaving faces immense challenges. Soil & Soul Travels bridges the gap by bringing discerning travelers directly into the homes of master weaver families—allowing visitors to appreciate the craftsmanship, hear firsthand stories, and acquire authentic textiles directly from the makers without middlemen.</p>
+      <p>With the rise of industrial powerlooms, genuine handloom weaving faces immense challenges. SoilNSoul Travels bridges the gap by bringing discerning travelers directly into the homes of master weaver families—allowing visitors to appreciate the craftsmanship, hear firsthand stories, and acquire authentic textiles directly from the makers without middlemen.</p>
     `,
   },
   'temples-that-tell-stories': {
@@ -116,8 +116,8 @@ export const EDITORIAL_POSTS: Record<string, BlogPost> = {
     excerpt: 'Sacred spaces, deeper meanings, and timeless legends etched into stone along the ancient ghats of Varanasi.',
     category: 'Spirituality',
     bannerImage: '/images/journal-ref/card3_temples_hd.jpg',
-    metaTitle: 'Temples That Tell Stories in Varanasi | Soil n Soul Travels',
-    metaDescription: 'Discover the hidden temples and ancient architecture of Varanasi. From Kashi Vishwanath to Kedareswar and neighborhood shrines with Soil n Soul Travels.',
+    metaTitle: 'Temples That Tell Stories in Varanasi | SoilNSoul Travels',
+    metaDescription: 'Discover the hidden temples and ancient architecture of Varanasi. From Kashi Vishwanath to Kedareswar and neighborhood shrines with SoilNSoul Travels.',
     keywords: 'Varanasi temples, Kashi Vishwanath, hidden shrines Varanasi, ancient Hindu architecture Kashi, spiritual trail Varanasi',
     createdAt: '2025-02-01T09:00:00.000Z',
     content: `
@@ -148,7 +148,7 @@ export const EDITORIAL_POSTS: Record<string, BlogPost> = {
     bannerImage: '/images/journal-ref/card4_solowoman_hd.jpg',
     metaTitle: 'A Woman’s Journey Through Kashi | Solo Female Travel Varanasi',
     metaDescription: 'A practical, empowering guide for women traveling solo in Varanasi. Safety advice, cultural etiquette, boutique stays, and curated private concierge support.',
-    keywords: 'solo female travel Varanasi, women traveling Varanasi, Varanasi safety tips, female travel guide Kashi, Soil n Soul Travels',
+    keywords: 'solo female travel Varanasi, women traveling Varanasi, Varanasi safety tips, female travel guide Kashi, SoilNSoul Travels',
     createdAt: '2025-02-05T14:00:00.000Z',
     content: `
       <p class="lead">Varanasi often evokes images of intensity—crowds, sounds, and vibrant energy. Yet for female solo travelers seeking genuine depth, Kashi offers a remarkably nurturing, soulful, and spiritually transformative sanctuary when approached with the right awareness and local support.</p>
@@ -167,8 +167,8 @@ export const EDITORIAL_POSTS: Record<string, BlogPost> = {
         "Varanasi taught me that stillness is not the absence of sound, but the presence of peace within oneself amidst the sacred river's current."
       </blockquote>
 
-      <h2>The Soil & Soul Local Concierge</h2>
-      <p>To provide peace of mind, Soil & Soul Travels pairs solo women travelers with verified, culturally sensitive local concierges. Whether navigating crowded markets, coordinating private dawn boat rides, or arranging vetted airport transfers, we ensure your journey through Varanasi is safe, enriching, and unforgettable.</p>
+      <h2>The SoilNSoul Travels Local Concierge</h2>
+      <p>To provide peace of mind, SoilNSoul Travels pairs solo women travelers with verified, culturally sensitive local concierges. Whether navigating crowded markets, coordinating private dawn boat rides, or arranging vetted airport transfers, we ensure your journey through Varanasi is safe, enriching, and unforgettable.</p>
     `,
   },
 };
