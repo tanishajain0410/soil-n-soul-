@@ -12,7 +12,7 @@ export default function SiteChrome({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
-  const hidden = pathname ? ["/admin", "/hakunamata"].some((p) => pathname.startsWith(p)) : false;
+  const hidden = pathname ? pathname.startsWith("/admin") : false;
   const [leadCaptureOpen, setLeadCaptureOpen] = useState(true);
 
   return (

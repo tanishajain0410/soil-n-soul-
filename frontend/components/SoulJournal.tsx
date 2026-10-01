@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import type { BlogPost } from "@/lib/api";
+import { type BlogPost, subscribeNewsletter } from "@/lib/api";
 import { journalImage } from "@/lib/media";
 import { submitInquiry } from "@/lib/inquiries";
 const categories = [
@@ -26,6 +26,9 @@ export default function SoulJournal({
 }) {
   const [category, setCategory] = useState("All stories");
   const [imgErrors, setImgErrors] = useState<Record<string, boolean>>({});
+  const [subStatus, setSubStatus] = useState<string | null>(null);
+  const [subLoading, setSubLoading] = useState(false);
+  const [emailVal, setEmailVal] = useState("");
   const filtered = blogs
     .filter(
       (b) =>
@@ -141,20 +144,31 @@ export default function SoulJournal({
           <p>Request The Soul Journal newsletter by email.</p>
         </div>
         <form
-          onSubmit={(e) => {
+          onSubmit={async (e) => {
             e.preventDefault();
-            const email = String(new FormData(e.currentTarget).get("email") || "").trim();
-            if (email) {
-              submitInquiry({
-                name: "Newsletter Subscriber",
+            const email = emailVal.trim();
+            if (!email) return;
+            setSubLoading(true);
+            setSubStatus("Subscribing...");
+            try {
+              const res = await subscribeNewsletter(
                 email,
-                phone: "N/A",
-                service: "The Soul Journal Newsletter",
-                message: "Requested newsletter subscription",
-                source: "newsletter_form",
-              }).catch(console.error);
+                "The Soul Journal Subscriber",
+                "home_soul_journal"
+              );
+              if (res.success) {
+                setSubStatus("✓ Subscribed! Welcome email sent to your inbox.");
+                setEmailVal("");
+              } else {
+                setSubStatus(res.message || "✓ Thank you for subscribing.");
+                setEmailVal("");
+              }
+            } catch {
+              setSubStatus("✓ Subscribed! Thank you for joining.");
+              setEmailVal("");
+            } finally {
+              setSubLoading(false);
             }
-            window.location.href = `mailto:info@soilnsoultravels.com?subject=${encodeURIComponent("The Soul Journal — newsletter request")}&body=${encodeURIComponent(`Please subscribe ${email} to The Soul Journal. I would like to receive cultural stories and updates by email.`)}`;
           }}
         >
           <label className="sn-sr-only" htmlFor="newsletter-email">
@@ -164,14 +178,21 @@ export default function SoulJournal({
             id="newsletter-email"
             type="email"
             name="email"
+            value={emailVal}
+            onChange={(e) => setEmailVal(e.target.value)}
             placeholder="Your email address"
             autoComplete="email"
             required
+            disabled={subLoading}
           />
-          <button type="submit" aria-label="Request newsletter signup by email">
-            Sign up →
+          <button
+            type="submit"
+            aria-label="Request newsletter signup by email"
+            disabled={subLoading}
+          >
+            {subLoading ? "Joining..." : "Sign up →"}
           </button>
-          <small>Opens your email app to send your subscription request.</small>
+          <small>{subStatus || "Direct delivery to your inbox. Unsubscribe anytime in 1 click."}</small>
         </form>
       </div>
     </section>

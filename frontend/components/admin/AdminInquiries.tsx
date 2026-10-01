@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useState, useCallback } from 'react';
+import { createPortal } from 'react-dom';
 import {
   Inquiry,
   InquiryStats,
@@ -49,6 +50,30 @@ export default function AdminInquiries({ token }: AdminInquiriesProps) {
   const [savingNoteId, setSavingNoteId] = useState<string | null>(null);
   const [deleteCandidate, setDeleteCandidate] = useState<{ id: string; name: string } | null>(null);
   const [expandedDetails, setExpandedDetails] = useState<Record<string, boolean>>({});
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Prevent background scroll & enable Esc to close when delete modal is open
+  useEffect(() => {
+    if (!deleteCandidate) return;
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setDeleteCandidate(null);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [deleteCandidate]);
 
   const toggleDetails = (id: string) => {
     setExpandedDetails((prev) => ({ ...prev, [id]: !prev[id] }));
@@ -634,59 +659,71 @@ export default function AdminInquiries({ token }: AdminInquiriesProps) {
           })}
         </div>
       )}
-      {/* Custom Luxury Delete Confirmation Modal */}
-      {deleteCandidate && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-fade-in"
-          onClick={() => setDeleteCandidate(null)}
-        >
-          <div
-            className="bg-[#1c120c] border border-[#dfbf80]/35 rounded-2xl max-w-md w-full p-6 sm:p-7 shadow-2xl text-left relative overflow-hidden"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="absolute top-0 right-0 w-32 h-32 bg-[radial-gradient(circle,rgba(223,191,128,0.12),transparent_70%)] pointer-events-none" />
-            <div className="flex items-start gap-4 mb-4 relative z-10">
-              <div className="w-11 h-11 rounded-2xl bg-red-500/10 border border-red-500/30 flex items-center justify-center text-red-400 shrink-0 shadow-inner">
-                <Trash2 size={20} />
-              </div>
-              <div className="min-w-0 flex-1">
-                <h3 className="sns-admin-title text-xl text-white m-0 font-medium tracking-tight">
-                  Delete Customer Enquiry?
-                </h3>
-                <p className="text-xs text-[#a89485] m-0 mt-1">
-                  This enquiry record will be permanently removed.
+      {/* Custom Luxury Delete Confirmation Modal mounted via Portal to document.body */}
+      {mounted && typeof document !== 'undefined' && deleteCandidate
+        ? createPortal(
+            <div
+              role="dialog"
+              aria-modal="true"
+              className="fixed inset-0 z-[99999] flex items-center justify-center p-4 bg-black/85 backdrop-blur-md"
+              style={{
+                position: 'fixed',
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                width: '100vw',
+                height: '100dvh',
+              }}
+              onClick={() => setDeleteCandidate(null)}
+            >
+              <div
+                className="bg-[#1c120c] border border-[#dfbf80]/35 rounded-2xl max-w-md w-full p-6 sm:p-7 shadow-2xl text-left relative overflow-hidden my-auto max-h-[90dvh] overflow-y-auto"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <div className="absolute top-0 right-0 w-32 h-32 bg-[radial-gradient(circle,rgba(223,191,128,0.12),transparent_70%)] pointer-events-none" />
+                <div className="flex items-start gap-4 mb-4 relative z-10">
+                  <div className="w-11 h-11 rounded-2xl bg-red-500/10 border border-red-500/30 flex items-center justify-center text-red-400 shrink-0 shadow-inner">
+                    <Trash2 size={20} />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <h3 className="sns-admin-title text-xl text-white m-0 font-medium tracking-tight">
+                      Delete Customer Enquiry?
+                    </h3>
+                    <p className="text-xs text-[#a89485] m-0 mt-1">
+                      This enquiry record will be permanently removed.
+                    </p>
+                  </div>
+                </div>
+
+                <p className="text-sm text-[#e2c6af] mb-6 leading-relaxed relative z-10 bg-[#251811]/60 p-3.5 rounded-xl border border-[rgba(226,198,175,0.12)]">
+                  Are you sure you want to delete the enquiry from{' '}
+                  <strong className="text-white font-semibold">{deleteCandidate.name}</strong>?
                 </p>
+
+                <div className="flex items-center justify-end gap-3 relative z-10">
+                  <button
+                    type="button"
+                    onClick={() => setDeleteCandidate(null)}
+                    disabled={Boolean(actionLoading)}
+                    className="px-4 py-2.5 rounded-xl text-xs font-semibold text-[#c7b4a3] hover:text-white bg-[#251811] hover:bg-[#322117] border border-[rgba(226,198,175,0.2)] transition-all cursor-pointer"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="button"
+                    onClick={confirmDelete}
+                    disabled={Boolean(actionLoading)}
+                    className="px-5 py-2.5 rounded-xl text-xs font-semibold text-white bg-red-600 hover:bg-red-500 border border-red-400/30 shadow-lg shadow-red-950/50 transition-all flex items-center gap-1.5 cursor-pointer disabled:opacity-50"
+                  >
+                    {actionLoading ? 'Deleting…' : 'Delete Enquiry'}
+                  </button>
+                </div>
               </div>
-            </div>
-
-            <p className="text-sm text-[#e2c6af] mb-6 leading-relaxed relative z-10 bg-[#251811]/60 p-3.5 rounded-xl border border-[rgba(226,198,175,0.12)]">
-              Are you sure you want to delete the enquiry from{' '}
-              <strong className="text-white font-semibold">{deleteCandidate.name}</strong>?
-            </p>
-
-            <div className="flex items-center justify-end gap-3 relative z-10">
-              <button
-                type="button"
-                onClick={() => setDeleteCandidate(null)}
-                disabled={Boolean(actionLoading)}
-                className="px-4 py-2.5 rounded-xl text-xs font-semibold text-[#c7b4a3] hover:text-white bg-[#251811] hover:bg-[#322117] border border-[rgba(226,198,175,0.2)] transition-all cursor-pointer"
-              >
-                Cancel
-              </button>
-              <button
-                type="button"
-                onClick={confirmDelete}
-                disabled={Boolean(actionLoading)}
-                className="px-5 py-2.5 rounded-xl text-xs font-semibold text-white bg-red-600 hover:bg-red-500 border border-red-400/30 shadow-lg shadow-red-950/50 transition-all flex items-center gap-1.5 cursor-pointer disabled:opacity-50"
-              >
-                {actionLoading ? 'Deleting…' : 'Delete Enquiry'}
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+            </div>,
+            document.body
+          )
+        : null}
     </div>
   );
 }

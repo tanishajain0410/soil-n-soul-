@@ -16,7 +16,7 @@
   font-family:var(--sns-font-sans);
 }
 body:has(.exp-page-root) .exp-nav-header { background:linear-gradient(180deg,rgba(28,13,9,.5),transparent); }
-body:has(.exp-page-root) .exp-nav-header.scrolled { background:rgba(28,13,9,.96); border-bottom-color:rgba(213,174,98,.2); }
+body:has(.exp-page-root) .exp-nav-header.scrolled { background:rgba(239, 230, 215, 0.98); border-bottom-color:rgba(72, 49, 31, 0.14); }
 body:has(.exp-page-root) .exp-nav-cta-btn { background:#d5ae62; color:#24100c!important; border-radius:3px; }
 body:has(.exp-page-root) .exp-nav-wa-btn { border-color:rgba(213,174,98,.6)!important; color:#d5ae62!important; }
 body:has(.exp-page-root) .exp-mobile-drawer { background:rgba(28,13,9,.98); }

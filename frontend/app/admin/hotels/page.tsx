@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { API_URL } from '@/lib/constants';
@@ -17,11 +18,35 @@ export default function AdminHotels() {
     const [currentHotel, setCurrentHotel] = useState<any>({ name: '', description: '', image: '', whatsappMessage: '' });
     const [deleteHotelCandidate, setDeleteHotelCandidate] = useState<{ id: string; name: string } | null>(null);
     const [isDeletingHotel, setIsDeletingHotel] = useState(false);
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    // Prevent background scroll & enable Esc to close when delete modal is open
+    useEffect(() => {
+        if (!deleteHotelCandidate) return;
+        const originalOverflow = document.body.style.overflow;
+        document.body.style.overflow = 'hidden';
+
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === 'Escape') {
+                setDeleteHotelCandidate(null);
+            }
+        };
+        window.addEventListener('keydown', handleKeyDown);
+
+        return () => {
+            document.body.style.overflow = originalOverflow;
+            window.removeEventListener('keydown', handleKeyDown);
+        };
+    }, [deleteHotelCandidate]);
 
     useEffect(() => {
         const storedToken = localStorage.getItem('token');
         if (!storedToken) {
-            router.push('/hakunamata');
+            router.push('/admin/login');
         } else {
             setToken(storedToken);
             fetch(`${API_URL}/hotels`)
@@ -407,58 +432,70 @@ export default function AdminHotels() {
                 )}
             </div>
 
-            {/* Custom Luxury Delete Hotel Confirmation Modal */}
-            {deleteHotelCandidate && (
-                <div
-                    role="dialog"
-                    aria-modal="true"
-                    className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-fade-in"
-                    onClick={() => setDeleteHotelCandidate(null)}
-                >
+            {/* Custom Luxury Delete Hotel Confirmation Modal mounted via Portal */}
+            {mounted && typeof document !== 'undefined' && deleteHotelCandidate
+                ? createPortal(
                     <div
-                        className="bg-[#1c120c] border border-[#dfbf80]/35 rounded-2xl max-w-md w-full p-6 sm:p-7 shadow-2xl text-left relative overflow-hidden"
-                        onClick={(e) => e.stopPropagation()}
+                        role="dialog"
+                        aria-modal="true"
+                        className="fixed inset-0 z-[99999] flex items-center justify-center p-4 bg-black/85 backdrop-blur-md"
+                        style={{
+                            position: 'fixed',
+                            top: 0,
+                            left: 0,
+                            right: 0,
+                            bottom: 0,
+                            width: '100vw',
+                            height: '100dvh',
+                        }}
+                        onClick={() => setDeleteHotelCandidate(null)}
                     >
-                        <div className="absolute top-0 right-0 w-32 h-32 bg-[radial-gradient(circle,rgba(223,191,128,0.12),transparent_70%)] pointer-events-none" />
-                        <div className="flex items-start gap-4 mb-4 relative z-10">
-                            <div className="w-11 h-11 rounded-2xl bg-red-500/10 border border-red-500/30 flex items-center justify-center text-red-400 shrink-0 shadow-inner">
-                                <Trash2 size={20} />
+                        <div
+                            className="bg-[#1c120c] border border-[#dfbf80]/35 rounded-2xl max-w-md w-full p-6 sm:p-7 shadow-2xl text-left relative overflow-hidden my-auto max-h-[90dvh] overflow-y-auto"
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            <div className="absolute top-0 right-0 w-32 h-32 bg-[radial-gradient(circle,rgba(223,191,128,0.12),transparent_70%)] pointer-events-none" />
+                            <div className="flex items-start gap-4 mb-4 relative z-10">
+                                <div className="w-11 h-11 rounded-2xl bg-red-500/10 border border-red-500/30 flex items-center justify-center text-red-400 shrink-0 shadow-inner">
+                                    <Trash2 size={20} />
+                                </div>
+                                <div className="min-w-0 flex-1">
+                                    <h3 className="sns-admin-title text-xl text-white m-0 font-medium tracking-tight">
+                                        Delete Hotel Property?
+                                    </h3>
+                                    <p className="text-xs text-[#a89485] m-0 mt-1">
+                                        This listing will be permanently removed from recommendations.
+                                    </p>
+                                </div>
                             </div>
-                            <div className="min-w-0 flex-1">
-                                <h3 className="sns-admin-title text-xl text-white m-0 font-medium tracking-tight">
-                                    Delete Hotel Property?
-                                </h3>
-                                <p className="text-xs text-[#a89485] m-0 mt-1">
-                                    This listing will be permanently removed from recommendations.
-                                </p>
+
+                            <p className="text-sm text-[#e2c6af] mb-6 leading-relaxed relative z-10 bg-[#251811]/60 p-3.5 rounded-xl border border-[rgba(226,198,175,0.12)]">
+                                Are you sure you want to delete <strong className="text-white font-semibold">"{deleteHotelCandidate.name}"</strong>?
+                            </p>
+
+                            <div className="flex items-center justify-end gap-3 relative z-10">
+                                <button
+                                    type="button"
+                                    onClick={() => setDeleteHotelCandidate(null)}
+                                    disabled={isDeletingHotel}
+                                    className="px-4 py-2.5 rounded-xl text-xs font-semibold text-[#c7b4a3] hover:text-white bg-[#251811] hover:bg-[#322117] border border-[rgba(226,198,175,0.2)] transition-all cursor-pointer"
+                                >
+                                    Cancel
+                                </button>
+                                <button
+                                    type="button"
+                                    onClick={confirmDeleteHotel}
+                                    disabled={isDeletingHotel}
+                                    className="px-5 py-2.5 rounded-xl text-xs font-semibold text-white bg-red-600 hover:bg-red-500 border border-red-400/30 shadow-lg shadow-red-950/50 transition-all flex items-center gap-1.5 cursor-pointer disabled:opacity-50"
+                                >
+                                    {isDeletingHotel ? 'Deleting…' : 'Delete Property'}
+                                </button>
                             </div>
                         </div>
-
-                        <p className="text-sm text-[#e2c6af] mb-6 leading-relaxed relative z-10 bg-[#251811]/60 p-3.5 rounded-xl border border-[rgba(226,198,175,0.12)]">
-                            Are you sure you want to delete <strong className="text-white font-semibold">"{deleteHotelCandidate.name}"</strong>?
-                        </p>
-
-                        <div className="flex items-center justify-end gap-3 relative z-10">
-                            <button
-                                type="button"
-                                onClick={() => setDeleteHotelCandidate(null)}
-                                disabled={isDeletingHotel}
-                                className="px-4 py-2.5 rounded-xl text-xs font-semibold text-[#c7b4a3] hover:text-white bg-[#251811] hover:bg-[#322117] border border-[rgba(226,198,175,0.2)] transition-all cursor-pointer"
-                            >
-                                Cancel
-                            </button>
-                            <button
-                                type="button"
-                                onClick={confirmDeleteHotel}
-                                disabled={isDeletingHotel}
-                                className="px-5 py-2.5 rounded-xl text-xs font-semibold text-white bg-red-600 hover:bg-red-500 border border-red-400/30 shadow-lg shadow-red-950/50 transition-all flex items-center gap-1.5 cursor-pointer disabled:opacity-50"
-                            >
-                                {isDeletingHotel ? 'Deleting…' : 'Delete Property'}
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            )}
+                    </div>,
+                    document.body
+                )
+                : null}
         </div>
     );
 }

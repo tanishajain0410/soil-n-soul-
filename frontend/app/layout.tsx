@@ -11,6 +11,7 @@ import "./about.css";
 import "./about-home-theme.css";
 import "./journal.css";
 import "./blog-home-theme.css";
+import "./blog-post.css";
 import "./journey-category.css";
 import "./journey-home-theme.css";
 import "./contact-home-theme.css";
@@ -113,10 +114,12 @@ export default function RootLayout({
         <link rel="icon" href="/icon.svg" type="image/svg+xml" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="preload" href="/soil-n-soul-logo.svg" as="image" type="image/svg+xml" />
+        <link rel="preload" href="/soil-n-soul-logo-dark.svg" as="image" type="image/svg+xml" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&text=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_-&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap"
           rel="stylesheet"
         />
       </head>

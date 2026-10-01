@@ -16,6 +16,7 @@ import categoryRoutes from './routes/categories.js';
 import mediaRoutes from './routes/media.js';
 import inquiryRoutes from './routes/inquiries.js';
 import hotelRoutes from './routes/hotels.js';
+import newsletterRoutes from './routes/newsletter.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -78,6 +79,7 @@ app.use('/api/categories', categoryRoutes);
 app.use('/api/media', mediaRoutes);
 app.use('/api/inquiries', inquiryRoutes);
 app.use('/api/hotels', hotelRoutes);
+app.use('/api/newsletter', newsletterRoutes);
 
 // ─── Health check ─────────────────────────────────────────────────────────────
 app.get('/api/health', (req, res) => {

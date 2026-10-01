@@ -12,7 +12,7 @@ export default function AdminInquiriesPage() {
     useEffect(() => {
         const storedToken = localStorage.getItem('token');
         if (!storedToken) {
-            router.push('/hakunamata');
+            router.push('/admin/login');
         } else {
             setToken(storedToken);
         }
@@ -20,7 +20,7 @@ export default function AdminInquiriesPage() {
 
     const handleLogout = () => {
         localStorage.removeItem('token');
-        router.push('/hakunamata');
+        router.push('/admin/login');
     };
 
     if (!token) return null;

@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ArrowRight, Menu, X, Lock } from "lucide-react";
+import { ArrowRight, Menu, X } from "lucide-react";
 
 export default function LuxuryNavbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -13,7 +13,7 @@ export default function LuxuryNavbar() {
   const isAboutPage = currentPath === "/about";
   const isJourneyPage = currentPath === "/journeys";
   const isContactPage = currentPath === "/contact";
-  const isBlogPage = currentPath === "/blog" || currentPath === "/journal";
+  const isBlogPage = currentPath === "/blog" || currentPath === "/journal" || currentPath.startsWith("/blog");
 
   const links = [
     ["Home", "/"],
@@ -26,12 +26,13 @@ export default function LuxuryNavbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 40);
+      const scrollY = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
+      setScrolled(scrollY > 30);
     };
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [pathname]);
 
   // Prevent background scroll when mobile menu is open
   useEffect(() => {
@@ -87,16 +88,7 @@ export default function LuxuryNavbar() {
 
           {/* Right Actions */}
           <div className="exp-nav-actions">
-            {/* Admin Lock Button */}
-            <Link
-              href="/admin"
-              className="exp-nav-lock-btn"
-              title="Admin Portal"
-              aria-label="Admin Portal"
-            >
-              <Lock size={14} />
-              <span className="exp-nav-lock-text">Admin</span>
-            </Link>
+
             <a
               href={isAboutPage || isJourneyPage || isContactPage || isBlogPage || currentPath === "/" ? "#contact" : "/#contact"}
               className="exp-nav-cta-btn"
@@ -146,14 +138,7 @@ export default function LuxuryNavbar() {
                 </Link>
               );
             })}
-            <Link
-              href="/admin"
-              className="exp-mobile-link flex items-center justify-center gap-2 text-[#d9ad57]"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              <Lock size={18} />
-              <span>Admin Portal</span>
-            </Link>
+
           </div>
           <a
               href={isJourneyPage || isAboutPage || isContactPage || isBlogPage || currentPath === "/" ? "#contact" : "/#contact"}

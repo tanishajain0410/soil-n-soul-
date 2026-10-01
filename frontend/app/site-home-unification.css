@@ -375,6 +375,33 @@ body:has(:where(.about-page-root,.exp-page-root,.journey-page,.journey-detail-pa
     linear-gradient(120deg,#a83b21 0%,#8f2d1b 52%,#a33a20 100%)!important;
 }
 
+.journal-page-root .journal-filter-header {
+  border-bottom-color:rgba(255,244,224,.3)!important;
+}
+
+.journal-page-root .journal-filter-header-left .journal-eyebrow {
+  color:#f1c46c!important;
+}
+
+.journal-page-root .journal-filter-title {
+  color:#fff5e5!important;
+}
+
+.journal-page-root .journal-filter-desc {
+  color:#f0ddc5!important;
+}
+
+.journal-page-root .journal-filter-reset-btn {
+  border-color:rgba(240,221,197,.58)!important;
+  color:#fff5e5!important;
+}
+
+.journal-page-root .journal-filter-reset-btn:hover {
+  border-color:#d4ae5d!important;
+  background:#d4ae5d!important;
+  color:#28110b!important;
+}
+
 @media (min-width:1100px) {
   .journal-page-root .journal-cards-grid {
     grid-template-columns:repeat(5,minmax(0,1fr))!important;

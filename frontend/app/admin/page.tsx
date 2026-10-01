@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { API_URL } from '@/lib/constants';
@@ -24,11 +25,38 @@ export default function AdminDashboard() {
     const [blogSearch, setBlogSearch] = useState<string>('');
     const [deleteBlogCandidate, setDeleteBlogCandidate] = useState<{ id: string; title: string } | null>(null);
     const [isDeletingBlog, setIsDeletingBlog] = useState(false);
+    const [openingSlug, setOpeningSlug] = useState<string | null>(null);
+    const [featuringId, setFeaturingId] = useState<string | null>(null);
+    const [featureNotice, setFeatureNotice] = useState<string | null>(null);
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    // Prevent background scroll & enable Esc to close when blog delete modal is open
+    useEffect(() => {
+        if (!deleteBlogCandidate) return;
+        const originalOverflow = document.body.style.overflow;
+        document.body.style.overflow = 'hidden';
+
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === 'Escape') {
+                setDeleteBlogCandidate(null);
+            }
+        };
+        window.addEventListener('keydown', handleKeyDown);
+
+        return () => {
+            document.body.style.overflow = originalOverflow;
+            window.removeEventListener('keydown', handleKeyDown);
+        };
+    }, [deleteBlogCandidate]);
 
     useEffect(() => {
         const storedToken = localStorage.getItem('token');
         if (!storedToken) {
-            router.push('/hakunamata');
+            router.push('/admin/login');
         } else {
             setToken(storedToken);
             fetchBlogs();
@@ -44,6 +72,42 @@ export default function AdminDashboard() {
             })
             .catch(err => console.error(err));
     };
+
+    const toggleFeatureBlog = async (id: string, makeFeatured: boolean) => {
+        if (!token) return;
+        setFeaturingId(id);
+        try {
+            const res = await fetch(`${API_URL}/blogs/${id}/feature`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`,
+                },
+                body: JSON.stringify({ featured: makeFeatured }),
+            });
+            const data = await res.json();
+            if (data.success) {
+                setBlogs(prev =>
+                    prev.map(b => ({
+                        ...b,
+                        isFeatured: makeFeatured ? b._id === id : (b._id === id ? false : b.isFeatured),
+                    }))
+                );
+                setFeatureNotice(
+                    makeFeatured
+                        ? `✨ "${data.blog?.title || 'Story'}" is now the active Featured Story on the Blog page!`
+                        : 'Story removed from Featured.'
+                );
+                setTimeout(() => setFeatureNotice(null), 4000);
+            }
+        } catch (err) {
+            console.error('Feature toggle error:', err);
+        } finally {
+            setFeaturingId(null);
+        }
+    };
+
+    const activeFeaturedBlog = blogs.find(b => b.isFeatured) || blogs.find(b => b.slug === 'the-magic-of-ganga-aarti');
 
     const fetchInquiryStats = async (authToken: string) => {
         try {
@@ -82,7 +146,7 @@ export default function AdminDashboard() {
 
     const handleLogout = () => {
         localStorage.removeItem('token');
-        router.push('/hakunamata');
+        router.push('/admin/login');
     };
 
     /**
@@ -221,11 +285,11 @@ export default function AdminDashboard() {
 
                 {/* ── Tab Content ── */}
                 {activeTab === 'inquiries' ? (
-                    <div className="animate-in fade-in duration-200">
+                    <div>
                         <AdminInquiries token={token} />
                     </div>
                 ) : (
-                    <div className="animate-in fade-in duration-200 space-y-8">
+                    <div className="space-y-8">
                         {/* ── ISR Revalidation Banner ── */}
                         <div className="sns-card p-5 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 border border-[rgba(226,198,175,0.2)]">
                             <div className="flex-1">
@@ -264,13 +328,22 @@ export default function AdminDashboard() {
                                 <div>
                                     <span className="sns-admin-eyebrow block mb-1">CURATED EDITORIAL</span>
                                     <h2 className="sns-admin-title text-2xl sm:text-3xl m-0">All <em>Stories &amp; Guides</em></h2>
-                                    <p className="text-xs text-[#a89485] mt-1.5">
-                                        Showing {filteredBlogs.length} of {blogs.length} articles in database
-                                    </p>
+                                    <div className="flex flex-wrap items-center gap-3 mt-1.5">
+                                        <p className="text-xs text-[#a89485] m-0">
+                                            Showing {filteredBlogs.length} of {blogs.length} articles in database
+                                        </p>
+                                        {activeFeaturedBlog && (
+                                            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#d9ad57]/15 border border-[#d9ad57]/30 text-[11px] text-[#dfbf80]">
+                                                <span>★ Active Hero:</span>
+                                                <strong className="text-white font-serif">{activeFeaturedBlog.title}</strong>
+                                            </span>
+                                        )}
+                                    </div>
                                 </div>
                                 <div className="flex flex-wrap items-center gap-3">
                                     <Link
                                         href="/admin/hotels"
+                                        prefetch={true}
                                         className="sns-btn-outline"
                                     >
                                         <span className="material-symbols-outlined text-[16px]">hotel</span>
@@ -278,6 +351,7 @@ export default function AdminDashboard() {
                                     </Link>
                                     <Link
                                         href="/admin/blog/new"
+                                        prefetch={true}
                                         className="sns-btn-gold"
                                     >
                                         <span className="material-symbols-outlined text-[17px]">add_circle</span>
@@ -285,6 +359,17 @@ export default function AdminDashboard() {
                                     </Link>
                                 </div>
                             </div>
+
+                            {/* ── Feature Feedback Notice ── */}
+                            {featureNotice && (
+                                <div className="mb-4 px-4 py-2.5 rounded-xl bg-[#d9ad57]/15 border border-[#d9ad57]/40 text-[#f7ede2] text-xs flex items-center justify-between shadow-lg">
+                                    <div className="flex items-center gap-2">
+                                        <span className="text-[#dfbf80] font-bold text-sm">★</span>
+                                        <span>{featureNotice}</span>
+                                    </div>
+                                    <button onClick={() => setFeatureNotice(null)} className="text-[#dfbf80] hover:text-white font-bold ml-2">✕</button>
+                                </div>
+                            )}
 
                             {/* ── Blog Filter Controls: Category, Published, Draft ── */}
                             <div className="sns-card-subtle p-4 mb-6 flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4">
@@ -419,6 +504,7 @@ export default function AdminDashboard() {
                                             <th className="pb-3 px-4">Story Title</th>
                                             <th className="pb-3 px-4">Category</th>
                                             <th className="pb-3 px-4">Status</th>
+                                            <th className="pb-3 px-4 text-center">Featured on Blog</th>
                                             <th className="pb-3 px-4">Published Date</th>
                                             <th className="pb-3 px-4 text-right">Actions</th>
                                         </tr>
@@ -444,6 +530,31 @@ export default function AdminDashboard() {
                                                         </span>
                                                     )}
                                                 </td>
+                                                <td className="py-4 px-4 text-center">
+                                                    {blog.isFeatured ? (
+                                                        <button
+                                                            type="button"
+                                                            onClick={() => toggleFeatureBlog(blog._id, false)}
+                                                            disabled={featuringId === blog._id}
+                                                            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold tracking-wider uppercase bg-[#d9ad57] text-[#1a0e08] shadow-[0_2px_12px_rgba(217,173,87,0.35)] hover:bg-[#ebd089] hover:scale-105 transition-all cursor-pointer"
+                                                            title="Active Featured Hero on /blog. Click to unfeature."
+                                                        >
+                                                            <span>★</span>
+                                                            <span>Featured</span>
+                                                        </button>
+                                                    ) : (
+                                                        <button
+                                                            type="button"
+                                                            onClick={() => toggleFeatureBlog(blog._id, true)}
+                                                            disabled={featuringId === blog._id}
+                                                            className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-semibold tracking-wider uppercase bg-white/5 hover:bg-[#d9ad57]/20 text-[#a89485] hover:text-[#dfbf80] border border-white/5 hover:border-[#dfbf80]/30 transition-all cursor-pointer group/star"
+                                                            title="Click to display this article in the signature Hero Card on /blog"
+                                                        >
+                                                            <span className="text-[#a89485] group-hover/star:text-[#dfbf80]">☆</span>
+                                                            <span>Set Featured</span>
+                                                        </button>
+                                                    )}
+                                                </td>
                                                 <td className="py-4 px-4 text-xs text-[#a89485]">
                                                     {new Date(blog.createdAt).toLocaleDateString('en-US', {
                                                         year: 'numeric',
@@ -455,10 +566,25 @@ export default function AdminDashboard() {
                                                     <div className="flex items-center justify-end gap-2 sm:gap-2.5 opacity-100 sm:opacity-80 sm:group-hover:opacity-100 transition-opacity">
                                                         <Link
                                                             href={`/admin/blog/edit/${blog.slug}`}
-                                                            className="w-8 h-8 rounded-full bg-white/5 hover:bg-[#d9ad57]/20 border border-[rgba(226,198,175,0.15)] hover:border-[#d9ad57]/40 text-[#dfbf80] flex items-center justify-center transition-all hover:scale-105 shrink-0"
+                                                            prefetch={true}
+                                                            onClick={() => {
+                                                                setOpeningSlug(blog.slug);
+                                                                try {
+                                                                    sessionStorage.setItem(`sns_edit_blog_${blog.slug}`, JSON.stringify(blog));
+                                                                } catch {}
+                                                            }}
+                                                            className={`w-8 h-8 rounded-full border flex items-center justify-center transition-all hover:scale-105 shrink-0 ${
+                                                                openingSlug === blog.slug
+                                                                    ? 'bg-[#d9ad57] text-[#1a0e08] border-[#d9ad57] shadow-lg animate-pulse'
+                                                                    : 'bg-white/5 hover:bg-[#d9ad57]/20 border-[rgba(226,198,175,0.15)] hover:border-[#d9ad57]/40 text-[#dfbf80]'
+                                                            }`}
                                                             title="Edit Story"
                                                         >
-                                                            <Pencil size={14} className="shrink-0" />
+                                                            {openingSlug === blog.slug ? (
+                                                                <span className="material-symbols-outlined text-[15px] animate-spin">progress_activity</span>
+                                                            ) : (
+                                                                <Pencil size={14} className="shrink-0" />
+                                                            )}
                                                         </Link>
                                                         <button
                                                             onClick={() => promptDeleteBlog(blog._id, blog.title)}
@@ -508,58 +634,70 @@ export default function AdminDashboard() {
 
             </div>
 
-            {/* Custom Luxury Delete Blog Confirmation Modal */}
-            {deleteBlogCandidate && (
-                <div
-                    role="dialog"
-                    aria-modal="true"
-                    className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-fade-in"
-                    onClick={() => setDeleteBlogCandidate(null)}
-                >
+            {/* Custom Luxury Delete Blog Confirmation Modal mounted via Portal */}
+            {mounted && typeof document !== 'undefined' && deleteBlogCandidate
+                ? createPortal(
                     <div
-                        className="bg-[#1c120c] border border-[#dfbf80]/35 rounded-2xl max-w-md w-full p-6 sm:p-7 shadow-2xl text-left relative overflow-hidden"
-                        onClick={(e) => e.stopPropagation()}
+                        role="dialog"
+                        aria-modal="true"
+                        className="fixed inset-0 z-[99999] flex items-center justify-center p-4 bg-black/85 backdrop-blur-md"
+                        style={{
+                            position: 'fixed',
+                            top: 0,
+                            left: 0,
+                            right: 0,
+                            bottom: 0,
+                            width: '100vw',
+                            height: '100dvh',
+                        }}
+                        onClick={() => setDeleteBlogCandidate(null)}
                     >
-                        <div className="absolute top-0 right-0 w-32 h-32 bg-[radial-gradient(circle,rgba(223,191,128,0.12),transparent_70%)] pointer-events-none" />
-                        <div className="flex items-start gap-4 mb-4 relative z-10">
-                            <div className="w-11 h-11 rounded-2xl bg-red-500/10 border border-red-500/30 flex items-center justify-center text-red-400 shrink-0 shadow-inner">
-                                <Trash2 size={20} />
+                        <div
+                            className="bg-[#1c120c] border border-[#dfbf80]/35 rounded-2xl max-w-md w-full p-6 sm:p-7 shadow-2xl text-left relative overflow-hidden my-auto max-h-[90dvh] overflow-y-auto"
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            <div className="absolute top-0 right-0 w-32 h-32 bg-[radial-gradient(circle,rgba(223,191,128,0.12),transparent_70%)] pointer-events-none" />
+                            <div className="flex items-start gap-4 mb-4 relative z-10">
+                                <div className="w-11 h-11 rounded-2xl bg-red-500/10 border border-red-500/30 flex items-center justify-center text-red-400 shrink-0 shadow-inner">
+                                    <Trash2 size={20} />
+                                </div>
+                                <div className="min-w-0 flex-1">
+                                    <h3 className="sns-admin-title text-xl text-white m-0 font-medium tracking-tight">
+                                        Delete Blog Story?
+                                    </h3>
+                                    <p className="text-xs text-[#a89485] m-0 mt-1">
+                                        This story will be permanently removed from publication.
+                                    </p>
+                                </div>
                             </div>
-                            <div className="min-w-0 flex-1">
-                                <h3 className="sns-admin-title text-xl text-white m-0 font-medium tracking-tight">
-                                    Delete Blog Story?
-                                </h3>
-                                <p className="text-xs text-[#a89485] m-0 mt-1">
-                                    This story will be permanently removed from publication.
-                                </p>
+
+                            <p className="text-sm text-[#e2c6af] mb-6 leading-relaxed relative z-10 bg-[#251811]/60 p-3.5 rounded-xl border border-[rgba(226,198,175,0.12)]">
+                                Are you sure you want to delete <strong className="text-white font-semibold">"{deleteBlogCandidate.title}"</strong>?
+                            </p>
+
+                            <div className="flex items-center justify-end gap-3 relative z-10">
+                                <button
+                                    type="button"
+                                    onClick={() => setDeleteBlogCandidate(null)}
+                                    disabled={isDeletingBlog}
+                                    className="px-4 py-2.5 rounded-xl text-xs font-semibold text-[#c7b4a3] hover:text-white bg-[#251811] hover:bg-[#322117] border border-[rgba(226,198,175,0.2)] transition-all cursor-pointer"
+                                >
+                                    Cancel
+                                </button>
+                                <button
+                                    type="button"
+                                    onClick={confirmDeleteBlog}
+                                    disabled={isDeletingBlog}
+                                    className="px-5 py-2.5 rounded-xl text-xs font-semibold text-white bg-red-600 hover:bg-red-500 border border-red-400/30 shadow-lg shadow-red-950/50 transition-all flex items-center gap-1.5 cursor-pointer disabled:opacity-50"
+                                >
+                                    {isDeletingBlog ? 'Deleting…' : 'Delete Story'}
+                                </button>
                             </div>
                         </div>
-
-                        <p className="text-sm text-[#e2c6af] mb-6 leading-relaxed relative z-10 bg-[#251811]/60 p-3.5 rounded-xl border border-[rgba(226,198,175,0.12)]">
-                            Are you sure you want to delete <strong className="text-white font-semibold">"{deleteBlogCandidate.title}"</strong>?
-                        </p>
-
-                        <div className="flex items-center justify-end gap-3 relative z-10">
-                            <button
-                                type="button"
-                                onClick={() => setDeleteBlogCandidate(null)}
-                                disabled={isDeletingBlog}
-                                className="px-4 py-2.5 rounded-xl text-xs font-semibold text-[#c7b4a3] hover:text-white bg-[#251811] hover:bg-[#322117] border border-[rgba(226,198,175,0.2)] transition-all cursor-pointer"
-                            >
-                                Cancel
-                            </button>
-                            <button
-                                type="button"
-                                onClick={confirmDeleteBlog}
-                                disabled={isDeletingBlog}
-                                className="px-5 py-2.5 rounded-xl text-xs font-semibold text-white bg-red-600 hover:bg-red-500 border border-red-400/30 shadow-lg shadow-red-950/50 transition-all flex items-center gap-1.5 cursor-pointer disabled:opacity-50"
-                            >
-                                {isDeletingBlog ? 'Deleting…' : 'Delete Story'}
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            )}
+                    </div>,
+                    document.body
+                )
+                : null}
         </div>
     );
 }

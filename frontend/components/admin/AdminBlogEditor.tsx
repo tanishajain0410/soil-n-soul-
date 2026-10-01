@@ -16,7 +16,14 @@ const ReactQuill = dynamic(
             return <RQ ref={forwardedRef} {...props} />;
         };
     },
-    { ssr: false }
+    {
+        ssr: false,
+        loading: () => (
+            <div className="h-64 rounded-2xl bg-white/[0.03] border border-[rgba(226,198,175,0.1)] flex items-center justify-center text-xs text-[#a89485] animate-pulse">
+                <span>Loading rich editor...</span>
+            </div>
+        ),
+    }
 );
 
 const CATEGORIES = [
@@ -29,7 +36,12 @@ export default function AdminBlogEditor() {
     const params = useParams();
     const slug = params?.slug as string | undefined;
     const router = useRouter();
-    const [token, setToken] = useState<string | null>(null);
+    const [token, setToken] = useState<string | null>(() => {
+        if (typeof window !== 'undefined') {
+            return localStorage.getItem('token');
+        }
+        return null;
+    });
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const quillRef = useRef<any>(null);
     const isEditing = Boolean(slug);
@@ -39,26 +51,71 @@ export default function AdminBlogEditor() {
     const [uploadingBanner, setUploadingBanner] = useState(false);
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
-    const [blogId, setBlogId] = useState<string | null>(null);
+    const [blogId, setBlogId] = useState<string | null>(() => {
+        if (typeof window !== 'undefined' && slug) {
+            try {
+                const cached = sessionStorage.getItem(`sns_edit_blog_${slug}`);
+                if (cached) {
+                    const b = JSON.parse(cached);
+                    return b._id || b.id || null;
+                }
+            } catch {}
+        }
+        return null;
+    });
     const [preview, setPreview] = useState(false);
-    const [content, setContent] = useState('');
+    const [content, setContent] = useState<string>(() => {
+        if (typeof window !== 'undefined' && slug) {
+            try {
+                const cached = sessionStorage.getItem(`sns_edit_blog_${slug}`);
+                if (cached) {
+                    const b = JSON.parse(cached);
+                    return b.content || '';
+                }
+            } catch {}
+        }
+        return '';
+    });
 
-    const [form, setForm] = useState({
-        title: '',
-        excerpt: '',
-        category: 'General',
-        status: 'draft' as 'draft' | 'published',
-        tags: '',
-        bannerImage: '',
-        seoTitle: '',
-        seoDescription: '',
-        seoKeywords: '',
+    const [form, setForm] = useState(() => {
+        if (typeof window !== 'undefined' && slug) {
+            try {
+                const cached = sessionStorage.getItem(`sns_edit_blog_${slug}`);
+                if (cached) {
+                    const b = JSON.parse(cached);
+                    return {
+                        title: b.title || '',
+                        excerpt: b.excerpt || '',
+                        category: b.category || 'General',
+                        status: (b.status || (b.published ? 'published' : 'draft')) as 'draft' | 'published',
+                        tags: Array.isArray(b.tags) ? b.tags.join(', ') : (b.tags || ''),
+                        bannerImage: b.bannerImage || '',
+                        isFeatured: Boolean(b.isFeatured || b.featured),
+                        seoTitle: b.seoTitle || '',
+                        seoDescription: b.seoDescription || '',
+                        seoKeywords: Array.isArray(b.seoKeywords) ? b.seoKeywords.join(', ') : (b.seoKeywords || ''),
+                    };
+                }
+            } catch {}
+        }
+        return {
+            title: '',
+            excerpt: '',
+            category: 'General',
+            status: 'draft' as 'draft' | 'published',
+            isFeatured: false,
+            tags: '',
+            bannerImage: '',
+            seoTitle: '',
+            seoDescription: '',
+            seoKeywords: '',
+        };
     });
 
     useEffect(() => {
         const storedToken = localStorage.getItem('token');
         if (!storedToken) {
-            router.push('/hakunamata');
+            router.push('/admin/login');
         } else {
             setToken(storedToken);
         }
@@ -130,29 +187,64 @@ export default function AdminBlogEditor() {
 
     // ── Load blog when editing ────────────────────────────────────────────────
     useEffect(() => {
-        if (!isEditing) return;
-        setLoading(true);
-        fetch(`${API_URL}/blogs/${slug}`)
-            .then(r => r.json())
-            .then(data => {
-                if (data.success && data.blog) {
-                    const b = data.blog;
-                    setBlogId(b._id);
+        if (!isEditing || !slug) return;
+
+        // Check if we already have populated state from sessionStorage
+        let hasData = false;
+        try {
+            const cached = sessionStorage.getItem(`sns_edit_blog_${slug}`);
+            if (cached) {
+                const b = JSON.parse(cached);
+                if (b && (b.slug === slug || b._id)) {
+                    hasData = true;
+                    setBlogId(b._id || b.id || null);
                     setContent(b.content || '');
                     setForm({
                         title: b.title || '',
                         excerpt: b.excerpt || '',
                         category: b.category || 'General',
-                        status: b.status || (b.published ? 'published' : 'draft'),
-                        tags: Array.isArray(b.tags) ? b.tags.join(', ') : '',
+                        status: (b.status || (b.published ? 'published' : 'draft')) as 'draft' | 'published',
+                        tags: Array.isArray(b.tags) ? b.tags.join(', ') : (b.tags || ''),
                         bannerImage: b.bannerImage || '',
+                        isFeatured: Boolean(b.isFeatured || b.featured),
                         seoTitle: b.seoTitle || '',
                         seoDescription: b.seoDescription || '',
-                        seoKeywords: Array.isArray(b.seoKeywords) ? b.seoKeywords.join(', ') : '',
+                        seoKeywords: Array.isArray(b.seoKeywords) ? b.seoKeywords.join(', ') : (b.seoKeywords || ''),
+                    });
+                    setLoading(false);
+                }
+            }
+        } catch {}
+
+        if (!hasData && !blogId) {
+            setLoading(true);
+        }
+
+        // Silent background fetch to guarantee synchronization with backend
+        fetch(`${API_URL}/blogs/${slug}`)
+            .then(r => r.json())
+            .then(data => {
+                if (data.success && data.blog) {
+                    const b = data.blog;
+                    setBlogId(b._id || b.id || null);
+                    setContent(b.content || '');
+                    setForm({
+                        title: b.title || '',
+                        excerpt: b.excerpt || '',
+                        category: b.category || 'General',
+                        status: (b.status || (b.published ? 'published' : 'draft')) as 'draft' | 'published',
+                        tags: Array.isArray(b.tags) ? b.tags.join(', ') : (b.tags || ''),
+                        bannerImage: b.bannerImage || '',
+                        isFeatured: Boolean(b.isFeatured || b.featured),
+                        seoTitle: b.seoTitle || '',
+                        seoDescription: b.seoDescription || '',
+                        seoKeywords: Array.isArray(b.seoKeywords) ? b.seoKeywords.join(', ') : (b.seoKeywords || ''),
                     });
                 }
             })
-            .catch(() => setError('Failed to load blog.'))
+            .catch(() => {
+                if (!hasData && !blogId) setError('Failed to load blog.');
+            })
             .finally(() => setLoading(false));
     }, [slug, isEditing]);
 
@@ -207,11 +299,12 @@ export default function AdminBlogEditor() {
             category: form.category,
             status,
             published: status === 'published',
+            isFeatured: Boolean(form.isFeatured),
             bannerImage: form.bannerImage,
-            tags: form.tags.split(',').map(t => t.trim()).filter(Boolean),
+            tags: form.tags.split(',').map((t: string) => t.trim()).filter(Boolean),
             seoTitle: form.seoTitle || form.title,
             seoDescription: form.seoDescription,
-            seoKeywords: form.seoKeywords.split(',').map(k => k.trim()).filter(Boolean),
+            seoKeywords: form.seoKeywords.split(',').map((k: string) => k.trim()).filter(Boolean),
         };
 
         try {
@@ -514,6 +607,35 @@ export default function AdminBlogEditor() {
                                     expand_more
                                 </span>
                             </div>
+                        </div>
+
+                        {/* Featured Story Toggle */}
+                        <div className="sm:col-span-2">
+                            <label className="flex items-start sm:items-center gap-3 p-3.5 rounded-xl bg-[#d9ad57]/5 border border-[#d9ad57]/20 cursor-pointer hover:bg-[#d9ad57]/10 hover:border-[#d9ad57]/40 transition-all">
+                                <input
+                                    type="checkbox"
+                                    name="isFeatured"
+                                    checked={Boolean(form.isFeatured)}
+                                    onChange={(e) => setForm(f => ({ ...f, isFeatured: e.target.checked }))}
+                                    className="w-4 h-4 mt-0.5 sm:mt-0 accent-[#d9ad57] rounded cursor-pointer shrink-0"
+                                />
+                                <div className="flex-1 min-w-0">
+                                    <div className="flex items-center gap-2">
+                                        <span className="text-xs font-bold text-[#f7ede2] flex items-center gap-1">
+                                            <span className="text-[#dfbf80]">★</span>
+                                            <span>Display as Primary Featured Story on /blog</span>
+                                        </span>
+                                        {form.isFeatured && (
+                                            <span className="px-2 py-0.5 rounded-full text-[9px] font-bold bg-[#d9ad57] text-[#1a0e08] uppercase tracking-wider">
+                                                Active Hero
+                                            </span>
+                                        )}
+                                    </div>
+                                    <p className="text-[11px] text-[#a89485] m-0 mt-0.5 leading-relaxed">
+                                        When checked, this article takes the signature large hero card at the top of the Soul Blog page. Setting this will automatically update the previous featured story.
+                                    </p>
+                                </div>
+                            </label>
                         </div>
 
                         <div className="sm:col-span-2">

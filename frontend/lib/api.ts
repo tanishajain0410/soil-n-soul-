@@ -8,6 +8,8 @@ export interface BlogPost {
   content: string;
   category: string;
   bannerImage: string;
+  status?: 'draft' | 'published';
+  isFeatured?: boolean;
   metaTitle?: string;
   metaDescription?: string;
   keywords?: string;
@@ -171,6 +173,65 @@ export const EDITORIAL_POSTS: Record<string, BlogPost> = {
       <p>To provide peace of mind, SoilNSoul Travels pairs solo women travelers with verified, culturally sensitive local concierges. Whether navigating crowded markets, coordinating private dawn boat rides, or arranging vetted airport transfers, we ensure your journey through Varanasi is safe, enriching, and unforgettable.</p>
     `,
   },
+  'the-flavours-of-kashi': {
+    _id: 'editorial-card-5',
+    slug: 'the-flavours-of-kashi',
+    title: 'The Flavours of Kashi: From Morning Kachoris to Royal Banarasi Paan',
+    excerpt: 'A sensory culinary trail through ancient galis, legendary halwais, winter malaiyo, and sizzling tamatar chaat.',
+    category: 'Food & Culinary',
+    bannerImage: '/SnS/the-banarasi-table.webp',
+    metaTitle: 'The Flavours of Kashi: Varanasi Food Guide | SoilNSoul Travels',
+    metaDescription: 'Discover the authentic culinary traditions of Varanasi. From Kachori Gali breakfasts to street-side chaat, creamy malaiyo, and legendary Banarasi paan.',
+    keywords: 'Varanasi street food, Banarasi kachori, Kashi food guide, best food in Varanasi, Banarasi paan',
+    createdAt: '2025-02-10T08:00:00.000Z',
+    content: `
+      <p class="lead">In Varanasi, food is neither a casual indulgence nor a hurried necessity—it is an art form rooted in seasonal devotion, ancient ayurvedic balance, and centuries of halwai craftsmanship.</p>
+
+      <h2>Dawn: The Fragrance of Kachori Gali</h2>
+      <p>As morning mists rise from the river, the narrow lanes behind Dashashwamedh Ghat come alive with the sizzle of pure desi ghee. At Ram Bhandar and century-old halwais in Kachori Gali, crisp heeng-spiced kachoris are served on dried sal leaf plates alongside tangy, slow-simmered potato curry and fresh jalebis glowing golden in hot syrup.</p>
+
+      <h2>Afternoon: The Tang of Banarasi Chaat</h2>
+      <p>Unlike chaat anywhere else in Northern India, Kashi's chaat culture is defined by its warm, earthy complexity. In the bustling chowk near Godowlia, master chaat-makers prepare Tamatar Chaat—slow-cooked tomatoes spiced with garam masala, dried fruits, and a generous splash of hing water, served piping hot in earthen kulhads.</p>
+
+      <blockquote>
+        "Food in Kashi is intimately tied to the rhythm of the city. Every bite carries the memory of generations who perfected the balance of spice, sweetness, and soul."
+      </blockquote>
+
+      <h2>Winter Ambrosia: The Mystery of Malaiyo</h2>
+      <p>During the crisp winter mornings between November and February, Chaukhamba lane fills with large brass platters holding Malaiyo—an ethereal, cloud-like foam prepared by churning milk and leaving it under the open night sky to absorb the holy dawn dew, scented with saffron, cardamom, and crushed pistachios.</p>
+
+      <h2>The Royal Finale: Magahi Banarasi Paan</h2>
+      <p>No culinary journey through Kashi is complete without Banarasi Paan. Folded with tender Magahi betel leaf, fragrant gulkand, kattha, and fine areca nut, it is not merely a palate cleanser—it is a regal ceremony of hospitality that lingers long after you leave the ancient city.</p>
+    `,
+  },
+  'celebrating-dev-deepavali': {
+    _id: 'editorial-card-6',
+    slug: 'celebrating-dev-deepavali',
+    title: 'Celebrating Dev Deepavali: When the Gods Descend Upon Kashi’s Ghats',
+    excerpt: 'A million glowing earthen lamps along 84 ghats, sacred chants, and the divine radiance of Kartik Purnima.',
+    category: 'Festivals & Events',
+    bannerImage: '/SnS/celebrations.webp',
+    metaTitle: 'Celebrating Dev Deepavali in Varanasi | SoilNSoul Travels',
+    metaDescription: 'Experience Dev Deepavali in Varanasi. Over one million diyas lighting the ghats, sacred fireworks, and private boat journeys for Kartik Purnima with SoilNSoul Travels.',
+    keywords: 'Dev Deepavali Varanasi, Kartik Purnima Kashi, festivals in Varanasi, Ganga Mahotsav, Varanasi festival guide',
+    createdAt: '2025-02-15T18:00:00.000Z',
+    content: `
+      <p class="lead">Fifteen days after Diwali, on the full moon night of Kartik Purnima, Varanasi undergoes a transformation unlike any other place on Earth. It is believed that on this sacred night, all thirty-three crore deities descend from the heavens to bathe in the holy Ganges.</p>
+
+      <h2>A River of Liquid Amber</h2>
+      <p>As twilight settles, over one million handmade terracotta lamps (diyas) are lit simultaneously across the crescent-shaped arc of Varanasi’s 84 ghats. From Assi Ghat in the south to Rajghat in the north, stone balustrades, temple rooftops, and steep stairways illuminate in continuous ribbons of living golden fire.</p>
+
+      <h2>The Grand Chants of Dashashwamedh and Rajghat</h2>
+      <p>The ceremonies during Dev Deepavali reach a crescendo with monumental Maha Aartis. Choirs of Vedic scholars chant ancient hymns in resonance with conch shells and sacred drums. Pilgrims and visitors from across the globe gather on traditional wooden boats, drifting along the river as reflections of fire dance upon the dark surface of Mother Ganga.</p>
+
+      <blockquote>
+        "To see Varanasi during Dev Deepavali is to witness the boundary between earth and the cosmos gently dissolve into a sea of sacred light."
+      </blockquote>
+
+      <h2>Experiencing the Festival with SoilNSoul Travels</h2>
+      <p>Navigating the extraordinary crowds of Dev Deepavali requires thoughtful planning. SoilNSoul Travels curates private wooden bajras equipped with heritage seating, traditional refreshments, and knowledgeable guides, giving travelers a peaceful, reverent vantage point right in the heart of the celestial celebration.</p>
+    `,
+  },
 };
 
 /** Fetch all blogs (server-side, cached with ISR, falling back to curated editorial posts) */
@@ -180,8 +241,8 @@ export async function fetchBlogs(): Promise<BlogPost[]> {
 
   try {
     const res = await fetch(`${API_URL}/blogs`, {
-      next: { revalidate: 3600, tags: ['blogs'] },
-      signal: AbortSignal.timeout(2000),
+      next: { revalidate: process.env.NODE_ENV === 'development' ? 0 : 3600, tags: ['blogs'] },
+      signal: AbortSignal.timeout(4000),
     });
     if (!res.ok) return editorialList;
     const data = await res.json();
@@ -202,8 +263,8 @@ export async function fetchBlogBySlug(slug: string): Promise<BlogPost | null> {
   if (API_URL) {
     try {
       const res = await fetch(`${API_URL}/blogs/${slug}`, {
-        next: { revalidate: 3600, tags: ['blogs', `blog:${slug}`] },
-        signal: AbortSignal.timeout(2000),
+        next: { revalidate: process.env.NODE_ENV === 'development' ? 0 : 3600, tags: ['blogs', `blog:${slug}`] },
+        signal: AbortSignal.timeout(4000),
       });
       if (res.ok) {
         const data = await res.json();
@@ -234,3 +295,38 @@ export async function fetchAllBlogSlugs(): Promise<string[]> {
     return editorialSlugs;
   }
 }
+
+/** Subscribe an email address to the automated newsletter updates */
+export async function subscribeNewsletter(
+  email: string,
+  name?: string,
+  source: string = 'blog_newsletter'
+): Promise<{ success: boolean; message: string }> {
+  const targetUrl = API_URL ? `${API_URL}/newsletter/subscribe` : 'http://localhost:5000/api/newsletter/subscribe';
+
+  try {
+    const res = await fetch(targetUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, name, source }),
+    });
+    const data = await res.json();
+    if (!res.ok) {
+      return {
+        success: false,
+        message: data.message || 'Unable to complete subscription. Please try again.',
+      };
+    }
+    return {
+      success: true,
+      message: data.message || 'Subscribed successfully! A welcome email has been sent.',
+    };
+  } catch (err) {
+    console.error('Newsletter subscribe network error:', err);
+    return {
+      success: false,
+      message: 'Network error. Please check your connection or reach out on WhatsApp.',
+    };
+  }
+}
+

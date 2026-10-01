@@ -28,12 +28,13 @@ body:has(.reference-homepage) {
   max-height: 920px;
 }
 .reference-homepage .hero-cinematic-video {
-  filter: saturate(.72) sepia(.11) brightness(1.03);
+  filter: saturate(1.05) contrast(1.03) brightness(.94);
 }
 .reference-homepage .hero-cinematic-overlay {
   background:
-    linear-gradient(90deg, rgba(37, 17, 12, .77), rgba(48, 25, 17, .32) 55%, rgba(43, 20, 13, .12)),
-    linear-gradient(0deg, rgba(31, 12, 8, .78), transparent 52%);
+    linear-gradient(90deg, rgba(37, 17, 12, .78), rgba(48, 25, 17, .32) 55%, rgba(43, 20, 13, .16)),
+    linear-gradient(0deg, rgba(31, 12, 8, .72), transparent 52%),
+    linear-gradient(rgba(93, 42, 19, .08), rgba(93, 42, 19, .08));
 }
 .reference-homepage .hero-content-block {
   top: 12%;

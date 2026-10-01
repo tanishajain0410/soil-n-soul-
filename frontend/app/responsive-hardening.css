@@ -167,6 +167,32 @@ body,
   }
 }
 
+@media (min-width: 761px) and (max-width: 900px) {
+  /* Keep the homepage founder copy readable on tablet widths without
+     forcing the portrait to retain its desktop minimum width. */
+  .reference-homepage .home-founder-layout {
+    grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr) !important;
+    gap: clamp(24px, 4vw, 36px) !important;
+  }
+}
+
+@media (max-width: 880px) {
+  /* The map column otherwise consumes most of the contact panel before its
+     existing mobile breakpoint, squeezing the form on small tablets. */
+  .contact-reference-page .contact-enquiry-reference .enquiry-container {
+    grid-template-columns: minmax(0, 1fr) !important;
+    grid-template-rows: auto !important;
+    gap: 28px !important;
+  }
+
+  .contact-reference-page .contact-enquiry-reference .enquiry-info-col,
+  .contact-reference-page .contact-enquiry-reference .enquiry-form-col,
+  .contact-reference-page .contact-enquiry-reference .journey-map-panel {
+    grid-column: 1 !important;
+    grid-row: auto !important;
+  }
+}
+
 @media (max-width: 640px) {
   .exp-nav-header .exp-nav-lock-btn {
     display: none !important;
@@ -174,6 +200,41 @@ body,
 
   .exp-nav-header .exp-nav-logo {
     max-width: min(116px, 29vw);
+  }
+}
+
+@media (max-width: 400px) {
+  body:has(.blog-detail-root) .exp-nav-inner {
+    gap: 6px;
+  }
+
+  body:has(.blog-detail-root) .exp-nav-logo {
+    width: min(76px, 23vw);
+    max-width: min(76px, 23vw);
+  }
+
+  body:has(.blog-detail-root) .exp-nav-actions {
+    gap: 4px;
+  }
+
+  body:has(.blog-detail-root) .exp-nav-cta-btn {
+    min-width: 0;
+    min-height: 34px;
+    height: 34px;
+    gap: 5px;
+    padding-inline: 10px;
+    font-size: 9px;
+    letter-spacing: .3px;
+  }
+
+  body:has(.blog-detail-root) .exp-nav-cta-btn span {
+    display: inline !important;
+  }
+
+  body:has(.blog-detail-root) .exp-nav-menu-btn {
+    flex: 0 0 32px;
+    width: 32px;
+    height: 32px;
   }
 }
 

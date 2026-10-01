@@ -87,6 +87,7 @@ body :is(.reference-homepage,.about-page-root,.exp-page-root,.journey-page,.jcat
 }
 
 /* Match every journey-planning action to the homepage navigation CTA. */
+.exp-nav-cta-btn,
 body:has(.reference-homepage) .exp-nav-cta-btn,
 body:has(.about-page-root) .exp-nav-cta-btn,
 body:has(.exp-page-root) .exp-nav-cta-btn,
@@ -94,7 +95,8 @@ body:has(.journey-page) .exp-nav-cta-btn,
 body:has(.jcat-page) .exp-nav-cta-btn,
 body:has(.journal-page-root) .exp-nav-cta-btn,
 body:has(.contact-reference-page) .exp-nav-cta-btn,
-body:has(.legal-page-root) .exp-nav-cta-btn {
+body:has(.legal-page-root) .exp-nav-cta-btn,
+body:has(.blog-detail-root) .exp-nav-cta-btn {
   min-height: 46px;
   height: 46px;
   padding-inline: 26px;
@@ -112,6 +114,7 @@ body:has(.legal-page-root) .exp-nav-cta-btn {
   transition: transform .25s ease, box-shadow .25s ease, filter .25s ease;
 }
 
+.exp-nav-cta-btn:hover,
 body:has(.reference-homepage) .exp-nav-cta-btn:hover,
 body:has(.about-page-root) .exp-nav-cta-btn:hover,
 body:has(.exp-page-root) .exp-nav-cta-btn:hover,
@@ -119,7 +122,8 @@ body:has(.journey-page) .exp-nav-cta-btn:hover,
 body:has(.jcat-page) .exp-nav-cta-btn:hover,
 body:has(.journal-page-root) .exp-nav-cta-btn:hover,
 body:has(.contact-reference-page) .exp-nav-cta-btn:hover,
-body:has(.legal-page-root) .exp-nav-cta-btn:hover {
+body:has(.legal-page-root) .exp-nav-cta-btn:hover,
+body:has(.blog-detail-root) .exp-nav-cta-btn:hover {
   background: linear-gradient(135deg, #f6d991 0%, #e6b65f 100%);
   transform: translateY(-2px);
   box-shadow: 0 12px 28px rgba(36, 16, 12, 0.28), inset 0 1px rgba(255, 255, 255, 0.5);
@@ -152,7 +156,49 @@ body :is(.about-page-root, .exp-page-root, .journey-page, .journal-page-root, .c
   outline-offset: 3px;
 }
 
-/* Shared scrolled navigation palette across every page. */
+/* ========================================================
+   UNIVERSAL NAVIGATION BAR PALETTE & SCROLL BEHAVIOR
+   Matches Homepage theme identically on EVERY page
+   ======================================================== */
+.exp-nav-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  transition: background 0.35s ease, backdrop-filter 0.35s ease, -webkit-backdrop-filter 0.35s ease, padding 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease !important;
+}
+
+/* Unscrolled (at top of page) - Atmospheric dark-to-transparent vignette */
+.exp-nav-header:not(.scrolled) {
+  background: linear-gradient(180deg, rgba(24, 10, 7, 0.58) 0%, rgba(24, 10, 7, 0.22) 65%, transparent 100%) !important;
+  border-bottom: 1px solid transparent !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.exp-nav-header:not(.scrolled) .exp-nav-link {
+  color: #f0ede6 !important;
+}
+
+.exp-nav-header:not(.scrolled) .exp-nav-link.active,
+.exp-nav-header:not(.scrolled) .exp-nav-link:hover {
+  color: #dfbf80 !important;
+}
+
+.exp-nav-header:not(.scrolled) .exp-nav-link.active::after,
+.exp-nav-header:not(.scrolled) .exp-nav-link:hover::after {
+  background: #dfbf80 !important;
+}
+
+.exp-nav-header:not(.scrolled) .exp-nav-menu-btn {
+  border-color: rgba(255, 255, 255, 0.28) !important;
+  color: #f0ede6 !important;
+}
+
+/* Scrolled Navbar (Active when user scrolls > 40px) - Warm Luxury Frosted Glass */
+.exp-nav-header.scrolled,
 body:has(.reference-homepage) .exp-nav-header.scrolled,
 body:has(.about-page-root) .exp-nav-header.scrolled,
 body:has(.exp-page-root) .exp-nav-header.scrolled,
@@ -160,14 +206,17 @@ body:has(.journey-page) .exp-nav-header.scrolled,
 body:has(.jcat-page) .exp-nav-header.scrolled,
 body:has(.journal-page-root) .exp-nav-header.scrolled,
 body:has(.contact-reference-page) .exp-nav-header.scrolled,
-body:has(.legal-page-root) .exp-nav-header.scrolled {
-  background: rgba(239, 230, 215, 0.98);
-  border-bottom: 1px solid rgba(72, 49, 31, 0.14);
-  box-shadow: 0 4px 20px rgba(48, 31, 18, 0.12);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+body:has(.legal-page-root) .exp-nav-header.scrolled,
+body:has(.blog-detail-root) .exp-nav-header.scrolled {
+  background: rgba(239, 230, 215, 0.98) !important;
+  border-bottom: 1px solid rgba(72, 49, 31, 0.14) !important;
+  box-shadow: 0 4px 20px rgba(48, 31, 18, 0.12) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  padding: 16px clamp(24px, 5.5vw, 80px) !important;
 }
 
+.exp-nav-header.scrolled .exp-nav-link,
 body:has(.reference-homepage) .exp-nav-header.scrolled .exp-nav-link,
 body:has(.about-page-root) .exp-nav-header.scrolled .exp-nav-link,
 body:has(.exp-page-root) .exp-nav-header.scrolled .exp-nav-link,
@@ -175,10 +224,13 @@ body:has(.journey-page) .exp-nav-header.scrolled .exp-nav-link,
 body:has(.jcat-page) .exp-nav-header.scrolled .exp-nav-link,
 body:has(.journal-page-root) .exp-nav-header.scrolled .exp-nav-link,
 body:has(.contact-reference-page) .exp-nav-header.scrolled .exp-nav-link,
-body:has(.legal-page-root) .exp-nav-header.scrolled .exp-nav-link {
+body:has(.legal-page-root) .exp-nav-header.scrolled .exp-nav-link,
+body:has(.blog-detail-root) .exp-nav-header.scrolled .exp-nav-link {
   color: #20110b !important;
 }
 
+.exp-nav-header.scrolled .exp-nav-link.active,
+.exp-nav-header.scrolled .exp-nav-link:hover,
 body:has(.reference-homepage) .exp-nav-header.scrolled .exp-nav-link.active,
 body:has(.reference-homepage) .exp-nav-header.scrolled .exp-nav-link:hover,
 body:has(.about-page-root) .exp-nav-header.scrolled .exp-nav-link.active,
@@ -194,10 +246,14 @@ body:has(.journal-page-root) .exp-nav-header.scrolled .exp-nav-link:hover,
 body:has(.contact-reference-page) .exp-nav-header.scrolled .exp-nav-link.active,
 body:has(.contact-reference-page) .exp-nav-header.scrolled .exp-nav-link:hover,
 body:has(.legal-page-root) .exp-nav-header.scrolled .exp-nav-link.active,
-body:has(.legal-page-root) .exp-nav-header.scrolled .exp-nav-link:hover {
+body:has(.legal-page-root) .exp-nav-header.scrolled .exp-nav-link:hover,
+body:has(.blog-detail-root) .exp-nav-header.scrolled .exp-nav-link.active,
+body:has(.blog-detail-root) .exp-nav-header.scrolled .exp-nav-link:hover {
   color: #9a5d12 !important;
 }
 
+.exp-nav-header.scrolled .exp-nav-link.active::after,
+.exp-nav-header.scrolled .exp-nav-link:hover::after,
 body:has(.reference-homepage) .exp-nav-header.scrolled .exp-nav-link.active::after,
 body:has(.reference-homepage) .exp-nav-header.scrolled .exp-nav-link:hover::after,
 body:has(.about-page-root) .exp-nav-header.scrolled .exp-nav-link.active::after,
@@ -213,10 +269,14 @@ body:has(.journal-page-root) .exp-nav-header.scrolled .exp-nav-link:hover::after
 body:has(.contact-reference-page) .exp-nav-header.scrolled .exp-nav-link.active::after,
 body:has(.contact-reference-page) .exp-nav-header.scrolled .exp-nav-link:hover::after,
 body:has(.legal-page-root) .exp-nav-header.scrolled .exp-nav-link.active::after,
-body:has(.legal-page-root) .exp-nav-header.scrolled .exp-nav-link:hover::after {
-  background: #bd852c;
+body:has(.legal-page-root) .exp-nav-header.scrolled .exp-nav-link:hover::after,
+body:has(.blog-detail-root) .exp-nav-header.scrolled .exp-nav-link.active::after,
+body:has(.blog-detail-root) .exp-nav-header.scrolled .exp-nav-link:hover::after {
+  background: #bd852c !important;
 }
 
+.exp-nav-header.scrolled .exp-nav-wa-btn,
+.exp-nav-header.scrolled .exp-nav-menu-btn,
 body:has(.reference-homepage) .exp-nav-header.scrolled .exp-nav-wa-btn,
 body:has(.about-page-root) .exp-nav-header.scrolled .exp-nav-wa-btn,
 body:has(.exp-page-root) .exp-nav-header.scrolled .exp-nav-wa-btn,
@@ -231,19 +291,10 @@ body:has(.journey-page) .exp-nav-header.scrolled .exp-nav-menu-btn,
 body:has(.jcat-page) .exp-nav-header.scrolled .exp-nav-menu-btn,
 body:has(.journal-page-root) .exp-nav-header.scrolled .exp-nav-menu-btn,
 body:has(.contact-reference-page) .exp-nav-header.scrolled .exp-nav-menu-btn,
-body:has(.legal-page-root) .exp-nav-header.scrolled .exp-nav-menu-btn {
+body:has(.legal-page-root) .exp-nav-header.scrolled .exp-nav-menu-btn,
+body:has(.blog-detail-root) .exp-nav-header.scrolled .exp-nav-menu-btn {
   border-color: rgba(80, 53, 31, 0.36) !important;
   color: #20110b !important;
-}
-
-body:has(.reference-homepage) .exp-nav-header.scrolled .exp-nav-wa-btn,
-body:has(.about-page-root) .exp-nav-header.scrolled .exp-nav-wa-btn,
-body:has(.exp-page-root) .exp-nav-header.scrolled .exp-nav-wa-btn,
-body:has(.journey-page) .exp-nav-header.scrolled .exp-nav-wa-btn,
-body:has(.jcat-page) .exp-nav-header.scrolled .exp-nav-wa-btn,
-body:has(.journal-page-root) .exp-nav-header.scrolled .exp-nav-wa-btn,
-body:has(.contact-reference-page) .exp-nav-header.scrolled .exp-nav-wa-btn,
-body:has(.legal-page-root) .exp-nav-header.scrolled .exp-nav-wa-btn {
   background: transparent !important;
 }
 
@@ -255,7 +306,8 @@ body:has(.legal-page-root) .exp-nav-header.scrolled .exp-nav-wa-btn {
   body:has(.jcat-page) .exp-nav-logo,
   body:has(.journal-page-root) .exp-nav-logo,
   body:has(.contact-reference-page) .exp-nav-logo,
-  body:has(.legal-page-root) .exp-nav-logo {
+  body:has(.legal-page-root),
+body:has(.blog-detail-root) .exp-nav-logo {
     width: 84px;
     max-width: 84px;
     height: 28px;
@@ -269,7 +321,8 @@ body:has(.legal-page-root) .exp-nav-header.scrolled .exp-nav-wa-btn {
   body:has(.jcat-page) .exp-nav-cta-btn,
   body:has(.journal-page-root) .exp-nav-cta-btn,
   body:has(.contact-reference-page) .exp-nav-cta-btn,
-  body:has(.legal-page-root) .exp-nav-cta-btn {
+  body:has(.legal-page-root),
+body:has(.blog-detail-root) .exp-nav-cta-btn {
     display: inline-flex;
     width: auto;
     min-width: 124px;

@@ -58,7 +58,7 @@ import AdminHotels from './pages/admin/AdminHotels';
 // Admin protection wrapper
 const AdminRoute = ({ children }: { children: React.ReactNode }) => {
   const token = localStorage.getItem('token');
-  return token ? <>{children}</> : <Navigate to="/hakunamata" replace />;
+  return token ? <>{children}</> : <Navigate to="/admin/login" replace />;
 };
 
 export default function App() {
@@ -78,14 +78,14 @@ export default function App() {
         <Route path="/best-tours-and-travel-agency-in-varanasi" element={<BestToursVaranasi />} />
 
         {/* Admin Routes */}
-        <Route path="/hakunamata" element={<AdminLogin />} />
+        <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admin" element={<AdminRoute><AdminDashboard /></AdminRoute>} />
         <Route path="/admin/hotels" element={<AdminRoute><AdminHotels /></AdminRoute>} />
         <Route path="/admin/blog/new" element={<AdminRoute><AdminBlogEditor /></AdminRoute>} />
         <Route path="/admin/blog/edit/:slug" element={<AdminRoute><AdminBlogEditor /></AdminRoute>} />
       </Routes>
 
-      {!window.location.pathname.startsWith('/admin') && !window.location.pathname.startsWith('/hakunamata') && (
+      {!window.location.pathname.startsWith('/admin') && (
         <WhatsAppButton />
       )}
     </Router>

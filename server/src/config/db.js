@@ -30,14 +30,28 @@ CREATE TABLE IF NOT EXISTS blogs (
   status TEXT NOT NULL DEFAULT 'draft' CHECK (status IN ('draft', 'published')),
   tags JSONB NOT NULL DEFAULT '[]'::jsonb, seo_title TEXT NOT NULL DEFAULT '',
   seo_description TEXT NOT NULL DEFAULT '', seo_keywords JSONB NOT NULL DEFAULT '[]'::jsonb,
-  published BOOLEAN NOT NULL DEFAULT FALSE, created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(), updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+  published BOOLEAN NOT NULL DEFAULT FALSE,
+  is_featured BOOLEAN NOT NULL DEFAULT FALSE,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(), updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
+CREATE INDEX IF NOT EXISTS blogs_is_featured_idx ON blogs (is_featured);
 CREATE INDEX IF NOT EXISTS blogs_status_created_at_idx ON blogs (status, created_at DESC);
 CREATE TABLE IF NOT EXISTS hotels (
   id TEXT PRIMARY KEY DEFAULT gen_random_uuid()::text,
   name TEXT NOT NULL, description TEXT NOT NULL, image TEXT NOT NULL, whatsapp_message TEXT NOT NULL DEFAULT '',
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(), updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
+CREATE TABLE IF NOT EXISTS subscribers (
+  id TEXT PRIMARY KEY DEFAULT gen_random_uuid()::text,
+  email TEXT NOT NULL UNIQUE,
+  name TEXT NOT NULL DEFAULT 'Soul Blog Subscriber',
+  status TEXT NOT NULL DEFAULT 'active' CHECK (status IN ('active', 'unsubscribed')),
+  source TEXT NOT NULL DEFAULT 'blog_newsletter',
+  subscribed_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  unsubscribed_at TIMESTAMPTZ
+);
+CREATE INDEX IF NOT EXISTS subscribers_email_idx ON subscribers (email);
+CREATE INDEX IF NOT EXISTS subscribers_status_idx ON subscribers (status);
 `;
 
 export async function connectDB() {
@@ -55,6 +69,7 @@ export async function connectDB() {
   try {
     await pool.query('SELECT 1');
     await pool.query(schema);
+    await pool.query('ALTER TABLE blogs ADD COLUMN IF NOT EXISTS is_featured BOOLEAN NOT NULL DEFAULT FALSE;');
     connected = true;
     console.log('✅ PostgreSQL connected; admin schema is ready.');
     return true;

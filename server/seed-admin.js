@@ -22,7 +22,7 @@ async function seed() {
     const passwordHash = await bcrypt.hash(ADMIN_PASSWORD, 12);
     await client.query('INSERT INTO admins (name,email,password_hash) VALUES ($1,$2,$3)', [ADMIN_NAME, ADMIN_EMAIL, passwordHash]);
     await client.query('COMMIT');
-    console.log(`Admin account ${ADMIN_EMAIL} created. Sign in at /hakunamata.`);
+    console.log(`Admin account ${ADMIN_EMAIL} created. Sign in at /admin/login.`);
   } catch (error) {
     await client.query('ROLLBACK').catch(() => {});
     throw error;

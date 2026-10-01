@@ -41,6 +41,8 @@ const riverThemes = [
   { label: "Heritage", href: "/journeys/arth" },
 ];
 
+const heroClip = "/hero-gemini-varanasi.mp4?v=1";
+
 const kashiVoices = [
   { label: "Testimonial video 1", reel: "https://www.instagram.com/reel/DbShNSGCVEi/", thumbnail: "/images/testimonials/testimonial-1-cover.png" },
   { label: "Testimonial video 2", reel: "https://www.instagram.com/reel/Dau_-F6qUIb/", thumbnail: "/api/reel-cover/Dau_-F6qUIb?v=2" },
@@ -170,7 +172,6 @@ const purusharthas = [
 
 export default function HomeClient() {
   const heroVideoRef = useRef<HTMLVideoElement>(null);
-  const audioRef = useRef<HTMLAudioElement>(null);
   const [isPlayingSound, setIsPlayingSound] = useState(false);
   const [activeTestimonial, setActiveTestimonial] = useState<(typeof kashiVoices)[number] | null>(null);
 
@@ -189,33 +190,20 @@ export default function HomeClient() {
   }, [activeTestimonial]);
 
   const toggleSound = () => {
-    const audio = audioRef.current;
     const video = heroVideoRef.current;
-    if (!audio) return;
+    if (!video) return;
 
     if (isPlayingSound) {
-      audio.pause();
+      video.muted = true;
       setIsPlayingSound(false);
     } else {
-      if (video) {
-        video.classList.remove("hero-motion-poster");
+      video.muted = false;
+      video.volume = 1;
+      video.play().then(() => setIsPlayingSound(true)).catch((err) => {
+        console.warn("Hero video sound could not start:", err);
         video.muted = true;
-        video.play().catch((err) => {
-          console.warn("Hero video playback could not start:", err);
-        });
-      }
-      audio.currentTime = audio.currentTime || 0;
-      const playPromise = audio.play();
-      if (playPromise !== undefined) {
-        playPromise
-          .then(() => {
-            setIsPlayingSound(true);
-          })
-          .catch((err) => {
-            console.warn("Audio playback deferred or blocked by browser policy:", err);
-            setIsPlayingSound(false);
-          });
-      }
+        setIsPlayingSound(false);
+      });
     }
   };
 
@@ -223,10 +211,12 @@ export default function HomeClient() {
     const video = heroVideoRef.current;
     if (!video) return;
 
-    // The background clip is silent and muted so browsers can autoplay it.
     video.defaultMuted = true;
     video.muted = true;
-    video.classList.remove("hero-motion-poster");
+    video.loop = true;
+    video.playsInline = true;
+    video.src = heroClip;
+    video.load();
 
     const startPlayback = () => {
       video.muted = true;
@@ -234,10 +224,8 @@ export default function HomeClient() {
         console.warn("Hero video autoplay deferred until user interaction:", err);
       });
     };
-
     startPlayback();
 
-    // Fallback listeners for strict browser autoplay policies
     const unlockPlayback = () => {
       if (video.paused) {
         video.muted = true;
@@ -250,16 +238,15 @@ export default function HomeClient() {
       window.addEventListener(evt, unlockPlayback, { passive: true, once: true })
     );
 
-    // Pause video and audio when user scrolls deeply past the hero to save CPU/battery
     const handleScroll = () => {
       if (window.scrollY > window.innerHeight * 1.3) {
-        if (!video.paused) video.pause();
-        if (audioRef.current && !audioRef.current.paused) {
-          audioRef.current.pause();
+        video.pause();
+        if (!video.muted) {
+          video.muted = true;
           setIsPlayingSound(false);
         }
-      } else {
-        if (video.paused) video.play().catch(() => {});
+      } else if (video.paused) {
+        video.play().catch(() => {});
       }
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -267,9 +254,7 @@ export default function HomeClient() {
     return () => {
       interactionEvents.forEach((evt) => window.removeEventListener(evt, unlockPlayback));
       window.removeEventListener("scroll", handleScroll);
-      if (audioRef.current) {
-        audioRef.current.pause();
-      }
+      video.pause();
     };
   }, []);
 
@@ -285,36 +270,14 @@ export default function HomeClient() {
           ref={heroVideoRef}
           autoPlay
           muted
-          loop
           playsInline
+          loop
           preload="auto"
-          poster="/images/varanasi-hero-poster.jpg"
           className="hero-cinematic-video"
           aria-hidden="true"
         >
-          <source
-            src="/varanasi-hero-mobile.mp4"
-            type="video/mp4"
-            media="(max-width: 768px)"
-          />
-          <source
-            src="/varanasi-hero-mobile.webm"
-            type="video/webm"
-            media="(max-width: 768px)"
-          />
-          <source src="/varanasi-hero.mp4" type="video/mp4" />
-          <source src="/varanasi-hero.webm" type="video/webm" />
+          <source src={heroClip} type="video/mp4" />
         </video>
-
-        {/* Ambient Kashi Hero Audio Source */}
-        <audio
-          ref={audioRef}
-          src="/audio/kashi-hero-audio.m4a.mp4"
-          preload="none"
-          loop
-          playsInline
-          onEnded={() => setIsPlayingSound(false)}
-        />
 
         {/* Cinematic Dark Gradient Overlay */}
         <div className="hero-cinematic-overlay" />
@@ -351,8 +314,8 @@ export default function HomeClient() {
               type="button"
               onClick={toggleSound}
               className={`hero-sound-toggle-btn ${isPlayingSound ? "is-active" : ""}`}
-              aria-label={isPlayingSound ? "Mute ambient sound" : "Play ambient sound"}
-              title={isPlayingSound ? "Mute sound" : "Experience with sound"}
+              aria-label={isPlayingSound ? "Mute hero video sound" : "Play hero video sound"}
+              title={isPlayingSound ? "Mute video sound" : "Play video sound"}
             >
               <span className="sound-toggle-circle">
                 {isPlayingSound ? (

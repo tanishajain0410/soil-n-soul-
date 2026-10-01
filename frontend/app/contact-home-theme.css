@@ -12,7 +12,7 @@
   color:#302019;
 }
 body:has(.contact-reference-page) .exp-nav-header { background:linear-gradient(180deg,rgba(26,12,9,.55),transparent); }
-body:has(.contact-reference-page) .exp-nav-header.scrolled { background:rgba(26,12,9,.96); border-bottom-color:rgba(211,178,115,.2); }
+body:has(.contact-reference-page) .exp-nav-header.scrolled { background:rgba(239, 230, 215, 0.98); border-bottom-color:rgba(72, 49, 31, 0.14); }
 body:has(.contact-reference-page) .exp-nav-cta-btn { background:#d3b273; color:#24110d!important; border-radius:4px; }
 body:has(.contact-reference-page) .exp-nav-wa-btn { border-color:rgba(211,178,115,.6)!important; color:#d3b273!important; }
 body:has(.contact-reference-page) .exp-mobile-drawer { background:rgba(26,12,9,.98); }

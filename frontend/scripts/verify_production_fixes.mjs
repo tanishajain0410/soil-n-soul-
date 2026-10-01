@@ -29,12 +29,10 @@ async function run() {
     const robotsText = await robotsRes.text();
     console.log(`Status: ${robotsRes.status}`);
     const hasAdminDisallow = robotsText.includes('Disallow: /admin');
-    const hasHakunamataDisallow = robotsText.includes('Disallow: /hakunamata');
     const hasApiDisallow = robotsText.includes('Disallow: /api');
     console.log(`Disallow /admin: ${hasAdminDisallow ? 'PASS' : 'FAIL'}`);
-    console.log(`Disallow /hakunamata: ${hasHakunamataDisallow ? 'PASS' : 'FAIL'}`);
     console.log(`Disallow /api: ${hasApiDisallow ? 'PASS' : 'FAIL'}`);
-    if (!hasAdminDisallow || !hasHakunamataDisallow || !hasApiDisallow) failures++;
+    if (!hasAdminDisallow || !hasApiDisallow) failures++;
   } catch (err) {
     console.error('Robots check error:', err);
     failures++;
